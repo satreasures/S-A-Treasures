@@ -184,31 +184,25 @@
     <section class="checkout-section" id="checkoutSection">
         <h2 style="color: #d4a373; text-align:center; margin-top:0;">📋 Complete Your Order</h2>
         
-        <form action="https://formsubmit.co/AIAAUVRO@GMAIL.COM" method="POST">
-            <input type="hidden" name="_next" value="https://aiaauvro420.github.io/S-A-Treasures/">
-            <input type="hidden" name="_subject" value="New Order Placed - S&A Treasures">
-            
-            <input type="hidden" name="Order_Details" id="hiddenOrderDetails">
-            <input type="hidden" name="Total_Price" id="hiddenTotalPrice">
-
+        <form onsubmit="sendToWhatsApp(event)">
             <div class="form-group">
                 <label>Full Name *</label>
-                <input type="text" name="Customer_Name" placeholder="আপনার পুরো নাম লিখুন" required>
+                <input type="text" id="custName" placeholder="আপনার পুরো নাম লিখুন" required>
             </div>
             <div class="form-group">
                 <label>Phone Number *</label>
-                <input type="tel" name="Customer_Phone" placeholder="01XXXXXXXXX" required>
+                <input type="tel" id="custPhone" placeholder="01XXXXXXXXX" required>
             </div>
             <div class="form-group">
                 <label>Full Delivery Address *</label>
-                <textarea name="Customer_Address" rows="3" placeholder="জেলা, থানা, এলাকা এবং রোড নম্বর বিস্তারিত লিখুন" required></textarea>
+                <textarea id="custAddress" rows="3" placeholder="জেলা, থানা, এলাকা এবং রোড নম্বর বিস্তারিত লিখুন" required></textarea>
             </div>
             <div class="form-group">
                 <label>Payment Method & Advance Transaction Info *</label>
-                <input type="text" name="Payment_Info" placeholder="bKash/Nagad Number & TrxID" required>
+                <input type="text" id="custPayment" placeholder="bKash/Nagad Number & TrxID" required>
             </div>
 
-            <button type="submit" class="order-btn" style="background:#2ecc71; font-size:1.1em; border:none; width:100%;">Confirm Order</button>
+            <button type="submit" class="order-btn" style="background:#2ecc71; font-size:1.1em; border:none; width:100%;">Confirm via WhatsApp 💬</button>
         </form>
     </section>
 
@@ -217,7 +211,7 @@
         <div style="font-size: 1.1em; line-height: 1.6; color: #555;">
             <p>আমরা সারা বাংলাদেশে <strong>ফ্রি হোম ডেলিভারি</strong> প্রদান করছি! 🚚</p>
             <div class="mandatory-box">
-                विशेष द्रष्टव्य: আমাদের পণ্যগুলো ইমপোর্টেড (Imported) হওয়ায় অর্ডার কনফার্ম করতে মোট বিলের ন্যূনতম ১০% অগ্রিম পেমেন্ট করা বাধ্যতামূলক।
+                বিশেষ দ্রষ্টব্য: আমাদের পণ্যগুলো ইমপোর্টেড (Imported) হওয়ায় অর্ডার কনফার্ম করতে মোট বিলের ন্যূনতম ১০% অগ্রিম পেমেন্ট করা বাধ্যতামূলক।
             </div>
             <p style="margin-top: 10px;">বাকি টাকা পণ্য হাতে পাওয়ার পর পরিশোধ করতে পারবেন (Cash on Delivery)।</p>
         </div>
@@ -269,7 +263,6 @@
                 cart.push({ name: name, price: price, quantity: 1 });
             }
             updateCartUI();
-            // Open cart drawer on adding item automatically
             document.getElementById('cartSidebar').classList.add('active');
         }
 
@@ -315,10 +308,6 @@
 
             cartCount.innerText = totalItems;
             cartTotalAmount.innerText = total + ' BDT';
-
-            // Sync with backend hidden form fields
-            document.getElementById('hiddenTotalPrice').value = total + ' BDT';
-            document.getElementById('hiddenOrderDetails').value = cart.map(i => `${i.name} (Qty: ${i.quantity})`).join(', ');
         }
 
         function showCheckout() {
@@ -326,10 +315,45 @@
                 alert("Your cart is empty! Add products first.");
                 return;
             }
-            toggleCart(); // close sidebar
+            toggleCart();
             const checkoutSec = document.getElementById('checkoutSection');
             checkoutSec.classList.add('active');
             checkoutSec.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function sendToWhatsApp(event) {
+            event.preventDefault();
+
+            const name = document.getElementById('custName').value;
+            const phone = document.getElementById('custPhone').value;
+            const address = document.getElementById('custAddress').value;
+            const payment = document.getElementById('custPayment').value;
+
+            // Generate clean itemized text for WhatsApp
+            let productList = cart.map(item => `• ${item.name} (Qty: ${item.quantity}) - ${item.price * item.quantity} BDT`).join('\n');
+            let totalAmount = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+
+            // WhatsApp API text encoding
+            const whatsappText = encodeURIComponent(
+                `🛍️ *NEW ORDER - S&A Treasures*\n\n` +
+                `*Products Ordered:*\n${productList}\n\n` +
+                `*Total Amount:* ${totalAmount} BDT (Free Shipping Included)\n\n` +
+                `👤 *Customer Details:*\n` +
+                `• Name: ${name}\n` +
+                `• Phone: ${phone}\n` +
+                `• Address: ${address}\n\n` +
+                `💳 *Payment Reference:* ${payment}`
+            );
+
+            // Your personal business whatsapp link
+            const whatsappUrl = `https://wa.me/8801532178827?text=${whatsappText}`;
+            
+            // Open WhatsApp window and clear cart
+            window.open(whatsappUrl, '_blank');
+            cart = [];
+            updateCartUI();
+            document.getElementById('checkoutSection').classList.remove('active');
+            alert("Order generated! Please send the message on WhatsApp to finalize your order.");
         }
     </script>
 </body>
