@@ -2,7 +2,7 @@
 Love yourself, buy gifts, and spread happiness among your loved ones.
 
 ## 🔗 Live Website
-Check out our aesthetic collection here: [S&A Treasures Live](https://aiaauvro420.github.io/S-A-Treasures/)
+Check out our aesthetic collection here: [S&A Treasures Live](https://satreasures.github.io/S-A-Treasures/)
 
 ## 🛍️ Our Collection
 - Aesthetic Beaded Watches
