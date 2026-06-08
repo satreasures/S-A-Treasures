@@ -7,73 +7,149 @@
     <title>S&A Treasures | Aesthetic Collection</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #fdf6f0; color: #444; margin: 0; padding: 0; }
+        :root {
+            --primary: #d4a373;
+            --primary-hover: #bc8a5f;
+            --bg-color: #fdf6f0;
+            --card-bg: #ffffff;
+            --text-main: #444444;
+            --accent: #d12053;
+        }
+
+        body { 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            background-color: var(--bg-color); 
+            color: var(--text-main); 
+            margin: 0; 
+            padding: 0; 
+        }
         
         /* Shipping Sticky Banner */
-        .shipping-banner { background: linear-gradient(90deg, #d4a373, #bc8a5f); color: white; text-align: center; padding: 10px; font-weight: bold; font-size: 0.95em; position: sticky; top: 0; z-index: 99; }
+        .shipping-banner { 
+            background: linear-gradient(90deg, var(--primary), var(--primary-hover)); 
+            color: white; 
+            text-align: center; 
+            padding: 12px; 
+            font-weight: bold; 
+            font-size: 0.95em; 
+            position: sticky; 
+            top: 0; 
+            z-index: 99; 
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
         
-        header { padding: 40px 20px; background: #fff; text-align: center; border-bottom: 1px solid #eee; }
+        header { 
+            padding: 50px 20px; 
+            background: #fff; 
+            text-align: center; 
+            border-bottom: 1px solid #f3e9e1; 
+        }
         
         /* Logo Styling */
         .logo-container { margin-bottom: 15px; }
-        .business-logo { width: 120px; height: 120px; border-radius: 50%; object-fit: cover; box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
+        .business-logo { 
+            width: 130px; 
+            height: 130px; 
+            border-radius: 50%; 
+            object-fit: cover; 
+            box-shadow: 0 6px 15px rgba(0,0,0,0.08); 
+            border: 3px solid #fff;
+        }
         
-        h1 { color: #d4a373; margin: 0; font-size: 2.3em; letter-spacing: 2px; text-transform: uppercase; }
+        h1 { color: var(--primary); margin: 0; font-size: 2.5em; letter-spacing: 2px; text-transform: uppercase; font-weight: 700; }
         .tagline { color: #888; font-style: italic; margin-top: 10px; font-size: 1.1em; }
         
         /* Cart Floating Button */
-        .cart-float { position: fixed; bottom: 95px; right: 20px; background-color: #d4a373; color: white; width: 60px; height: 60px; border-radius: 50px; text-align: center; font-size: 24px; box-shadow: 2px 2px 10px rgba(0,0,0,0.2); z-index: 100; display: flex; align-items: center; justify-content: center; text-decoration: none; border: none; cursor: pointer; }
-        .cart-count { position: absolute; top: -5px; right: -5px; background: #d12053; color: white; font-size: 12px; width: 22px; height: 22px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; }
+        .cart-float { 
+            position: fixed; 
+            bottom: 95px; 
+            right: 20px; 
+            background-color: var(--primary); 
+            color: white; 
+            width: 60px; 
+            height: 60px; 
+            border-radius: 50px; 
+            text-align: center; 
+            font-size: 24px; 
+            box-shadow: 0 4px 15px rgba(212, 163, 115, 0.4); 
+            z-index: 100; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            text-decoration: none; 
+            border: none; 
+            cursor: pointer; 
+            transition: 0.3s ease;
+        }
+        .cart-float:hover { transform: scale(1.05); background-color: var(--primary-hover); }
+        .cart-count { position: absolute; top: -5px; right: -5px; background: var(--accent); color: white; font-size: 12px; width: 22px; height: 22px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; }
 
-        .container { display: flex; flex-wrap: wrap; justify-content: center; gap: 40px; padding: 50px 20px; }
-        .card { background: #fff; border-radius: 25px; box-shadow: 0 15px 30px rgba(0,0,0,0.05); width: 320px; padding: 20px; transition: 0.3s; position: relative; }
-        .card:hover { transform: translateY(-10px); }
+        .container { display: flex; flex-wrap: wrap; justify-content: center; gap: 35px; padding: 50px 20px; max-width: 1200px; margin: 0 auto; }
+        .card { background: var(--card-bg); border-radius: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.03); width: 330px; padding: 20px; transition: all 0.3s ease; position: relative; border: 1px solid #f5ede6; box-sizing: border-box; }
+        .card:hover { transform: translateY(-8px); box-shadow: 0 15px 35px rgba(212, 163, 115, 0.15); }
         
         /* Badge for Combos */
-        .combo-badge { position: absolute; top: 15px; right: 15px; background: #d12053; color: white; padding: 5px 12px; border-radius: 20px; font-size: 0.8em; font-weight: bold; z-index: 2; }
+        .combo-badge { position: absolute; top: 15px; right: 15px; background: var(--accent); color: white; padding: 6px 14px; border-radius: 20px; font-size: 0.78em; font-weight: bold; z-index: 2; letter-spacing: 0.5px; }
 
-        .main-img { width: 100%; height: 280px; object-fit: cover; border-radius: 15px; margin-bottom: 10px; }
-        .sub-img-row { display: flex; gap: 10px; justify-content: space-between; }
-        .sub-img { width: 48%; height: 100px; object-fit: cover; border-radius: 10px; border: 1px solid #eee; }
+        .main-img { width: 100%; height: 280px; object-fit: cover; border-radius: 15px; margin-bottom: 12px; }
+        .sub-img-row { display: flex; gap: 10px; justify-content: space-between; margin-top: 5px; }
+        .sub-img { width: 48%; height: 95px; object-fit: cover; border-radius: 10px; border: 1px solid #f0e6de; transition: 0.2s; }
+        .sub-img:hover { border-color: var(--primary); cursor: pointer; }
         
-        h3 { color: #333; margin: 20px 0 5px; font-size: 1.4em; }
-        .price { color: #d4a373; font-weight: bold; font-size: 1.3em; margin-bottom: 15px; }
-        .old-price { text-decoration: line-through; color: #cc8e8e; font-size: 0.85em; margin-right: 5px; }
+        h3 { color: #333; margin: 15px 0 5px; font-size: 1.35em; font-weight: 600; }
+        .price { color: var(--primary); font-weight: bold; font-size: 1.35em; margin-bottom: 18px; display: flex; align-items: center; }
+        .old-price { text-decoration: line-through; color: #cc8e8e; font-size: 0.75em; margin-right: 8px; font-weight: normal; }
         
-        .order-btn { display: block; width: 100%; background-color: #d4a373; color: white; padding: 15px 0; border: none; border-radius: 10px; font-weight: bold; text-align: center; transition: 0.3s; margin-bottom: 10px; font-size: 1em; cursor: pointer; }
-        .order-btn:hover { background-color: #bc8a5f; }
-        .fb-btn { display: block; background-color: #1877F2; color: white; padding: 12px; text-decoration: none; border-radius: 10px; font-weight: bold; text-align: center; transition: 0.3s; }
+        .order-btn { display: block; width: 100%; background-color: var(--primary); color: white; padding: 14px 0; border: none; border-radius: 12px; font-weight: bold; text-align: center; transition: 0.3s; margin-bottom: 10px; font-size: 1em; cursor: pointer; box-shadow: 0 3px 10px rgba(212, 163, 115, 0.2); }
+        .order-btn:hover { background-color: var(--primary-hover); }
+        .fb-btn { display: block; background-color: #1877F2; color: white; padding: 12px; text-decoration: none; border-radius: 12px; font-weight: bold; text-align: center; transition: 0.3s; font-size: 0.95em; box-shadow: 0 3px 10px rgba(24, 119, 242, 0.2); }
         .fb-btn:hover { background-color: #145dbf; }
 
         /* Cart Sidebar Drawer */
-        .cart-sidebar { position: fixed; top: 0; right: -400px; width: 360px; height: 100%; background: white; box-shadow: -5px 0 15px rgba(0,0,0,0.1); z-index: 1000; transition: 0.3s; padding: 20px; display: flex; flex-direction: column; box-sizing: border-box; }
+        .cart-sidebar { position: fixed; top: 0; right: -420px; width: 380px; height: 100%; background: white; box-shadow: -8px 0 25px rgba(0,0,0,0.08); z-index: 1000; transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1); padding: 25px; display: flex; flex-direction: column; box-sizing: border-box; }
         .cart-sidebar.active { right: 0; }
         .cart-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #eee; padding-bottom: 15px; }
-        .close-cart { background: none; border: none; font-size: 24px; cursor: pointer; color: #888; }
+        .cart-header h2 { margin: 0; font-size: 1.4em; color: #333; }
+        .close-cart { background: none; border: none; font-size: 28px; cursor: pointer; color: #aaa; transition: 0.2s; }
+        .close-cart:hover { color: #333; }
         .cart-items { flex: 1; overflow-y: auto; padding: 15px 0; }
-        .cart-item { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; border-bottom: 1px solid #f9f9f9; padding-bottom: 10px; }
+        .cart-item { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; border-bottom: 1px solid #fafafa; padding-bottom: 12px; }
         .cart-item-details { flex: 1; margin-right: 10px; }
-        .qty-controls { display: flex; align-items: center; gap: 8px; margin-top: 5px; }
-        .qty-btn { background: #eee; border: none; padding: 2px 8px; border-radius: 4px; cursor: pointer; }
-        .cart-total { font-size: 1.2em; font-weight: bold; border-top: 1px solid #eee; padding-top: 15px; display: flex; justify-content: space-between; margin-bottom: 15px; }
-        .checkout-btn { background: #d12053; color: white; width: 100%; padding: 15px; border: none; border-radius: 10px; font-weight: bold; font-size: 1em; cursor: pointer; text-align: center; text-decoration: none; }
+        .qty-controls { display: flex; align-items: center; gap: 10px; margin-top: 8px; }
+        .qty-btn { background: #f0e6de; border: none; padding: 4px 10px; border-radius: 6px; cursor: pointer; font-weight: bold; color: #555; transition: 0.2s; }
+        .qty-btn:hover { background: var(--primary); color: white; }
+        .cart-total { font-size: 1.25em; font-weight: bold; border-top: 1px solid #eee; padding-top: 18px; display: flex; justify-content: space-between; margin-bottom: 18px; color: #333; }
+        .checkout-btn { background: var(--accent); color: white; width: 100%; padding: 15px; border: none; border-radius: 12px; font-weight: bold; font-size: 1em; cursor: pointer; text-align: center; text-decoration: none; box-shadow: 0 4px 12px rgba(209, 32, 83, 0.25); transition: 0.2s; }
+        .checkout-btn:hover { background: #b01743; }
 
         /* Checkout Section Form */
-        .checkout-section { background: white; padding: 40px 20px; border-radius: 25px; margin: 40px auto; max-width: 600px; box-shadow: 0 15px 30px rgba(0,0,0,0.05); display: none; border: 1px solid #eee; }
-        .checkout-section.active { display: block; }
-        .form-group { margin-bottom: 20px; text-align: left; }
-        .form-group label { display: block; margin-bottom: 8px; font-weight: bold; }
-        .form-group input, .form-group textarea { width: 100%; padding: 12px; border: 1px solid #ccc; border-radius: 8px; box-sizing: border-box; font-family: inherit; }
+        .checkout-section { background: white; padding: 40px 30px; border-radius: 20px; margin: 40px auto; max-width: 600px; box-shadow: 0 10px 30px rgba(0,0,0,0.03); display: none; border: 1px solid #f0e6de; box-sizing: border-box; }
+        .checkout-section.active { display: block; animation: fadeIn 0.4s ease; }
+        .form-group { margin-bottom: 22px; text-align: left; }
+        .form-group label { display: block; margin-bottom: 8px; font-weight: 600; font-size: 0.95em; color: #444; }
+        .form-group input, .form-group textarea { width: 100%; padding: 14px; border: 1px solid #ddd; border-radius: 10px; box-sizing: border-box; font-family: inherit; font-size: 0.95em; transition: 0.2s; background: #fafafa; }
+        .form-group input:focus, .form-group textarea:focus { border-color: var(--primary); background: #fff; outline: none; box-shadow: 0 0 0 3px rgba(212, 163, 115, 0.15); }
 
-        .notice-section { background: #fff5eb; padding: 30px 20px; text-align: center; border-radius: 25px; margin: 40px auto; max-width: 900px; border: 2px solid #d4a373; }
-        .mandatory-box { background: #fff; display: inline-block; padding: 10px 20px; border-radius: 10px; color: #d12053; font-weight: bold; border: 1px solid #ffccd5; margin-top: 10px; }
-        .payment-info { background: #fff; padding: 40px 20px; text-align: center; border-radius: 25px; margin: 40px auto; max-width: 900px; box-shadow: 0 10px 20px rgba(0,0,0,0.05); border: 2px dashed #d4a373; }
-        .payment-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; margin-top: 20px; }
-        .pay-card { border: 1px solid #eee; padding: 20px; border-radius: 15px; width: 220px; background: #fafafa; }
+        .notice-section { background: #fff9f3; padding: 35px 25px; text-align: center; border-radius: 20px; margin: 40px auto; max-width: 900px; border: 1px solid #e9ddcf; width: 90%; box-sizing: border-box; }
+        .mandatory-box { background: #fff; display: inline-block; padding: 12px 24px; border-radius: 12px; color: var(--accent); font-weight: bold; border: 1px solid #ffccd5; margin-top: 12px; font-size: 0.95em; box-shadow: 0 2px 8px rgba(209, 32, 83, 0.05); }
         
-        .whatsapp-float { position: fixed; bottom: 20px; right: 20px; background-color: #25d366; color: white; width: 60px; height: 60px; border-radius: 50px; text-align: center; font-size: 30px; box-shadow: 2px 2px 10px rgba(0,0,0,0.2); z-index: 100; display: flex; align-items: center; justify-content: center; text-decoration: none; }
-        footer { text-align: center; padding: 60px; background: #fff; margin-top: 50px; color: #888; border-top: 1px solid #eee; }
-        .footer-socials a { color: #d4a373; margin: 0 10px; font-size: 20px; text-decoration: none; }
+        .payment-info { background: #fff; padding: 40px 25px; text-align: center; border-radius: 20px; margin: 40px auto; max-width: 900px; box-shadow: 0 10px 25px rgba(0,0,0,0.02); border: 2px dashed var(--primary); width: 90%; box-sizing: border-box; }
+        .payment-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; margin-top: 25px; }
+        .pay-card { border: 1px solid #f0e6de; padding: 22px; border-radius: 15px; width: 230px; background: #fffcf9; transition: 0.2s; }
+        .pay-card:hover { border-color: var(--primary); transform: scale(1.02); }
+        
+        .whatsapp-float { position: fixed; bottom: 20px; right: 20px; background-color: #25d366; color: white; width: 60px; height: 60px; border-radius: 50px; text-align: center; font-size: 32px; box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3); z-index: 100; display: flex; align-items: center; justify-content: center; text-decoration: none; transition: 0.3s ease; }
+        .whatsapp-float:hover { transform: scale(1.05); background-color: #20ba5a; }
+        
+        footer { text-align: center; padding: 50px 20px; background: #fff; margin-top: 60px; color: #888; border-top: 1px solid #eee; }
+        .footer-socials { margin-top: 15px; }
+        .footer-socials a { color: var(--primary); margin: 0 12px; font-size: 22px; text-decoration: none; transition: 0.2s; }
+        .footer-socials a:hover { color: var(--primary-hover); }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(15px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
     </style>
 </head>
 <body>
@@ -100,6 +176,7 @@
     </header>
 
     <div class="container">
+        <!-- Combo 1 -->
         <div class="card">
             <span class="combo-badge">SAVE 25 TK</span>
             <div class="gallery">
@@ -112,6 +189,7 @@
             <a href="https://www.facebook.com/share/1B5Wuq2Ke3/" class="fb-btn" target="_blank"><i class="fab fa-facebook"></i> ফেসবুক পেজ দেখুন</a>
         </div>
 
+        <!-- Combo 2 -->
         <div class="card">
             <span class="combo-badge">SAVE 50 TK</span>
             <div class="gallery">
@@ -124,7 +202,7 @@
             <a href="https://www.facebook.com/share/1B5Wuq2Ke3/" class="fb-btn" target="_blank"><i class="fab fa-facebook"></i> ফেসবুক পেজ দেখুন</a>
         </div>
 
-        <!-- New 3rd Combo: Watch + Keychain + Astronaut -->
+        <!-- Combo 3 -->
         <div class="card">
             <span class="combo-badge">SAVE 75 TK</span>
             <div class="gallery">
@@ -137,6 +215,7 @@
             <a href="https://www.facebook.com/share/1B5Wuq2Ke3/" class="fb-btn" target="_blank"><i class="fab fa-facebook"></i> ফেসবুক পেজ দেখুন</a>
         </div>
         
+        <!-- Single Item 1 -->
         <div class="card">
             <div class="gallery">
                 <img src="https://i.postimg.cc/nzVMHc1J/O1CN01R0OY7P1Cti8vomq-Gi-1924270139-0-cib-600x600.jpg" class="main-img" alt="Watch Main">
@@ -151,6 +230,7 @@
             <a href="https://www.facebook.com/share/1B5Wuq2Ke3/" class="fb-btn" target="_blank"><i class="fab fa-facebook"></i> ফেসবুক পেজ দেখুন</a>
         </div>
 
+        <!-- Single Item 2 -->
         <div class="card">
             <div class="gallery">
                 <img src="https://i.postimg.cc/DZqNvnBB/Gemini-Generated-Image-4tcavf4tcavf4tca.png" class="main-img" alt="Lamp Main">
@@ -165,6 +245,7 @@
             <a href="https://www.facebook.com/share/1B5Wuq2Ke3/" class="fb-btn" target="_blank"><i class="fab fa-facebook"></i> ফেসবুক পেজ দেখুন</a>
         </div>
 
+        <!-- Single Item 3 -->
         <div class="card">
             <div class="gallery">
                 <img src="https://i.postimg.cc/QCbJzPC4/O1CN01ujq-DEY215p-Hi-OYfkb-4097876934-0-cib-600x600.jpg" class="main-img" alt="Keychain Main">
@@ -180,13 +261,13 @@
         </div>
     </div>
 
+    <!-- Cart Sidebar Drawer -->
     <div class="cart-sidebar" id="cartSidebar">
         <div class="cart-header">
-            <h2>Your Bag <i class="fas fa-shopping-bag" style="color:#d4a373;"></i></h2>
+            <h2>Your Bag <i class="fas fa-shopping-bag" style="color:var(--primary);"></i></h2>
             <button class="close-cart" onclick="toggleCart()">&times;</button>
         </div>
-        <div class="cart-items" id="cartItemsContainer">
-            </div>
+        <div class="cart-items" id="cartItemsContainer"></div>
         <div class="cart-total">
             <span>Total Amount:</span>
             <span id="cartTotalAmount">0 BDT</span>
@@ -194,10 +275,11 @@
         <button class="checkout-btn" onclick="showCheckout()">Proceed to Checkout</button>
     </div>
 
+    <!-- Checkout Section Form -->
     <section class="checkout-section" id="checkoutSection">
-        <h2 style="color: #d4a373; text-align:center; margin-top:0;">📋 Complete Your Order</h2>
+        <h2 style="color: var(--primary); text-align:center; margin-top:0;">📋 Complete Your Order</h2>
         
-        <form onsubmit="sendToWhatsApp(event)">
+        <form id="orderForm" onsubmit="sendToWhatsApp(event)">
             <div class="form-group">
                 <label>Full Name *</label>
                 <input type="text" id="custName" placeholder="আপনার পুরো নাম লিখুন" required>
@@ -212,43 +294,48 @@
             </div>
             <div class="form-group">
                 <label>Payment Method & Advance Transaction Info *</label>
-                <input type="text" id="custPayment" placeholder="bKash/Nagad Number & TrxID" required>
+                <p style="font-size:0.82em; color:#777; margin:-5px 0 8px;">(নিচের যেকোনো নাম্বারে ১০% অগ্রিম পাঠিয়ে এখানে নাম্বার ও TrxID লিখুন)</p>
+                <input type="text" id="custPayment" placeholder="e.g., bKash Personal - 017XXXXXXXX - TrxID: XXXXXX" required>
             </div>
 
-            <button type="submit" class="order-btn" style="background:#2ecc71; font-size:1.1em; border:none; width:100%;">Confirm via WhatsApp 💬</button>
+            <button type="submit" class="order-btn" style="background:#2ecc71; font-size:1.1em; border:none; width:100%; box-shadow: 0 4px 12px rgba(46, 204, 113, 0.2);">Confirm via WhatsApp 💬</button>
         </form>
     </section>
 
+    <!-- Delivery Notice Section -->
     <section class="notice-section">
-        <h2 style="color: #d4a373; margin-bottom: 15px;"><i class="fas fa-truck"></i> ডেলিভারি ও অগ্রিম পেমেন্ট</h2>
+        <h2 style="color: var(--primary); margin-bottom: 15px;"><i class="fas fa-truck"></i> ডেলিভারি ও অগ্রিম পেমেন্ট</h2>
         <div style="font-size: 1.1em; line-height: 1.6; color: #555;">
             <p>আমরা সারা বাংলাদেশে <strong>ফ্রি হোম ডেলিভারি</strong> প্রদান করছি! 🚚</p>
             <div class="mandatory-box">
-                বিশেষ দ্রষ্টব্য: আমাদের পণ্যগুলো ইমপোর্টেড (Imported) হওয়ায় অর্ডার কনফার্ম করতে মোট বিলের ন্যূনতম ১০% অগ্রিম পেমেন্ট করা বাধ্যতামূলক।
+                विशेष দ্রষ্টব্য: আমাদের পণ্যগুলো ইমপোর্টেড (Imported) হওয়ায় অর্ডার কনফার্ম করতে মোট বিলের ন্যূনতম ১০% অগ্রিম পেমেন্ট করা বাধ্যতামূলক।
             </div>
             <p style="margin-top: 10px;">বাকি টাকা পণ্য হাতে পাওয়ার পর পরিশোধ করতে পারবেন (Cash on Delivery)।</p>
         </div>
     </section>
 
+    <!-- Payment Gateway Reference Info -->
     <section class="payment-info">
-        <h2 style="color: #d4a373;">পেমেন্ট পদ্ধতি (Payment Procedure)</h2>
+        <h2 style="color: var(--primary);">পেমেন্ট পদ্ধতি (Payment Procedure)</h2>
         <p>নিচের যেকোনো মাধ্যমে <b>১০% অগ্রিম</b> পেমেন্ট সম্পন্ন করে চেকআউট ফরমে আপনার <b>Transaction Info</b> জমা দিন:</p>
         
         <div class="payment-grid">
             <div class="pay-card">
-                <strong style="color: #d12053;">bKash</strong>
-                01635303579<br>(Personal)
+                <strong style="color: #d12053; font-size: 1.1em;">bKash</strong><br>
+                <span style="font-size: 1.1em; font-weight: 600; display:inline-block; margin: 5px 0;">01635303579</span><br>(Personal)
             </div>
             <div class="pay-card">
-                <strong style="color: #f7941d;">Nagad</strong>
-                01945436987<br>(Personal)
+                <strong style="color: #f7941d; font-size: 1.1em;">Nagad</strong><br>
+                <span style="font-size: 1.1em; font-weight: 600; display:inline-block; margin: 5px 0;">01945436987</span><br>(Personal)
             </div>
             <div class="pay-card" style="width: 280px;">
-                <strong style="color: #333;">Bank Details</strong>
-                Bank: [The City Bank Plc]<br>
-                A/C No: [2184686981001]<br>
-                Branch: [Banani Branch]<br>
-                Name: [Arafat Islam Apurba]
+                <strong style="color: #333; font-size: 1.1em;">Bank Details</strong><br>
+                <div style="text-align: left; margin-top: 8px; font-size: 0.95em; line-height: 1.5;">
+                    Bank: <b>The City Bank Plc</b><br>
+                    A/C No: <b>2184686981001</b><br>
+                    Branch: <b>Banani Branch</b><br>
+                    Name: <b>Arafat Islam Apurba</b>
+                </div>
             </div>
         </div>
     </section>
@@ -288,6 +375,11 @@
                 }
             }
             updateCartUI();
+            
+            // If cart is empty after change, hide checkout section smoothly
+            if(cart.length === 0) {
+                document.getElementById('checkoutSection').classList.remove('active');
+            }
         }
 
         function updateCartUI() {
@@ -307,7 +399,7 @@
                     <div class="cart-item">
                         <div class="cart-item-details">
                             <strong>${item.name}</strong>
-                            <div>${item.price} BDT</div>
+                            <div style="color: var(--primary); margin-top:3px;">${item.price} BDT</div>
                             <div class="qty-controls">
                                 <button class="qty-btn" onclick="changeQuantity('${item.name}', -1)">-</button>
                                 <span>${item.quantity}</span>
@@ -342,11 +434,9 @@
             const address = document.getElementById('custAddress').value;
             const payment = document.getElementById('custPayment').value;
 
-            // Generate clean itemized text for WhatsApp
             let productList = cart.map(item => `• ${item.name} (Qty: ${item.quantity}) - ${item.price * item.quantity} BDT`).join('\n');
             let totalAmount = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
 
-            // WhatsApp API text encoding
             const whatsappText = encodeURIComponent(
                 `🛍️ *NEW ORDER - S&A Treasures*\n\n` +
                 `*Products Ordered:*\n${productList}\n\n` +
@@ -358,13 +448,14 @@
                 `💳 *Payment Reference:* ${payment}`
             );
 
-            // Your personal business whatsapp link
             const whatsappUrl = `https://wa.me/8801532178827?text=${whatsappText}`;
             
-            // Open WhatsApp window and clear cart
             window.open(whatsappUrl, '_blank');
+            
+            // Clear cart & form state smoothly
             cart = [];
             updateCartUI();
+            document.getElementById('orderForm').reset();
             document.getElementById('checkoutSection').classList.remove('active');
             alert("Order generated! Please send the message on WhatsApp to finalize your order.");
         }
