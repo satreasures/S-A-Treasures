@@ -160,6 +160,17 @@
             from { opacity: 0; transform: translateY(15px); }
             to { opacity: 1; transform: translateY(0); }
         }
+
+        /* মোবাইল স্ক্রিনের জন্য রেসপনসিভ পিক্সেল গ্লিচ ফিক্স কোড */
+        @media screen and (max-width: 768px) {
+            .cart-sidebar { width: 100%; right: -100%; }
+            .notice-section, .payment-info, .checkout-section { width: 95% !important; padding: 20px 15px !important; margin: 20px auto !important; display: block; }
+            .checkout-section { display: none; }
+            .checkout-section.active { display: block; }
+            .payment-grid { display: flex; flex-direction: column; align-items: center; width: 100%; }
+            .pay-card { width: 100% !important; max-width: 280px; box-sizing: border-box; }
+            .form-group input, .form-group textarea { font-size: 16px !important; } /* মোবাইলে জুম ইন হওয়া ঠেকাবে */
+        }
     </style>
 </head>
 <body>
@@ -312,9 +323,9 @@
         <div style="font-size: 1.1em; line-height: 1.6; color: #555;">
             <p>আমরা সারা বাংলাদেশে <strong>ফ্রি হোম ডেলিভারি</strong> প্রদান করছি! 🚚</p>
             <div class="mandatory-box">
-                विशेष দ্রষ্টব্য: আমাদের পণ্যগুলো ইমপোর্টেড (Imported) হওয়ায় অর্ডার কনফার্ম করতে মোট বিলের ন্যূনতম ১০% অগ্রিম পেমেন্ট করা বাধ্যতামূলক।
+                নোট: আমাদের পণ্যগুলো ইমপোর্টেড (Imported) হওয়ায় অর্ডার কনফার্ম করতে মোট বিলের ন্যূনতম ১০% অগ্রিম পেমেন্ট করা বাধ্যতামূলক।
             </div>
-            <p style="margin-top: 10px;">বাকি টাকা পণ্য হাতে পাওয়ার পর পরিশোধ করতে পারবেন (Cash on Delivery)।</p>
+            <p style="margin-top: 10px;">বাকি টাকা পণ্য হাতে পাওয়ার পর পরিশোধ করতে পারবেন (Cash on Delivery)।</p>
         </div>
     </section>
 
