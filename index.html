@@ -297,9 +297,9 @@
             <div class="form-group">
                 <label>Payment Method & Advance Transaction Info *</label>
                 <p style="font-size:0.95em; color:var(--accent); margin:-5px 0 12px; background: #fff5f7; padding: 12px; border-radius: 8px; border: 1px dashed var(--accent); font-weight: 500;">
-                    ⚠️ আপনার কার্ট অনুযায়ী অর্ডার কনফার্ম করতে ৳<strong id="advanceAmountDisplay" style="font-size: 1.15em;">0</strong> অগ্রিম পেমেন্ট করুন।
+                    ⚠️ আপনার কার্ট অনুযায়ী অর্ডার কনফার্ম করতে ৳<strong id="advanceAmountDisplay" style="font-size: 1.15em;">0</strong> অগ্রিম পেমেন্ট করুন।
                 </p>
-                <p style="font-size:0.82em; color:#777; margin-bottom: 8px;">(ওপরের বিকাশ বা নগদ নাম্বারে এই টাকা পাঠিয়ে নিচে আপনার পেমেন্ট মাধ্যম ও TrxID লিখুন)</p>
+                <p style="font-size:0.82em; color:#777; margin-bottom: 8px;">(ওপরের বিকাশ বা নগদ নাম্বারে এই টাকা পাঠিয়ে নিচে আপনার পেমেন্ট মাধ্যম ও TrxID লিখুন)</p>
                 <input type="text" id="custPayment" placeholder="e.g., bKash Personal - 017XXXXXXXX - TrxID: XXXXXX" required>
             </div>
 
@@ -401,15 +401,15 @@
                 cartItemsContainer.innerHTML += `
                     <div class="cart-item">
                         <div class="cart-item-details">
-                            <strong>\${item.name}</strong>
-                            <div style="color: var(--primary); margin-top:3px;">\${item.price} BDT</div>
+                            <strong>${item.name}</strong>
+                            <div style="color: var(--primary); margin-top:3px;">${item.price} BDT</div>
                             <div class="qty-controls">
-                                <button class="qty-btn" onclick="changeQuantity('\${item.name}', -1)">-</button>
-                                <span>\${item.quantity}</span>
-                                <button class="qty-btn" onclick="changeQuantity('\${item.name}', 1)">+</button>
+                                <button class="qty-btn" onclick="changeQuantity('${item.name}', -1)">-</button>
+                                <span>${item.quantity}</span>
+                                <button class="qty-btn" onclick="changeQuantity('${item.name}', 1)">+</button>
                             </div>
                         </div>
-                        <div><strong>\${item.price * item.quantity} BDT</strong></div>
+                        <div><strong>${item.price * item.quantity} BDT</strong></div>
                     </div>
                 `;
             });
@@ -441,23 +441,23 @@
             const address = document.getElementById('custAddress').value;
             const payment = document.getElementById('custPayment').value;
 
-            let productList = cart.map(item => `• \${item.name} (Qty: \${item.quantity}) - \${item.price * item.quantity} BDT`).join('\n');
+            let productList = cart.map(item => `• ${item.name} (Qty: ${item.quantity}) - ${item.price * item.quantity} BDT`).join('\n');
             let totalAmount = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-            let advanceAmount = Math.round(totalAmount * 0.10); // হোয়াটসঅ্যাপ টেক্সটের জন্য ১০% হিসাব
+            let advanceAmount = Math.round(totalAmount * 0.10); // হোয়াটসঅ্যাপ টেক্সটের জন্য ১০% হিসাব
 
             const whatsappText = encodeURIComponent(
                 `🛍️ *NEW ORDER - S&A Treasures*\n\n` +
-                `*Products Ordered:*\n\n\${productList}\n\n` +
-                `*Total Amount:* \${totalAmount} BDT (Free Shipping Included)\n` +
-                `*Required Advance (10%):* \${advanceAmount} BDT\n\n` +
+                `*Products Ordered:*\n\n${productList}\n\n` +
+                `*Total Amount:* ${totalAmount} BDT (Free Shipping Included)\n` +
+                `*Required Advance (10%):* ${advanceAmount} BDT\n\n` +
                 `👤 *Customer Details:*\n` +
-                `• Name: \${name}\n` +
-                `• Phone: \${phone}\n` +
-                `• Address: \${address}\n\n` +
-                `💳 *Payment Reference:* \${payment}`
+                `• Name: ${name}\n` +
+                `• Phone: ${phone}\n` +
+                `• Address: ${address}\n\n` +
+                `💳 *Payment Reference:* ${payment}`
             );
 
-            const whatsappUrl = `https://wa.me/8801532178827?text=\${whatsappText}`;
+            const whatsappUrl = `https://wa.me/8801532178827?text=${whatsappText}`;
             
             window.open(whatsappUrl, '_blank');
             
