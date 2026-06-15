@@ -24,6 +24,8 @@
             --card-bg: #ffffff;
             --text-main: #444444;
             --accent: #d12053;
+            --success: #2ecc71;
+            --success-hover: #27ae60;
         }
 
         body { 
@@ -140,6 +142,11 @@
         .form-group input, .form-group textarea, .form-group select { width: 100%; padding: 14px; border: 1px solid #ddd; border-radius: 10px; box-sizing: border-box; font-family: inherit; font-size: 0.95em; transition: 0.2s; background: #fafafa; }
         .form-group input:focus, .form-group textarea:focus, .form-group select:focus { border-color: var(--primary); background: #fff; outline: none; box-shadow: 0 0 0 3px rgba(212, 163, 115, 0.15); }
 
+        /* Submit Button Styling updated from image_75caa4.png */
+        .submit-order-btn { display: block; background-color: var(--success); color: white; padding: 16px; border: none; border-radius: 12px; font-weight: bold; font-size: 1.15em; width: 100%; box-shadow: 0 4px 15px rgba(46, 204, 113, 0.25); cursor: pointer; transition: 0.3s ease; transition: transform 0.1s ease; }
+        .submit-order-btn:hover { background-color: var(--success-hover); transform: translateY(-2px); }
+        .submit-order-btn:active { transform: translateY(1px); }
+
         .notice-section { background: #fff9f3; padding: 35px 25px; text-align: center; border-radius: 20px; margin: 40px auto; max-width: 900px; border: 1px solid #e9ddcf; width: 90%; box-sizing: border-box; }
         .mandatory-box { background: #fff; display: inline-block; padding: 12px 24px; border-radius: 12px; color: var(--accent); font-weight: bold; border: 1px solid #ffccd5; margin-top: 12px; font-size: 0.95em; box-shadow: 0 2px 8px rgba(209, 32, 83, 0.05); }
         
@@ -169,7 +176,7 @@
             .checkout-section.active { display: block; }
             .payment-grid { display: flex; flex-direction: column; align-items: center; width: 100%; }
             .pay-card { width: 100% !important; max-width: 280px; box-sizing: border-box; }
-            .form-group input, .form-group textarea, .form-group select { font-size: 16px !important; } /* মোবাইলে জুম ইন হওয়া ঠেকাবে */
+            .form-group input, .form-group textarea, .form-group select { font-size: 16px !important; }
         }
     </style>
 </head>
@@ -306,7 +313,6 @@
                 <textarea id="custAddress" rows="3" placeholder="জেলা, থানা, এলাকা এবং রোড নম্বর বিস্তারিত লিখুন" required></textarea>
             </div>
             
-            <!-- আপডেট করা ম্যান্ডেটরি স্টাফ কোড ড্রপডাউন মেনু -->
             <div class="form-group">
                 <label>Staff Code (স্টাফ কোড) *</label>
                 <select id="staffCode" required>
@@ -330,7 +336,8 @@
                 <input type="text" id="custPayment" placeholder="e.g., bKash Personal - 017XXXXXXXX - TrxID: XXXXXX" required>
             </div>
 
-            <button type="submit" class="order-btn" style="background:#2ecc71; font-size:1.1em; border:none; width:100%; box-shadow: 0 4px 12px rgba(46, 204, 113, 0.2);">Confirm via WhatsApp 💬</button>
+            <!-- WhatsApp টেক্সট সরিয়ে শুধুমাত্র প্লেস ও কনফার্ম অর্ডার বাটন জেনারেট করা হলো -->
+            <button type="submit" class="submit-order-btn">Place Order & Confirm 🛍️</button>
         </form>
     </section>
 
@@ -466,13 +473,12 @@
             const phone = document.getElementById('custPhone').value.trim();
             const address = document.getElementById('custAddress').value.trim();
             const payment = document.getElementById('custPayment').value.trim();
-            const staffCode = document.getElementById('staffCode').value; // ম্যান্ডেটরি ড্রপডাউন ভ্যালু
+            const staffCode = document.getElementById('staffCode').value;
 
             let productList = cart.map(item => `${item.name} (Qty: ${item.quantity})`).join(', ');
             let totalAmount = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
             let advanceAmount = Math.round(totalAmount * 0.10);
 
-            // গুগল শিটে পাঠানোর ডাটা অবজেক্ট
             const orderData = {
                 name: name,
                 phone: phone,
@@ -484,16 +490,15 @@
                 staffCode: staffCode
             };
 
-            // ⚠️ নোট: Apps Script ডেপ্লয় করার সময় অবশ্যই hello.trasures.sa@gmail.com অ্যাকাউন্টটি সিলেক্ট করবেন।
-            // নিচে আপনার জেনারেট করা গুগল ওয়েব অ্যাপ ইউআরএল (Web App URL) টি বসিয়ে দিন:
-            const googleAppScriptUrl = "YOUR_GOOGLE_WEB_APP_URL_HERE";
+            // আপনার দেওয়া লাইভ গুগল অ্যাপস স্ক্রিপ্ট ওয়েব অ্যাপ ইউআরএল সরাসরি যুক্ত করা হয়েছে
+            const googleAppScriptUrl = "https://script.google.com/macros/s/AKfycby90F2bGq_qigO5WjzLQxrWpY-_Q-m-MH_XVeEBdKkjy5qvMPQIjmsmpp6vn7Ay6o4/exec";
 
-            const submitBtn = event.target.querySelector('button[type="submit"]');
-            const originalBtnText = submitBtn.innerText;
+            const submitBtn = event.target.querySelector('.submit-order-btn');
             submitBtn.innerText = "Processing Order... Please Wait ⏳";
             submitBtn.disabled = true;
+            submitBtn.style.background = "#95a5a6";
 
-            // ব্যাকগ্রাউন্ডে গুগল শিটে ডাটা সাবমিট হচ্ছে
+            // ব্যাকগ্রাউন্ডে ডাটাবেজে (গুগল শিট) ডাটা পাঠানো হচ্ছে
             fetch(googleAppScriptUrl, {
                 method: "POST",
                 mode: "no-cors",
@@ -502,35 +507,24 @@
                 body: JSON.stringify(orderData)
             })
             .then(() => {
-                // ডাটা শিটে যাওয়ার পর কাস্টমারকে হোয়াটসঅ্যাপে রিডাইরেক্ট করার টেক্সট
-                const messageText = `🛍️ *NEW ORDER - S&A Treasures*\n\n` +
-                                    `*Staff Code:* ${staffCode}\n` +
-                                    `*Products Ordered:* ${productList}\n\n` +
-                                    `*Total Amount:* ${totalAmount} BDT (Free Shipping Included)\n` +
-                                    `*Advance Paid (10%):* ${advanceAmount} BDT\n\n` +
-                                    `👤 *Customer Details:*\n` +
-                                    `• Name: ${name}\n` +
-                                    `• Phone: ${phone}\n` +
-                                    `• Address: ${address}\n\n` +
-                                    `💳 *Payment Reference:* ${payment}`;
-
-                const whatsappUrl = `https://wa.me/8801532178827?text=${encodeURIComponent(messageText)}`;
+                // সফলভাবে ডাটা শিটে জমা হওয়ার পর কাস্টমারকে ইন-পেজ কনফার্মেশন মেসেজ প্রদর্শন
+                alert(`🎉 Thank you, ${name}!\n\nYour order has been successfully placed and recorded under Staff Code: ${staffCode}.\n\nWe will review your advance payment of ৳${advanceAmount} and contact you soon!`);
                 
+                // স্টেট ক্লিয়ার ও ফর্ম রিসেট
                 cart = [];
                 updateCartUI();
                 document.getElementById('orderForm').reset();
                 document.getElementById('checkoutSection').classList.remove('active');
-                
-                window.open(whatsappUrl, '_blank');
-                alert("Order successfully saved & generated! Please send the message on WhatsApp to finalize your order.");
+                window.scrollTo({ top: 0, behavior: 'smooth' });
             })
             .catch(error => {
                 console.error("Error saving to sheet:", error);
-                alert("Something went wrong with the automated server, but you can still order via WhatsApp!");
+                alert("Something went wrong with the connection. Please check your internet and try again.");
             })
             .finally(() => {
-                submitBtn.innerText = originalBtnText;
+                submitBtn.innerText = "Place Order & Confirm 🛍️";
                 submitBtn.disabled = false;
+                submitBtn.style.background = "var(--success)";
             });
         }
     </script>
