@@ -143,9 +143,14 @@
         .form-group input:focus, .form-group textarea:focus, .form-group select:focus { border-color: var(--primary); background: #fff; outline: none; box-shadow: 0 0 0 3px rgba(212, 163, 115, 0.15); }
 
         /* Submit Button Styling */
-        .submit-order-btn { display: block; background-color: var(--success); color: white; padding: 16px; border: none; border-radius: 12px; font-weight: bold; font-size: 1.15em; width: 100%; box-shadow: 0 4px 15px rgba(46, 204, 113, 0.25); cursor: pointer; transition: 0.3s ease; transition: transform 0.1s ease; }
+        .submit-order-btn { display: block; background-color: var(--success); color: white; padding: 16px; border: none; border-radius: 12px; font-weight: bold; font-size: 1.15em; width: 100%; box-shadow: 0 4px 15px rgba(46, 204, 113, 0.25); cursor: pointer; transition: 0.3s ease; }
         .submit-order-btn:hover { background-color: var(--success-hover); transform: translateY(-2px); }
         .submit-order-btn:active { transform: translateY(1px); }
+        .submit-order-btn:disabled { background-color: #cccccc; cursor: not-allowed; transform: none; }
+
+        /* On-Screen Success Confirmation Card Styling */
+        .success-card { background: white; border-radius: 20px; padding: 40px 20px; text-align: center; border: 2px dashed var(--success); animation: fadeIn 0.5s ease; box-shadow: 0 10px 35px rgba(46, 204, 113, 0.1); margin-top: 10px; }
+        .success-icon { font-size: 4em; color: var(--success); margin-bottom: 15px; }
 
         .notice-section { background: #fff9f3; padding: 35px 25px; text-align: center; border-radius: 20px; margin: 40px auto; max-width: 900px; border: 1px solid #e9ddcf; width: 90%; box-sizing: border-box; }
         .mandatory-box { background: #fff; display: inline-block; padding: 12px 24px; border-radius: 12px; color: var(--accent); font-weight: bold; border: 1px solid #ffccd5; margin-top: 12px; font-size: 0.95em; box-shadow: 0 2px 8px rgba(209, 32, 83, 0.05); }
@@ -168,10 +173,9 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* মোবাইল স্ক্রিনের জন্য রেসপনসিভ পিক্সেল গ্লিচ ফিক্স কোড */
         @media screen and (max-width: 768px) {
             .cart-sidebar { width: 100%; right: -100%; }
-            .notice-section, .payment-info, .checkout-section { width: 95% !important; padding: 20px 15px !important; margin: 20px auto !important; display: block; }
+            .notice-section, .payment-info, .checkout-section { width: 95% !important; padding: 20px 15px !important; margin: 20px auto !important; }
             .checkout-section { display: none; }
             .checkout-section.active { display: block; }
             .payment-grid { display: flex; flex-direction: column; align-items: center; width: 100%; }
@@ -204,7 +208,7 @@
     </header>
 
     <div class="container">
-        <!-- ১. কম্বো ১ বাটন (isPartner = true) -->
+        <!-- Combo 1 -->
         <div class="card">
             <span class="combo-badge">SAVE 25 TK</span>
             <div class="gallery">
@@ -217,7 +221,7 @@
             <a href="https://www.facebook.com/share/1B5Wuq2Ke3/" class="fb-btn" target="_blank"><i class="fab fa-facebook"></i> ফেসবুক পেজ দেখুন</a>
         </div>
 
-        <!-- ২. কম্বো ২ বাটন (isPartner = true) -->
+        <!-- Combo 2 -->
         <div class="card">
             <span class="combo-badge">SAVE 50 TK</span>
             <div class="gallery">
@@ -230,7 +234,7 @@
             <a href="https://www.facebook.com/share/1B5Wuq2Ke3/" class="fb-btn" target="_blank"><i class="fab fa-facebook"></i> ফেসবুক পেজ দেখুন</a>
         </div>
 
-        <!-- ৩. কম্বো ৩ বাটন (isPartner = true) -->
+        <!-- Combo 3 -->
         <div class="card">
             <span class="combo-badge">SAVE 75 TK</span>
             <div class="gallery">
@@ -243,7 +247,7 @@
             <a href="https://www.facebook.com/share/1B5Wuq2Ke3/" class="fb-btn" target="_blank"><i class="fab fa-facebook"></i> ফেসবুক পেজ দেখুন</a>
         </div>
         
-        <!-- ৪. ওয়াচ বাটন (isPartner = true) -->
+        <!-- Product 4 -->
         <div class="card">
             <div class="gallery">
                 <img src="https://i.postimg.cc/nzVMHc1J/O1CN01R0OY7P1Cti8vomq-Gi-1924270139-0-cib-600x600.jpg" class="main-img" alt="Watch Main">
@@ -258,7 +262,7 @@
             <a href="https://www.facebook.com/share/1B5Wuq2Ke3/" class="fb-btn" target="_blank"><i class="fab fa-facebook"></i> ফেসবুক পেজ দেখুন</a>
         </div>
 
-        <!-- ৫. ল্যাম্প বাটন (isPartner = true) -->
+        <!-- Product 5 -->
         <div class="card">
             <div class="gallery">
                 <img src="https://i.postimg.cc/DZqNvnBB/Gemini-Generated-Image-4tcavf4tcavf4tca.png" class="main-img" alt="Lamp Main">
@@ -273,7 +277,7 @@
             <a href="https://www.facebook.com/share/1B5Wuq2Ke3/" class="fb-btn" target="_blank"><i class="fab fa-facebook"></i> ফেসবুক পেজ দেখুন</a>
         </div>
 
-        <!-- ৬. কি-চেইন বাটন (isPartner = true) -->
+        <!-- Product 6 -->
         <div class="card">
             <div class="gallery">
                 <img src="https://i.postimg.cc/QCbJzPC4/O1CN01ujq-DEY215p-Hi-OYfkb-4097876934-0-cib-600x600.jpg" class="main-img" alt="Keychain Main">
@@ -303,51 +307,51 @@
     </div>
 
     <section class="checkout-section" id="checkoutSection">
-        <h2 style="color: var(--primary); text-align:center; margin-top:0;">📋 Complete Your Order</h2>
-        
-        <form id="orderForm" onsubmit="sendToWhatsApp(event)">
-            <div class="form-group">
-                <label>Full Name *</label>
-                <input type="text" id="custName" placeholder="আপনার পুরো নাম লিখুন" required>
-            </div>
-            <div class="form-group">
-                <label>Phone Number *</label>
-                <input type="tel" id="custPhone" placeholder="01XXXXXXXXX" required>
-            </div>
-            <div class="form-group">
-                <label>Full Delivery Address *</label>
-                <textarea id="custAddress" rows="3" placeholder="জেলা, থানা, এলাকা এবং রোড নম্বর বিস্তারিত লিখুন" required></textarea>
-            </div>
+        <div id="checkoutFormWrapper">
+            <h2 style="color: var(--primary); text-align:center; margin-top:0;">📋 Complete Your Order</h2>
             
-            <div class="form-group">
-                <label>Staff Code (স্টাফ কোড) *</label>
-                <select id="staffCode" required>
-                    <option value="" disabled selected>আপনার স্টাফ কোডটি সিলেক্ট করুন</option>
-                    <option value="SAT 1">SAT 1</option>
-                    <option value="SAT 2">SAT 2</option>
-                    <option value="SAT 3">SAT 3</option>
-                    <option value="SAT 4">SAT 4</option>
-                    <option value="SAT 5">SAT 5</option>
-                    <option value="SAT 6">SAT 6</option>
-                    <option value="SAT 7">SAT 7</option>
-                </select>
-            </div>
+            <form id="orderForm" onsubmit="submitToGoogleSheets(event)">
+                <div class="form-group">
+                    <label>Full Name *</label>
+                    <input type="text" id="custName" placeholder="আপনার পুরো নাম লিখুন" required>
+                </div>
+                <div class="form-group">
+                    <label>Phone Number *</label>
+                    <input type="tel" id="custPhone" placeholder="01XXXXXXXXX" required>
+                </div>
+                <div class="form-group">
+                    <label>Full Delivery Address *</label>
+                    <textarea id="custAddress" rows="3" placeholder="জেলা, থানা, এলাকা এবং রোড নম্বর বিস্তারিত লিখুন" required></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label>Staff Code (স্টাফ কোড) *</label>
+                    <select id="staffCode" required>
+                        <option value="" disabled selected>আপনার স্টাফ কোডটি সিলেক্ট করুন</option>
+                        <option value="SAT 1">SAT 1</option>
+                        <option value="SAT 2">SAT 2</option>
+                        <option value="SAT 3">SAT 3</option>
+                        <option value="SAT 4">SAT 4</option>
+                        <option value="SAT 5">SAT 5</option>
+                        <option value="SAT 6">SAT 6</option>
+                        <option value="SAT 7">SAT 7</option>
+                    </select>
+                </div>
 
-            <!-- এই সেকশনটি পার্টনার প্রোডাক্টের জন্য জাভাস্ক্রিপ্ট দ্বারা অটো হাইড/কাস্টমাইজ হবে -->
-            <div class="form-group" id="paymentInputGroup">
-                <label>Payment Method & Advance Transaction Info *</label>
-                <p id="advanceNoticeBox" style="font-size:0.95em; color:var(--accent); margin:-5px 0 12px; background: #fff5f7; padding: 12px; border-radius: 8px; border: 1px dashed var(--accent); font-weight: 500;">
-                    ⚠️ আপনার কার্ট অনুযায়ী অর্ডার কনফার্ম করতে ৳<strong id="advanceAmountDisplay" style="font-size: 1.15em;">0</strong> অগ্রিম পেমেন্ট করুন।
-                </p>
-                <p id="advanceSubNotice" style="font-size:0.82em; color:#777; margin-bottom: 8px;">(ওপরের বিকাশ বা নগদ নাম্বারে এই টাকা পাঠিয়ে নিচে আপনার পেমেন্ট মাধ্যম ও TrxID লিখুন)</p>
-                <input type="text" id="custPayment" placeholder="e.g., bKash Personal - 017XXXXXXXX - TrxID: XXXXXX" required>
-            </div>
+                <div class="form-group" id="paymentInputGroup">
+                    <label>Payment Method & Advance Transaction Info *</label>
+                    <p id="advanceNoticeBox" style="font-size:0.95em; color:var(--accent); margin:-5px 0 12px; background: #fff5f7; padding: 12px; border-radius: 8px; border: 1px dashed var(--accent); font-weight: 500;">
+                        ⚠️ আপনার কার্ট অনুযায়ী অর্ডার কনফার্ম করতে ৳<strong id="advanceAmountDisplay" style="font-size: 1.15em;">0</strong> অগ্রিম পেমেন্ট করুন।
+                    </p>
+                    <p id="advanceSubNotice" style="font-size:0.82em; color:#777; margin-bottom: 8px;">(ওপরের বিকাশ বা নগদ নাম্বারে এই টাকা পাঠিয়ে নিচে আপনার পেমেন্ট মাধ্যম ও TrxID লিখুন)</p>
+                    <input type="text" id="custPayment" placeholder="e.g., bKash Personal - 017XXXXXXXX - TrxID: XXXXXX" required>
+                </div>
 
-            <button type="submit" class="submit-order-btn">Place Order & Confirm 🛍️</button>
-        </form>
+                <button type="submit" class="submit-order-btn">Place Order & Confirm 🛍️</button>
+            </form>
+        </div>
     </section>
 
-    <!-- কাস্টম আইডি যুক্ত করা হলো যেন জাভাস্ক্রিপ্ট দিয়ে এটাকে হাইড করা যায় -->
     <section class="notice-section" id="noticeSectionBox">
         <h2 style="color: var(--primary); margin-bottom: 15px;"><i class="fas fa-truck"></i> ডেলিভারি ও অগ্রিম পেমেন্ট</h2>
         <div style="font-size: 1.1em; line-height: 1.6; color: #555;">
@@ -359,7 +363,6 @@
         </div>
     </section>
 
-    <!-- কাস্টম আইডি যুক্ত করা হলো যেন জাভাস্ক্রিপ্ট দিয়ে এটাকে হাইড করা যায় -->
     <section class="payment-info" id="paymentInfoBox">
         <h2 style="color: var(--primary);">পেমেন্ট পদ্ধতি (Payment Procedure)</h2>
         <p>নিচের যেকোনো মাধ্যমে <b>১০% অগ্রিম</b> পেমেন্ট সম্পন্ন করে চেকআউট ফরমে আপনার <b>Transaction Info</b> জমা দিন:</p>
@@ -395,13 +398,12 @@
 
     <script>
         let cart = [];
-        let isPartnerInCart = false; // পার্টনার ট্র্যাকিং ভেরিয়েবল
+        let isPartnerInCart = false;
 
         function toggleCart() {
             document.getElementById('cartSidebar').classList.toggle('active');
         }
 
-        // addToCart ফাংশনে ৩য় প্যারামিটার (isPartner) যোগ করা হলো
         function addToCart(name, price, isPartner = false) {
             const existingItem = cart.find(item => item.name === name);
             if (existingItem) {
@@ -464,10 +466,8 @@
             let advanceTotal = Math.round(total * 0.10);
             document.getElementById('advanceAmountDisplay').innerText = advanceTotal;
 
-            // কার্টে কোনো ড্রপশিপ/পার্টনার প্রোডাক্ট আছে কিনা চেক করা
             isPartnerInCart = cart.some(item => item.isPartner === true);
 
-            // ফ্রন্ট-এন্ড ইউজার এক্সপেরিয়েন্স কন্ট্রোল লজিক
             const advanceNoticeBox = document.getElementById('advanceNoticeBox');
             const advanceSubNotice = document.getElementById('advanceSubNotice');
             const custPaymentField = document.getElementById('custPayment');
@@ -475,20 +475,16 @@
             const paymentInfoBox = document.getElementById('paymentInfoBox');
 
             if (isPartnerInCart) {
-                // ১. অ্যাডভান্স নোটিশ বক্স ২টp হাইড করা
                 if(advanceNoticeBox) advanceNoticeBox.style.display = 'none';
                 if(advanceSubNotice) advanceSubNotice.style.display = 'none';
                 
-                // ২. ইনপুট বক্সে সিক্রেট ডিফল্ট ভ্যালু দেওয়া এবং ইনপুট হাইড করা
                 custPaymentField.value = "Cash On Delivery (Partner Order)";
                 custPaymentField.style.display = 'none';
                 custPaymentField.parentElement.querySelector('label').style.display = 'none';
 
-                // ৩. নিচের বড় পেমেন্ট গাইডলাইন ২টp হাইড করা
                 if(noticeSectionBox) noticeSectionBox.style.display = 'none';
                 if(paymentInfoBox) paymentInfoBox.style.display = 'none';
             } else {
-                // সাধারণ সময়ে সবকিছু স্বাভাবিক রাখা
                 if(advanceNoticeBox) advanceNoticeBox.style.display = 'block';
                 if(advanceSubNotice) advanceSubNotice.style.display = 'block';
                 
@@ -514,7 +510,7 @@
             checkoutSec.scrollIntoView({ behavior: 'smooth' });
         }
 
-        function sendToWhatsApp(event) {
+        function submitToGoogleSheets(event) {
             event.preventDefault();
 
             const name = document.getElementById('custName').value.trim();
@@ -523,7 +519,6 @@
             const payment = document.getElementById('custPayment').value.trim();
             const staffCode = document.getElementById('staffCode').value;
 
-            // অ্যাড্রেস মডিফিকেশন লজিক (গোপনে রেফারেন্স কোড যোগ করা)
             let finalAddress = rawAddress;
             if (isPartnerInCart) {
                 finalAddress = rawAddress + " Reference Person : LL-ES-0010";
@@ -531,14 +526,12 @@
 
             let productList = cart.map(item => `${item.name} (Qty: ${item.quantity})`).join(', ');
             let totalAmount = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-            
-            // পার্টনার অর্ডার হলে অ্যাডভান্স অ্যামাউন্ট শিটে ০ যাবে
             let advanceAmount = isPartnerInCart ? 0 : Math.round(totalAmount * 0.10);
 
             const orderData = {
                 name: name,
                 phone: phone,
-                address: finalAddress, // গুগল শিটে মডিফাইড অ্যাড্রেস যাবে
+                address: finalAddress,
                 products: productList,
                 totalBill: totalAmount,
                 advance: advanceAmount,
@@ -549,34 +542,45 @@
             const googleAppScriptUrl = "https://script.google.com/macros/s/AKfycby90F2bGq_qigO5WjzLQxrWpY-_Q-m-MH_XVeEBdKkjy5qvMPQIjmsmpp6vn7Ay6o4/exec";
 
             const submitBtn = event.target.querySelector('.submit-order-btn');
-            submitBtn.innerText = "Processing Order... Please Wait ⏳";
+            const formWrapper = document.getElementById('checkoutFormWrapper');
+            
+            submitBtn.innerText = "Saving Order to Database... ⏳";
             submitBtn.disabled = true;
-            submitBtn.style.background = "#95a5a6";
 
+            // Submit Data seamlessly to Google Sheets using a background POST request
             fetch(googleAppScriptUrl, {
                 method: "POST",
-                mode: "no-cors",
-                cache: "no-cache",
-                headers: { "Content-Type": "application/json" },
+                mode: "no-cors", // Crucial for crossing domains into Google Scripts securely without CORS blocks
+                headers: {
+                    "Content-Type": "application/json"
+                },
                 body: JSON.stringify(orderData)
             })
             .then(() => {
-                alert(`🎉 Thank you, ${name}!\n\nYour order has been successfully placed and recorded under Staff Code: ${staffCode}.`);
-                
+                // Clear the local cart array and refresh the UI count indicators
                 cart = [];
                 updateCartUI();
-                document.getElementById('orderForm').reset();
-                document.getElementById('checkoutSection').classList.remove('active');
-                window.scrollTo({ top: 0, behavior: 'smooth' });
+
+                // Swap out the form elements for a clean, professional on-screen confirmation card
+                formWrapper.innerHTML = `
+                    <div class="success-card">
+                        <div class="success-icon"><i class="fas fa-check-circle"></i></div>
+                        <h2 style="color: var(--success); margin-top: 0;">Order Placed Successfully!</h2>
+                        <p style="font-size: 1.05em; color: #555; line-height: 1.5;">
+                            Hey <b>${name}</b>, thank you for shopping with us! Your order data has been successfully securely recorded in our central system database.
+                        </p>
+                        <p style="font-size: 0.9em; color: #777;">
+                            Our team will verify the details and contact you shortly at <b>${phone}</b> to confirm dispatch.
+                        </p>
+                        <button onclick="location.reload()" class="order-btn" style="background-color: var(--primary); margin-top: 20px; max-width: 200px; display: inline-block;">Continue Shopping</button>
+                    </div>
+                `;
             })
             .catch(error => {
-                console.error("Error saving to sheet:", error);
-                alert("Something went wrong with the connection. Please check your internet and try again.");
-            })
-            .finally(() => {
+                console.error("Database Submission Error:", error);
+                alert("Something went wrong saving the order details to the spreadsheet database. Please try again.");
                 submitBtn.innerText = "Place Order & Confirm 🛍️";
                 submitBtn.disabled = false;
-                submitBtn.style.background = "var(--success)";
             });
         }
     </script>
