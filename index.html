@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <title>S&A Treasures | Aesthetic & Herbal Collection</title>
-    <meta name="description" content="Explore S&A Treasures for Aesthetic Beaded Watch, Astronaut Sunset Lamp, and premium Livalia Herbal Soaps & Shampoos at the best prices with free home delivery in Bangladesh.">
+    <meta name="description" content="Explore S&A Treasures for Aesthetic Beaded Wristlets, Character Phone Straps, and premium Livalia Herbal Soaps & Shampoos at the best prices with free home delivery in Bangladesh.">
     
     <link rel="icon" type="image/png" href="https://i.postimg.cc/sxv7dpH5/Gemini-Generated-Image-rxm1yhrxm1yhrxm1.png">
     
@@ -44,9 +44,7 @@
             padding: 12px; 
             font-weight: bold; 
             font-size: 0.95em; 
-            position: sticky; 
-            top: 0; 
-            z-index: 99; 
+            position: sticky; top: 0; z-index: 99; 
             box-shadow: 0 2px 10px rgba(0,0,0,0.05);
         }
         
@@ -59,10 +57,8 @@
         
         .logo-container { margin-bottom: 15px; }
         .business-logo { 
-            width: 130px; 
-            height: 130px; 
-            border-radius: 50%; 
-            object-fit: cover; 
+            width: 130px; height: 130px; 
+            border-radius: 50%; object-fit: cover; 
             box-shadow: 0 6px 15px rgba(0,0,0,0.08); 
             border: 3px solid #fff;
         }
@@ -71,25 +67,13 @@
         .tagline { color: #888; font-style: italic; margin-top: 10px; font-size: 1.1em; }
         
         .cart-float { 
-            position: fixed; 
-            bottom: 95px; 
-            right: 20px; 
-            background-color: var(--primary); 
-            color: white; 
-            width: 60px; 
-            height: 60px; 
-            border-radius: 50px; 
-            text-align: center; 
-            font-size: 24px; 
+            position: fixed; bottom: 95px; right: 20px; 
+            background-color: var(--primary); color: white; 
+            width: 60px; height: 60px; border-radius: 50px; 
+            text-align: center; font-size: 24px; 
             box-shadow: 0 4px 15px rgba(212, 163, 115, 0.4); 
-            z-index: 100; 
-            display: flex; 
-            align-items: center; 
-            justify-content: center; 
-            text-decoration: none; 
-            border: none; 
-            cursor: pointer; 
-            transition: 0.3s ease;
+            z-index: 100; display: flex; align-items: center; justify-content: center; 
+            text-decoration: none; border: none; cursor: pointer; transition: 0.3s ease;
         }
         .cart-float:hover { transform: scale(1.05); background-color: var(--primary-hover); }
         .cart-count { position: absolute; top: -5px; right: -5px; background: var(--accent); color: white; font-size: 12px; width: 22px; height: 22px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; }
@@ -100,17 +84,15 @@
         .card { background: var(--card-bg); border-radius: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.03); width: 330px; padding: 20px; transition: all 0.3s ease; position: relative; border: 1px solid #f5ede6; box-sizing: border-box; }
         .card:hover { transform: translateY(-8px); box-shadow: 0 15px 35px rgba(212, 163, 115, 0.15); }
         
-        .combo-badge { position: absolute; top: 15px; right: 15px; background: var(--accent); color: white; padding: 6px 14px; border-radius: 20px; font-size: 0.78em; font-weight: bold; z-index: 2; letter-spacing: 0.5px; }
         .livelia-badge { position: absolute; top: 15px; right: 15px; background: var(--livelia-color); color: white; padding: 6px 14px; border-radius: 20px; font-size: 0.78em; font-weight: bold; z-index: 2; letter-spacing: 0.5px; }
 
         .main-img { width: 100%; height: 280px; object-fit: cover; border-radius: 15px; margin-bottom: 12px; }
-        .sub-img-row { display: flex; gap: 10px; justify-content: space-between; margin-top: 5px; }
-        .sub-img { width: 48%; height: 95px; object-fit: cover; border-radius: 10px; border: 1px solid #f0e6de; transition: 0.2s; }
-        .sub-img:hover { border-color: var(--primary); cursor: pointer; }
         
         h3 { color: #333; margin: 15px 0 5px; font-size: 1.35em; font-weight: 600; }
-        .price { color: var(--primary); font-weight: bold; font-size: 1.35em; margin-bottom: 18px; display: flex; align-items: center; }
-        .old-price { text-decoration: line-through; color: #cc8e8e; font-size: 0.75em; margin-right: 8px; font-weight: normal; }
+        .price-container { margin-bottom: 18px; }
+        .regular-price { text-decoration: line-through; color: #888; font-size: 0.9em; margin-right: 8px; }
+        .offer-price { color: var(--primary); font-weight: bold; font-size: 1.35em; }
+        .shipping-tag { font-size: 0.85em; color: var(--success); font-weight: 600; display: block; margin-top: 4px; }
         
         .order-btn { display: block; width: 100%; background-color: var(--primary); color: white; padding: 14px 0; border: none; border-radius: 12px; font-weight: bold; text-align: center; transition: 0.3s; margin-bottom: 10px; font-size: 1em; cursor: pointer; box-shadow: 0 3px 10px rgba(212, 163, 115, 0.2); }
         .order-btn:hover { background-color: var(--primary-hover); }
@@ -142,8 +124,7 @@
 
         .submit-order-btn { display: block; background-color: var(--success); color: white; padding: 16px; border: none; border-radius: 12px; font-weight: bold; font-size: 1.15em; width: 100%; box-shadow: 0 4px 15px rgba(46, 204, 113, 0.25); cursor: pointer; transition: 0.3s ease; }
         .submit-order-btn:hover { background-color: var(--success-hover); transform: translateY(-2px); }
-        .submit-order-btn:active { transform: translateY(1px); }
-        .submit-order-btn:disabled { background-color: #cccccc; cursor: not-allowed; transform: none; }
+        .submit-order-btn:disabled { background-color: #cccccc; cursor: not-allowed; }
 
         .success-card { background: white; border-radius: 20px; padding: 40px 20px; text-align: center; border: 2px dashed var(--success); animation: fadeIn 0.5s ease; box-shadow: 0 10px 35px rgba(46, 204, 113, 0.1); margin-top: 10px; }
         .success-icon { font-size: 4em; color: var(--success); margin-bottom: 15px; }
@@ -172,7 +153,6 @@
         @media screen and (max-width: 768px) {
             .cart-sidebar { width: 100%; right: -100%; }
             .notice-section, .payment-info, .checkout-section { width: 95% !important; padding: 20px 15px !important; margin: 20px auto !important; }
-            .checkout-section { display: none; }
             .checkout-section.active { display: block; }
             .payment-grid { display: flex; flex-direction: column; align-items: center; width: 100%; }
             .pay-card { width: 100% !important; max-width: 280px; box-sizing: border-box; }
@@ -203,135 +183,154 @@
         <p class="tagline">Love yourself, buy gifts, and spread happiness among your loved ones. ✨</p>
     </header>
 
-    <h2 class="section-title">✨ Our Premium Gifts & Combos ✨</h2>
+    <!-- SECTION 1: S&A NEW AESTHETIC PRODUCTS -->
+    <h2 class="section-title">✨ Our Premium Aesthetic Gifts ✨</h2>
     <div class="container">
+        <!-- 1. Aesthetic Butterfly Keychain -->
         <div class="card">
-            <span class="combo-badge">SAVE 25 TK</span>
-            <div class="gallery">
-                <img src="https://i.postimg.cc/KjfvZz4M/Gemini-Generated-Image-e37xvxe37xvxe37x.png" class="main-img" alt="Combo 1 Main">
+            <img src="https://i.postimg.cc/HnMq2Gcw/O1CN01T5o-ZZ52Es-SQBsn-FTE-2219476018800-0-cib.jpg" class="main-img" alt="Aesthetic Butterfly Keychain">
+            <h3>Aesthetic Butterfly Keychain</h3>
+            <p style="font-size: 0.85em; color: #777; margin: -5px 0 10px;">Elegant crystal metallic charm</p>
+            <div class="price-container">
+                <span class="regular-price">275 TK</span>
+                <span class="offer-price">235 TK</span>
+                <span class="shipping-tag">✨ Free Home Delivery</span>
             </div>
-            <h3>The Elegance Duo (Combo)</h3>
-            <p style="font-size: 0.85em; color: #777; margin: -5px 0 10px;">Beaded Watch + Butterfly Keychain</p>
-            <p class="price"><span class="old-price">775 BDT</span>750 BDT</p>
-            <button class="order-btn" onclick="addToCart('The Elegance Duo (Combo)', 750, false)">Add To Cart</button>
+            <button class="order-btn" onclick="addToCart('Aesthetic Butterfly Keychain', 235, false)">Add To Cart</button>
             <a href="https://www.facebook.com/share/1B5Wuq2Ke3/" class="fb-btn" target="_blank"><i class="fab fa-facebook"></i> ফেসবুক পেজ দেখুন</a>
         </div>
 
+        <!-- 2. Cute Character Phone Strap -->
         <div class="card">
-            <span class="combo-badge">SAVE 50 TK</span>
-            <div class="gallery">
-                <img src="https://i.postimg.cc/50FsdY7P/Gemini-Generated-Image-86nk3d86nk3d86nk.png" class="main-img" alt="Combo 2 Main">
+            <img src="https://i.postimg.cc/W1fPT7vt/phone-chain-11.jpg" class="main-img" alt="Cute Character Phone Strap">
+            <h3>Cute Character Phone Strap</h3>
+            <p style="font-size: 0.85em; color: #777; margin: -5px 0 10px;">Aesthetic beaded phone lanyard</p>
+            <div class="price-container">
+                <span class="regular-price">180 TK</span>
+                <span class="offer-price">145 TK</span>
+                <span class="shipping-tag">✨ Free Home Delivery</span>
             </div>
-            <h3>The Galaxy Bundle (Combo)</h3>
-            <p style="font-size: 0.85em; color: #777; margin: -5px 0 10px;">Astronaut Lamp + Butterfly Keychain</p>
-            <p class="price"><span class="old-price">1000 BDT</span>950 BDT</p>
-            <button class="order-btn" onclick="addToCart('The Galaxy Bundle (Combo)', 950, false)">Add To Cart</button>
+            <button class="order-btn" onclick="addToCart('Cute Character Phone Strap', 145, false)">Add To Cart</button>
             <a href="https://www.facebook.com/share/1B5Wuq2Ke3/" class="fb-btn" target="_blank"><i class="fab fa-facebook"></i> ফেসবুক পেজ দেখুন</a>
         </div>
 
+        <!-- 3. Premium Beaded Phone Wristlet -->
         <div class="card">
-            <span class="combo-badge">SAVE 75 TK</span>
-            <div class="gallery">
-                <img src="https://i.postimg.cc/L4tJC44R/Gemini-Generated-Image-9g9bqz9g9bqz9g9b.png" class="main-img" alt="The Ultimate Trio Main">
+            <img src="https://i.postimg.cc/PJB2SPsj/Gemini-Generated-Image-ael0b7ael0b7ael0.png" class="main-img" alt="Premium Beaded Phone Wristlet">
+            <h3>Premium Beaded Phone Wristlet</h3>
+            <p style="font-size: 0.85em; color: #777; margin: -5px 0 10px;">Selected Big Pearl Premium Edition</p>
+            <div class="price-container">
+                <span class="regular-price">335 TK</span>
+                <span class="offer-price">305 TK</span>
+                <span class="shipping-tag">✨ Free Home Delivery</span>
             </div>
-            <h3>The Ultimate Treasure Trio (Combo)</h3>
-            <p style="font-size: 0.85em; color: #777; margin: -5px 0 10px;">Watch + Astronaut Lamp + Butterfly Keychain</p>
-            <p class="price"><span class="old-price">1525 BDT</span>1450 BDT</p>
-            <button class="order-btn" onclick="addToCart('The Ultimate Treasure Trio (Combo)', 1450, false)">Add To Cart</button>
+            <button class="order-btn" onclick="addToCart('Premium Beaded Phone Wristlet', 305, false)">Add To Cart</button>
             <a href="https://www.facebook.com/share/1B5Wuq2Ke3/" class="fb-btn" target="_blank"><i class="fab fa-facebook"></i> ফেসবুক পেজ দেখুন</a>
         </div>
         
+        <!-- 4. Animal Cable Protectors -->
         <div class="card">
-            <div class="gallery">
-                <img src="https://i.postimg.cc/nzVMHc1J/O1CN01R0OY7P1Cti8vomq-Gi-1924270139-0-cib-600x600.jpg" class="main-img" alt="Watch Main">
-                <div class="sub-img-row">
-                    <img src="https://i.postimg.cc/2j1mDZDj/O1CN01k-Pot-W91Cti8pdrnmv-1924270139-0-cib-600x600.jpg" class="sub-img" alt="Watch Side">
-                    <img src="https://i.postimg.cc/V6Tx6KcF/O1CN01a-PK6LC1Cti8u-Qy-Tq1-1924270139-0-cib-600x600.jpg" class="sub-img" alt="Watch Detail">
-                </div>
+            <img src="https://i.postimg.cc/N0SDsKFj/Cable-Protector-1.jpg" class="main-img" alt="Animal Cable Protectors">
+            <h3>Animal Cable Protectors</h3>
+            <p style="font-size: 0.85em; color: #777; margin: -5px 0 10px;">Cute cartoon data cable saver</p>
+            <div class="price-container">
+                <span class="regular-price">107 TK</span>
+                <span class="offer-price">75 TK</span>
+                <span class="shipping-tag">✨ Free Home Delivery</span>
             </div>
-            <h3>Aesthetic Beaded Watch</h3>
-            <p class="price">525 BDT</p>
-            <button class="order-btn" onclick="addToCart('Aesthetic Beaded Watch', 525, false)">Add To Cart</button>
+            <button class="order-btn" onclick="addToCart('Animal Cable Protectors', 75, false)">Add To Cart</button>
             <a href="https://www.facebook.com/share/1B5Wuq2Ke3/" class="fb-btn" target="_blank"><i class="fab fa-facebook"></i> ফেসবুক পেজ দেখুন</a>
         </div>
 
+        <!-- 5. Hello Kitty Dancing Stone Necklace -->
         <div class="card">
-            <div class="gallery">
-                <img src="https://i.postimg.cc/DZqNvnBB/Gemini-Generated-Image-4tcavf4tcavf4tca.png" class="main-img" alt="Lamp Main">
-                <div class="sub-img-row">
-                    <img src="https://i.postimg.cc/5tz7gfcS/O1CN01FFMJe-M1Xr-W8Gb-Nya-D-2219452762977-0-cib-600x600.jpg" class="sub-img" alt="Lamp Glow">
-                    <img src="https://i.postimg.cc/xj5sts7d/O1CN01Vh-Km-C01Xr-W8Fx-Pev8-2219452762977-0-cib-600x600.jpg" class="sub-img" alt="Lamp Box">
-                </div>
+            <img src="https://i.postimg.cc/7hDgh0kN/Kitty-Necklace.jpg" class="main-img" alt="Hello Kitty Dancing Stone Necklace">
+            <h3>Hello Kitty Dancing Stone Necklace</h3>
+            <p style="font-size: 0.85em; color: #777; margin: -5px 0 10px;">Dancing zircon silver gift item</p>
+            <div class="price-container">
+                <span class="regular-price">445 TK</span>
+                <span class="offer-price">400 TK</span>
+                <span class="shipping-tag">✨ Free Home Delivery</span>
             </div>
-            <h3>Astronaut Sunset Lamp</h3>
-            <p class="price">750 BDT</p>
-            <button class="order-btn" onclick="addToCart('Astronaut Sunset Lamp', 750, false)">Add To Cart</button>
+            <button class="order-btn" onclick="addToCart('Hello Kitty Dancing Stone Necklace', 400, false)">Add To Cart</button>
             <a href="https://www.facebook.com/share/1B5Wuq2Ke3/" class="fb-btn" target="_blank"><i class="fab fa-facebook"></i> ফেসবুক পেজ দেখুন</a>
         </div>
 
+        <!-- 6. Astronaut Sunset Lamp (7 Colors) -->
         <div class="card">
-            <div class="gallery">
-                <img src="https://i.postimg.cc/QCbJzPC4/O1CN01ujq-DEY215p-Hi-OYfkb-4097876934-0-cib-600x600.jpg" class="main-img" alt="Keychain Main">
-                <div class="sub-img-row">
-                    <img src="https://i.postimg.cc/d34G6yNT/O1CN01Mjz-X421NZ451v-LHhi-2220890171583-0-cib.jpg" class="sub-img" alt="Keychain Close">
-                    <img src="https://i.postimg.cc/qRGKBKTY/O1CN01n-Mh-Ytt21bt8g-DWE8M-2218675527004-0-cib-600x600.jpg" class="sub-img" alt="Keychain Colors">
-                </div>
+            <img src="https://i.postimg.cc/DZqNvnBB/Gemini-Generated-Image-4tcavf4tcavf4tca.png" class="main-img" alt="Astronaut Sunset Lamp">
+            <h3>Astronaut Sunset Lamp (7 Colors)</h3>
+            <p style="font-size: 0.85em; color: #777; margin: -5px 0 10px;">Rechargeable Touch Control 360° Rotate</p>
+            <div class="price-container">
+                <span class="regular-price">935 TK</span>
+                <span class="offer-price">880 TK</span>
+                <span class="shipping-tag">✨ Free Home Delivery</span>
             </div>
-            <h3>Butterfly Aesthetic Keychain</h3>
-            <p class="price">250 BDT</p>
-            <button class="order-btn" onclick="addToCart('Butterfly Aesthetic Keychain', 250, false)">Add To Cart</button>
+            <button class="order-btn" onclick="addToCart('Astronaut Sunset Lamp (7 Colors)', 880, false)">Add To Cart</button>
             <a href="https://www.facebook.com/share/1B5Wuq2Ke3/" class="fb-btn" target="_blank"><i class="fab fa-facebook"></i> ফেসবুক পেজ দেখুন</a>
         </div>
     </div>
 
+    <!-- SECTION 2: OFFICIAL LIVALIA HERBAL PRODUCTS -->
     <h2 class="section-title" style="color: var(--livelia-color);">🌿 Official Livalia Collection (100% COD) 🌿</h2>
     <div class="container">
         <div class="card" style="border: 1px solid rgba(46, 125, 50, 0.4);">
             <span class="livelia-badge">LIVALIA PARTNER</span>
-            <img src="https://images.unsplash.com/photo-1608248597481-496100c80836?w=500&auto=format&fit=crop" class="main-img" alt="Livalia Night Spot Removal Cream">
+            <img src="https://images.unsplash.com/photo-1608248597481-496100c80836?w=500" class="main-img" alt="Livalia Night Spot Removal Cream">
             <h3>Livalia Night Spot Removal Cream</h3>
             <p style="font-size: 0.85em; color: #777; margin: -5px 0 10px;">For Spot Free Shine & Safe Skin Care</p>
-            <p class="price">450 BDT</p>
+            <div class="price-container">
+                <span class="offer-price" style="color: var(--livelia-color);">450 BDT</span>
+            </div>
             <button class="order-btn" style="background-color: var(--livelia-color);" onclick="addToCart('Livalia Night Spot Removal Cream', 450, true)">Add To Cart</button>
         </div>
 
         <div class="card" style="border: 1px solid rgba(46, 125, 50, 0.4);">
             <span class="livelia-badge">LIVALIA PARTNER</span>
-            <img src="https://images.unsplash.com/photo-1559599141-3849f2013f0a?w=500&auto=format&fit=crop" class="main-img" alt="Livalia Neem Toothpaste">
+            <img src="https://images.unsplash.com/photo-1559599141-3849f2013f0a?w=500" class="main-img" alt="Livalia Neem Toothpaste">
             <h3>Livalia Neem Toothpaste</h3>
             <p style="font-size: 0.85em; color: #777; margin: -5px 0 10px;">Complete Care & Healthy Fresh Teeth</p>
-            <p class="price">190 BDT</p>
+            <div class="price-container">
+                <span class="offer-price" style="color: var(--livelia-color);">190 BDT</span>
+            </div>
             <button class="order-btn" style="background-color: var(--livelia-color);" onclick="addToCart('Livalia Neem Toothpaste', 190, true)">Add To Cart</button>
         </div>
 
         <div class="card" style="border: 1px solid rgba(46, 125, 50, 0.4);">
             <span class="livelia-badge">LIVALIA PARTNER</span>
-            <img src="https://images.unsplash.com/photo-1535585209827-a15fcdbc4c2d?w=500&auto=format&fit=crop" class="main-img" alt="Livalia Alovera Shampoo">
+            <img src="https://images.unsplash.com/photo-1535585209827-a15fcdbc4c2d?w=500" class="main-img" alt="Livalia Alovera Shampoo">
             <h3>Livalia Alovera Shampoo</h3>
             <p style="font-size: 0.85em; color: #777; margin: -5px 0 10px;">Intense Root Care & Hair Fall Solution</p>
-            <p class="price">640 BDT</p>
+            <div class="price-container">
+                <span class="offer-price" style="color: var(--livelia-color);">640 BDT</span>
+            </div>
             <button class="order-btn" style="background-color: var(--livelia-color);" onclick="addToCart('Livalia Alovera Shampoo', 640, true)">Add To Cart</button>
         </div>
 
         <div class="card" style="border: 1px solid rgba(46, 125, 50, 0.4);">
             <span class="livelia-badge">LIVALIA PARTNER</span>
-            <img src="https://images.unsplash.com/photo-1607006342446-ea14f880be31?w=500&auto=format&fit=crop" class="main-img" alt="Livalia Scavia Soap">
+            <img src="https://images.unsplash.com/photo-1607006342446-ea14f880be31?w=500" class="main-img" alt="Livalia Scavia Soap">
             <h3>Livalia Scavia Soap</h3>
             <p style="font-size: 0.85em; color: #777; margin: -5px 0 10px;">Anti-Scabies & Antiparasitic Glycerin Soap</p>
-            <p class="price">420 BDT</p>
+            <div class="price-container">
+                <span class="offer-price" style="color: var(--livelia-color);">420 BDT</span>
+            </div>
             <button class="order-btn" style="background-color: var(--livelia-color);" onclick="addToCart('Livalia Scavia Soap', 420, true)">Add To Cart</button>
         </div>
 
         <div class="card" style="border: 1px solid rgba(46, 125, 50, 0.4);">
             <span class="livelia-badge">LIVALIA PARTNER</span>
-            <img src="https://images.unsplash.com/photo-1556228720-195a672e8a03?w=500&auto=format&fit=crop" class="main-img" alt="Livalia Neem Facewash">
+            <img src="https://images.unsplash.com/photo-1556228720-195a672e8a03?w=500" class="main-img" alt="Livalia Neem Facewash">
             <h3>Livalia Neem Facewash</h3>
             <p style="font-size: 0.85em; color: #777; margin: -5px 0 10px;">Cleans Active - Helps Fight Acne Bacteria</p>
-            <p class="price">320 BDT</p>
+            <div class="price-container">
+                <span class="offer-price" style="color: var(--livelia-color);">320 BDT</span>
+            </div>
             <button class="order-btn" style="background-color: var(--livelia-color);" onclick="addToCart('Livalia Neem Facewash', 320, true)">Add To Cart</button>
         </div>
     </div>
 
+    <!-- CART SIDEBAR -->
     <div class="cart-sidebar" id="cartSidebar">
         <div class="cart-header">
             <h2>Your Bag <i class="fas fa-shopping-bag" style="color:var(--primary);"></i></h2>
@@ -345,6 +344,7 @@
         <button class="checkout-btn" onclick="showCheckout()">Proceed to Checkout</button>
     </div>
 
+    <!-- CHECKOUT SECTION -->
     <section class="checkout-section" id="checkoutSection">
         <div id="checkoutFormWrapper">
             <h2 style="color: var(--primary); text-align:center; margin-top:0;">📋 Complete Your Order</h2>
@@ -385,9 +385,9 @@
                     </p>
 
                     <p id="advanceNoticeBox" style="font-size:0.95em; color:var(--accent); margin:-5px 0 12px; background: #fff5f7; padding: 12px; border-radius: 8px; border: 1px dashed var(--accent); font-weight: 500;">
-                        ⚠️ আপনার কার্ট অনুযায়ী অর্ডার কনফার্ম করতে ৳<strong id="advanceAmountDisplay" style="font-size: 1.15em;">0</strong> অগ্রিম পেমেন্ট করুন।
+                        ⚠️ আপনার কার্ট অনুযায়ী অর্ডার কনফার্ম করতে ৳<strong id="advanceAmountDisplay" style="font-size: 1.15em;">0</strong> (১০% অগ্রিম পেমেন্ট) করুন।
                     </p>
-                    <p id="advanceSubNotice" style="font-size:0.82em; color:#777; margin-bottom: 8px;">(ওপারের বিকাশ বা নগদ নাম্বারে এই টাকা পাঠিয়ে নিচে আপনার পেমেন্ট মাধ্যম ও TrxID লিখুন)</p>
+                    <p id="advanceSubNotice" style="font-size:0.82em; color:#777; margin-bottom: 8px;">(নিচের বিকাশ বা নগদ নাম্বারে এই টাকা পাঠিয়ে নিচে আপনার পেমেন্ট মাধ্যম ও TrxID লিখুন)</p>
                     <input type="text" id="custPayment" placeholder="e.g., bKash Personal - 017XXXXXXXX - TrxID: XXXXXX" required>
                 </div>
 
@@ -396,17 +396,19 @@
         </div>
     </section>
 
+    <!-- DELIVERY DYNAMIC NOTICE -->
     <section class="notice-section" id="noticeSectionBox">
         <h2 style="color: var(--primary); margin-bottom: 15px;"><i class="fas fa-truck"></i> ডেলিভারি ও অগ্রিম পেমেন্ট</h2>
         <div style="font-size: 1.1em; line-height: 1.6; color: #555;">
             <p>আমরা সারা বাংলাদেশে <strong>ফ্রি হোম ডেলিভারি</strong> প্রদান করছি! 🚚</p>
             <div id="dynamicNoticeText" class="mandatory-box">
-                নোট: আমাদের নিজস্ব পণ্যগুলো ইমপোর্টেড (Imported) হওয়ায় অর্ডার কনফার্ম করতে মোট বিলের ন্যূনতম ১০% অগ্রিম পেমেন্ট করা বাধ্যতামূল।
+                নোট: আমাদের পণ্যগুলো ইমপোর্টেড (Imported) হওয়ায় অর্ডার কনফার্ম করতে মোট বিলের ন্যূনতম ১০% অগ্রিম পেমেন্ট করা বাধ্যতামূলক।
             </div>
             <p style="margin-top: 10px;">বাকি টাকা পণ্য হাতে পাওয়ার পর পরিশোধ করতে পারবেন (Cash on Delivery)।</p>
         </div>
     </section>
 
+    <!-- PAYMENT ACCOUNTS BOX -->
     <section class="payment-info" id="paymentInfoBox">
         <h2 style="color: var(--primary);">পেমেন্ট পদ্ধতি (Payment Procedure)</h2>
         <p id="dynamicPaymentSubtitle">নিচের যেকোনো মাধ্যমে <b>১০% অগ্রিম</b> পেমেন্ট সম্পন্ন করে চেকআউট ফরমে আপনার <b>Transaction Info</b> জমা দিন:</p>
@@ -444,7 +446,7 @@
         let cart = [];
         let isPartnerInCart = false;
 
-        // আপনার প্রোভাইড করা নতুন রিয়েল ওয়েব অ্যাপ লিঙ্ক এখানে সেট করা হয়েছে
+        // Master Apps Script URL
         const googleAppScriptUrl = "https://script.google.com/macros/s/AKfycbyMqHh3sFoZ0eNzUcmPr0S92kQYhvfUTK2v-4cKsxt9b6_ZPbr7QATU5b6q-QI78707/exec";
 
         function toggleCart() {
@@ -471,7 +473,6 @@
                 }
             }
             updateCartUI();
-            
             if(cart.length === 0) {
                 document.getElementById('checkoutSection').classList.remove('active');
             }
@@ -510,10 +511,10 @@
             cartCount.innerText = totalItems;
             cartTotalAmount.innerText = total + ' BDT';
 
+            // 10% Advance Logic calculation
             let advanceTotal = Math.round(total * 0.10);
             document.getElementById('advanceAmountDisplay').innerText = advanceTotal;
 
-            // কার্টে লিবালিয়া প্রোডাক্ট আছে কিনা কঠোরভাবে যাচাই করা
             isPartnerInCart = cart.some(item => item.isPartner === true);
 
             const advanceNoticeBox = document.getElementById('advanceNoticeBox');
@@ -521,7 +522,6 @@
             const liveliaNoticeBox = document.getElementById('liveliaNoticeBox');
             const custPaymentField = document.getElementById('custPayment');
             const paymentLabel = document.getElementById('paymentLabel');
-            
             const dynamicNoticeText = document.getElementById('dynamicNoticeText');
             const dynamicPaymentSubtitle = document.getElementById('dynamicPaymentSubtitle');
 
@@ -628,9 +628,6 @@
                         <h2 style="color: var(--success); margin-top: 0;">Order Placed Successfully!</h2>
                         <p style="font-size: 1.05em; color: #555; line-height: 1.5;">
                             Hey <b>${name}</b>, thank you for shopping with us! Your order data has been successfully securely recorded in our database spreadsheet.
-                        </p>
-                        <p style="font-size: 0.9em; color: #777;">
-                            Our team will verify the details and contact you shortly at <b>${phone}</b> to confirm dispatch.
                         </p>
                         <button onclick="location.reload()" class="order-btn" style="background-color: var(--primary); margin-top: 20px; max-width: 200px; display: inline-block;">Continue Shopping</button>
                     </div>
