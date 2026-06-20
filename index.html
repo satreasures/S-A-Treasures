@@ -36,7 +36,6 @@
             padding: 0; 
         }
         
-        /* Shipping Sticky Banner */
         .shipping-banner { 
             background: linear-gradient(90deg, var(--primary), var(--primary-hover)); 
             color: white; 
@@ -57,7 +56,6 @@
             border-bottom: 1px solid #f3e9e1; 
         }
         
-        /* Logo Styling */
         .logo-container { margin-bottom: 15px; }
         .business-logo { 
             width: 130px; 
@@ -71,7 +69,6 @@
         h1 { color: var(--primary); margin: 0; font-size: 2.5em; letter-spacing: 2px; text-transform: uppercase; font-weight: 700; }
         .tagline { color: #888; font-style: italic; margin-top: 10px; font-size: 1.1em; }
         
-        /* Cart Floating Button */
         .cart-float { 
             position: fixed; 
             bottom: 95px; 
@@ -100,7 +97,6 @@
         .card { background: var(--card-bg); border-radius: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.03); width: 330px; padding: 20px; transition: all 0.3s ease; position: relative; border: 1px solid #f5ede6; box-sizing: border-box; }
         .card:hover { transform: translateY(-8px); box-shadow: 0 15px 35px rgba(212, 163, 115, 0.15); }
         
-        /* Badge for Combos */
         .combo-badge { position: absolute; top: 15px; right: 15px; background: var(--accent); color: white; padding: 6px 14px; border-radius: 20px; font-size: 0.78em; font-weight: bold; z-index: 2; letter-spacing: 0.5px; }
 
         .main-img { width: 100%; height: 280px; object-fit: cover; border-radius: 15px; margin-bottom: 12px; }
@@ -117,7 +113,6 @@
         .fb-btn { display: block; background-color: #1877F2; color: white; padding: 12px; text-decoration: none; border-radius: 12px; font-weight: bold; text-align: center; transition: 0.3s; font-size: 0.95em; box-shadow: 0 3px 10px rgba(24, 119, 242, 0.2); }
         .fb-btn:hover { background-color: #145dbf; }
 
-        /* Cart Sidebar Drawer */
         .cart-sidebar { position: fixed; top: 0; right: -420px; width: 380px; height: 100%; background: white; box-shadow: -8px 0 25px rgba(0,0,0,0.08); z-index: 1000; transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1); padding: 25px; display: flex; flex-direction: column; box-sizing: border-box; }
         .cart-sidebar.active { right: 0; }
         .cart-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #eee; padding-bottom: 15px; }
@@ -134,7 +129,6 @@
         .checkout-btn { background: var(--accent); color: white; width: 100%; padding: 15px; border: none; border-radius: 12px; font-weight: bold; font-size: 1em; cursor: pointer; text-align: center; text-decoration: none; box-shadow: 0 4px 12px rgba(209, 32, 83, 0.25); transition: 0.2s; }
         .checkout-btn:hover { background: #b01743; }
 
-        /* Checkout Section Form */
         .checkout-section { background: white; padding: 40px 30px; border-radius: 20px; margin: 40px auto; max-width: 600px; box-shadow: 0 10px 30px rgba(0,0,0,0.03); display: none; border: 1px solid #f0e6de; box-sizing: border-box; }
         .checkout-section.active { display: block; animation: fadeIn 0.4s ease; }
         .form-group { margin-bottom: 22px; text-align: left; }
@@ -142,13 +136,11 @@
         .form-group input, .form-group textarea, .form-group select { width: 100%; padding: 14px; border: 1px solid #ddd; border-radius: 10px; box-sizing: border-box; font-family: inherit; font-size: 0.95em; transition: 0.2s; background: #fafafa; }
         .form-group input:focus, .form-group textarea:focus, .form-group select:focus { border-color: var(--primary); background: #fff; outline: none; box-shadow: 0 0 0 3px rgba(212, 163, 115, 0.15); }
 
-        /* Submit Button Styling */
         .submit-order-btn { display: block; background-color: var(--success); color: white; padding: 16px; border: none; border-radius: 12px; font-weight: bold; font-size: 1.15em; width: 100%; box-shadow: 0 4px 15px rgba(46, 204, 113, 0.25); cursor: pointer; transition: 0.3s ease; }
         .submit-order-btn:hover { background-color: var(--success-hover); transform: translateY(-2px); }
         .submit-order-btn:active { transform: translateY(1px); }
         .submit-order-btn:disabled { background-color: #cccccc; cursor: not-allowed; transform: none; }
 
-        /* On-Screen Success Confirmation Card Styling */
         .success-card { background: white; border-radius: 20px; padding: 40px 20px; text-align: center; border: 2px dashed var(--success); animation: fadeIn 0.5s ease; box-shadow: 0 10px 35px rgba(46, 204, 113, 0.1); margin-top: 10px; }
         .success-icon { font-size: 4em; color: var(--success); margin-bottom: 15px; }
 
@@ -217,7 +209,8 @@
             <h3>The Elegance Duo (Combo)</h3>
             <p style="font-size: 0.85em; color: #777; margin: -5px 0 10px;">Beaded Watch + Butterfly Keychain</p>
             <p class="price"><span class="old-price">775 BDT</span>750 BDT</p>
-            <button class="order-btn" onclick="addToCart('The Elegance Duo (Combo)', 750, true)">Add To Cart</button>
+            <!-- Normal Product (false) -->
+            <button class="order-btn" onclick="addToCart('The Elegance Duo (Combo)', 750, false)">Add To Cart</button>
             <a href="https://www.facebook.com/share/1B5Wuq2Ke3/" class="fb-btn" target="_blank"><i class="fab fa-facebook"></i> ফেসবুক পেজ দেখুন</a>
         </div>
 
@@ -230,7 +223,7 @@
             <h3>The Galaxy Bundle (Combo)</h3>
             <p style="font-size: 0.85em; color: #777; margin: -5px 0 10px;">Astronaut Lamp + Butterfly Keychain</p>
             <p class="price"><span class="old-price">1000 BDT</span>950 BDT</p>
-            <button class="order-btn" onclick="addToCart('The Galaxy Bundle (Combo)', 950, true)">Add To Cart</button>
+            <button class="order-btn" onclick="addToCart('The Galaxy Bundle (Combo)', 950, false)">Add To Cart</button>
             <a href="https://www.facebook.com/share/1B5Wuq2Ke3/" class="fb-btn" target="_blank"><i class="fab fa-facebook"></i> ফেসবুক পেজ দেখুন</a>
         </div>
 
@@ -243,7 +236,7 @@
             <h3>The Ultimate Treasure Trio (Combo)</h3>
             <p style="font-size: 0.85em; color: #777; margin: -5px 0 10px;">Watch + Astronaut Lamp + Butterfly Keychain</p>
             <p class="price"><span class="old-price">1525 BDT</span>1450 BDT</p>
-            <button class="order-btn" onclick="addToCart('The Ultimate Treasure Trio (Combo)', 1450, true)">Add To Cart</button>
+            <button class="order-btn" onclick="addToCart('The Ultimate Treasure Trio (Combo)', 1450, false)">Add To Cart</button>
             <a href="https://www.facebook.com/share/1B5Wuq2Ke3/" class="fb-btn" target="_blank"><i class="fab fa-facebook"></i> ফেসবুক পেজ দেখুন</a>
         </div>
         
@@ -258,7 +251,7 @@
             </div>
             <h3>Aesthetic Beaded Watch</h3>
             <p class="price">525 BDT</p>
-            <button class="order-btn" onclick="addToCart('Aesthetic Beaded Watch', 525, true)">Add To Cart</button>
+            <button class="order-btn" onclick="addToCart('Aesthetic Beaded Watch', 525, false)">Add To Cart</button>
             <a href="https://www.facebook.com/share/1B5Wuq2Ke3/" class="fb-btn" target="_blank"><i class="fab fa-facebook"></i> ফেসবুক পেজ দেখুন</a>
         </div>
 
@@ -273,12 +266,13 @@
             </div>
             <h3>Astronaut Sunset Lamp</h3>
             <p class="price">750 BDT</p>
-            <button class="order-btn" onclick="addToCart('Astronaut Sunset Lamp', 750, true)">Add To Cart</button>
+            <button class="order-btn" onclick="addToCart('Astronaut Sunset Lamp', 750, false)">Add To Cart</button>
             <a href="https://www.facebook.com/share/1B5Wuq2Ke3/" class="fb-btn" target="_blank"><i class="fab fa-facebook"></i> ফেসবুক পেজ দেখুন</a>
         </div>
 
-        <!-- Product 6 -->
-        <div class="card">
+        <!-- Product 6 (Livelia Partner Product Integration) -->
+        <div class="card" style="border: 1px solid rgba(46, 204, 113, 0.4);">
+            <span class="combo-badge" style="background:#2ecc71;">LIVELIA PARTNER</span>
             <div class="gallery">
                 <img src="https://i.postimg.cc/QCbJzPC4/O1CN01ujq-DEY215p-Hi-OYfkb-4097876934-0-cib-600x600.jpg" class="main-img" alt="Keychain Main">
                 <div class="sub-img-row">
@@ -288,7 +282,8 @@
             </div>
             <h3>Butterfly Aesthetic Keychain</h3>
             <p class="price">250 BDT</p>
-            <button class="order-btn" onclick="addToCart('Butterfly Aesthetic Keychain', 250, true)">Add To Cart</button>
+            <!-- Livelia Partner Product (true) -->
+            <button class="order-btn" style="background-color: #2ecc71;" onclick="addToCart('Butterfly Aesthetic Keychain', 250, true)">Add To Cart</button>
             <a href="https://www.facebook.com/share/1B5Wuq2Ke3/" class="fb-btn" target="_blank"><i class="fab fa-facebook"></i> ফেসবুক পেজ দেখুন</a>
         </div>
     </div>
@@ -339,7 +334,14 @@
                 </div>
 
                 <div class="form-group" id="paymentInputGroup">
-                    <label>Payment Method & Advance Transaction Info *</label>
+                    <label id="paymentLabel">Payment Method & Advance Transaction Info *</label>
+                    
+                    <!-- Livelia context dynamic notice banner -->
+                    <p id="liveliaNoticeBox" style="font-size:0.95em; color:#155724; margin:-5px 0 12px; background: #d4edda; padding: 14px; border-radius: 10px; border: 1px solid #c3e6cb; font-weight: bold; display:none;">
+                        🟢 Livelia BD Fulfillment Order! This selection processes via 100% Cash On Delivery. No Advance Payment Required.
+                    </p>
+
+                    <!-- Standard 10% Advance Notice Box -->
                     <p id="advanceNoticeBox" style="font-size:0.95em; color:var(--accent); margin:-5px 0 12px; background: #fff5f7; padding: 12px; border-radius: 8px; border: 1px dashed var(--accent); font-weight: 500;">
                         ⚠️ আপনার কার্ট অনুযায়ী অর্ডার কনফার্ম করতে ৳<strong id="advanceAmountDisplay" style="font-size: 1.15em;">0</strong> অগ্রিম পেমেন্ট করুন।
                     </p>
@@ -356,7 +358,7 @@
         <h2 style="color: var(--primary); margin-bottom: 15px;"><i class="fas fa-truck"></i> ডেলিভারি ও অগ্রিম পেমেন্ট</h2>
         <div style="font-size: 1.1em; line-height: 1.6; color: #555;">
             <p>আমরা সারা বাংলাদেশে <strong>ফ্রি হোম ডেলিভারি</strong> প্রদান করছি! 🚚</p>
-            <div class="mandatory-box">
+            <div id="dynamicNoticeText" class="mandatory-box">
                 নোট: আমাদের পণ্যগুলো ইমপোর্টেড (Imported) হওয়ায় অর্ডার কনফার্ম করতে মোট বিলের ন্যূনতম ১০% অগ্রিম পেমেন্ট করা বাধ্যতামূলক।
             </div>
             <p style="margin-top: 10px;">বাকি টাকা পণ্য হাতে পাওয়ার পর পরিশোধ করতে পারবেন (Cash on Delivery)।</p>
@@ -365,7 +367,7 @@
 
     <section class="payment-info" id="paymentInfoBox">
         <h2 style="color: var(--primary);">পেমেন্ট পদ্ধতি (Payment Procedure)</h2>
-        <p>নিচের যেকোনো মাধ্যমে <b>১০% অগ্রিম</b> পেমেন্ট সম্পন্ন করে চেকআউট ফরমে আপনার <b>Transaction Info</b> জমা দিন:</p>
+        <p id="dynamicPaymentSubtitle">নিচের যেকোনো মাধ্যমে <b>১০% অগ্রিম</b> পেমেন্ট সম্পন্ন করে চেকআউট ফরমে আপনার <b>Transaction Info</b> জমা দিন:</p>
         
         <div class="payment-grid">
             <div class="pay-card">
@@ -446,7 +448,7 @@
                 htmlContent += `
                     <div class="cart-item">
                         <div class="cart-item-details">
-                            <strong>${item.name}</strong>
+                            <strong>${item.name} ${item.isPartner ? '<span style="color:#2ecc71; font-size:0.8em;">(Livelia)</span>' : ''}</strong>
                             <div style="color: var(--primary); margin-top:3px;">${item.price} BDT</div>
                             <div class="qty-controls">
                                 <button class="qty-btn" onclick="changeQuantity('${item.name}', -1)">-</button>
@@ -466,36 +468,57 @@
             let advanceTotal = Math.round(total * 0.10);
             document.getElementById('advanceAmountDisplay').innerText = advanceTotal;
 
+            // Check if Livelia condition criteria meets inside current stack
             isPartnerInCart = cart.some(item => item.isPartner === true);
 
             const advanceNoticeBox = document.getElementById('advanceNoticeBox');
             const advanceSubNotice = document.getElementById('advanceSubNotice');
+            const liveliaNoticeBox = document.getElementById('liveliaNoticeBox');
             const custPaymentField = document.getElementById('custPayment');
-            const noticeSectionBox = document.getElementById('noticeSectionBox');
+            const paymentLabel = document.getElementById('paymentLabel');
+            
+            const dynamicNoticeText = document.getElementById('dynamicNoticeText');
+            const dynamicPaymentSubtitle = document.getElementById('dynamicPaymentSubtitle');
             const paymentInfoBox = document.getElementById('paymentInfoBox');
 
             if (isPartnerInCart) {
+                // If it is a Livelia dynamic reference order
                 if(advanceNoticeBox) advanceNoticeBox.style.display = 'none';
                 if(advanceSubNotice) advanceSubNotice.style.display = 'none';
+                if(liveliaNoticeBox) liveliaNoticeBox.style.display = 'block';
                 
-                custPaymentField.value = "Cash On Delivery (Partner Order)";
+                custPaymentField.value = "Cash On Delivery (Livelia Dropshipping Channel Order)";
                 custPaymentField.style.display = 'none';
-                custPaymentField.parentElement.querySelector('label').style.display = 'none';
+                if(paymentLabel) paymentLabel.style.display = 'none';
 
-                if(noticeSectionBox) noticeSectionBox.style.display = 'none';
-                if(paymentInfoBox) paymentInfoBox.style.display = 'none';
+                if(dynamicNoticeText) {
+                    dynamicNoticeText.innerText = "নোট: এটি একটি Livelia পার্টনার অর্ডার। এই অর্ডারের জন্য কোনো অগ্রিম পেমেন্ট করার প্রয়োজন নেই, সম্পূর্ণ বিল ক্যাশ অন ডেলিভারিতে পরিশোধযোগ্য।";
+                    dynamicNoticeText.style.borderColor = "#2ecc71";
+                    dynamicNoticeText.style.color = "#2ecc71";
+                }
+                if(dynamicPaymentSubtitle) {
+                    dynamicPaymentSubtitle.innerHTML = "💡 <b>Livelia Account Notice:</b> This is safe checkout routing. Payment options are disabled as 100% COD applies.";
+                }
             } else {
+                // Regular store products with mandatory 10% cash holding condition rules
                 if(advanceNoticeBox) advanceNoticeBox.style.display = 'block';
                 if(advanceSubNotice) advanceSubNotice.style.display = 'block';
+                if(liveliaNoticeBox) liveliaNoticeBox.style.display = 'none';
                 
                 custPaymentField.style.display = 'block';
-                custPaymentField.parentElement.querySelector('label').style.display = 'block';
-                if(custPaymentField.value === "Cash On Delivery (Partner Order)") {
+                if(paymentLabel) paymentLabel.style.display = 'block';
+                if(custPaymentField.value.includes("Cash On Delivery")) {
                     custPaymentField.value = "";
                 }
 
-                if(noticeSectionBox) noticeSectionBox.style.display = 'block';
-                if(paymentInfoBox) paymentInfoBox.style.display = 'block';
+                if(dynamicNoticeText) {
+                    dynamicNoticeText.innerText = "নোট: আমাদের পণ্যগুলো ইমপোর্টেড (Imported) হওয়ায় অর্ডার কনফার্ম করতে মোট বিলের ন্যূনতম ১০% অগ্রিম পেমেন্ট করা বাধ্যতামূলক।";
+                    dynamicNoticeText.style.borderColor = "var(--accent)";
+                    dynamicNoticeText.style.color = "var(--accent)";
+                }
+                if(dynamicPaymentSubtitle) {
+                    dynamicPaymentSubtitle.innerHTML = "নিচের যেকোনো মাধ্যমে <b>১০% অগ্রিম</b> পেমেন্ট সম্পন্ন করে চেকআউট ফরমে আপনার <b>Transaction Info</b> জমা দিন:";
+                }
             }
         }
 
@@ -521,7 +544,8 @@
 
             let finalAddress = rawAddress;
             if (isPartnerInCart) {
-                finalAddress = rawAddress + " Reference Person : LL-ES-0010";
+                // Tracking identifier flag rule mapping parameter structure
+                finalAddress = rawAddress + " [Reference Person : LL-ES-0010]";
             }
 
             let productList = cart.map(item => `${item.name} (Qty: ${item.quantity})`).join(', ');
@@ -547,27 +571,24 @@
             submitBtn.innerText = "Saving Order to Database... ⏳";
             submitBtn.disabled = true;
 
-            // Submit Data seamlessly to Google Sheets using a background POST request
             fetch(googleAppScriptUrl, {
                 method: "POST",
-                mode: "no-cors", // Crucial for crossing domains into Google Scripts securely without CORS blocks
+                mode: "no-cors",
                 headers: {
                     "Content-Type": "application/json"
                 },
                 body: JSON.stringify(orderData)
             })
             .then(() => {
-                // Clear the local cart array and refresh the UI count indicators
                 cart = [];
                 updateCartUI();
 
-                // Swap out the form elements for a clean, professional on-screen confirmation card
                 formWrapper.innerHTML = `
                     <div class="success-card">
                         <div class="success-icon"><i class="fas fa-check-circle"></i></div>
                         <h2 style="color: var(--success); margin-top: 0;">Order Placed Successfully!</h2>
                         <p style="font-size: 1.05em; color: #555; line-height: 1.5;">
-                            Hey <b>${name}</b>, thank you for shopping with us! Your order data has been successfully securely recorded in our central system database.
+                            Hey <b>${name}</b>, thank you for shopping with us! Your order data has been successfully securely recorded in our database spreadsheet.
                         </p>
                         <p style="font-size: 0.9em; color: #777;">
                             Our team will verify the details and contact you shortly at <b>${phone}</b> to confirm dispatch.
@@ -578,7 +599,7 @@
             })
             .catch(error => {
                 console.error("Database Submission Error:", error);
-                alert("Something went wrong saving the order details to the spreadsheet database. Please try again.");
+                alert("Something went wrong saving the order details. Please try again.");
                 submitBtn.innerText = "Place Order & Confirm 🛍️";
                 submitBtn.disabled = false;
             });
