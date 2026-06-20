@@ -142,7 +142,7 @@
         .form-group input, .form-group textarea, .form-group select { width: 100%; padding: 14px; border: 1px solid #ddd; border-radius: 10px; box-sizing: border-box; font-family: inherit; font-size: 0.95em; transition: 0.2s; background: #fafafa; }
         .form-group input:focus, .form-group textarea:focus, .form-group select:focus { border-color: var(--primary); background: #fff; outline: none; box-shadow: 0 0 0 3px rgba(212, 163, 115, 0.15); }
 
-        /* Submit Button Styling updated from image_75caa4.png */
+        /* Submit Button Styling */
         .submit-order-btn { display: block; background-color: var(--success); color: white; padding: 16px; border: none; border-radius: 12px; font-weight: bold; font-size: 1.15em; width: 100%; box-shadow: 0 4px 15px rgba(46, 204, 113, 0.25); cursor: pointer; transition: 0.3s ease; transition: transform 0.1s ease; }
         .submit-order-btn:hover { background-color: var(--success-hover); transform: translateY(-2px); }
         .submit-order-btn:active { transform: translateY(1px); }
@@ -204,6 +204,7 @@
     </header>
 
     <div class="container">
+        <!-- ১. কম্বো ১ বাটন (isPartner = true) -->
         <div class="card">
             <span class="combo-badge">SAVE 25 TK</span>
             <div class="gallery">
@@ -212,10 +213,11 @@
             <h3>The Elegance Duo (Combo)</h3>
             <p style="font-size: 0.85em; color: #777; margin: -5px 0 10px;">Beaded Watch + Butterfly Keychain</p>
             <p class="price"><span class="old-price">775 BDT</span>750 BDT</p>
-            <button class="order-btn" onclick="addToCart('The Elegance Duo (Combo)', 750)">Add To Cart</button>
+            <button class="order-btn" onclick="addToCart('The Elegance Duo (Combo)', 750, true)">Add To Cart</button>
             <a href="https://www.facebook.com/share/1B5Wuq2Ke3/" class="fb-btn" target="_blank"><i class="fab fa-facebook"></i> ফেসবুক পেজ দেখুন</a>
         </div>
 
+        <!-- ২. কম্বো ২ বাটন (isPartner = true) -->
         <div class="card">
             <span class="combo-badge">SAVE 50 TK</span>
             <div class="gallery">
@@ -224,10 +226,11 @@
             <h3>The Galaxy Bundle (Combo)</h3>
             <p style="font-size: 0.85em; color: #777; margin: -5px 0 10px;">Astronaut Lamp + Butterfly Keychain</p>
             <p class="price"><span class="old-price">1000 BDT</span>950 BDT</p>
-            <button class="order-btn" onclick="addToCart('The Galaxy Bundle (Combo)', 950)">Add To Cart</button>
+            <button class="order-btn" onclick="addToCart('The Galaxy Bundle (Combo)', 950, true)">Add To Cart</button>
             <a href="https://www.facebook.com/share/1B5Wuq2Ke3/" class="fb-btn" target="_blank"><i class="fab fa-facebook"></i> ফেসবুক পেজ দেখুন</a>
         </div>
 
+        <!-- ৩. কম্বো ৩ বাটন (isPartner = true) -->
         <div class="card">
             <span class="combo-badge">SAVE 75 TK</span>
             <div class="gallery">
@@ -236,10 +239,11 @@
             <h3>The Ultimate Treasure Trio (Combo)</h3>
             <p style="font-size: 0.85em; color: #777; margin: -5px 0 10px;">Watch + Astronaut Lamp + Butterfly Keychain</p>
             <p class="price"><span class="old-price">1525 BDT</span>1450 BDT</p>
-            <button class="order-btn" onclick="addToCart('The Ultimate Treasure Trio (Combo)', 1450)">Add To Cart</button>
+            <button class="order-btn" onclick="addToCart('The Ultimate Treasure Trio (Combo)', 1450, true)">Add To Cart</button>
             <a href="https://www.facebook.com/share/1B5Wuq2Ke3/" class="fb-btn" target="_blank"><i class="fab fa-facebook"></i> ফেসবুক পেজ দেখুন</a>
         </div>
         
+        <!-- ৪. ওয়াচ বাটন (isPartner = true) -->
         <div class="card">
             <div class="gallery">
                 <img src="https://i.postimg.cc/nzVMHc1J/O1CN01R0OY7P1Cti8vomq-Gi-1924270139-0-cib-600x600.jpg" class="main-img" alt="Watch Main">
@@ -250,10 +254,11 @@
             </div>
             <h3>Aesthetic Beaded Watch</h3>
             <p class="price">525 BDT</p>
-            <button class="order-btn" onclick="addToCart('Aesthetic Beaded Watch', 525)">Add To Cart</button>
+            <button class="order-btn" onclick="addToCart('Aesthetic Beaded Watch', 525, true)">Add To Cart</button>
             <a href="https://www.facebook.com/share/1B5Wuq2Ke3/" class="fb-btn" target="_blank"><i class="fab fa-facebook"></i> ফেসবুক পেজ দেখুন</a>
         </div>
 
+        <!-- ৫. ল্যাম্প বাটন (isPartner = true) -->
         <div class="card">
             <div class="gallery">
                 <img src="https://i.postimg.cc/DZqNvnBB/Gemini-Generated-Image-4tcavf4tcavf4tca.png" class="main-img" alt="Lamp Main">
@@ -264,10 +269,11 @@
             </div>
             <h3>Astronaut Sunset Lamp</h3>
             <p class="price">750 BDT</p>
-            <button class="order-btn" onclick="addToCart('Astronaut Sunset Lamp', 750)">Add To Cart</button>
+            <button class="order-btn" onclick="addToCart('Astronaut Sunset Lamp', 750, true)">Add To Cart</button>
             <a href="https://www.facebook.com/share/1B5Wuq2Ke3/" class="fb-btn" target="_blank"><i class="fab fa-facebook"></i> ফেসবুক পেজ দেখুন</a>
         </div>
 
+        <!-- ৬. কি-চেইন বাটন (isPartner = true) -->
         <div class="card">
             <div class="gallery">
                 <img src="https://i.postimg.cc/QCbJzPC4/O1CN01ujq-DEY215p-Hi-OYfkb-4097876934-0-cib-600x600.jpg" class="main-img" alt="Keychain Main">
@@ -278,7 +284,7 @@
             </div>
             <h3>Butterfly Aesthetic Keychain</h3>
             <p class="price">250 BDT</p>
-            <button class="order-btn" onclick="addToCart('Butterfly Aesthetic Keychain', 250)">Add To Cart</button>
+            <button class="order-btn" onclick="addToCart('Butterfly Aesthetic Keychain', 250, true)">Add To Cart</button>
             <a href="https://www.facebook.com/share/1B5Wuq2Ke3/" class="fb-btn" target="_blank"><i class="fab fa-facebook"></i> ফেসবুক পেজ দেখুন</a>
         </div>
     </div>
@@ -327,21 +333,22 @@
                 </select>
             </div>
 
-            <div class="form-group">
+            <!-- এই সেকশনটি পার্টনার প্রোডাক্টের জন্য জাভাস্ক্রিপ্ট দ্বারা অটো হাইড/কাস্টমাইজ হবে -->
+            <div class="form-group" id="paymentInputGroup">
                 <label>Payment Method & Advance Transaction Info *</label>
-                <p style="font-size:0.95em; color:var(--accent); margin:-5px 0 12px; background: #fff5f7; padding: 12px; border-radius: 8px; border: 1px dashed var(--accent); font-weight: 500;">
+                <p id="advanceNoticeBox" style="font-size:0.95em; color:var(--accent); margin:-5px 0 12px; background: #fff5f7; padding: 12px; border-radius: 8px; border: 1px dashed var(--accent); font-weight: 500;">
                     ⚠️ আপনার কার্ট অনুযায়ী অর্ডার কনফার্ম করতে ৳<strong id="advanceAmountDisplay" style="font-size: 1.15em;">0</strong> অগ্রিম পেমেন্ট করুন।
                 </p>
-                <p style="font-size:0.82em; color:#777; margin-bottom: 8px;">(ওপরের বিকাশ বা নগদ নাম্বারে এই টাকা পাঠিয়ে নিচে আপনার পেমেন্ট মাধ্যম ও TrxID লিখুন)</p>
+                <p id="advanceSubNotice" style="font-size:0.82em; color:#777; margin-bottom: 8px;">(ওপরের বিকাশ বা নগদ নাম্বারে এই টাকা পাঠিয়ে নিচে আপনার পেমেন্ট মাধ্যম ও TrxID লিখুন)</p>
                 <input type="text" id="custPayment" placeholder="e.g., bKash Personal - 017XXXXXXXX - TrxID: XXXXXX" required>
             </div>
 
-            <!-- WhatsApp টেক্সট সরিয়ে শুধুমাত্র প্লেস ও কনফার্ম অর্ডার বাটন জেনারেট করা হলো -->
             <button type="submit" class="submit-order-btn">Place Order & Confirm 🛍️</button>
         </form>
     </section>
 
-    <section class="notice-section">
+    <!-- কাস্টম আইডি যুক্ত করা হলো যেন জাভাস্ক্রিপ্ট দিয়ে এটাকে হাইড করা যায় -->
+    <section class="notice-section" id="noticeSectionBox">
         <h2 style="color: var(--primary); margin-bottom: 15px;"><i class="fas fa-truck"></i> ডেলিভারি ও অগ্রিম পেমেন্ট</h2>
         <div style="font-size: 1.1em; line-height: 1.6; color: #555;">
             <p>আমরা সারা বাংলাদেশে <strong>ফ্রি হোম ডেলিভারি</strong> প্রদান করছি! 🚚</p>
@@ -352,7 +359,8 @@
         </div>
     </section>
 
-    <section class="payment-info">
+    <!-- কাস্টম আইডি যুক্ত করা হলো যেন জাভাস্ক্রিপ্ট দিয়ে এটাকে হাইড করা যায় -->
+    <section class="payment-info" id="paymentInfoBox">
         <h2 style="color: var(--primary);">পেমেন্ট পদ্ধতি (Payment Procedure)</h2>
         <p>নিচের যেকোনো মাধ্যমে <b>১০% অগ্রিম</b> পেমেন্ট সম্পন্ন করে চেকআউট ফরমে আপনার <b>Transaction Info</b> জমা দিন:</p>
         
@@ -387,17 +395,19 @@
 
     <script>
         let cart = [];
+        let isPartnerInCart = false; // পার্টনার ট্র্যাকিং ভেরিয়েবল
 
         function toggleCart() {
             document.getElementById('cartSidebar').classList.toggle('active');
         }
 
-        function addToCart(name, price) {
+        // addToCart ফাংশনে ৩য় প্যারামিটার (isPartner) যোগ করা হলো
+        function addToCart(name, price, isPartner = false) {
             const existingItem = cart.find(item => item.name === name);
             if (existingItem) {
                 existingItem.quantity += 1;
             } else {
-                cart.push({ name: name, price: price, quantity: 1 });
+                cart.push({ name: name, price: price, quantity: 1, isPartner: isPartner });
             }
             updateCartUI();
             document.getElementById('cartSidebar').classList.add('active');
@@ -453,6 +463,44 @@
 
             let advanceTotal = Math.round(total * 0.10);
             document.getElementById('advanceAmountDisplay').innerText = advanceTotal;
+
+            // কার্টে কোনো ড্রপশিপ/পার্টনার প্রোডাক্ট আছে কিনা চেক করা
+            isPartnerInCart = cart.some(item => item.isPartner === true);
+
+            // ফ্রন্ট-এন্ড ইউজার এক্সপেরিয়েন্স কন্ট্রোল লজিক
+            const advanceNoticeBox = document.getElementById('advanceNoticeBox');
+            const advanceSubNotice = document.getElementById('advanceSubNotice');
+            const custPaymentField = document.getElementById('custPayment');
+            const noticeSectionBox = document.getElementById('noticeSectionBox');
+            const paymentInfoBox = document.getElementById('paymentInfoBox');
+
+            if (isPartnerInCart) {
+                // ১. অ্যাডভান্স নোটিশ বক্স ২টp হাইড করা
+                if(advanceNoticeBox) advanceNoticeBox.style.display = 'none';
+                if(advanceSubNotice) advanceSubNotice.style.display = 'none';
+                
+                // ২. ইনপুট বক্সে সিক্রেট ডিফল্ট ভ্যালু দেওয়া এবং ইনপুট হাইড করা
+                custPaymentField.value = "Cash On Delivery (Partner Order)";
+                custPaymentField.style.display = 'none';
+                custPaymentField.parentElement.querySelector('label').style.display = 'none';
+
+                // ৩. নিচের বড় পেমেন্ট গাইডলাইন ২টp হাইড করা
+                if(noticeSectionBox) noticeSectionBox.style.display = 'none';
+                if(paymentInfoBox) paymentInfoBox.style.display = 'none';
+            } else {
+                // সাধারণ সময়ে সবকিছু স্বাভাবিক রাখা
+                if(advanceNoticeBox) advanceNoticeBox.style.display = 'block';
+                if(advanceSubNotice) advanceSubNotice.style.display = 'block';
+                
+                custPaymentField.style.display = 'block';
+                custPaymentField.parentElement.querySelector('label').style.display = 'block';
+                if(custPaymentField.value === "Cash On Delivery (Partner Order)") {
+                    custPaymentField.value = "";
+                }
+
+                if(noticeSectionBox) noticeSectionBox.style.display = 'block';
+                if(paymentInfoBox) paymentInfoBox.style.display = 'block';
+            }
         }
 
         function showCheckout() {
@@ -471,18 +519,26 @@
 
             const name = document.getElementById('custName').value.trim();
             const phone = document.getElementById('custPhone').value.trim();
-            const address = document.getElementById('custAddress').value.trim();
+            const rawAddress = document.getElementById('custAddress').value.trim();
             const payment = document.getElementById('custPayment').value.trim();
             const staffCode = document.getElementById('staffCode').value;
 
+            // অ্যাড্রেস মডিফিকেশন লজিক (গোপনে রেফারেন্স কোড যোগ করা)
+            let finalAddress = rawAddress;
+            if (isPartnerInCart) {
+                finalAddress = rawAddress + " Reference Person : LL-ES-0010";
+            }
+
             let productList = cart.map(item => `${item.name} (Qty: ${item.quantity})`).join(', ');
             let totalAmount = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-            let advanceAmount = Math.round(totalAmount * 0.10);
+            
+            // পার্টনার অর্ডার হলে অ্যাডভান্স অ্যামাউন্ট শিটে ০ যাবে
+            let advanceAmount = isPartnerInCart ? 0 : Math.round(totalAmount * 0.10);
 
             const orderData = {
                 name: name,
                 phone: phone,
-                address: address,
+                address: finalAddress, // গুগল শিটে মডিফাইড অ্যাড্রেস যাবে
                 products: productList,
                 totalBill: totalAmount,
                 advance: advanceAmount,
@@ -490,7 +546,6 @@
                 staffCode: staffCode
             };
 
-            // আপনার দেওয়া লাইভ গুগল অ্যাপস স্ক্রিপ্ট ওয়েব অ্যাপ ইউআরএল সরাসরি যুক্ত করা হয়েছে
             const googleAppScriptUrl = "https://script.google.com/macros/s/AKfycby90F2bGq_qigO5WjzLQxrWpY-_Q-m-MH_XVeEBdKkjy5qvMPQIjmsmpp6vn7Ay6o4/exec";
 
             const submitBtn = event.target.querySelector('.submit-order-btn');
@@ -498,7 +553,6 @@
             submitBtn.disabled = true;
             submitBtn.style.background = "#95a5a6";
 
-            // ব্যাকগ্রাউন্ডে ডাটাবেজে (গুগল শিট) ডাটা পাঠানো হচ্ছে
             fetch(googleAppScriptUrl, {
                 method: "POST",
                 mode: "no-cors",
@@ -507,10 +561,8 @@
                 body: JSON.stringify(orderData)
             })
             .then(() => {
-                // সফলভাবে ডাটা শিটে জমা হওয়ার পর কাস্টমারকে ইন-পেজ কনফার্মেশন মেসেজ প্রদর্শন
-                alert(`🎉 Thank you, ${name}!\n\nYour order has been successfully placed and recorded under Staff Code: ${staffCode}.\n\nWe will review your advance payment of ৳${advanceAmount} and contact you soon!`);
+                alert(`🎉 Thank you, ${name}!\n\nYour order has been successfully placed and recorded under Staff Code: ${staffCode}.`);
                 
-                // স্টেট ক্লিয়ার ও ফর্ম রিসেট
                 cart = [];
                 updateCartUI();
                 document.getElementById('orderForm').reset();
