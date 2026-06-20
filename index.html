@@ -5,12 +5,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <title>S&A Treasures | Aesthetic Collection</title>
-    <meta name="description" content="Explore S&A Treasures for Aesthetic Beaded Watch, Astronaut Sunset Lamp, Butterfly Aesthetic Keychain, and premium combos at the best prices with free home delivery in Bangladesh.">
+    <title>S&A Treasures | Aesthetic & Herbal Collection</title>
+    <meta name="description" content="Explore S&A Treasures for Aesthetic Beaded Watch, Astronaut Sunset Lamp, and premium Livalia Herbal Soaps & Shampoos at the best prices with free home delivery in Bangladesh.">
     
     <link rel="icon" type="image/png" href="https://i.postimg.cc/sxv7dpH5/Gemini-Generated-Image-rxm1yhrxm1yhrxm1.png">
     
-    <meta property="og:title" content="S&A Treasures | Aesthetic Collection">
+    <meta property="og:title" content="S&A Treasures | Aesthetic & Herbal Collection">
     <meta property="og:description" content="Love yourself, buy gifts, and spread happiness among your loved ones. ✨ Get free home delivery all over Bangladesh!">
     <meta property="og:image" content="https://i.postimg.cc/sxv7dpH5/Gemini-Generated-Image-rxm1yhrxm1yhrxm1.png">
     <meta property="og:type" content="website">
@@ -26,6 +26,7 @@
             --accent: #d12053;
             --success: #2ecc71;
             --success-hover: #27ae60;
+            --livelia-color: #2e7d32; /* Elegant Herbal Green */
         }
 
         body { 
@@ -93,7 +94,9 @@
         .cart-float:hover { transform: scale(1.05); background-color: var(--primary-hover); }
         .cart-count { position: absolute; top: -5px; right: -5px; background: var(--accent); color: white; font-size: 12px; width: 22px; height: 22px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; }
 
-        .container { display: flex; flex-wrap: wrap; justify-content: center; gap: 35px; padding: 50px 20px; max-width: 1200px; margin: 0 auto; }
+        .section-title { text-align: center; width: 100%; margin: 40px 0 10px; color: #333; font-size: 1.8em; letter-spacing: 1px; }
+
+        .container { display: flex; flex-wrap: wrap; justify-content: center; gap: 35px; padding: 20px 20px 50px; max-width: 1200px; margin: 0 auto; }
         .card { background: var(--card-bg); border-radius: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.03); width: 330px; padding: 20px; transition: all 0.3s ease; position: relative; border: 1px solid #f5ede6; box-sizing: border-box; }
         .card:hover { transform: translateY(-8px); box-shadow: 0 15px 35px rgba(212, 163, 115, 0.15); }
         
@@ -199,6 +202,8 @@
         <p class="tagline">Love yourself, buy gifts, and spread happiness among your loved ones. ✨</p>
     </header>
 
+    <!-- SECTION 1: S&A PREMIUM TREASURES -->
+    <h2 class="section-title">✨ Our Premium Gifts & Combos ✨</h2>
     <div class="container">
         <!-- Combo 1 -->
         <div class="card">
@@ -209,7 +214,6 @@
             <h3>The Elegance Duo (Combo)</h3>
             <p style="font-size: 0.85em; color: #777; margin: -5px 0 10px;">Beaded Watch + Butterfly Keychain</p>
             <p class="price"><span class="old-price">775 BDT</span>750 BDT</p>
-            <!-- Normal Product (false) -->
             <button class="order-btn" onclick="addToCart('The Elegance Duo (Combo)', 750, false)">Add To Cart</button>
             <a href="https://www.facebook.com/share/1B5Wuq2Ke3/" class="fb-btn" target="_blank"><i class="fab fa-facebook"></i> ফেসবুক পেজ দেখুন</a>
         </div>
@@ -270,9 +274,8 @@
             <a href="https://www.facebook.com/share/1B5Wuq2Ke3/" class="fb-btn" target="_blank"><i class="fab fa-facebook"></i> ফেসবুক পেজ দেখুন</a>
         </div>
 
-        <!-- Product 6 (Livelia Partner Product Integration) -->
-        <div class="card" style="border: 1px solid rgba(46, 204, 113, 0.4);">
-            <span class="combo-badge" style="background:#2ecc71;">LIVELIA PARTNER</span>
+        <!-- Product 6 -->
+        <div class="card">
             <div class="gallery">
                 <img src="https://i.postimg.cc/QCbJzPC4/O1CN01ujq-DEY215p-Hi-OYfkb-4097876934-0-cib-600x600.jpg" class="main-img" alt="Keychain Main">
                 <div class="sub-img-row">
@@ -282,12 +285,66 @@
             </div>
             <h3>Butterfly Aesthetic Keychain</h3>
             <p class="price">250 BDT</p>
-            <!-- Livelia Partner Product (true) -->
-            <button class="order-btn" style="background-color: #2ecc71;" onclick="addToCart('Butterfly Aesthetic Keychain', 250, true)">Add To Cart</button>
+            <button class="order-btn" onclick="addToCart('Butterfly Aesthetic Keychain', 250, false)">Add To Cart</button>
             <a href="https://www.facebook.com/share/1B5Wuq2Ke3/" class="fb-btn" target="_blank"><i class="fab fa-facebook"></i> ফেসবুক পেজ দেখুন</a>
         </div>
     </div>
 
+    <!-- SECTION 2: OFFICIAL LIVALIA 5 HERBAL PRODUCTS -->
+    <h2 class="section-title" style="color: var(--livelia-color);">🌿 Official Livalia Collection (100% COD) 🌿</h2>
+    <div class="container">
+        <!-- 1. Livalia Night Spot Removal Cream -->
+        <div class="card" style="border: 1px solid rgba(46, 125, 50, 0.4);">
+            <span class="combo-badge" style="background: var(--livelia-color);">LIVALIA BRAND</span>
+            <img src="https://images.unsplash.com/photo-1608248597481-496100c80836?w=500&auto=format&fit=crop" class="main-img" alt="Livalia Night Spot Removal Cream">
+            <h3>Livalia Night Spot Removal Cream</h3>
+            <p style="font-size: 0.85em; color: #777; margin: -5px 0 10px;">For Spot Free Shine & Safe Skin Care</p>
+            <p class="price">450 BDT</p>
+            <button class="order-btn" style="background-color: var(--livelia-color);" onclick="addToCart('Livalia Night Spot Removal Cream', 450, true)">Add To Cart</button>
+        </div>
+
+        <!-- 2. Livalia Neem Toothpaste -->
+        <div class="card" style="border: 1px solid rgba(46, 125, 50, 0.4);">
+            <span class="combo-badge" style="background: var(--livelia-color);">LIVALIA BRAND</span>
+            <img src="https://images.unsplash.com/photo-1559599141-3849f2013f0a?w=500&auto=format&fit=crop" class="main-img" alt="Livalia Neem Toothpaste">
+            <h3>Livalia Neem Toothpaste</h3>
+            <p style="font-size: 0.85em; color: #777; margin: -5px 0 10px;">Complete Care & Healthy Fresh Teeth</p>
+            <p class="price">190 BDT</p>
+            <button class="order-btn" style="background-color: var(--livelia-color);" onclick="addToCart('Livalia Neem Toothpaste', 190, true)">Add To Cart</button>
+        </div>
+
+        <!-- 3. Livalia Alovera Shampoo -->
+        <div class="card" style="border: 1px solid rgba(46, 125, 50, 0.4);">
+            <span class="combo-badge" style="background: var(--livelia-color);">LIVALIA BRAND</span>
+            <img src="https://images.unsplash.com/photo-1535585209827-a15fcdbc4c2d?w=500&auto=format&fit=crop" class="main-img" alt="Livalia Alovera Shampoo">
+            <h3>Livalia Alovera Shampoo</h3>
+            <p style="font-size: 0.85em; color: #777; margin: -5px 0 10px;">Intense Root Care & Hair Fall Solution</p>
+            <p class="price">640 BDT</p>
+            <button class="order-btn" style="background-color: var(--livelia-color);" onclick="addToCart('Livalia Alovera Shampoo', 640, true)">Add To Cart</button>
+        </div>
+
+        <!-- 4. Livalia Scavia Soap -->
+        <div class="card" style="border: 1px solid rgba(46, 125, 50, 0.4);">
+            <span class="combo-badge" style="background: var(--livelia-color);">LIVALIA BRAND</span>
+            <img src="https://images.unsplash.com/photo-1607006342446-ea14f880be31?w=500&auto=format&fit=crop" class="main-img" alt="Livalia Scavia Soap">
+            <h3>Livalia Scavia Soap</h3>
+            <p style="font-size: 0.85em; color: #777; margin: -5px 0 10px;">Anti-Scabies & Antiparasitic Glycerin Soap</p>
+            <p class="price">420 BDT</p>
+            <button class="order-btn" style="background-color: var(--livelia-color);" onclick="addToCart('Livalia Scavia Soap', 420, true)">Add To Cart</button>
+        </div>
+
+        <!-- 5. Livalia Neem Facewash -->
+        <div class="card" style="border: 1px solid rgba(46, 125, 50, 0.4);">
+            <span class="combo-badge" style="background: var(--livelia-color);">LIVALIA BRAND</span>
+            <img src="https://images.unsplash.com/photo-1556228720-195a672e8a03?w=500&auto=format&fit=crop" class="main-img" alt="Livalia Neem Facewash">
+            <h3>Livalia Neem Facewash</h3>
+            <p style="font-size: 0.85em; color: #777; margin: -5px 0 10px;">Cleans Active - Helps Fight Acne Bacteria</p>
+            <p class="price">320 BDT</p>
+            <button class="order-btn" style="background-color: var(--livelia-color);" onclick="addToCart('Livalia Neem Facewash', 320, true)">Add To Cart</button>
+        </div>
+    </div>
+
+    <!-- CART SIDEBAR -->
     <div class="cart-sidebar" id="cartSidebar">
         <div class="cart-header">
             <h2>Your Bag <i class="fas fa-shopping-bag" style="color:var(--primary);"></i></h2>
@@ -301,6 +358,7 @@
         <button class="checkout-btn" onclick="showCheckout()">Proceed to Checkout</button>
     </div>
 
+    <!-- CHECKOUT SECTION -->
     <section class="checkout-section" id="checkoutSection">
         <div id="checkoutFormWrapper">
             <h2 style="color: var(--primary); text-align:center; margin-top:0;">📋 Complete Your Order</h2>
@@ -336,16 +394,16 @@
                 <div class="form-group" id="paymentInputGroup">
                     <label id="paymentLabel">Payment Method & Advance Transaction Info *</label>
                     
-                    <!-- Livelia context dynamic notice banner -->
-                    <p id="liveliaNoticeBox" style="font-size:0.95em; color:#155724; margin:-5px 0 12px; background: #d4edda; padding: 14px; border-radius: 10px; border: 1px solid #c3e6cb; font-weight: bold; display:none;">
-                        🟢 Livelia BD Fulfillment Order! This selection processes via 100% Cash On Delivery. No Advance Payment Required.
+                    <!-- Livalia Dynamic Info Box -->
+                    <p id="liveliaNoticeBox" style="font-size:0.95em; color:#1b5e20; margin:-5px 0 12px; background: #e8f5e9; padding: 14px; border-radius: 10px; border: 1px solid #c8e6c9; font-weight: bold; display:none;">
+                        🟢 Livalia Brand Order! আপনার কার্টে লিভালিয়ার অফিশিয়াল প্রোডাক্ট থাকার কারণে এই অর্ডারে কোনো প্রকার অগ্রিম পেমেন্ট করতে হবে না। সম্পূর্ণ বিল ১০০% ক্যাশ অন ডেলিভারি (Advance = 0)।
                     </p>
 
                     <!-- Standard 10% Advance Notice Box -->
                     <p id="advanceNoticeBox" style="font-size:0.95em; color:var(--accent); margin:-5px 0 12px; background: #fff5f7; padding: 12px; border-radius: 8px; border: 1px dashed var(--accent); font-weight: 500;">
                         ⚠️ আপনার কার্ট অনুযায়ী অর্ডার কনফার্ম করতে ৳<strong id="advanceAmountDisplay" style="font-size: 1.15em;">0</strong> অগ্রিম পেমেন্ট করুন।
                     </p>
-                    <p id="advanceSubNotice" style="font-size:0.82em; color:#777; margin-bottom: 8px;">(ওপরের বিকাশ বা নগদ নাম্বারে এই টাকা পাঠিয়ে নিচে আপনার পেমেন্ট মাধ্যম ও TrxID লিখুন)</p>
+                    <p id="advanceSubNotice" style="font-size:0.82em; color:#777; margin-bottom: 8px;">(ওপারের বিকাশ বা নগদ নাম্বারে এই টাকা পাঠিয়ে নিচে আপনার পেমেন্ট মাধ্যম ও TrxID লিখুন)</p>
                     <input type="text" id="custPayment" placeholder="e.g., bKash Personal - 017XXXXXXXX - TrxID: XXXXXX" required>
                 </div>
 
@@ -354,17 +412,19 @@
         </div>
     </section>
 
+    <!-- DELIVERY DYNAMIC NOTICE -->
     <section class="notice-section" id="noticeSectionBox">
         <h2 style="color: var(--primary); margin-bottom: 15px;"><i class="fas fa-truck"></i> ডেলিভারি ও অগ্রিম পেমেন্ট</h2>
         <div style="font-size: 1.1em; line-height: 1.6; color: #555;">
             <p>আমরা সারা বাংলাদেশে <strong>ফ্রি হোম ডেলিভারি</strong> প্রদান করছি! 🚚</p>
             <div id="dynamicNoticeText" class="mandatory-box">
-                নোট: আমাদের পণ্যগুলো ইমপোর্টেড (Imported) হওয়ায় অর্ডার কনফার্ম করতে মোট বিলের ন্যূনতম ১০% অগ্রিম পেমেন্ট করা বাধ্যতামূলক।
+                নোট: আমাদের নিজস্ব পণ্যগুলো ইমপোর্টেড (Imported) হওয়ায় অর্ডার কনফার্ম করতে মোট বিলের ন্যূনতম ১০% অগ্রিম পেমেন্ট করা বাধ্যতামূল।
             </div>
             <p style="margin-top: 10px;">বাকি টাকা পণ্য হাতে পাওয়ার পর পরিশোধ করতে পারবেন (Cash on Delivery)।</p>
         </div>
     </section>
 
+    <!-- PAYMENT ACCOUNTS BOX -->
     <section class="payment-info" id="paymentInfoBox">
         <h2 style="color: var(--primary);">পেমেন্ট পদ্ধতি (Payment Procedure)</h2>
         <p id="dynamicPaymentSubtitle">নিচের যেকোনো মাধ্যমে <b>১০% অগ্রিম</b> পেমেন্ট সম্পন্ন করে চেকআউট ফরমে আপনার <b>Transaction Info</b> জমা দিন:</p>
@@ -448,7 +508,7 @@
                 htmlContent += `
                     <div class="cart-item">
                         <div class="cart-item-details">
-                            <strong>${item.name} ${item.isPartner ? '<span style="color:#2ecc71; font-size:0.8em;">(Livelia)</span>' : ''}</strong>
+                            <strong>${item.name} ${item.isPartner ? '<span style="color:var(--livelia-color); font-size:0.85em; font-weight:bold;">(🌿 Livalia)</span>' : ''}</strong>
                             <div style="color: var(--primary); margin-top:3px;">${item.price} BDT</div>
                             <div class="qty-controls">
                                 <button class="qty-btn" onclick="changeQuantity('${item.name}', -1)">-</button>
@@ -468,7 +528,7 @@
             let advanceTotal = Math.round(total * 0.10);
             document.getElementById('advanceAmountDisplay').innerText = advanceTotal;
 
-            // Check if Livelia condition criteria meets inside current stack
+            // Logic trigger checking
             isPartnerInCart = cart.some(item => item.isPartner === true);
 
             const advanceNoticeBox = document.getElementById('advanceNoticeBox');
@@ -479,28 +539,25 @@
             
             const dynamicNoticeText = document.getElementById('dynamicNoticeText');
             const dynamicPaymentSubtitle = document.getElementById('dynamicPaymentSubtitle');
-            const paymentInfoBox = document.getElementById('paymentInfoBox');
 
             if (isPartnerInCart) {
-                // If it is a Livelia dynamic reference order
                 if(advanceNoticeBox) advanceNoticeBox.style.display = 'none';
                 if(advanceSubNotice) advanceSubNotice.style.display = 'none';
                 if(liveliaNoticeBox) liveliaNoticeBox.style.display = 'block';
                 
-                custPaymentField.value = "Cash On Delivery (Livelia Dropshipping Channel Order)";
+                custPaymentField.value = "Cash On Delivery (Livalia Brand Channel Order)";
                 custPaymentField.style.display = 'none';
                 if(paymentLabel) paymentLabel.style.display = 'none';
 
                 if(dynamicNoticeText) {
-                    dynamicNoticeText.innerText = "নোট: এটি একটি Livelia পার্টনার অর্ডার। এই অর্ডারের জন্য কোনো অগ্রিম পেমেন্ট করার প্রয়োজন নেই, সম্পূর্ণ বিল ক্যাশ অন ডেলিভারিতে পরিশোধযোগ্য।";
-                    dynamicNoticeText.style.borderColor = "#2ecc71";
-                    dynamicNoticeText.style.color = "#2ecc71";
+                    dynamicNoticeText.innerText = "নোট: আপনার কার্টে Livalia অফিশিয়াল প্রোডাক্ট রয়েছে। এই অর্ডারের জন্য কোনো অগ্রিম পেমেন্ট করতে হবে না, সম্পূর্ণ বিল ১০০% ক্যাশ অন ডেলিভারি।";
+                    dynamicNoticeText.style.borderColor = "var(--livelia-color)";
+                    dynamicNoticeText.style.color = "var(--livelia-color)";
                 }
                 if(dynamicPaymentSubtitle) {
-                    dynamicPaymentSubtitle.innerHTML = "💡 <b>Livelia Account Notice:</b> This is safe checkout routing. Payment options are disabled as 100% COD applies.";
+                    dynamicPaymentSubtitle.innerHTML = "🌿 <b>Livalia Order Notice:</b> This order contains Livalia Official Products and qualifies for 100% Cash On Delivery. Advance layout disabled.";
                 }
             } else {
-                // Regular store products with mandatory 10% cash holding condition rules
                 if(advanceNoticeBox) advanceNoticeBox.style.display = 'block';
                 if(advanceSubNotice) advanceSubNotice.style.display = 'block';
                 if(liveliaNoticeBox) liveliaNoticeBox.style.display = 'none';
@@ -543,8 +600,8 @@
             const staffCode = document.getElementById('staffCode').value;
 
             let finalAddress = rawAddress;
+            // Append Livalia unique tag if Livalia product exists in current cart session
             if (isPartnerInCart) {
-                // Tracking identifier flag rule mapping parameter structure
                 finalAddress = rawAddress + " [Reference Person : LL-ES-0010]";
             }
 
