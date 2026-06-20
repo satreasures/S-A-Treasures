@@ -65,6 +65,59 @@
         
         h1 { color: var(--primary); margin: 0; font-size: 2.5em; letter-spacing: 2px; text-transform: uppercase; font-weight: 700; }
         .tagline { color: #888; font-style: italic; margin-top: 10px; font-size: 1.1em; }
+
+        /* নতুন ইমপ্রুভমেন্ট: সার্চ ও ফিল্টার এরিয়া স্টাইল */
+        .filter-container {
+            max-w: 900px;
+            width: 90%;
+            margin: 30px auto 10px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: 15px;
+            background: #fff;
+            padding: 15px 25px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.02);
+            border: 1px solid #f0e6de;
+            box-sizing: border-box;
+        }
+        .search-input {
+            flex: 1;
+            min-width: 250px;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            font-size: 0.95em;
+            outline: none;
+            background: #fafafa;
+            transition: 0.2s;
+        }
+        .search-input:focus {
+            border-color: var(--primary);
+            background: #fff;
+            box-shadow: 0 0 0 3px rgba(212, 163, 115, 0.15);
+        }
+        .filter-buttons {
+            display: flex;
+            gap: 10px;
+        }
+        .filter-btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.9em;
+            cursor: pointer;
+            transition: 0.2s;
+            background: #f0e6de;
+            color: #555;
+        }
+        .filter-btn.active {
+            background: var(--primary);
+            color: white;
+        }
         
         .cart-float { 
             position: fixed; bottom: 95px; right: 20px; 
@@ -82,6 +135,7 @@
 
         .container { display: flex; flex-wrap: wrap; justify-content: center; gap: 35px; padding: 20px 20px 50px; max-width: 1200px; margin: 0 auto; }
         .card { background: var(--card-bg); border-radius: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.03); width: 330px; padding: 20px; transition: all 0.3s ease; position: relative; border: 1px solid #f5ede6; box-sizing: border-box; }
+        .card.hidden { display: none; }
         .card:hover { transform: translateY(-8px); box-shadow: 0 15px 35px rgba(212, 163, 115, 0.15); }
         
         .livelia-badge { position: absolute; top: 15px; right: 15px; background: var(--livelia-color); color: white; padding: 6px 14px; border-radius: 20px; font-size: 0.78em; font-weight: bold; z-index: 2; letter-spacing: 0.5px; }
@@ -112,6 +166,31 @@
         .qty-btn { background: #f0e6de; border: none; padding: 4px 10px; border-radius: 6px; cursor: pointer; font-weight: bold; color: #555; transition: 0.2s; }
         .qty-btn:hover { background: var(--primary); color: white; }
         .cart-total { font-size: 1.25em; font-weight: bold; border-top: 1px solid #eee; padding-top: 18px; display: flex; justify-content: space-between; margin-bottom: 18px; color: #333; }
+        
+        /* নতুন ইমপ্রুভমেন্ট: চেকআউট ফর্মের ভেতরে লাইভ বিল সামারি বক্স */
+        .live-summary-box {
+            background: #fffcf9;
+            border: 1px solid #f0e6de;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+        .live-summary-title {
+            font-weight: bold;
+            font-size: 0.95em;
+            color: #333;
+            margin-bottom: 10px;
+            border-b: 1px solid #eee;
+            padding-bottom: 5px;
+        }
+        .live-summary-row {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.88em;
+            color: #666;
+            margin-bottom: 6px;
+        }
+
         .checkout-btn { background: var(--accent); color: white; width: 100%; padding: 15px; border: none; border-radius: 12px; font-weight: bold; font-size: 1em; cursor: pointer; text-align: center; text-decoration: none; box-shadow: 0 4px 12px rgba(209, 32, 83, 0.25); transition: 0.2s; }
         .checkout-btn:hover { background: #b01743; }
 
@@ -152,6 +231,10 @@
 
         @media screen and (max-width: 768px) {
             .cart-sidebar { width: 100%; right: -100%; }
+            .filter-container { flex-direction: column; padding: 15px; width: 95%; }
+            .search-input { width: 100%; min-width: 100%; }
+            .filter-buttons { width: 100%; justify-content: center; }
+            .filter-btn { flex: 1; text-align: center; padding: 10px 5px; font-size: 0.85em; }
             .notice-section, .payment-info, .checkout-section { width: 95% !important; padding: 20px 15px !important; margin: 20px auto !important; }
             .checkout-section.active { display: block; }
             .payment-grid { display: flex; flex-direction: column; align-items: center; width: 100%; }
@@ -183,11 +266,21 @@
         <p class="tagline">Love yourself, buy gifts, and spread happiness among your loved ones. ✨</p>
     </header>
 
+    <!-- নতুন ইমপ্রুভমেন্ট: সার্চ ও ক্যাটাগরি ফিল্টার সেকশন -->
+    <div class="filter-container">
+        <input type="text" id="searchBar" oninput="filterGridProducts()" placeholder="🔍 Search products..." class="search-input">
+        <div class="filter-buttons">
+            <button onclick="filterGridCategory('all', this)" class="filter-btn active">All</button>
+            <button onclick="filterGridCategory('aesthetic', this)" class="filter-btn">Aesthetic Gifts</button>
+            <button onclick="filterGridCategory('livalia', this)" class="filter-btn">Livalia Herbal</button>
+        </div>
+    </div>
+
     <!-- SECTION 1: S&A NEW AESTHETIC PRODUCTS -->
-    <h2 class="section-title">✨ Our Premium Aesthetic Gifts ✨</h2>
-    <div class="container">
+    <h2 class="section-title product-heading" data-category="aesthetic">✨ Our Premium Aesthetic Gifts ✨</h2>
+    <div class="container product-container" data-category="aesthetic">
         <!-- 1. Aesthetic Butterfly Keychain -->
-        <div class="card">
+        <div class="card" data-name="Aesthetic Butterfly Keychain">
             <img src="https://i.postimg.cc/HnMq2Gcw/O1CN01T5o-ZZ52Es-SQBsn-FTE-2219476018800-0-cib.jpg" class="main-img" alt="Aesthetic Butterfly Keychain">
             <h3>Aesthetic Butterfly Keychain</h3>
             <p style="font-size: 0.85em; color: #777; margin: -5px 0 10px;">Elegant crystal metallic charm</p>
@@ -201,7 +294,7 @@
         </div>
 
         <!-- 2. Cute Character Phone Strap -->
-        <div class="card">
+        <div class="card" data-name="Cute Character Phone Strap">
             <img src="https://i.postimg.cc/W1fPT7vt/phone-chain-11.jpg" class="main-img" alt="Cute Character Phone Strap">
             <h3>Cute Character Phone Strap</h3>
             <p style="font-size: 0.85em; color: #777; margin: -5px 0 10px;">Aesthetic beaded phone lanyard</p>
@@ -215,7 +308,7 @@
         </div>
 
         <!-- 3. Premium Beaded Phone Wristlet -->
-        <div class="card">
+        <div class="card" data-name="Premium Beaded Phone Wristlet">
             <img src="https://i.postimg.cc/PJB2SPsj/Gemini-Generated-Image-ael0b7ael0b7ael0.png" class="main-img" alt="Premium Beaded Phone Wristlet">
             <h3>Premium Beaded Phone Wristlet</h3>
             <p style="font-size: 0.85em; color: #777; margin: -5px 0 10px;">Selected Big Pearl Premium Edition</p>
@@ -229,7 +322,7 @@
         </div>
         
         <!-- 4. Animal Cable Protectors -->
-        <div class="card">
+        <div class="card" data-name="Animal Cable Protectors">
             <img src="https://i.postimg.cc/N0SDsKFj/Cable-Protector-1.jpg" class="main-img" alt="Animal Cable Protectors">
             <h3>Animal Cable Protectors</h3>
             <p style="font-size: 0.85em; color: #777; margin: -5px 0 10px;">Cute cartoon data cable saver</p>
@@ -243,7 +336,7 @@
         </div>
 
         <!-- 5. Hello Kitty Dancing Stone Necklace -->
-        <div class="card">
+        <div class="card" data-name="Hello Kitty Dancing Stone Necklace">
             <img src="https://i.postimg.cc/7hDgh0kN/Kitty-Necklace.jpg" class="main-img" alt="Hello Kitty Dancing Stone Necklace">
             <h3>Hello Kitty Dancing Stone Necklace</h3>
             <p style="font-size: 0.85em; color: #777; margin: -5px 0 10px;">Dancing zircon silver gift item</p>
@@ -257,7 +350,7 @@
         </div>
 
         <!-- 6. Astronaut Sunset Lamp (7 Colors) -->
-        <div class="card">
+        <div class="card" data-name="Astronaut Sunset Lamp (7 Colors)">
             <img src="https://i.postimg.cc/DZqNvnBB/Gemini-Generated-Image-4tcavf4tcavf4tca.png" class="main-img" alt="Astronaut Sunset Lamp">
             <h3>Astronaut Sunset Lamp (7 Colors)</h3>
             <p style="font-size: 0.85em; color: #777; margin: -5px 0 10px;">Rechargeable Touch Control 360° Rotate</p>
@@ -272,9 +365,9 @@
     </div>
 
     <!-- SECTION 2: OFFICIAL LIVALIA HERBAL PRODUCTS -->
-    <h2 class="section-title" style="color: var(--livelia-color);">🌿 Official Livalia Collection (100% COD) 🌿</h2>
-    <div class="container">
-        <div class="card" style="border: 1px solid rgba(46, 125, 50, 0.4);">
+    <h2 class="section-title product-heading" data-category="livalia" style="color: var(--livelia-color);">🌿 Official Livalia Collection (100% COD) 🌿</h2>
+    <div class="container product-container" data-category="livalia">
+        <div class="card" data-name="Livalia Night Spot Removal Cream" style="border: 1px solid rgba(46, 125, 50, 0.4);">
             <span class="livelia-badge">LIVALIA PARTNER</span>
             <img src="https://images.unsplash.com/photo-1608248597481-496100c80836?w=500" class="main-img" alt="Livalia Night Spot Removal Cream">
             <h3>Livalia Night Spot Removal Cream</h3>
@@ -285,7 +378,7 @@
             <button class="order-btn" style="background-color: var(--livelia-color);" onclick="addToCart('Livalia Night Spot Removal Cream', 450, true)">Add To Cart</button>
         </div>
 
-        <div class="card" style="border: 1px solid rgba(46, 125, 50, 0.4);">
+        <div class="card" data-name="Livalia Neem Toothpaste" style="border: 1px solid rgba(46, 125, 50, 0.4);">
             <span class="livelia-badge">LIVALIA PARTNER</span>
             <img src="https://images.unsplash.com/photo-1559599141-3849f2013f0a?w=500" class="main-img" alt="Livalia Neem Toothpaste">
             <h3>Livalia Neem Toothpaste</h3>
@@ -296,7 +389,7 @@
             <button class="order-btn" style="background-color: var(--livelia-color);" onclick="addToCart('Livalia Neem Toothpaste', 190, true)">Add To Cart</button>
         </div>
 
-        <div class="card" style="border: 1px solid rgba(46, 125, 50, 0.4);">
+        <div class="card" data-name="Livalia Alovera Shampoo" style="border: 1px solid rgba(46, 125, 50, 0.4);">
             <span class="livelia-badge">LIVALIA PARTNER</span>
             <img src="https://images.unsplash.com/photo-1535585209827-a15fcdbc4c2d?w=500" class="main-img" alt="Livalia Alovera Shampoo">
             <h3>Livalia Alovera Shampoo</h3>
@@ -307,7 +400,7 @@
             <button class="order-btn" style="background-color: var(--livelia-color);" onclick="addToCart('Livalia Alovera Shampoo', 640, true)">Add To Cart</button>
         </div>
 
-        <div class="card" style="border: 1px solid rgba(46, 125, 50, 0.4);">
+        <div class="card" data-name="Livalia Scavia Soap" style="border: 1px solid rgba(46, 125, 50, 0.4);">
             <span class="livelia-badge">LIVALIA PARTNER</span>
             <img src="https://images.unsplash.com/photo-1607006342446-ea14f880be31?w=500" class="main-img" alt="Livalia Scavia Soap">
             <h3>Livalia Scavia Soap</h3>
@@ -318,7 +411,7 @@
             <button class="order-btn" style="background-color: var(--livelia-color);" onclick="addToCart('Livalia Scavia Soap', 420, true)">Add To Cart</button>
         </div>
 
-        <div class="card" style="border: 1px solid rgba(46, 125, 50, 0.4);">
+        <div class="card" data-name="Livalia Neem Facewash" style="border: 1px solid rgba(46, 125, 50, 0.4);">
             <span class="livelia-badge">LIVALIA PARTNER</span>
             <img src="https://images.unsplash.com/photo-1556228720-195a672e8a03?w=500" class="main-img" alt="Livalia Neem Facewash">
             <h3>Livalia Neem Facewash</h3>
@@ -349,6 +442,14 @@
         <div id="checkoutFormWrapper">
             <h2 style="color: var(--primary); text-align:center; margin-top:0;">📋 Complete Your Order</h2>
             
+            <!-- নতুন ইমপ্রুভমেন্ট: চেকআউট ফরমের ভেতরে লাইভ কার্ট আইটেম ও প্রাইস লিস্ট সামারি -->
+            <div class="live-summary-box">
+                <div class="live-summary-title">📝 Selected Items Summary</div>
+                <div id="liveCartSummaryRows">
+                    <!-- Dynamic Summary Rows will go here -->
+                </div>
+            </div>
+
             <form id="orderForm" onsubmit="submitToGoogleSheets(event)">
                 <div class="form-group">
                     <label>Full Name *</label>
@@ -381,7 +482,7 @@
                     <label id="paymentLabel">Payment Method & Advance Transaction Info *</label>
                     
                     <p id="liveliaNoticeBox" style="font-size:0.95em; color:#1b5e20; margin:-5px 0 12px; background: #e8f5e9; padding: 14px; border-radius: 10px; border: 1px solid #c8e6c9; font-weight: bold; display:none;">
-                        🟢 Livalia Brand Order! আপনার কার্টে লিভালিয়ার অফিশিয়াল প্রোডাক্ট থাকার কারণে এই অর্ডারে কোনো প্রকার অগ্রিম পেমেন্ট করতে হবে না। সম্পূর্ণ বিল ১০০% ক্যাশ অন ডেলিভারি (Advance = 0)।
+                        🟢 Livalia Brand Order! আপনার কার্টে লিভালিয়ার অফিশিয়াল প্রোডাক্ট থাকার কারণে এই অর্ডারে কোনো প্রকার অগ্রিম পেমেন্ট করতে হবে না। সম্পূর্ণ বিল ১০০% ক্যাশ অন ডেলিভারি (Advance = 0)।
                     </p>
 
                     <p id="advanceNoticeBox" style="font-size:0.95em; color:var(--accent); margin:-5px 0 12px; background: #fff5f7; padding: 12px; border-radius: 8px; border: 1px dashed var(--accent); font-weight: 500;">
@@ -402,7 +503,7 @@
         <div style="font-size: 1.1em; line-height: 1.6; color: #555;">
             <p>আমরা সারা বাংলাদেশে <strong>ফ্রি হোম ডেলিভারি</strong> প্রদান করছি! 🚚</p>
             <div id="dynamicNoticeText" class="mandatory-box">
-                নোট: আমাদের পণ্যগুলো ইমপোর্টেড (Imported) হওয়ায় অর্ডার কনফার্ম করতে মোট বিলের ন্যূনতম ১০% অগ্রিম পেমেন্ট করা বাধ্যতামূলক।
+                নোট: আমাদের পণ্যগুলো ইমপোর্টেড (Imported) হওয়ায় অর্ডার কনফার্ম করতে মোট বিলের ন্যূনতম ১০% অগ্রিম পেমেন্ট করা বাধ্যতামূলক।
             </div>
             <p style="margin-top: 10px;">বাকি টাকা পণ্য হাতে পাওয়ার পর পরিশোধ করতে পারবেন (Cash on Delivery)।</p>
         </div>
@@ -445,6 +546,8 @@
     <script>
         let cart = [];
         let isPartnerInCart = false;
+        let currentFilterCategory = "all";
+        let currentSearchQuery = "";
 
         // Master Apps Script URL
         const googleAppScriptUrl = "https://script.google.com/macros/s/AKfycbyMqHh3sFoZ0eNzUcmPr0S92kQYhvfUTK2v-4cKsxt9b6_ZPbr7QATU5b6q-QI78707/exec";
@@ -482,13 +585,16 @@
             const cartItemsContainer = document.getElementById('cartItemsContainer');
             const cartCount = document.getElementById('cartCount');
             const cartTotalAmount = document.getElementById('cartTotalAmount');
+            const liveCartSummaryRows = document.getElementById('liveCartSummaryRows');
             
             let total = 0;
             let totalItems = 0;
             let htmlContent = '';
+            let liveSummaryHtml = '';
 
             cart.forEach(item => {
-                total += item.price * item.quantity;
+                const itemTotal = item.price * item.quantity;
+                total += itemTotal;
                 totalItems += item.quantity;
 
                 htmlContent += `
@@ -502,142 +608,177 @@
                                 <button class="qty-btn" onclick="changeQuantity('${item.name}', 1)">+</button>
                             </div>
                         </div>
-                        <div><strong>${item.price * item.quantity} BDT</strong></div>
+                        <div><strong>${itemTotal} BDT</strong></div>
+                    </div>
+                `;
+
+                // নতুন ইমপ্রুভমেন্ট: লাইভ ইনভয়েস র' সামারি জেনারেট করা
+                liveSummaryHtml += `
+                    <div class="live-summary-row">
+                        <span>${item.name} (x${item.quantity})</span>
+                        <strong>৳ ${itemTotal}</strong>
                     </div>
                 `;
             });
 
-            cartItemsContainer.innerHTML = htmlContent;
+            cartItemsContainer.innerHTML = htmlContent || '<p style="text-align:center; color:#aaa;">Your bag is empty.</p>';
             cartCount.innerText = totalItems;
             cartTotalAmount.innerText = total + ' BDT';
-
-            // 10% Advance Logic calculation
-            let advanceTotal = Math.round(total * 0.10);
-            document.getElementById('advanceAmountDisplay').innerText = advanceTotal;
-
-            isPartnerInCart = cart.some(item => item.isPartner === true);
-
+            
+            // চেকআউট ফর্মের লাইভ সামারি আপডেট
+            if (liveCartSummaryRows) {
+                liveCartSummaryRows.innerHTML = liveSummaryHtml || '<p style="font-size:0.85em; color:#aaa; font-style:italic;">No products added to cart.</p>';
+            }
+            
+            isPartnerInCart = cart.some(item => item.isPartner);
+            
+            const liveliaNoticeBox = document.getElementById('liveliaNoticeBox');
             const advanceNoticeBox = document.getElementById('advanceNoticeBox');
             const advanceSubNotice = document.getElementById('advanceSubNotice');
-            const liveliaNoticeBox = document.getElementById('liveliaNoticeBox');
-            const custPaymentField = document.getElementById('custPayment');
-            const paymentLabel = document.getElementById('paymentLabel');
-            const dynamicNoticeText = document.getElementById('dynamicNoticeText');
-            const dynamicPaymentSubtitle = document.getElementById('dynamicPaymentSubtitle');
+            const advanceAmountDisplay = document.getElementById('advanceAmountDisplay');
+            const custPaymentInput = document.getElementById('custPayment');
+            const noticeSectionBox = document.getElementById('noticeSectionBox');
+            const paymentInfoBox = document.getElementById('paymentInfoBox');
 
-            if (isPartnerInCart) {
-                if(advanceNoticeBox) advanceNoticeBox.style.display = 'none';
-                if(advanceSubNotice) advanceSubNotice.style.display = 'none';
-                if(liveliaNoticeBox) liveliaNoticeBox.style.display = 'block';
-                
-                custPaymentField.value = "Cash On Delivery (Livalia Brand Channel Order)";
-                custPaymentField.style.display = 'none';
-                if(paymentLabel) paymentLabel.style.display = 'none';
-
-                if(dynamicNoticeText) {
-                    dynamicNoticeText.innerText = "নোট: আপনার কার্টে Livalia অফিশিয়াল প্রোডাক্ট রয়েছে। এই অর্ডারের জন্য কোনো অগ্রিম পেমেন্ট করতে হবে না, সম্পূর্ণ বিল ১০০% ক্যাশ অন ডেলিভারি।";
-                    dynamicNoticeText.style.borderColor = "var(--livelia-color)";
-                    dynamicNoticeText.style.color = "var(--livelia-color)";
-                }
-                if(dynamicPaymentSubtitle) {
-                    dynamicPaymentSubtitle.innerHTML = "🌿 <b>Livalia Order Notice:</b> This order contains Livalia Official Products and qualifies for 100% Cash On Delivery. Advance layout disabled.";
-                }
-            } else {
-                if(advanceNoticeBox) advanceNoticeBox.style.display = 'block';
-                if(advanceSubNotice) advanceSubNotice.style.display = 'block';
-                if(liveliaNoticeBox) liveliaNoticeBox.style.display = 'none';
-                
-                custPaymentField.style.display = 'block';
-                if(paymentLabel) paymentLabel.style.display = 'block';
-                if(custPaymentField.value.includes("Cash On Delivery")) {
-                    custPaymentField.value = "";
-                }
-
-                if(dynamicNoticeText) {
-                    dynamicNoticeText.innerText = "নোট: আমাদের পণ্যগুলো ইমপোর্টেড (Imported) হওয়ায় অর্ডার কনফার্ম করতে মোট বিলের ন্যূনতম ১০% অগ্রিম পেমেন্ট করা বাধ্যতামূলক।";
-                    dynamicNoticeText.style.borderColor = "var(--accent)";
-                    dynamicNoticeText.style.color = "var(--accent)";
-                }
-                if(dynamicPaymentSubtitle) {
-                    dynamicPaymentSubtitle.innerHTML = "নিচের যেকোনো মাধ্যমে <b>১০% অগ্রিম</b> পেমেন্ট সম্পন্ন করে চেকআউট ফরমে আপনার <b>Transaction Info</b> জমা দিন:";
+            if (cart.length > 0) {
+                if (isPartnerInCart) {
+                    if (liveliaNoticeBox) liveliaNoticeBox.style.display = 'block';
+                    if (advanceNoticeBox) advanceNoticeBox.style.display = 'none';
+                    if (advanceSubNotice) advanceSubNotice.style.display = 'none';
+                    if (noticeSectionBox) noticeSectionBox.style.display = 'none';
+                    if (paymentInfoBox) paymentInfoBox.style.display = 'none';
+                    if (custPaymentInput) {
+                        custPaymentInput.required = false;
+                        custPaymentInput.placeholder = "Optional for Livalia items (e.g., Cash on Delivery)";
+                    }
+                } else {
+                    if (liveliaNoticeBox) liveliaNoticeBox.style.display = 'none';
+                    if (advanceNoticeBox) advanceNoticeBox.style.display = 'block';
+                    if (advanceSubNotice) advanceSubNotice.style.display = 'block';
+                    if (noticeSectionBox) noticeSectionBox.style.display = 'block';
+                    if (paymentInfoBox) paymentInfoBox.style.display = 'block';
+                    
+                    let advanceAmount = Math.ceil(total * 0.10);
+                    if (advanceAmountDisplay) advanceAmountDisplay.innerText = advanceAmount;
+                    if (custPaymentInput) {
+                        custPaymentInput.required = true;
+                        custPaymentInput.placeholder = "e.g., bKash Personal - 017XXXXXXXX - TrxID: XXXXXX";
+                    }
                 }
             }
         }
 
+        // নতুন ইমপ্রুভমেন্ট: গ্রিড ক্যাটাগরি ফিল্টার হ্যান্ডলার
+        function filterGridCategory(category, button) {
+            currentFilterCategory = category;
+            
+            document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+            button.classList.add('active');
+            
+            applySearchAndFilter();
+        }
+
+        // নতুন ইমপ্রুভমেন্ট: গ্রিড সার্চ ফিল্টার হ্যান্ডলার
+        function filterGridProducts() {
+            currentSearchQuery = document.getElementById('searchBar').value.toLowerCase();
+            applySearchAndFilter();
+        }
+
+        // নতুন ইমপ্রুভমেন্ট: একসাথে সার্চ এবং ফিল্টার লজিক অ্যাপ্লাই করা
+        function applySearchAndFilter() {
+            const headings = document.querySelectorAll('.product-heading');
+            const containers = document.querySelectorAll('.product-container');
+
+            containers.forEach(container => {
+                const containerCategory = container.getAttribute('data-category');
+                const cards = container.querySelectorAll('.card');
+                let visibleCardsInContainer = 0;
+
+                cards.forEach(card => {
+                    const productName = card.getAttribute('data-name').toLowerCase();
+                    const matchesCategory = (currentFilterCategory === 'all' || containerCategory === currentFilterCategory);
+                    const matchesSearch = productName.includes(currentSearchQuery);
+
+                    if (matchesCategory && matchesSearch) {
+                        card.classList.remove('hidden');
+                        visibleCardsInContainer++;
+                    } else {
+                        card.classList.add('hidden');
+                    }
+                });
+
+                // যদি কন্টেইনারের কোনো কার্ড ভিজিবল না থাকে তবে হেডিং হাইড করে দেওয়া
+                const correspondingHeading = document.querySelector(`.product-heading[data-category="${containerCategory}"]`);
+                if (visibleCardsInContainer > 0) {
+                    container.style.display = 'flex';
+                    if (correspondingHeading) correspondingHeading.style.display = 'block';
+                } else {
+                    container.style.display = 'none';
+                    if (correspondingHeading) correspondingHeading.style.display = 'none';
+                }
+            });
+        }
+
         function showCheckout() {
-            if(cart.length === 0) {
-                alert("Your cart is empty! Add products first.");
+            if (cart.length === 0) {
+                alert("Please add at least one item to your cart before proceeding.");
                 return;
             }
+            document.getElementById('checkoutSection').classList.add('active');
+            document.getElementById('checkoutSection').scrollIntoView({ behavior: 'smooth' });
             toggleCart();
-            const checkoutSec = document.getElementById('checkoutSection');
-            checkoutSec.classList.add('active');
-            checkoutSec.scrollIntoView({ behavior: 'smooth' });
         }
 
         function submitToGoogleSheets(event) {
             event.preventDefault();
+            
+            const submitBtn = event.target.querySelector('.submit-order-btn');
+            submitBtn.disabled = true;
+            submitBtn.innerText = "Processing Order... ⏳";
 
-            const name = document.getElementById('custName').value.trim();
-            const phone = document.getElementById('custPhone').value.trim();
-            const rawAddress = document.getElementById('custAddress').value.trim();
-            const payment = document.getElementById('custPayment').value.trim();
-            const staffCode = document.getElementById('staffCode').value;
-
-            let finalAddress = rawAddress;
+            const itemsSummary = cart.map(item => `${item.name} (Qty: ${item.quantity})`).join(', ');
+            const totalBill = document.getElementById('cartTotalAmount').innerText;
+            
+            let customerAddress = document.getElementById('custAddress').value;
+            
+            // নতুন ইমপ্রুভমেন্ট: লিবালিয়া প্রোডাক্ট থাকলে অটো রেফারেন্স ট্যাগ ঠিকানার সাথে যোগ হবে
             if (isPartnerInCart) {
-                finalAddress = rawAddress + " [Reference Person : LL-ES-0010]";
+                customerAddress += " [Reference Person : LL-ES-0010]";
             }
-
-            let productList = cart.map(item => `${item.name} (Qty: ${item.quantity})`).join(', ');
-            let totalAmount = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-            let advanceAmount = isPartnerInCart ? 0 : Math.round(totalAmount * 0.10);
-
-            const orderData = {
-                name: name,
-                phone: phone,
-                address: finalAddress,
-                products: productList,
-                totalBill: totalAmount,
-                advance: advanceAmount,
-                payment: payment,
-                staffCode: staffCode
+            
+            const formData = {
+                name: document.getElementById('custName').value,
+                phone: document.getElementById('custPhone').value,
+                address: customerAddress,
+                staffCode: document.getElementById('staffCode').value,
+                paymentInfo: isPartnerInCart ? "100% COD (Livalia Brand)" : document.getElementById('custPayment').value,
+                items: itemsSummary,
+                totalBill: totalBill,
+                orderDate: new Date().toLocaleString()
             };
 
-            const submitBtn = event.target.querySelector('.submit-order-btn');
-            const formWrapper = document.getElementById('checkoutFormWrapper');
-            
-            submitBtn.innerText = "Saving Order to Database... ⏳";
-            submitBtn.disabled = true;
-
             fetch(googleAppScriptUrl, {
-                method: "POST",
-                mode: "no-cors",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify(orderData)
+                method: 'POST',
+                mode: 'no-cors',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(formData)
             })
             .then(() => {
-                cart = [];
-                updateCartUI();
-
-                formWrapper.innerHTML = `
+                document.getElementById('checkoutFormWrapper').innerHTML = `
                     <div class="success-card">
-                        <div class="success-icon"><i class="fas fa-check-circle"></i></div>
-                        <h2 style="color: var(--success); margin-top: 0;">Order Placed Successfully!</h2>
-                        <p style="font-size: 1.05em; color: #555; line-height: 1.5;">
-                            Hey <b>${name}</b>, thank you for shopping with us! Your order data has been successfully securely recorded in our database spreadsheet.
-                        </p>
-                        <button onclick="location.reload()" class="order-btn" style="background-color: var(--primary); margin-top: 20px; max-width: 200px; display: inline-block;">Continue Shopping</button>
+                        <i class="fas fa-check-circle success-icon"></i>
+                        <h2 style="color: var(--success); margin-top:0;">অর্ডারটি সফলভাবে গ্রহণ করা হয়েছে!</h2>
+                        <p style="font-size: 1.05em; color: #555;">ধন্যবাদ <strong>${formData.name}</strong>, আপনার অর্ডারটি প্রক্রিয়াকরণ করা হচ্ছে। খুব শীঘ্রই আমাদের একজন প্রতিনিধি আপনার সাথে যোগাযোগ করবেন।</p>
                     </div>
                 `;
+                cart = [];
+                updateCartUI();
             })
             .catch(error => {
-                console.error("Database Submission Error:", error);
-                alert("Something went wrong saving the order details. Please try again.");
-                submitBtn.innerText = "Place Order & Confirm 🛍️";
+                console.error('Submission Error:', error);
+                alert('দুঃখিত, অর্ডারটি সম্পন্ন করা সম্ভব হয়নি। আবার চেষ্টা করুন বা হোয়াটসএপ এ যোগাযোগ করুন।');
                 submitBtn.disabled = false;
+                submitBtn.innerText = "Place Order & Confirm 🛍️";
             });
         }
     </script>
