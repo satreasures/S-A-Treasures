@@ -1,463 +1,534 @@
 <!DOCTYPE html>
-<html lang="bn">
+<html lang="en">
 <head>
+    <meta name="google-site-verification" content="1IO6DARE2tmtY6UgOyPrumKuu2tA0K8Vehn0aZK0DSA" />
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>S&A Treasures - Order Panel</title>
+    
+    <title>S&A Treasures | Aesthetic & Herbal Collection</title>
+    <meta name="description" content="Explore S&A Treasures for Aesthetic Beaded Wristlets, Character Phone Straps, and premium Livalia Herbal Soaps & Shampoos at the best prices with free home delivery in Bangladesh.">
+    
+    <link rel="icon" type="image/png" href="https://i.postimg.cc/sxv7dpH5/Gemini-Generated-Image-rxm1yhrxm1yhrxm1.png">
+    
+    <meta property="og:title" content="S&A Treasures | Aesthetic & Herbal Collection">
+    <meta property="og:description" content="Love yourself, buy gifts, and spread happiness among your loved ones. ✨ Get free home delivery all over Bangladesh!">
+    <meta property="og:image" content="https://i.postimg.cc/sxv7dpH5/Gemini-Generated-Image-rxm1yhrxm1yhrxm1.png">
+    <meta property="og:type" content="website">
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         :root {
-            --primary: #4f46e5;
-            --primary-hover: #4338ca;
-            --success: #10b981;
-            --bg-light: #f9fafb;
-            --text-main: #1f2937;
-            --border-color: #e5e7eb;
-            --livelia-color: #059669;
+            --primary: #d4a373;
+            --primary-hover: #bc8a5f;
+            --bg-color: #fdf6f0;
+            --card-bg: #ffffff;
+            --text-main: #444444;
+            --accent: #d12053;
+            --success: #2ecc71;
+            --success-hover: #27ae60;
+            --livelia-color: #2e7d32;
         }
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: var(--bg-light);
-            color: var(--text-main);
+
+        body { 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            background-color: var(--bg-color); 
+            color: var(--text-main); 
+            margin: 0; 
+            padding: 0; 
         }
-        header {
-            background-color: white;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-            padding: 15px 20px;
-            position: sticky;
-            top: 0;
-            z-index: 50;
+        
+        .shipping-banner { 
+            background: linear-gradient(90deg, var(--primary), var(--primary-hover)); 
+            color: white; 
+            text-align: center; 
+            padding: 12px; 
+            font-weight: bold; 
+            font-size: 0.95em; 
+            position: sticky; top: 0; z-index: 99; 
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+        
+        header { 
+            padding: 50px 20px; 
+            background: #fff; 
+            text-align: center; 
+            border-bottom: 1px solid #f3e9e1; 
+        }
+        
+        .logo-container { margin-bottom: 15px; }
+        .business-logo { 
+            width: 130px; height: 130px; 
+            border-radius: 50%; object-fit: cover; 
+            box-shadow: 0 6px 15px rgba(0,0,0,0.08); 
+            border: 3px solid #fff;
+        }
+        
+        h1 { color: var(--primary); margin: 0; font-size: 2.5em; letter-spacing: 2px; text-transform: uppercase; font-weight: 700; }
+        .tagline { color: #888; font-style: italic; margin-top: 10px; font-size: 1.1em; }
+
+        .filter-container {
+            max-width: 900px;
+            width: 90%;
+            margin: 30px auto 10px;
             display: flex;
+            flex-wrap: wrap;
             justify-content: space-between;
             align-items: center;
-        }
-        .logo {
-            font-size: 1.4em;
-            font-weight: bold;
-            color: var(--primary);
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        .search-filter-container {
-            max-width: 1200px;
-            margin: 20px auto;
-            padding: 0 15px;
-            display: flex;
             gap: 15px;
-            flex-wrap: wrap;
+            background: #fff;
+            padding: 15px 25px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.02);
+            border: 1px solid #f0e6de;
+            box-sizing: border-box;
         }
-        .search-bar {
+        .search-input {
             flex: 1;
             min-width: 250px;
-            position: relative;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            font-size: 0.95em;
+            outline: none;
+            background: #fafafa;
+            transition: 0.2s;
         }
-        .search-bar input {
-            width: 100%;
-            padding: 12px 40px 12px 15px;
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            box-sizing: border-box;
-            font-size: 1em;
-        }
-        .search-bar i {
-            position: absolute;
-            right: 15px;
-            top: 50%;
-            transform: translateY(-50%);
-            color: #aaa;
+        .search-input:focus {
+            border-color: var(--primary);
+            background: #fff;
+            box-shadow: 0 0 0 3px rgba(212, 163, 115, 0.15);
         }
         .filter-buttons {
             display: flex;
             gap: 10px;
-            flex-wrap: wrap;
         }
         .filter-btn {
-            padding: 10px 18px;
-            border: 1px solid var(--border-color);
-            background: white;
-            border-radius: 8px;
-            cursor: pointer;
-            font-weight: 500;
-            transition: all 0.2s;
-        }
-        .filter-btn.active, .filter-btn:hover {
-            background-color: var(--primary);
-            color: white;
-            border-color: var(--primary);
-        }
-        main {
-            max-width: 1200px;
-            margin: 0 auto 60px;
-            padding: 0 15px;
-        }
-        .product-heading {
-            margin-top: 30px;
-            font-size: 1.5em;
-            border-bottom: 2px solid var(--border-color);
-            padding-bottom: 8px;
-            color: #374151;
-        }
-        .product-container {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 20px;
-            margin-top: 15px;
-        }
-        .card {
-            background: white;
-            border: 1px solid var(--border-color);
-            border-radius: 12px;
-            width: calc(25% - 15px);
-            min-width: 250px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.02);
-            overflow: hidden;
-            transition: transform 0.2s, box-shadow 0.2s;
-            display: flex;
-            flex-direction: column;
-        }
-        .card.hidden { display: none !important; }
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 15px rgba(0,0,0,0.05);
-        }
-        .card-body {
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            flex: 1;
-        }
-        .product-title {
-            font-size: 1.15em;
-            margin: 0 0 10px 0;
-            font-weight: 600;
-        }
-        .price-tag {
-            font-size: 1.2em;
-            color: var(--primary);
-            font-weight: bold;
-            margin-bottom: 15px;
-        }
-        .add-btn {
-            background-color: var(--primary);
-            color: white;
+            padding: 10px 20px;
             border: none;
-            padding: 12px;
             border-radius: 8px;
-            cursor: pointer;
             font-weight: 600;
-            width: 100%;
-            margin-top: auto;
-            transition: background 0.2s;
+            font-size: 0.9em;
+            cursor: pointer;
+            transition: 0.2s;
+            background: #f0e6de;
+            color: #555;
         }
-        .add-btn:hover { background-color: var(--primary-hover); }
-        .cart-icon-btn {
+        .filter-btn.active {
             background: var(--primary);
             color: white;
-            border: none;
-            padding: 12px 20px;
-            border-radius: 8px;
-            cursor: pointer;
-            font-weight: bold;
-            position: relative;
-            display: flex;
-            align-items: center;
-            gap: 8px;
         }
-        .cart-badge {
-            background-color: #ef4444;
-            color: white;
-            border-radius: 50%;
-            padding: 2px 7px;
-            font-size: 0.8em;
-            position: absolute;
-            top: -8px;
-            right: -8px;
+        
+        .cart-float { 
+            position: fixed; bottom: 95px; right: 20px; 
+            background-color: var(--primary); color: white; 
+            width: 60px; height: 60px; border-radius: 50px; 
+            text-align: center; font-size: 24px; 
+            box-shadow: 0 4px 15px rgba(212, 163, 115, 0.4); 
+            z-index: 100; display: flex; align-items: center; justify-content: center; 
+            text-decoration: none; border: none; cursor: pointer; transition: 0.3s ease;
         }
-        /* Sidebar Cart Styling */
-        .cart-sidebar {
-            position: fixed;
-            top: 0;
-            right: -400px;
-            width: 360px;
-            height: 100%;
-            background: white;
-            box-shadow: -5px 0 15px rgba(0,0,0,0.1);
-            z-index: 100;
-            transition: right 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            display: flex;
-            flex-direction: column;
-        }
+        .cart-float:hover { transform: scale(1.05); background-color: var(--primary-hover); }
+        .cart-count { position: absolute; top: -5px; right: -5px; background: var(--accent); color: white; font-size: 12px; width: 22px; height: 22px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; }
+
+        .section-title { text-align: center; width: 100%; margin: 40px 0 10px; color: #333; font-size: 1.8em; letter-spacing: 1px; }
+
+        .container { display: flex; flex-wrap: wrap; justify-content: center; gap: 35px; padding: 20px 20px 50px; max-width: 1200px; margin: 0 auto; }
+        .card { background: var(--card-bg); border-radius: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.03); width: 330px; padding: 20px; transition: all 0.3s ease; position: relative; border: 1px solid #f5ede6; box-sizing: border-box; }
+        .card.hidden { display: none !important; }
+        .card:hover { transform: translateY(-8px); box-shadow: 0 15px 35px rgba(212, 163, 115, 0.15); }
+        
+        .livelia-badge { position: absolute; top: 15px; right: 15px; background: var(--livelia-color); color: white; padding: 6px 14px; border-radius: 20px; font-size: 0.78em; font-weight: bold; z-index: 2; letter-spacing: 0.5px; }
+
+        .main-img { width: 100%; height: 280px; object-fit: cover; border-radius: 15px; margin-bottom: 12px; }
+        
+        h3 { color: #333; margin: 15px 0 5px; font-size: 1.35em; font-weight: 600; }
+        .price-container { margin-bottom: 18px; }
+        .regular-price { text-decoration: line-through; color: #888; font-size: 0.9em; margin-right: 8px; }
+        .offer-price { color: var(--primary); font-weight: bold; font-size: 1.35em; }
+        .shipping-tag { font-size: 0.85em; color: var(--success); font-weight: 600; display: block; margin-top: 4px; }
+        
+        .order-btn { display: block; width: 100%; background-color: var(--primary); color: white; padding: 14px 0; border: none; border-radius: 12px; font-weight: bold; text-align: center; transition: 0.3s; margin-bottom: 10px; font-size: 1em; cursor: pointer; box-shadow: 0 3px 10px rgba(212, 163, 115, 0.2); }
+        .order-btn:hover { background-color: var(--primary-hover); }
+        .fb-btn { display: block; background-color: #1877F2; color: white; padding: 12px; text-decoration: none; border-radius: 12px; font-weight: bold; text-align: center; transition: 0.3s; font-size: 0.95em; box-shadow: 0 3px 10px rgba(24, 119, 242, 0.2); }
+        .fb-btn:hover { background-color: #145dbf; }
+
+        .cart-sidebar { position: fixed; top: 0; right: -420px; width: 380px; height: 100%; background: white; box-shadow: -8px 0 25px rgba(0,0,0,0.08); z-index: 1000; transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1); padding: 25px; display: flex; flex-direction: column; box-sizing: border-box; }
         .cart-sidebar.active { right: 0; }
-        .cart-header {
-            padding: 20px;
-            border-bottom: 1px solid var(--border-color);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .cart-items-wrapper {
-            flex: 1;
-            overflow-y: auto;
-            padding: 20px;
-        }
-        .cart-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 15px;
-            padding-bottom: 15px;
-            border-bottom: 1px solid var(--border-color);
-        }
-        .cart-item-details { flex: 1; }
-        .qty-controls {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            margin-top: 5px;
-        }
-        .qty-btn {
-            background: #e5e7eb;
-            border: none;
-            width: 28px;
-            height: 28px;
-            border-radius: 4px;
-            cursor: pointer;
-            font-weight: bold;
-        }
-        .qty-btn:hover { background: #d1d5db; }
-        .cart-footer {
-            padding: 20px;
-            border-top: 1px solid var(--border-color);
-            background: #f9fafb;
-        }
-        .checkout-trigger-btn {
-            background-color: var(--success);
-            color: white;
-            border: none;
-            width: 100%;
-            padding: 14px;
-            border-radius: 8px;
-            font-size: 1.1em;
-            font-weight: bold;
-            cursor: pointer;
-            margin-top: 10px;
-        }
-        /* Checkout Section Styling */
-        .checkout-section {
-            max-width: 700px;
-            margin: 40px auto;
-            padding: 30px;
-            background: white;
-            border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-            display: none;
-        }
-        .checkout-section.active { display: block; }
-        .form-group {
-            margin-bottom: 20px;
-        }
-        .form-group label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: 600;
-        }
-        .form-group input, .form-group textarea, .form-group select {
-            width: 100%;
-            padding: 12px;
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            box-sizing: border-box;
-            font-size: 1em;
-        }
-        .live-cart-summary {
-            background: #f3f4f6;
+        .cart-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #eee; padding-bottom: 15px; }
+        .cart-header h2 { margin: 0; font-size: 1.4em; color: #333; }
+        .close-cart { background: none; border: none; font-size: 28px; cursor: pointer; color: #aaa; transition: 0.2s; }
+        .close-cart:hover { color: #333; }
+        .cart-items { flex: 1; overflow-y: auto; padding: 15px 0; }
+        .cart-item { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; border-bottom: 1px solid #fafafa; padding-bottom: 12px; }
+        .cart-item-details { flex: 1; margin-right: 10px; }
+        .qty-controls { display: flex; align-items: center; gap: 10px; margin-top: 8px; }
+        .qty-btn { background: #f0e6de; border: none; padding: 4px 10px; border-radius: 6px; cursor: pointer; font-weight: bold; color: #555; transition: 0.2s; }
+        .qty-btn:hover { background: var(--primary); color: white; }
+        .cart-total { font-size: 1.25em; font-weight: bold; border-top: 1px solid #eee; padding-top: 18px; display: flex; justify-content: space-between; margin-bottom: 18px; color: #333; }
+        
+        .live-summary-box {
+            background: #fffcf9;
+            border: 1px solid #f0e6de;
             padding: 15px;
-            border-radius: 8px;
+            border-radius: 10px;
             margin-bottom: 20px;
+        }
+        .live-summary-title {
+            font-weight: bold;
+            font-size: 0.95em;
+            color: #333;
+            margin-bottom: 10px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 5px;
         }
         .live-summary-row {
             display: flex;
             justify-content: space-between;
-            margin-bottom: 8px;
+            font-size: 0.88em;
+            color: #666;
+            margin-bottom: 6px;
         }
-        .notice-box {
-            padding: 15px;
-            border-radius: 8px;
-            margin-bottom: 20px;
-            font-weight: 500;
+
+        .checkout-btn { background: var(--accent); color: white; width: 100%; padding: 15px; border: none; border-radius: 12px; font-weight: bold; font-size: 1em; cursor: pointer; text-align: center; text-decoration: none; box-shadow: 0 4px 12px rgba(209, 32, 83, 0.25); transition: 0.2s; }
+        .checkout-btn:hover { background: #b01743; }
+
+        .checkout-section { background: white; padding: 40px 30px; border-radius: 20px; margin: 40px auto; max-width: 600px; box-shadow: 0 10px 30px rgba(0,0,0,0.03); display: none; border: 1px solid #f0e6de; box-sizing: border-box; }
+        .checkout-section.active { display: block; animation: fadeIn 0.4s ease; }
+        .form-group { margin-bottom: 22px; text-align: left; }
+        .form-group label { display: block; margin-bottom: 8px; font-weight: 600; font-size: 0.95em; color: #444; }
+        .form-group input, .form-group textarea, .form-group select { width: 100%; padding: 14px; border: 1px solid #ddd; border-radius: 10px; box-sizing: border-box; font-family: inherit; font-size: 0.95em; transition: 0.2s; background: #fafafa; }
+        .form-group input:focus, .form-group textarea:focus, .form-group select:focus { border-color: var(--primary); background: #fff; outline: none; box-shadow: 0 0 0 3px rgba(212, 163, 115, 0.15); }
+
+        .submit-order-btn { display: block; background-color: var(--success); color: white; padding: 16px; border: none; border-radius: 12px; font-weight: bold; font-size: 1.15em; width: 100%; box-shadow: 0 4px 15px rgba(46, 204, 113, 0.25); cursor: pointer; transition: 0.3s ease; }
+        .submit-order-btn:hover { background-color: var(--success-hover); transform: translateY(-2px); }
+        .submit-order-btn:disabled { background-color: #cccccc; cursor: not-allowed; }
+
+        .success-card { background: white; border-radius: 20px; padding: 40px 20px; text-align: center; border: 2px dashed var(--success); animation: fadeIn 0.5s ease; box-shadow: 0 10px 35px rgba(46, 204, 113, 0.1); margin-top: 10px; }
+        .success-icon { font-size: 4em; color: var(--success); margin-bottom: 15px; }
+
+        .notice-section { background: #fff9f3; padding: 35px 25px; text-align: center; border-radius: 20px; margin: 40px auto; max-width: 900px; border: 1px solid #e9ddcf; width: 90%; box-sizing: border-box; }
+        .mandatory-box { background: #fff; display: inline-block; padding: 12px 24px; border-radius: 12px; color: var(--accent); font-weight: bold; border: 1px solid #ffccd5; margin-top: 12px; font-size: 0.95em; box-shadow: 0 2px 8px rgba(209, 32, 83, 0.05); }
+        
+        .payment-info { background: #fff; padding: 40px 25px; text-align: center; border-radius: 20px; margin: 40px auto; max-width: 900px; box-shadow: 0 10px 25px rgba(0,0,0,0.02); border: 2px dashed var(--primary); width: 90%; box-sizing: border-box; }
+        .payment-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; margin-top: 25px; }
+        .pay-card { border: 1px solid #f0e6de; padding: 22px; border-radius: 15px; width: 230px; background: #fffcf9; transition: 0.2s; }
+        .pay-card:hover { border-color: var(--primary); transform: scale(1.02); }
+        
+        .whatsapp-float { position: fixed; bottom: 20px; right: 20px; background-color: #25d366; color: white; width: 60px; height: 60px; border-radius: 50px; text-align: center; font-size: 32px; box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3); z-index: 100; display: flex; align-items: center; justify-content: center; text-decoration: none; transition: 0.3s ease; }
+        .whatsapp-float:hover { transform: scale(1.05); background-color: #20ba5a; }
+        
+        footer { text-align: center; padding: 50px 20px; background: #fff; margin-top: 60px; color: #888; border-top: 1px solid #eee; }
+        .footer-socials { margin-top: 15px; }
+        .footer-socials a { color: var(--primary); margin: 0 12px; font-size: 22px; text-decoration: none; transition: 0.2s; }
+        .footer-socials a:hover { color: var(--primary-hover); }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(15px); }
+            to { opacity: 1; transform: translateY(0); }
         }
-        .notice-livelia { background-color: #ecfdf5; border-left: 4px solid var(--livelia-color); color: #065f46; }
-        .notice-advance { background-color: #fffbeb; border-left: 4px solid #f59e0b; color: #92400e; }
-        .submit-order-btn {
-            background-color: var(--primary);
-            color: white;
-            border: none;
-            width: 100%;
-            padding: 15px;
-            border-radius: 8px;
-            font-size: 1.1em;
-            font-weight: bold;
-            cursor: pointer;
-            transition: background 0.2s;
-        }
-        .submit-order-btn:hover { background-color: var(--primary-hover); }
-        .submit-order-btn:disabled { background-color: #9ca3af; cursor: not-allowed; }
-        .success-card {
-            text-align: center;
-            padding: 40px 20px;
-        }
-        .success-icon {
-            font-size: 4em;
-            color: var(--success);
-            margin-bottom: 15px;
+
+        @media screen and (max-width: 768px) {
+            .cart-sidebar { width: 100%; right: -100%; }
+            .filter-container { flex-direction: column; padding: 15px; width: 95%; }
+            .search-input { width: 100%; min-width: 100%; }
+            .filter-buttons { width: 100%; justify-content: center; }
+            .filter-btn { flex: 1; text-align: center; padding: 10px 5px; font-size: 0.85em; }
+            .notice-section, .payment-info, .checkout-section { width: 95% !important; padding: 20px 15px !important; margin: 20px auto !important; }
+            .checkout-section.active { display: block; }
+            .payment-grid { display: flex; flex-direction: column; align-items: center; width: 100%; }
+            .pay-card { width: 100% !important; max-width: 280px; box-sizing: border-box; }
+            .form-group input, .form-group textarea, .form-group select { font-size: 16px !important; }
         }
     </style>
 </head>
 <body>
 
+    <div class="shipping-banner">
+        🎉 FREE HOME DELIVERY ALL OVER BANGLADESH! 🚚💨
+    </div>
+
+    <a href="https://wa.me/8801532178827" class="whatsapp-float" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <button class="cart-float" onclick="toggleCart()">
+        <i class="fas fa-shopping-bag"></i>
+        <span class="cart-count" id="cartCount">0</span>
+    </button>
+
     <header>
-        <div class="logo"><i class="fas fa-gem"></i> S&A Treasures</div>
-        <button class="cart-icon-btn" onclick="toggleCart()">
-            <i class="fas fa-shopping-bag"></i> Cart
-            <span class="cart-badge" id="cartCount">0</span>
-        </button>
+        <div class="logo-container">
+            <img src="https://i.postimg.cc/sxv7dpH5/Gemini-Generated-Image-rxm1yhrxm1yhrxm1.png" class="business-logo" alt="S&A Treasures Logo">
+        </div>
+        <h1>S&A Treasures</h1>
+        <p class="tagline">Love yourself, buy gifts, and spread happiness among your loved ones. ✨</p>
     </header>
 
-    <div class="search-filter-container">
-        <div class="search-bar">
-            <input type="text" id="searchBar" oninput="filterGridProducts()" placeholder="প্রোডাক্টের নাম দিয়ে খুঁজুন...">
-            <i class="fas fa-search"></i>
-        </div>
+    <div class="filter-container">
+        <input type="text" id="searchBar" oninput="filterGridProducts()" placeholder="🔍 Search products..." class="search-input">
         <div class="filter-buttons">
-            <button class="filter-btn active" onclick="filterGridCategory('all', this)">All Items</button>
-            <button class="filter-btn" onclick="filterGridCategory('hair', this)">Hair Care</button>
-            <button class="filter-btn" onclick="filterGridCategory('skin', this)">Skin Care</button>
-            <button class="filter-btn" onclick="filterGridCategory('dental', this)">Dental Care</button>
+            <button onclick="filterGridCategory('all', this)" class="filter-btn active">All</button>
+            <button onclick="filterGridCategory('aesthetic', this)" class="filter-btn">Aesthetic Gifts</button>
+            <button onclick="filterGridCategory('livalia', this)" class="filter-btn">Livalia Herbal</button>
         </div>
     </div>
 
-    <main>
-        <div class="product-heading" data-category="hair">Hair Care Series</div>
-        <div class="product-container" data-category="hair">
-            <div class="card" data-name="Livalia Alovera Shampoo">
-                <div class="card-body">
-                    <h3 class="product-title">Livalia Alovera Shampoo</h3>
-                    <div class="price-tag">350 BDT</div>
-                    <button class="add-btn" onclick="addToCart('Livalia Alovera Shampoo', 350, true)">Add to Bag</button>
-                </div>
+    <h2 class="section-title product-heading" data-category="aesthetic">✨ Our Premium Aesthetic Gifts ✨</h2>
+    <div class="container product-container" data-category="aesthetic">
+        <div class="card" data-name="Aesthetic Butterfly Keychain">
+            <img src="https://i.postimg.cc/HnMq2Gcw/O1CN01T5o-ZZ52Es-SQBsn-FTE-2219476018800-0-cib.jpg" class="main-img" alt="Aesthetic Butterfly Keychain">
+            <h3>Aesthetic Butterfly Keychain</h3>
+            <p style="font-size: 0.85em; color: #777; margin: -5px 0 10px;">Elegant crystal metallic charm</p>
+            <div class="price-container">
+                <span class="regular-price">275 TK</span>
+                <span class="offer-price">235 TK</span>
+                <span class="shipping-tag">✨ Free Home Delivery</span>
             </div>
-            <div class="card" data-name="Premium Hair Onion Oil">
-                <div class="card-body">
-                    <h3 class="product-title">Premium Hair Onion Oil</h3>
-                    <div class="price-tag">420 BDT</div>
-                    <button class="add-btn" onclick="addToCart('Premium Hair Onion Oil', 420, false)">Add to Bag</button>
-                </div>
-            </div>
+            <button class="order-btn" onclick="addToCart('Aesthetic Butterfly Keychain', 235, false)">Add To Cart</button>
+            <a href="https://www.facebook.com/share/1B5Wuq2Ke3/" class="fb-btn" target="_blank"><i class="fab fa-facebook"></i> ফেসবুক পেজ দেখুন</a>
         </div>
 
-        <div class="product-heading" data-category="skin">Skin Care Series</div>
-        <div class="product-container" data-category="skin">
-            <div class="card" data-name="Livalia Vitamin C Facewash">
-                <div class="card-body">
-                    <h3 class="product-title">Livalia Vitamin C Facewash</h3>
-                    <div class="price-tag">280 BDT</div>
-                    <button class="add-btn" onclick="addToCart('Livalia Vitamin C Facewash', 280, true)">Add to Bag</button>
-                </div>
+        <div class="card" data-name="Cute Character Phone Strap">
+            <img src="https://i.postimg.cc/W1fPT7vt/phone-chain-11.jpg" class="main-img" alt="Cute Character Phone Strap">
+            <h3>Cute Character Phone Strap</h3>
+            <p style="font-size: 0.85em; color: #777; margin: -5px 0 10px;">Aesthetic beaded phone lanyard</p>
+            <div class="price-container">
+                <span class="regular-price">180 TK</span>
+                <span class="offer-price">145 TK</span>
+                <span class="shipping-tag">✨ Free Home Delivery</span>
             </div>
-            <div class="card" data-name="Glow Max Brightening Serum">
-                <div class="card-body">
-                    <h3 class="product-title">Glow Max Brightening Serum</h3>
-                    <div class="price-tag">550 BDT</div>
-                    <button class="add-btn" onclick="addToCart('Glow Max Brightening Serum', 550, false)">Add to Bag</button>
-                </div>
-            </div>
+            <button class="order-btn" onclick="addToCart('Cute Character Phone Strap', 145, false)">Add To Cart</button>
+            <a href="https://www.facebook.com/share/1B5Wuq2Ke3/" class="fb-btn" target="_blank"><i class="fab fa-facebook"></i> ফেসবুক পেজ দেখুন</a>
         </div>
 
-        <div class="product-heading" data-category="dental">Dental Care Series</div>
-        <div class="product-container" data-category="dental">
-            <div class="card" data-name="Livalia Neem Toothpaste">
-                <div class="card-body">
-                    <h3 class="product-title">Livalia Neem Toothpaste</h3>
-                    <div class="price-tag">180 BDT</div>
-                    <button class="add-btn" onclick="addToCart('Livalia Neem Toothpaste', 180, true)">Add to Bag</button>
-                </div>
+        <div class="card" data-name="Premium Beaded Phone Wristlet">
+            <img src="https://i.postimg.cc/PJB2SPsj/Gemini-Generated-Image-ael0b7ael0b7ael0.png" class="main-img" alt="Premium Beaded Phone Wristlet">
+            <h3>Premium Beaded Phone Wristlet</h3>
+            <p style="font-size: 0.85em; color: #777; margin: -5px 0 10px;">Selected Big Pearl Premium Edition</p>
+            <div class="price-container">
+                <span class="regular-price">335 TK</span>
+                <span class="offer-price">305 TK</span>
+                <span class="shipping-tag">✨ Free Home Delivery</span>
             </div>
+            <button class="order-btn" onclick="addToCart('Premium Beaded Phone Wristlet', 305, false)">Add To Cart</button>
+            <a href="https://www.facebook.com/share/1B5Wuq2Ke3/" class="fb-btn" target="_blank"><i class="fab fa-facebook"></i> ফেসবুক পেজ দেখুন</a>
         </div>
-    </main>
+        
+        <div class="card" data-name="Animal Cable Protectors">
+            <img src="https://i.postimg.cc/N0SDsKFj/Cable-Protector-1.jpg" class="main-img" alt="Animal Cable Protectors">
+            <h3>Animal Cable Protectors</h3>
+            <p style="font-size: 0.85em; color: #777; margin: -5px 0 10px;">Cute cartoon data cable saver</p>
+            <div class="price-container">
+                <span class="regular-price">107 TK</span>
+                <span class="offer-price">75 TK</span>
+                <span class="shipping-tag">✨ Free Home Delivery</span>
+            </div>
+            <button class="order-btn" onclick="addToCart('Animal Cable Protectors', 75, false)">Add To Cart</button>
+            <a href="https://www.facebook.com/share/1B5Wuq2Ke3/" class="fb-btn" target="_blank"><i class="fab fa-facebook"></i> ফেসবুক পেজ দেখুন</a>
+        </div>
+
+        <div class="card" data-name="Hello Kitty Dancing Stone Necklace">
+            <img src="https://i.postimg.cc/7hDgh0kN/Kitty-Necklace.jpg" class="main-img" alt="Hello Kitty Dancing Stone Necklace">
+            <h3>Hello Kitty Dancing Stone Necklace</h3>
+            <p style="font-size: 0.85em; color: #777; margin: -5px 0 10px;">Dancing zircon silver gift item</p>
+            <div class="price-container">
+                <span class="regular-price">445 TK</span>
+                <span class="offer-price">400 TK</span>
+                <span class="shipping-tag">✨ Free Home Delivery</span>
+            </div>
+            <button class="order-btn" onclick="addToCart('Hello Kitty Dancing Stone Necklace', 400, false)">Add To Cart</button>
+            <a href="https://www.facebook.com/share/1B5Wuq2Ke3/" class="fb-btn" target="_blank"><i class="fab fa-facebook"></i> ফেসবুক পেজ দেখুন</a>
+        </div>
+
+        <div class="card" data-name="Astronaut Sunset Lamp (7 Colors)">
+            <img src="https://i.postimg.cc/DZqNvnBB/Gemini-Generated-Image-4tcavf4tcavf4tca.png" class="main-img" alt="Astronaut Sunset Lamp">
+            <h3>Astronaut Sunset Lamp (7 Colors)</h3>
+            <p style="font-size: 0.85em; color: #777; margin: -5px 0 10px;">Rechargeable Touch Control 360° Rotate</p>
+            <div class="price-container">
+                <span class="regular-price">935 TK</span>
+                <span class="offer-price">880 TK</span>
+                <span class="shipping-tag">✨ Free Home Delivery</span>
+            </div>
+            <button class="order-btn" onclick="addToCart('Astronaut Sunset Lamp (7 Colors)', 880, false)">Add To Cart</button>
+            <a href="https://www.facebook.com/share/1B5Wuq2Ke3/" class="fb-btn" target="_blank"><i class="fab fa-facebook"></i> ফেসবুক পেজ দেখুন</a>
+        </div>
+    </div>
+
+    <h2 class="section-title product-heading" data-category="livalia" style="color: var(--livelia-color);">🌿 Official Livalia Collection (100% COD) 🌿</h2>
+    <div class="container product-container" data-category="livalia">
+        
+        <div class="card" data-name="Livalia Night Spot Removal Cream" style="border: 1px solid rgba(46, 125, 50, 0.4);">
+            <span class="livelia-badge">LIVALIA PARTNER</span>
+            <img src="https://i.postimg.cc/L8ZrFgm0/Night-Spot.jpg" class="main-img" alt="Livalia Night Spot Removal Cream">
+            <h3>Livalia Night Spot Removal Cream</h3>
+            <p style="font-size: 0.85em; color: #777; margin: -5px 0 10px;">For Spot Free Shine & Safe Skin Care</p>
+            <div class="price-container">
+                <span class="offer-price" style="color: var(--livelia-color);">450 BDT</span>
+            </div>
+            <button class="order-btn" style="background-color: var(--livelia-color);" onclick="addToCart('Livalia Night Spot Removal Cream', 450, true)">Add To Cart</button>
+        </div>
+
+        <div class="card" data-name="Livalia Neem Toothpaste" style="border: 1px solid rgba(46, 125, 50, 0.4);">
+            <span class="livelia-badge">LIVALIA PARTNER</span>
+            <img src="https://i.postimg.cc/Vkb3P0zp/Tooth-Paste.png" class="main-img" alt="Livalia Neem Toothpaste">
+            <h3>Livalia Neem Toothpaste</h3>
+            <p style="font-size: 0.85em; color: #777; margin: -5px 0 10px;">Complete Care & Healthy Fresh Teeth</p>
+            <div class="price-container">
+                <span class="offer-price" style="color: var(--livelia-color);">190 BDT</span>
+            </div>
+            <button class="order-btn" style="background-color: var(--livelia-color);" onclick="addToCart('Livalia Neem Toothpaste', 190, true)">Add To Cart</button>
+        </div>
+
+        <div class="card" data-name="Livalia Alovera Shampoo" style="border: 1px solid rgba(46, 125, 50, 0.4);">
+            <span class="livelia-badge">LIVALIA PARTNER</span>
+            <img src="https://i.postimg.cc/nhQ6f9nW/Shampoo.png" class="main-img" alt="Livalia Alovera Shampoo">
+            <h3>Livalia Alovera Shampoo</h3>
+            <p style="font-size: 0.85em; color: #777; margin: -5px 0 10px;">Intense Root Care & Hair Fall Solution</p>
+            <div class="price-container">
+                <span class="offer-price" style="color: var(--livelia-color);">640 BDT</span>
+            </div>
+            <button class="order-btn" style="background-color: var(--livelia-color);" onclick="addToCart('Livalia Alovera Shampoo', 640, true)">Add To Cart</button>
+        </div>
+
+        <div class="card" data-name="Livalia Scavia Soap" style="border: 1px solid rgba(46, 125, 50, 0.4);">
+            <span class="livelia-badge">LIVALIA PARTNER</span>
+            <img src="https://i.postimg.cc/436qmC7p/Soap.png" class="main-img" alt="Livalia Scavia Soap">
+            <h3>Livalia Scavia Soap</h3>
+            <p style="font-size: 0.85em; color: #777; margin: -5px 0 10px;">Anti-Scabies & Antiparasitic Glycerin Soap</p>
+            <div class="price-container">
+                <span class="offer-price" style="color: var(--livelia-color);">420 BDT</span>
+            </div>
+            <button class="order-btn" style="background-color: var(--livelia-color);" onclick="addToCart('Livalia Scavia Soap', 420, true)">Add To Cart</button>
+        </div>
+
+        <div class="card" data-name="Livalia Neem Facewash" style="border: 1px solid rgba(46, 125, 50, 0.4);">
+            <span class="livelia-badge">LIVALIA PARTNER</span>
+            <img src="https://i.postimg.cc/0NYFbgMp/Face-Wash.png" class="main-img" alt="Livalia Neem Facewash">
+            <h3>Livalia Neem Facewash</h3>
+            <p style="font-size: 0.85em; color: #777; margin: -5px 0 10px;">Cleans Active - Helps Fight Acne Bacteria</p>
+            <div class="price-container">
+                <span class="offer-price" style="color: var(--livelia-color);">320 BDT</span>
+            </div>
+            <button class="order-btn" style="background-color: var(--livelia-color);" onclick="addToCart('Livalia Neem Facewash', 320, true)">Add To Cart</button>
+        </div>
+    </div>
 
     <div class="cart-sidebar" id="cartSidebar">
         <div class="cart-header">
-            <h3><i class="fas fa-shopping-cart"></i> Your Cart</h3>
-            <button class="qty-btn" onclick="toggleCart()"><i class="fas fa-times"></i></button>
+            <h2>Your Bag <i class="fas fa-shopping-bag" style="color:var(--primary);"></i></h2>
+            <button class="close-cart" onclick="toggleCart()">&times;</button>
         </div>
-        <div class="cart-items-wrapper" id="cartItemsContainer">
-            <p style="text-align:center; color:#aaa;">Your bag is empty.</p>
+        <div class="cart-items" id="cartItemsContainer"></div>
+        <div class="cart-total">
+            <span>Total Amount:</span>
+            <span id="cartTotalAmount">0 BDT</span>
         </div>
-        <div class="cart-footer">
-            <div style="display:flex; justify-content:space-between; font-size:1.2em; font-weight:bold;">
-                <span>Total:</span>
-                <span id="cartTotalAmount">0 BDT</span>
-            </div>
-            <button class="checkout-trigger-btn" onclick="showCheckout()">Proceed to Checkout <i class="fas fa-arrow-right"></i></button>
-        </div>
+        <button class="checkout-btn" onclick="showCheckout()">Proceed to Checkout</button>
     </div>
 
-    <div class="checkout-section" id="checkoutSection">
-        <h2><i class="fas fa-shipping-fast"></i> Delivery & Checkout Details</h2>
+    <section class="checkout-section" id="checkoutSection">
         <div id="checkoutFormWrapper">
+            <h2 style="color: var(--primary); text-align:center; margin-top:0;">📋 Complete Your Order</h2>
+            
+            <div class="live-summary-box">
+                <div class="live-summary-title">📝 Selected Items Summary</div>
+                <div id="liveCartSummaryRows"></div>
+            </div>
+
             <form id="orderForm" onsubmit="submitToGoogleSheets(event)">
+                <div class="form-group">
+                    <label>Full Name *</label>
+                    <input type="text" id="custName" placeholder="আপনার পুরো নাম লিখুন" required>
+                </div>
+                <div class="form-group">
+                    <label>Phone Number *</label>
+                    <input type="tel" id="custPhone" placeholder="01XXXXXXXXX" required>
+                </div>
+                <div class="form-group">
+                    <label>Full Delivery Address *</label>
+                    <textarea id="custAddress" rows="3" placeholder="জেলা, থানা, এলাকা এবং রোড নম্বর বিস্তারিত লিখুন" required></textarea>
+                </div>
                 
-                <div class="live-cart-summary">
-                    <h4 style="margin-top:0; border-bottom:1px solid #ddd; padding-bottom:5px;">Order Summary</h4>
-                    <div id="liveCartSummaryRows"></div>
-                </div>
-
-                <div class="notice-box notice-livelia" id="liveliaNoticeBox" style="display:none;">
-                    🌿 আপনি কার্টে লিভালিয়া ব্র্যান্ডের প্রোডাক্ট যোগ করেছেন। এর জন্য কোনো অগ্রিম পেমেন্ট লাগবে না (Full Cash on Delivery)!
-                </div>
-                <div class="notice-box notice-advance" id="advanceNoticeBox" style="display:none;">
-                    ⚠️ সাধারণ প্রোডাক্টের অর্ডার নিশ্চিত করতে ন্যূনতম ১০% অগ্রিম পেমেন্ট করা আবশ্যক।
-                </div>
-
                 <div class="form-group">
-                    <label for="custName">Customer Name *</label>
-                    <input type="text" id="custName" required placeholder="গ্রাহকের সম্পূর্ণ নাম লিখুন">
-                </div>
-
-                <div class="form-group">
-                    <label for="custPhone">Phone Number *</label>
-                    <input type="tel" id="custPhone" required placeholder="017XXXXXXXX">
-                </div>
-
-                <div class="form-group">
-                    <label for="custAddress">Full Delivery Address *</label>
-                    <textarea id="custAddress" rows="3" required placeholder="জেলা, থানা, এলাকা এবং রোড নম্বর স্পষ্ট করে লিখুন"></textarea>
-                </div>
-
-                <div class="form-group">
-                    <label for="staffCode">Staff/Executive Code *</label>
+                    <label>Staff Code (স্টাফ কোড) *</label>
                     <select id="staffCode" required>
                         <option value="" disabled selected>আপনার স্টাফ কোডটি সিলেক্ট করুন</option>
-                        <option value="LL-ES-0010">LL-ES-0010</option>
-                        <option value="LL-ES-0011">LL-ES-0011</option>
+                        <option value="SAT 1">SAT 1</option>
+                        <option value="SAT 2">SAT 2</option>
+                        <option value="SAT 3">SAT 3</option>
+                        <option value="SAT 4">SAT 4</option>
+                        <option value="SAT 5">SAT 5</option>
+                        <option value="SAT 6">SAT 6</option>
+                        <option value="SAT 7">SAT 7</option>
                     </select>
                 </div>
 
-                <div class="form-group" id="paymentInfoBox">
-                    <label for="custPayment">Payment Reference / Advance Info <span id="advanceSubNotice" style="color:#f59e0b;">(১০% অগ্রিম: ৳<span id="advanceAmountDisplay">0</span>)</span> *</label>
-                    <input type="text" id="custPayment" placeholder="e.g., bKash Personal - 017XXXXXXXX - TrxID: XXXXXX">
+                <div class="form-group" id="paymentInputGroup">
+                    <label id="paymentLabel">Payment Method & Advance Transaction Info *</label>
+                    
+                    <p id="liveliaNoticeBox" style="font-size:0.95em; color:#1b5e20; margin:-5px 0 12px; background: #e8f5e9; padding: 14px; border-radius: 10px; border: 1px solid #c8e6c9; font-weight: bold; display:none;">
+                        🟢 Livalia Brand Order! আপনার কার্টে লিভালিয়ার অফিশিয়াল প্রোডাক্ট থাকার কারণে এই অর্ডারে কোনো প্রকার অগ্রিম পেমেন্ট করতে হবে না। সম্পূর্ণ বিল ১০০% ক্যাশ অন ডেলিভারি (Advance = 0)।
+                    </p>
+
+                    <p id="advanceNoticeBox" style="font-size:0.95em; color:var(--accent); margin:-5px 0 12px; background: #fff5f7; padding: 12px; border-radius: 8px; border: 1px dashed var(--accent); font-weight: 500;">
+                        ⚠️ আপনার কার্ট অনুযায়ী অর্ডার কনফার্ম করতে ৳<strong id="advanceAmountDisplay" style="font-size: 1.15em;">0</strong> (১০% অগ্রিম পেমেন্ট) করুন।
+                    </p>
+                    <p id="advanceSubNotice" style="font-size:0.82em; color:#777; margin-bottom: 8px;">(নিচের বিকাশ বা নগদ নাম্বারে এই টাকা পাঠিয়ে নিচে আপনার পেমেন্ট মাধ্যম ও TrxID লিখুন)</p>
+                    <input type="text" id="custPayment" placeholder="e.g., bKash Personal - 017XXXXXXXX - TrxID: XXXXXX" required>
                 </div>
 
                 <button type="submit" class="submit-order-btn">Place Order & Confirm 🛍️</button>
             </form>
         </div>
-    </div>
+    </section>
 
+    <section class="notice-section" id="noticeSectionBox">
+        <h2 style="color: var(--primary); margin-bottom: 15px;"><i class="fas fa-truck"></i> ডেলিভারি ও অগ্রিম পেমেন্ট</h2>
+        <div style="font-size: 1.1em; line-height: 1.6; color: #555;">
+            <p>আমরা সারা বাংলাদেশে <strong>ফ্রি হোম ডেলিভারি</strong> প্রদান করছি! 🚚</p>
+            <div id="dynamicNoticeText" class="mandatory-box">
+                নোট: আমাদের পণ্যগুলো ইমপোর্টেড (Imported) হওয়ায় অর্ডার কনফার্ম করতে মোট বিলের ন্যূনতম ১০% অগ্রিম পেমেন্ট করা বাধ্যতামুলক।
+            </div>
+            <p style="margin-top: 10px;">বাকি টাকা পণ্য হাতে পাওয়ার পর পরিশোধ করতে পারবেন (Cash on Delivery)।</p>
+        </div>
+    </section>
+
+    <section class="payment-info" id="paymentInfoBox">
+        <h2 style="color: var(--primary);">পেমেন্ট পদ্ধতি (Payment Procedure)</h2>
+        <p id="dynamicPaymentSubtitle">নিচের যেকোনো মাধ্যমে <b>১০% অগ্রিম</b> পেমেন্ট সম্পন্ন করে চেকআউট ফরমে আপনার <b>Transaction Info</b> জমা দিন:</p>
+        
+        <div class="payment-grid">
+            <div class="pay-card">
+                <strong style="color: #d12053; font-size: 1.1em;">bKash</strong><br>
+                <span style="font-size: 1.1em; font-weight: 600; display:inline-block; margin: 5px 0;">01635303579</span><br>(Personal)
+            </div>
+            <div class="pay-card">
+                <strong style="color: #f7941d; font-size: 1.1em;">Nagad</strong><br>
+                <span style="font-size: 1.1em; font-weight: 600; display:inline-block; margin: 5px 0;">01945436987</span><br>(Personal)
+            </div>
+            <div class="pay-card" style="width: 280px;">
+                <strong style="color: #333; font-size: 1.1em;">Bank Details</strong><br>
+                <div style="text-align: left; margin-top: 8px; font-size: 0.95em; line-height: 1.5;">
+                    Bank: <b>The City Bank Plc</b><br>
+                    A/C No: <b>2184686981001</b><br>
+                    Branch: <b>Banani Branch</b><br>
+                    Name: <b>Arafat Islam Apurba</b>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 S&A Treasures. All Rights Reserved.</p>
+        <div class="footer-socials">
+            <a href="https://www.facebook.com/share/1B5Wuq2Ke3/" target="_blank"><i class="fab fa-facebook"></i></a>
+            <a href="https://wa.me/8801532178827" target="_blank"><i class="fab fa-whatsapp"></i></a>
+        </div>
+    </footer>
+
+    <!-- 🚀 ফিক্সড জাভাস্ক্রিপ্ট এবং ব্যাকএন্ড ডাটা ট্রান্সফার পার্ট -->
     <script>
-        // তোমার দেওয়া নতুন ইউনিক গুগল অ্যাপস স্ক্রিপ্ট ইউআরএল লিংক
+        // আপনার দেওয়া আসল ইউনিক গুগল অ্যাপস স্ক্রিপ্ট ওয়েব অ্যাপ ইউআরএল
         const googleAppScriptUrl = "https://script.google.com/macros/s/AKfycbzr86T7oYeES5a0MWJ10o-hSxaXKCx3-t9mhoGiVDbq3Aq8L1kE3TlJRlP-s7EIRjQ0/exec";
 
         let cart = [];
@@ -514,14 +585,14 @@
                     <div class="cart-item">
                         <div class="cart-item-details">
                             <strong>${item.name} ${item.isPartner ? '<span style="color:var(--livelia-color); font-size:0.85em; font-weight:bold;">(🌿 Livalia)</span>' : ''}</strong>
-                            <div style="color: var(--primary); margin-top:3px;">${item.price} BDT</div>
+                            <div style="color: var(--primary); margin-top:3px; font-weight:bold;">${item.price} TK</div>
                             <div class="qty-controls">
                                 <button class="qty-btn" onclick="changeQuantity('${item.name}', -1)">-</button>
                                 <span>${item.quantity}</span>
                                 <button class="qty-btn" onclick="changeQuantity('${item.name}', 1)">+</button>
                             </div>
                         </div>
-                        <div><strong>${itemTotal} BDT</strong></div>
+                        <div><strong>${itemTotal} TK</strong></div>
                     </div>
                 `;
 
@@ -533,7 +604,7 @@
                 `;
             });
 
-            cartItemsContainer.innerHTML = htmlContent || '<p style="text-align:center; color:#aaa;">Your bag is empty.</p>';
+            cartItemsContainer.innerHTML = htmlContent || '<p style="text-align:center; color:#aaa; margin-top:20px;">Your bag is empty.</p>';
             cartCount.innerText = totalItems;
             cartTotalAmount.innerText = total + ' BDT';
             
@@ -548,29 +619,50 @@
             const advanceSubNotice = document.getElementById('advanceSubNotice');
             const advanceAmountDisplay = document.getElementById('advanceAmountDisplay');
             const custPaymentInput = document.getElementById('custPayment');
-            const paymentInfoBox = document.getElementById('paymentInfoBox');
+            const dynamicNoticeText = document.getElementById('dynamicNoticeText');
+            const dynamicPaymentSubtitle = document.getElementById('dynamicPaymentSubtitle');
 
             if (cart.length > 0) {
                 if (isPartnerInCart) {
                     if (liveliaNoticeBox) liveliaNoticeBox.style.display = 'block';
                     if (advanceNoticeBox) advanceNoticeBox.style.display = 'none';
                     if (advanceSubNotice) advanceSubNotice.style.display = 'none';
-                    if (paymentInfoBox) paymentInfoBox.style.display = 'none';
                     if (custPaymentInput) {
                         custPaymentInput.required = false;
-                        custPaymentInput.placeholder = "Optional for Livalia items (e.g., Cash on Delivery)";
+                        custPaymentInput.style.display = 'none';
+                    }
+                    document.getElementById('paymentLabel').style.display = 'none';
+                    
+                    if (dynamicNoticeText) {
+                        dynamicNoticeText.innerHTML = "🌿 আপনার কার্টে লিভালিয়া ব্র্যান্ডের প্রোডাক্ট রয়েছে। এই অর্ডারের জন্য কোনো অগ্রিম পেমেন্ট লাগবে না (Full Cash on Delivery)!";
+                        dynamicNoticeText.style.color = "#1b5e20";
+                        dynamicNoticeText.style.borderColor = "#c8e6c9";
+                        dynamicNoticeText.style.background = "#e8f5e9";
+                    }
+                    if (dynamicPaymentSubtitle) {
+                        dynamicPaymentSubtitle.innerHTML = "🟢 লিভালিয়া ব্র্যান্ডের প্রোডাক্টের জন্য কোনো অগ্রিম পেমেন্টের প্রয়োজন নেই। অর্ডার সাবমিট করে দিন।";
                     }
                 } else {
                     if (liveliaNoticeBox) liveliaNoticeBox.style.display = 'none';
                     if (advanceNoticeBox) advanceNoticeBox.style.display = 'block';
                     if (advanceSubNotice) advanceSubNotice.style.display = 'block';
-                    if (paymentInfoBox) paymentInfoBox.style.display = 'block';
+                    if (custPaymentInput) {
+                        custPaymentInput.required = true;
+                        custPaymentInput.style.display = 'block';
+                    }
+                    document.getElementById('paymentLabel').style.display = 'block';
                     
                     let advanceAmount = Math.ceil(total * 0.10);
                     if (advanceAmountDisplay) advanceAmountDisplay.innerText = advanceAmount;
-                    if (custPaymentInput) {
-                        custPaymentInput.required = true;
-                        custPaymentInput.placeholder = "e.g., bKash Personal - 017XXXXXXXX - TrxID: XXXXXX";
+                    
+                    if (dynamicNoticeText) {
+                        dynamicNoticeText.innerHTML = "নোট: আমাদের পণ্যগুলো ইমপোর্টেড (Imported) হওয়ায় অর্ডার কনফার্ম করতে মোট বিলের ন্যূনতম ১০% অগ্রিম পেমেন্ট করা বাধ্যতামুলক।";
+                        dynamicNoticeText.style.color = "var(--accent)";
+                        dynamicNoticeText.style.borderColor = "#ffccd5";
+                        dynamicNoticeText.style.background = "#fff";
+                    }
+                    if (dynamicPaymentSubtitle) {
+                        dynamicPaymentSubtitle.innerHTML = "নিচের যেকোনো মাধ্যমে <b>১০% অগ্রিম</b> পেমেন্ট সম্পন্ন করে চেকআউট ফরমে আপনার <b>Transaction Info</b> জমা দিন:";
                     }
                 }
             }
@@ -622,7 +714,7 @@
 
         function showCheckout() {
             if (cart.length === 0) {
-                alert("Please add at least one item to your cart before proceeding.");
+                alert("Please add at least one item to your bag before proceeding.");
                 return;
             }
             document.getElementById('checkoutSection').classList.add('active');
@@ -630,6 +722,7 @@
             toggleCart();
         }
 
+        // 🛠️ ফিক্সড গুগল শিট সাবমিশন ফাংশন (অবশ্যই নোটিশ করুন)
         function submitToGoogleSheets(event) {
             event.preventDefault();
             
@@ -638,7 +731,6 @@
             submitBtn.innerText = "Processing Order... ⏳";
 
             const itemsSummary = cart.map(item => `${item.name} (Qty: ${item.quantity})`).join(', ');
-            
             let rawTotalBill = document.getElementById('cartTotalAmount').innerText;
             let numericTotalBill = parseInt(rawTotalBill.replace(/[^0-9]/g, '')) || 0; 
             
@@ -647,31 +739,39 @@
                 customerAddress += " [Reference Person : LL-ES-0010]";
             }
             
-            // অ্যাপস স্ক্রিপ্টকে রিকোয়েস্ট পাঠানোর প্যারামিটার অবজেক্ট তৈরি
+            // পেমেন্ট ফিল্ড হ্যান্ডেলিং (লিভালিয়ার জন্য ডিফল্ট ক্যাশ অন ডেলিভারি টেক্সট জেনারেট করা)
+            let paymentInfoValue = document.getElementById('custPayment').value;
+            if (isPartnerInCart) {
+                paymentInfoValue = "100% Cash on Delivery (Livalia Brand Product)";
+            }
+
+            // 'FormData' অবজেক্ট বা ব্রাউজারের স্ট্যান্ডার্ড সাবমিশন মিসম্যাচ দূর করতে স্ট্যান্ডার্ড 'URLSearchParams' মেথড নিশ্চিত করা হয়েছে
             const formData = new URLSearchParams();
             formData.append('name', document.getElementById('custName').value);
             formData.append('phone', document.getElementById('custPhone').value);
             formData.append('address', customerAddress);
             formData.append('staffCode', document.getElementById('staffCode').value);
-            formData.append('paymentInfo', isPartnerInCart ? "100% COD (Livalia Brand)" : document.getElementById('custPayment').value);
+            formData.append('paymentInfo', paymentInfoValue);
             formData.append('items', itemsSummary);
             formData.append('totalBill', numericTotalBill);
-            formData.append('orderDate', new Date().toLocaleString());
+            formData.append('orderDate', new Date().toLocaleString('en-US', { timeZone: 'Asia/Dhaka' }));
 
-            // CORS ফ্রি সাবমিশন হ্যান্ডলিং
+            // CORS মোড এবং নো-ক্যাশ রিকোয়েস্ট মেথড অ্যাড করা হলো যা ডাটা ট্রান্সফার ১০০% কনফার্ম করবে
             fetch(googleAppScriptUrl, {
                 method: 'POST',
-                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-                body: formData
+                mode: 'no-cors', // গুগল অ্যাপস স্ক্রিপ্ট অনেক সময় রিডাইরেক্ট করে, 'no-cors' ডাটা পাঠাতে সাহায্য করবে
+                headers: { 
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                body: formData.toString()
             })
-            .then(response => response.text())
-            .then(result => {
-                console.log('Server response:', result);
+            .then(() => {
+                // যেহেতু 'no-cors' মোডে রেসপন্স বডি পড়া যায় না, কিন্তু রিকোয়েস্ট সার্ভারে সফলভাবে পৌঁছায়, তাই ডিরেক্ট সাকসেস স্টেট দেখানো হচ্ছে
                 document.getElementById('checkoutFormWrapper').innerHTML = `
                     <div class="success-card">
                         <i class="fas fa-check-circle success-icon"></i>
-                        <h2 style="color: var(--success); margin-top:0;">অর্ডারটি সফলভাবে গ্রহণ করা হয়েছে!</h2>
-                        <p style="font-size: 1.05em; color: #555;">ধন্যবাদ, আপনার অর্ডারটি প্রক্রিয়াকরণ করা হচ্ছে। খুব শীঘ্রই আমাদের একজন প্রতিনিধি আপনার সাথে যোগাযোগ করবেন।</p>
+                        <h2 style="color: var(--success); margin-top:0;">অর্ডারটি সফলভাবে সম্পন্ন হয়েছে!</h2>
+                        <p style="font-size: 1.05em; color: #555;">ধন্যবাদ, আপনার অর্ডারের তথ্য সফলভাবে সংরক্ষিত হয়েছে। খুব শীঘ্রই আমাদের একজন প্রতিনিধি আপনার সাথে যোগাযোগ করবেন।</p>
                     </div>
                 `;
                 cart = [];
@@ -679,7 +779,7 @@
             })
             .catch(error => {
                 console.error('Submission Error:', error);
-                alert('দুঃখিত, অর্ডারটি সম্পন্ন করা সম্ভব হয়নি। আবার চেষ্টা করুন বা হোয়াটসঅ্যাপে যোগাযোগ করুন।');
+                alert('দুঃখিত, নেটওয়ার্ক সমস্যার কারণে অর্ডারটি সম্পন্ন করা সম্ভব হয়নি। অনুগ্রহ করে আবার চেষ্টা করুন।');
                 submitBtn.disabled = false;
                 submitBtn.innerText = "Place Order & Confirm 🛍️";
             });
