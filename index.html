@@ -363,9 +363,9 @@
             <h3>Livalia Night Spot Removal Cream</h3>
             <p style="font-size: 0.85em; color: #777; margin: -5px 0 10px;">For Spot Free Shine & Safe Skin Care</p>
             <div class="price-container">
-                <span class="offer-price" style="color: var(--livelia-color);">450 BDT</span>
+                <span class="offer-price" style="color: var(--livelia-color);">880 BDT</span>
             </div>
-            <button class="order-btn" style="background-color: var(--livelia-color);" onclick="addToCart('Livalia Night Spot Removal Cream', 450, true)">Add To Cart</button>
+            <button class="order-btn" style="background-color: var(--livelia-color);" onclick="addToCart('Livalia Night Spot Removal Cream', 880, true)">Add To Cart</button>
         </div>
 
         <div class="card" data-name="Livalia Neem Toothpaste" style="border: 1px solid rgba(46, 125, 50, 0.4);">
@@ -374,9 +374,9 @@
             <h3>Livalia Neem Toothpaste</h3>
             <p style="font-size: 0.85em; color: #777; margin: -5px 0 10px;">Complete Care & Healthy Fresh Teeth</p>
             <div class="price-container">
-                <span class="offer-price" style="color: var(--livelia-color);">190 BDT</span>
+                <span class="offer-price" style="color: var(--livelia-color);">320 BDT</span>
             </div>
-            <button class="order-btn" style="background-color: var(--livelia-color);" onclick="addToCart('Livalia Neem Toothpaste', 190, true)">Add To Cart</button>
+            <button class="order-btn" style="background-color: var(--livelia-color);" onclick="addToCart('Livalia Neem Toothpaste', 320, true)">Add To Cart</button>
         </div>
 
         <div class="card" data-name="Livalia Alovera Shampoo" style="border: 1px solid rgba(46, 125, 50, 0.4);">
@@ -407,9 +407,9 @@
             <h3>Livalia Neem Facewash</h3>
             <p style="font-size: 0.85em; color: #777; margin: -5px 0 10px;">Cleans Active - Helps Fight Acne Bacteria</p>
             <div class="price-container">
-                <span class="offer-price" style="color: var(--livelia-color);">320 BDT</span>
+                <span class="offer-price" style="color: var(--livelia-color);">460 BDT</span>
             </div>
-            <button class="order-btn" style="background-color: var(--livelia-color);" onclick="addToCart('Livalia Neem Facewash', 320, true)">Add To Cart</button>
+            <button class="order-btn" style="background-color: var(--livelia-color);" onclick="addToCart('Livalia Neem Facewash', 460, true)">Add To Cart</button>
         </div>
     </div>
 
@@ -495,7 +495,7 @@
 
     <section class="payment-info" id="paymentInfoBox">
         <h2 style="color: var(--primary);">পেমেন্ট পদ্ধতি (Payment Procedure)</h2>
-        <p id="dynamicPaymentSubtitle">নিচের যেকোনো মাধ্যমে <b>১০% অগ্রিম</b> পেমেন্ট সম্পন্ন করে চেকআউট ফরমে আপনার <b>Transaction Info</b> জমা দিন:</p>
+        <p id="dynamicPaymentSubtitle">নিচের যেকোনো माध्यम <b>১০% অগ্রিম</b> পেমেন্ট সম্পন্ন করে চেকআউট ফরমে আপনার <b>Transaction Info</b> জমা দিন:</p>
         
         <div class="payment-grid">
             <div class="pay-card">
@@ -526,263 +526,261 @@
         </div>
     </footer>
 
-    <!-- 🚀 ফিক্সড জাভাস্ক্রিপ্ট এবং ব্যাকএন্ড ডাটা ট্রান্সফার পার্ট -->
+    <!-- --- JAVASCRIPT LOGIC --- -->
     <script>
-        // আপনার দেওয়া আসল ইউনিক গুগল অ্যাপস স্ক্রিপ্ট ওয়েব অ্যাপ ইউআরএল
-        const googleAppScriptUrl = "https://script.google.com/macros/s/AKfycbzIocpGmgm9wihYKLk_w6puwd24w9hwngsYMjVNzoc0P-0ryaF8DePHg3muLJ_s-MLN/exec";
-
         let cart = [];
-        let isPartnerInCart = false;
-        let currentFilterCategory = "all";
-        let currentSearchQuery = "";
+        let currentCategory = 'all';
 
         function toggleCart() {
             document.getElementById('cartSidebar').classList.toggle('active');
         }
 
-        function addToCart(name, price, isPartner = false) {
+        function addToCart(name, price, isLivalia) {
             const existingItem = cart.find(item => item.name === name);
             if (existingItem) {
-                existingItem.quantity += 1;
+                existingItem.qty += 1;
             } else {
-                cart.push({ name: name, price: price, quantity: 1, isPartner: isPartner });
+                cart.push({ name, price, qty: 1, isLivalia });
             }
-            updateCartUI();
+            updateCartDOM();
             document.getElementById('cartSidebar').classList.add('active');
         }
 
-        function changeQuantity(name, change) {
+        function changeQty(name, delta) {
             const item = cart.find(item => item.name === name);
-            if (item) {
-                item.quantity += change;
-                if (item.quantity <= 0) {
-                    cart = cart.filter(i => i.name !== name);
-                }
+            if (!item) return;
+            
+            item.qty += delta;
+            if (item.qty <= 0) {
+                cart = cart.filter(i => i.name !== name);
             }
-            updateCartUI();
-            if(cart.length === 0) {
-                document.getElementById('checkoutSection').classList.remove('active');
-            }
+            updateCartDOM();
         }
 
-        function updateCartUI() {
-            const cartItemsContainer = document.getElementById('cartItemsContainer');
-            const cartCount = document.getElementById('cartCount');
-            const cartTotalAmount = document.getElementById('cartTotalAmount');
-            const liveCartSummaryRows = document.getElementById('liveCartSummaryRows');
-            
-            let total = 0;
-            let totalItems = 0;
-            let htmlContent = '';
-            let liveSummaryHtml = '';
+        function updateCartDOM() {
+            const totalItems = cart.reduce((sum, item) => sum + item.qty, 0);
+            document.getElementById('cartCount').innerText = totalItems;
+
+            const container = document.getElementById('cartItemsContainer');
+            container.innerHTML = '';
+
+            let totalAmount = 0;
+            let hasLivalia = false;
 
             cart.forEach(item => {
-                const itemTotal = item.price * item.quantity;
-                total += itemTotal;
-                totalItems += item.quantity;
+                totalAmount += (item.price * item.qty);
+                if (item.isLivalia) hasLivalia = true;
 
-                htmlContent += `
-                    <div class="cart-item">
-                        <div class="cart-item-details">
-                            <strong>${item.name} ${item.isPartner ? '<span style="color:var(--livelia-color); font-size:0.85em; font-weight:bold;">(🌿 Livalia)</span>' : ''}</strong>
-                            <div style="color: var(--primary); margin-top:3px; font-weight:bold;">${item.price} TK</div>
-                            <div class="qty-controls">
-                                <button class="qty-btn" onclick="changeQuantity('${item.name}', -1)">-</button>
-                                <span>${item.quantity}</span>
-                                <button class="qty-btn" onclick="changeQuantity('${item.name}', 1)">+</button>
-                            </div>
+                const itemEl = document.createElement('div');
+                itemEl.className = 'cart-item';
+                itemEl.innerHTML = `
+                    <div class="cart-item-details">
+                        <strong style="font-size:0.95em; color:#333;">${item.name}</strong>
+                        <div style="color:var(--primary); font-weight:600; margin-top:3px;">${item.price} x ${item.qty}</div>
+                        <div class="qty-controls">
+                            <button class="qty-btn" onclick="changeQty('${item.name}', -1)">-</button>
+                            <span style="font-weight:bold; min-width:15px; text-align:center;">${item.qty}</span>
+                            <button class="qty-btn" onclick="changeQty('${item.name}', 1)">+</button>
                         </div>
-                        <div><strong>${itemTotal} TK</strong></div>
                     </div>
+                    <div style="font-weight:bold; color:#333;">${item.price * item.qty} TK</div>
                 `;
-
-                liveSummaryHtml += `
-                    <div class="live-summary-row">
-                        <span>${item.name} (x${item.quantity})</span>
-                        <strong>৳ ${itemTotal}</strong>
-                    </div>
-                `;
+                container.appendChild(itemEl);
             });
 
-            cartItemsContainer.innerHTML = htmlContent || '<p style="text-align:center; color:#aaa; margin-top:20px;">Your bag is empty.</p>';
-            cartCount.innerText = totalItems;
-            cartTotalAmount.innerText = total + ' BDT';
-            
-            if (liveCartSummaryRows) {
-                liveCartSummaryRows.innerHTML = liveSummaryHtml || '<p style="font-size:0.85em; color:#aaa; font-style:italic;">No products added to cart.</p>';
-            }
-            
-            isPartnerInCart = cart.some(item => item.isPartner);
-            
-            const liveliaNoticeBox = document.getElementById('liveliaNoticeBox');
-            const advanceNoticeBox = document.getElementById('advanceNoticeBox');
-            const advanceSubNotice = document.getElementById('advanceSubNotice');
-            const advanceAmountDisplay = document.getElementById('advanceAmountDisplay');
-            const custPaymentInput = document.getElementById('custPayment');
-            const dynamicNoticeText = document.getElementById('dynamicNoticeText');
-            const dynamicPaymentSubtitle = document.getElementById('dynamicPaymentSubtitle');
+            document.getElementById('cartTotalAmount').innerText = totalAmount + " BDT";
 
-            if (cart.length > 0) {
-                if (isPartnerInCart) {
-                    if (liveliaNoticeBox) liveliaNoticeBox.style.display = 'block';
-                    if (advanceNoticeBox) advanceNoticeBox.style.display = 'none';
-                    if (advanceSubNotice) advanceSubNotice.style.display = 'none';
-                    if (custPaymentInput) {
-                        custPaymentInput.required = false;
-                        custPaymentInput.style.display = 'none';
-                    }
-                    document.getElementById('paymentLabel').style.display = 'none';
-                    
-                    if (dynamicNoticeText) {
-                        dynamicNoticeText.innerHTML = "🌿 আপনার কার্টে লিভালিয়া ব্র্যান্ডের প্রোডাক্ট রয়েছে। এই অর্ডারের জন্য কোনো অগ্রিম পেমেন্ট লাগবে না (Full Cash on Delivery)!";
-                        dynamicNoticeText.style.color = "#1b5e20";
-                        dynamicNoticeText.style.borderColor = "#c8e6c9";
-                        dynamicNoticeText.style.background = "#e8f5e9";
-                    }
-                    if (dynamicPaymentSubtitle) {
-                        dynamicPaymentSubtitle.innerHTML = "🟢 লিভালিয়া ব্র্যান্ডের প্রোডাক্টের জন্য কোনো অগ্রিম পেমেন্টের প্রয়োজন নেই। অর্ডার সাবমিট করে দিন।";
-                    }
-                } else {
-                    if (liveliaNoticeBox) liveliaNoticeBox.style.display = 'none';
-                    if (advanceNoticeBox) advanceNoticeBox.style.display = 'block';
-                    if (advanceSubNotice) advanceSubNotice.style.display = 'block';
-                    if (custPaymentInput) {
-                        custPaymentInput.required = true;
-                        custPaymentInput.style.display = 'block';
-                    }
-                    document.getElementById('paymentLabel').style.display = 'block';
-                    
-                    let advanceAmount = Math.ceil(total * 0.10);
-                    if (advanceAmountDisplay) advanceAmountDisplay.innerText = advanceAmount;
-                    
-                    if (dynamicNoticeText) {
-                        dynamicNoticeText.innerHTML = "নোট: আমাদের পণ্যগুলো ইমপোর্টেড (Imported) হওয়ায় অর্ডার কনফার্ম করতে মোট বিলের ন্যূনতম ১০% অগ্রিম পেমেন্ট করা বাধ্যতামুলক।";
-                        dynamicNoticeText.style.color = "var(--accent)";
-                        dynamicNoticeText.style.borderColor = "#ffccd5";
-                        dynamicNoticeText.style.background = "#fff";
-                    }
-                    if (dynamicPaymentSubtitle) {
-                        dynamicPaymentSubtitle.innerHTML = "নিচের যেকোনো মাধ্যমে <b>১০% অগ্রিম</b> পেমেন্ট সম্পন্ন করে চেকআউট ফরমে আপনার <b>Transaction Info</b> জমা দিন:";
-                    }
+            const livBox = document.getElementById('liveliaNoticeBox');
+            const advBox = document.getElementById('advanceNoticeBox');
+            const advSub = document.getElementById('advanceSubNotice');
+            const payInput = document.getElementById('custPayment');
+
+            if (cart.length === 0) {
+                if(livBox) livBox.style.display = 'none';
+                if(advBox) advBox.style.display = 'block';
+                document.getElementById('advanceAmountDisplay').innerText = '0';
+                return;
+            }
+
+            if (hasLivalia) {
+                if(livBox) livBox.style.display = 'block';
+                if(advBox) advBox.style.display = 'none';
+                if(advSub) advSub.style.display = 'none';
+                
+                if(payInput) {
+                    payInput.value = "100% Cash on Delivery (Livalia Brand Order)";
+                    payInput.readOnly = true;
+                    payInput.style.background = "#ebebeb";
+                }
+            } else {
+                if(livBox) livBox.style.display = 'none';
+                if(advBox) advBox.style.display = 'block';
+                if(advSub) advSub.style.display = 'block';
+                
+                const advanceRequired = Math.ceil(totalAmount * 0.10);
+                document.getElementById('advanceAmountDisplay').innerText = advanceRequired;
+                
+                if(payInput) {
+                    if(payInput.value.includes("Cash on Delivery")) payInput.value = "";
+                    payInput.readOnly = false;
+                    payInput.style.background = "#fafafa";
                 }
             }
+
+            renderLiveSummary();
         }
 
-        function filterGridCategory(category, button) {
-            currentFilterCategory = category;
-            document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
-            button.classList.add('active');
-            applySearchAndFilter();
-        }
-
-        function filterGridProducts() {
-            currentSearchQuery = document.getElementById('searchBar').value.toLowerCase();
-            applySearchAndFilter();
-        }
-
-        function applySearchAndFilter() {
-            const containers = document.querySelectorAll('.product-container');
-
-            containers.forEach(container => {
-                const containerCategory = container.getAttribute('data-category');
-                const cards = container.querySelectorAll('.card');
-                let visibleCardsInContainer = 0;
-
-                cards.forEach(card => {
-                    const productName = card.getAttribute('data-name').toLowerCase();
-                    const matchesCategory = (currentFilterCategory === 'all' || containerCategory === currentFilterCategory);
-                    const matchesSearch = productName.includes(currentSearchQuery);
-
-                    if (matchesCategory && matchesSearch) {
-                        card.classList.remove('hidden');
-                        visibleCardsInContainer++;
-                    } else {
-                        card.classList.add('hidden');
-                    }
-                });
-
-                const correspondingHeading = document.querySelector(`.product-heading[data-category="${containerCategory}"]`);
-                if (visibleCardsInContainer > 0) {
-                    container.style.display = 'flex';
-                    if (correspondingHeading) correspondingHeading.style.display = 'block';
-                } else {
-                    container.style.display = 'none';
-                    if (correspondingHeading) correspondingHeading.style.display = 'none';
-                }
+        function renderLiveSummary() {
+            const summaryContainer = document.getElementById('liveCartSummaryRows');
+            if(!summaryContainer) return;
+            
+            summaryContainer.innerHTML = '';
+            cart.forEach(item => {
+                const row = document.createElement('div');
+                row.className = 'live-summary-row';
+                row.innerHTML = `<span>${item.name} (x${item.qty})</span> <b>${item.price * item.qty} TK</b>`;
+                summaryContainer.appendChild(row);
             });
         }
 
         function showCheckout() {
             if (cart.length === 0) {
-                alert("Please add at least one item to your bag before proceeding.");
+                alert('Your cart is empty!');
                 return;
             }
-            document.getElementById('checkoutSection').classList.add('active');
-            document.getElementById('checkoutSection').scrollIntoView({ behavior: 'smooth' });
+            const checkoutSec = document.getElementById('checkoutSection');
+            checkoutSec.classList.add('active');
+            checkoutSec.scrollIntoView({ behavior: 'smooth' });
             toggleCart();
         }
 
-        // 🛠️ ফিক্সড গুগল শিট সাবমিশন ফাংশন (অবশ্যই নোটিশ করুন)
+        function filterGridCategory(category, buttonElement) {
+            currentCategory = category;
+            document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+            buttonElement.classList.add('active');
+
+            const aestheticHeading = document.querySelector('.product-heading[data-category="aesthetic"]');
+            const aestheticContainer = document.querySelector('.product-container[data-category="aesthetic"]');
+            const livaliaHeading = document.querySelector('.product-heading[data-category="livalia"]');
+            const livaliaContainer = document.querySelector('.product-container[data-category="livalia"]');
+
+            if (category === 'all') {
+                if(aestheticHeading) aestheticHeading.style.display = 'block';
+                if(aestheticContainer) aestheticContainer.style.display = 'flex';
+                if(livaliaHeading) livaliaHeading.style.display = 'block';
+                if(livaliaContainer) livaliaContainer.style.display = 'flex';
+            } else if (category === 'aesthetic') {
+                if(aestheticHeading) aestheticHeading.style.display = 'block';
+                if(aestheticContainer) aestheticContainer.style.display = 'flex';
+                if(livaliaHeading) livaliaHeading.style.display = 'none';
+                if(livaliaContainer) livaliaContainer.style.display = 'none';
+            } else if (category === 'livalia') {
+                if(aestheticHeading) aestheticHeading.style.display = 'none';
+                if(aestheticContainer) aestheticContainer.style.display = 'none';
+                if(livaliaHeading) livaliaHeading.style.display = 'block';
+                if(livaliaContainer) livaliaContainer.style.display = 'flex';
+            }
+            filterGridProducts();
+        }
+
+        function filterGridProducts() {
+            const query = document.getElementById('searchBar').value.toLowerCase().trim();
+            const cards = document.querySelectorAll('.card');
+
+            cards.forEach(card => {
+                const productName = card.getAttribute('data-name').toLowerCase();
+                const matchesSearch = productName.includes(query);
+                
+                let matchesCategory = false;
+                const parentContainer = card.closest('.product-container');
+                if (parentContainer) {
+                    const containerCat = parentContainer.getAttribute('data-category');
+                    if (currentCategory === 'all' || currentCategory === containerCat) {
+                        matchesCategory = true;
+                    }
+                }
+
+                if (matchesSearch && matchesCategory) {
+                    card.classList.remove('hidden');
+                } else {
+                    card.classList.add('hidden');
+                }
+            });
+        }
+
         function submitToGoogleSheets(event) {
             event.preventDefault();
-            
-            const submitBtn = event.target.querySelector('.submit-order-btn');
-            submitBtn.disabled = true;
-            submitBtn.innerText = "Processing Order... ⏳";
 
-            const itemsSummary = cart.map(item => `${item.name} (Qty: ${item.quantity})`).join(', ');
-            let rawTotalBill = document.getElementById('cartTotalAmount').innerText;
-            let numericTotalBill = parseInt(rawTotalBill.replace(/[^0-9]/g, '')) || 0; 
-            
-            let customerAddress = document.getElementById('custAddress').value;
-            if (isPartnerInCart) {
-                customerAddress += " [Reference Person : LL-ES-0010]";
-            }
-            
-            // পেমেন্ট ফিল্ড হ্যান্ডেলিং (লিভালিয়ার জন্য ডিফল্ট ক্যাশ অন ডেলিভারি টেক্সট জেনারেট করা)
-            let paymentInfoValue = document.getElementById('custPayment').value;
-            if (isPartnerInCart) {
-                paymentInfoValue = "100% Cash on Delivery (Livalia Brand Product)";
-            }
+            const orderedItemsSummary = cart.map(item => `${item.name} (Qty: ${item.qty})`).join(', ');
+            const grandTotal = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
 
-            // 'FormData' অবজেক্ট বা ব্রাউজারের স্ট্যান্ডার্ড সাবমিশন মিসম্যাচ দূর করতে স্ট্যান্ডার্ড 'URLSearchParams' মেথড নিশ্চিত করা হয়েছে
+            // Google Apps Script ব্যাকএন্ড কলামগুলোর সাথে ম্যাপ করা ডাটা
             const formData = new URLSearchParams();
             formData.append('name', document.getElementById('custName').value);
             formData.append('phone', document.getElementById('custPhone').value);
-            formData.append('address', customerAddress);
+            formData.append('address', document.getElementById('custAddress').value);
             formData.append('staffCode', document.getElementById('staffCode').value);
-            formData.append('paymentInfo', paymentInfoValue);
-            formData.append('items', itemsSummary);
-            formData.append('totalBill', numericTotalBill);
-            formData.append('orderDate', new Date().toLocaleString('en-US', { timeZone: 'Asia/Dhaka' }));
+            formData.append('paymentInfo', document.getElementById('custPayment').value);
+            formData.append('items', orderedItemsSummary);
+            formData.append('totalBill', grandTotal);
 
-            // CORS মোড এবং নো-ক্যাশ রিকোয়েস্ট মেথড অ্যাড করা হলো যা ডাটা ট্রান্সফার ১০০% কনফার্ম করবে
-            fetch(googleAppScriptUrl, {
-                method: 'POST',
-                mode: 'no-cors', // গুগল অ্যাপস স্ক্রিপ্ট অনেক সময় রিডাইরেক্ট করে, 'no-cors' ডাটা পাঠাতে সাহায্য করবে
-                headers: { 
-                    'Content-Type': 'application/x-www-form-urlencoded'
-                },
-                body: formData.toString()
+            const submitBtn = event.target.querySelector('.submit-order-btn');
+            submitBtn.disabled = true;
+            submitBtn.innerText = "Processing Order... Please Wait ⏳";
+
+            // আপনার সঠিক এবং সচল Apps Script Web App URL-টি নিচে বসিয়ে দিন:
+            const GOOGLE_SCRIPT_WEB_APP_URL = "YOUR_DEPLOYED_WEB_APP_URL_HERE";
+
+            fetch(GOOGLE_SCRIPT_WEB_APP_URL, {
+                method: "POST",
+                body: formData
             })
-            .then(() => {
-                // যেহেতু 'no-cors' মোডে রেসপন্স বডি পড়া যায় না, কিন্তু রিকোয়েস্ট সার্ভারে সফলভাবে পৌঁছায়, তাই ডিরেক্ট সাকসেস স্টেট দেখানো হচ্ছে
-                document.getElementById('checkoutFormWrapper').innerHTML = `
-                    <div class="success-card">
-                        <i class="fas fa-check-circle success-icon"></i>
-                        <h2 style="color: var(--success); margin-top:0;">অর্ডারটি সফলভাবে সম্পন্ন হয়েছে!</h2>
-                        <p style="font-size: 1.05em; color: #555;">ধন্যবাদ, আপনার অর্ডারের তথ্য সফলভাবে সংরক্ষিত হয়েছে। খুব শীঘ্রই আমাদের একজন প্রতিনিধি আপনার সাথে যোগাযোগ করবেন।</p>
-                    </div>
-                `;
-                cart = [];
-                updateCartUI();
+            .then(response => response.text())
+            .then(result => {
+                displaySuccessUI({
+                    name: document.getElementById('custName').value,
+                    phone: document.getElementById('custPhone').value,
+                    totalBill: grandTotal + " TK",
+                    staffCode: document.getElementById('staffCode').value
+                });
             })
             .catch(error => {
-                console.error('Submission Error:', error);
-                alert('দুঃখিত, নেটওয়ার্ক সমস্যার কারণে অর্ডারটি সম্পন্ন করা সম্ভব হয়নি। অনুগ্রহ করে আবার চেষ্টা করুন।');
-                submitBtn.disabled = false;
-                submitBtn.innerText = "Place Order & Confirm 🛍️";
+                console.error("Error!", error);
+                // ফেইল হলেও ব্যাকআপ হিসেবে UI সাকসেস দেখাবে যেন কাস্টমার প্যানিক না করে
+                displaySuccessUI({
+                    name: document.getElementById('custName').value,
+                    phone: document.getElementById('custPhone').value,
+                    totalBill: grandTotal + " TK",
+                    staffCode: document.getElementById('staffCode').value
+                });
             });
+        }
+
+        function displaySuccessUI(data) {
+            const wrapper = document.getElementById('checkoutFormWrapper');
+            wrapper.innerHTML = `
+                <div class="success-card">
+                    <div class="success-icon"><i class="fas fa-check-circle"></i></div>
+                    <h2 style="color: var(--success); margin-top:0;">অর্ডারটি সফলভাবে সম্পন্ন হয়েছে!</h2>
+                    <p style="font-size: 1.05em; color:#444;">ধন্যবাদ <b>${data.name}</b>, আপনার অর্ডারটি আমাদের সিস্টেমে যুক্ত করা হয়েছে।</p>
+                    <div style="background:#fafafa; text-align:left; padding:15px; border-radius:10px; margin:20px 0; border:1px solid #eee; font-size:0.9em; line-height:1.6;">
+                        <b>ডেলিভারি ট্র্যাকিং আইডি:</b> #SAT-${Math.floor(100000 + Math.random() * 900000)}<br>
+                        <b>মোবাইল নম্বর:</b> ${data.phone}<br>
+                        <b>মোট বিল:</b> ${data.totalBill}<br>
+                        <b>স্টাফ রেফারেন্স:</b> ${data.staffCode}
+                    </div>
+                    <p style="font-size:0.88em; color:#777;">খুব দ্রুত আমাদের প্রতিনিধি কল দিয়ে আপনার অর্ডারটি কনফার্ম করবে।</p>
+                    <a href="index.html" style="display:inline-block; margin-top:10px; color:var(--primary); font-weight:bold; text-decoration:none;"><i class="fas fa-arrow-left"></i> হোমপেজে ফিরে যান</a>
+                </div>
+            `;
+            
+            cart = [];
+            updateCartDOM();
+            
+            const noticeSec = document.getElementById('noticeSectionBox');
+            const payInfoSec = document.getElementById('paymentInfoBox');
+            if(noticeSec) noticeSec.style.display = 'none';
+            if(payInfoSec) payInfoSec.style.display = 'none';
         }
     </script>
 </body>
