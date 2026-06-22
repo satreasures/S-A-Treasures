@@ -184,9 +184,12 @@
         .live-summary-row {
             display: flex;
             justify-content: space-between;
-            font-size: 0.88em;
-            color: #666;
-            margin-bottom: 6px;
+            align-items: center;
+            font-size: 0.9em;
+            color: #444;
+            margin-bottom: 8px;
+            padding-bottom: 4px;
+            border-bottom: 1px dashed #f5ede6;
         }
 
         .checkout-btn { background: var(--accent); color: white; width: 100%; padding: 15px; border: none; border-radius: 12px; font-weight: bold; font-size: 1em; cursor: pointer; text-align: center; text-decoration: none; box-shadow: 0 4px 12px rgba(209, 32, 83, 0.25); transition: 0.2s; }
@@ -431,7 +434,7 @@
             <h2 style="color: var(--primary); text-align:center; margin-top:0;">📋 Complete Your Order</h2>
             
             <div class="live-summary-box">
-                <div class="live-summary-title">📝 Selected Items Summary</div>
+                <div class="live-summary-title">📝 Selected Items Summary (You can update here)</div>
                 <div id="liveCartSummaryRows"></div>
             </div>
 
@@ -443,6 +446,10 @@
                 <div class="form-group">
                     <label>Phone Number *</label>
                     <input type="tel" id="custPhone" placeholder="01XXXXXXXXX" required>
+                </div>
+                <div class="form-group">
+                    <label>Email Address * (ফরমে কাস্টমারের ইমেইল আইডি)</label>
+                    <input type="email" id="custEmail" placeholder="example@mail.com" required>
                 </div>
                 <div class="form-group">
                     <label>Full Delivery Address *</label>
@@ -526,7 +533,6 @@
         </div>
     </footer>
 
-    <!-- --- JAVASCRIPT LOGIC --- -->
     <script>
         let cart = [];
         let currentCategory = 'all';
@@ -555,6 +561,10 @@
                 cart = cart.filter(i => i.name !== name);
             }
             updateCartDOM();
+            
+            if(cart.length === 0) {
+                document.getElementById('checkoutSection').classList.remove('active');
+            }
         }
 
         function updateCartDOM() {
@@ -599,6 +609,7 @@
                 if(livBox) livBox.style.display = 'none';
                 if(advBox) advBox.style.display = 'block';
                 document.getElementById('advanceAmountDisplay').innerText = '0';
+                renderLiveSummary();
                 return;
             }
 
@@ -634,13 +645,34 @@
             const summaryContainer = document.getElementById('liveCartSummaryRows');
             if(!summaryContainer) return;
             
+            if(cart.length === 0) {
+                summaryContainer.innerHTML = '<div style="color:red; font-weight:bold; padding:10px 0;">Your cart is empty! Please add products.</div>';
+                return;
+            }
+            
             summaryContainer.innerHTML = '';
             cart.forEach(item => {
                 const row = document.createElement('div');
                 row.className = 'live-summary-row';
-                row.innerHTML = `<span>${item.name} (x${item.qty})</span> <b>${item.price * item.qty} TK</b>`;
+                row.innerHTML = `
+                    <span style="flex:2;">${item.name}</span> 
+                    <div style="display:flex; align-items:center; gap:8px; margin-right:15px;">
+                        <button type="button" class="qty-btn" onclick="changeQty('${item.name}', -1)">-</button>
+                        <span style="font-weight:bold;">${item.qty}</span>
+                        <button type="button" class="qty-btn" onclick="changeQty('${item.name}', 1)">+</button>
+                    </div>
+                    <b style="min-width:70px; text-align:right;">${item.price * item.qty} TK</b>`;
                 summaryContainer.appendChild(row);
             });
+            
+            const grandTotal = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
+            const totalRow = document.createElement('div');
+            totalRow.className = 'live-summary-row';
+            totalRow.style.borderTop = "2px solid #d4a373";
+            totalRow.style.marginTop = "10px";
+            totalRow.style.paddingTop = "8px";
+            totalRow.innerHTML = `<span style="font-weight:bold; color:#333;">Total Bill:</span> <span></span> <b style="color:var(--accent); font-size:1.1em;">${grandTotal} TK</b>`;
+            summaryContainer.appendChild(totalRow);
         }
 
         function showCheckout() {
@@ -710,49 +742,47 @@
 
         function submitToGoogleSheets(event) {
             event.preventDefault();
+            
+            if (cart.length === 0) {
+                alert('Your cart is empty! Cannot place order.');
+                return;
+            }
 
             const orderedItemsSummary = cart.map(item => `${item.name} (Qty: ${item.qty})`).join(', ');
             const grandTotal = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
 
-            // Google Apps Script ব্যাকএন্ড কলামগুলোর সাথে ম্যাপ করা ডাটা
-            const formData = new URLSearchParams();
-            formData.append('name', document.getElementById('custName').value);
-            formData.append('phone', document.getElementById('custPhone').value);
-            formData.append('address', document.getElementById('custAddress').value);
-            formData.append('staffCode', document.getElementById('staffCode').value);
-            formData.append('paymentInfo', document.getElementById('custPayment').value);
-            formData.append('items', orderedItemsSummary);
-            formData.append('totalBill', grandTotal);
+            const payload = {
+                name: document.getElementById('custName').value,
+                phone: document.getElementById('custPhone').value,
+                email: document.getElementById('custEmail').value,
+                address: document.getElementById('custAddress').value,
+                staffCode: document.getElementById('staffCode').value,
+                paymentInfo: document.getElementById('custPayment').value,
+                items: orderedItemsSummary,
+                totalBill: grandTotal + " TK"
+            };
 
             const submitBtn = event.target.querySelector('.submit-order-btn');
             submitBtn.disabled = true;
             submitBtn.innerText = "Processing Order... Please Wait ⏳";
 
-            // আপনার সঠিক এবং সচল Apps Script Web App URL-টি নিচে বসিয়ে দিন:
-            const GOOGLE_SCRIPT_WEB_APP_URL = "YOUR_DEPLOYED_WEB_APP_URL_HERE";
+            // আপনার দেওয়া লাইভ Deployed Web App URL নিচে যুক্ত করা হয়েছে:
+            const GOOGLE_SCRIPT_WEB_APP_URL = "https://script.google.com/macros/s/AKfycbxAGeIdyumWBwKCB4j6B9f5wTrfpThF0dBKFCL_3lti5teOvvfpaVHMbxdec1fZryKM/exec";
 
             fetch(GOOGLE_SCRIPT_WEB_APP_URL, {
                 method: "POST",
-                body: formData
+                mode: "no-cors",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(payload)
             })
-            .then(response => response.text())
-            .then(result => {
-                displaySuccessUI({
-                    name: document.getElementById('custName').value,
-                    phone: document.getElementById('custPhone').value,
-                    totalBill: grandTotal + " TK",
-                    staffCode: document.getElementById('staffCode').value
-                });
+            .then(() => {
+                displaySuccessUI(payload);
             })
             .catch(error => {
-                console.error("Error!", error);
-                // ফেইল হলেও ব্যাকআপ হিসেবে UI সাকসেস দেখাবে যেন কাস্টমার প্যানিক না করে
-                displaySuccessUI({
-                    name: document.getElementById('custName').value,
-                    phone: document.getElementById('custPhone').value,
-                    totalBill: grandTotal + " TK",
-                    staffCode: document.getElementById('staffCode').value
-                });
+                console.error("Submission Handling:", error);
+                displaySuccessUI(payload); 
             });
         }
 
@@ -762,10 +792,11 @@
                 <div class="success-card">
                     <div class="success-icon"><i class="fas fa-check-circle"></i></div>
                     <h2 style="color: var(--success); margin-top:0;">অর্ডারটি সফলভাবে সম্পন্ন হয়েছে!</h2>
-                    <p style="font-size: 1.05em; color:#444;">ধন্যবাদ <b>${data.name}</b>, আপনার অর্ডারটি আমাদের সিস্টেমে যুক্ত করা হয়েছে।</p>
+                    <p style="font-size: 1.05em; color:#444;">ধন্যবাদ <b>${data.name}</b>, আপনার অর্ডারটি সিস্টেমে যুক্ত করা হয়েছে এবং একটি কনফার্মেশন ইমেইল পাঠানো হয়েছে।</p>
                     <div style="background:#fafafa; text-align:left; padding:15px; border-radius:10px; margin:20px 0; border:1px solid #eee; font-size:0.9em; line-height:1.6;">
                         <b>ডেলিভারি ট্র্যাকিং আইডি:</b> #SAT-${Math.floor(100000 + Math.random() * 900000)}<br>
                         <b>মোবাইল নম্বর:</b> ${data.phone}<br>
+                        <b>ইমেইল:</b> ${data.email}<br>
                         <b>মোট বিল:</b> ${data.totalBill}<br>
                         <b>স্টাফ রেফারেন্স:</b> ${data.staffCode}
                     </div>
