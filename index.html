@@ -448,7 +448,7 @@
                     <input type="tel" id="custPhone" placeholder="01XXXXXXXXX" required>
                 </div>
                 <div class="form-group">
-                    <label>Email Address * (ফরমে কাস্টমারের ইমেইল আইডি)</label>
+                    <label>Email Address *</label>
                     <input type="email" id="custEmail" placeholder="example@mail.com" required>
                 </div>
                 <div class="form-group">
@@ -502,7 +502,7 @@
 
     <section class="payment-info" id="paymentInfoBox">
         <h2 style="color: var(--primary);">পেমেন্ট পদ্ধতি (Payment Procedure)</h2>
-        <p id="dynamicPaymentSubtitle">নিচের যেকোনো माध्यम <b>১০% অগ্রিম</b> পেমেন্ট সম্পন্ন করে চেকআউট ফরমে আপনার <b>Transaction Info</b> জমা দিন:</p>
+        <p id="dynamicPaymentSubtitle">নিচের যেকোনো মাধ্যমে <b>১০% অগ্রিম</b> পেমেন্ট সম্পন্ন করে চেকআউট ফরমে আপনার <b>Transaction Info</b> জমা দিন:</p>
         
         <div class="payment-grid">
             <div class="pay-card">
@@ -750,24 +750,28 @@
 
             const orderedItemsSummary = cart.map(item => `${item.name} (Qty: ${item.qty})`).join(', ');
             const grandTotal = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
+            
+            const hasLivalia = cart.some(item => item.isLivalia);
+            const advanceAmt = hasLivalia ? "0 TK" : Math.ceil(grandTotal * 0.10) + " TK";
 
+            // গুগল শিটের কলাম হেডার সিকোয়েন্স মেইনটেইন করে পেলোড স্ট্রাকচার করা হয়েছে
             const payload = {
                 name: document.getElementById('custName').value,
                 phone: document.getElementById('custPhone').value,
-                email: document.getElementById('custEmail').value,
                 address: document.getElementById('custAddress').value,
-                staffCode: document.getElementById('staffCode').value,
-                paymentInfo: document.getElementById('custPayment').value,
                 items: orderedItemsSummary,
-                totalBill: grandTotal + " TK"
+                totalBill: grandTotal + " TK",
+                advanceAmount: advanceAmt,
+                paymentInfo: document.getElementById('custPayment').value,
+                staffCode: document.getElementById('staffCode').value
             };
 
             const submitBtn = event.target.querySelector('.submit-order-btn');
             submitBtn.disabled = true;
             submitBtn.innerText = "Processing Order... Please Wait ⏳";
 
-            // আপনার দেওয়া লাইভ Deployed Web App URL নিচে যুক্ত করা হয়েছে:
-            const GOOGLE_SCRIPT_WEB_APP_URL = "https://script.google.com/macros/s/AKfycbxAGeIdyumWBwKCB4j6B9f5wTrfpThF0dBKFCL_3lti5teOvvfpaVHMbxdec1fZryKM/exec";
+            // আপনার নতুন লাইভ Deployed Web App URL
+            const GOOGLE_SCRIPT_WEB_APP_URL = "https://script.google.com/macros/s/AKfycbyL6c2CBs8xPaOJDksRkLHLN1ihlx2frwynhhW0LAt7pbJVi5UWTQ9DF-WFjsRbdkmH/exec";
 
             fetch(GOOGLE_SCRIPT_WEB_APP_URL, {
                 method: "POST",
@@ -792,12 +796,12 @@
                 <div class="success-card">
                     <div class="success-icon"><i class="fas fa-check-circle"></i></div>
                     <h2 style="color: var(--success); margin-top:0;">অর্ডারটি সফলভাবে সম্পন্ন হয়েছে!</h2>
-                    <p style="font-size: 1.05em; color:#444;">ধন্যবাদ <b>${data.name}</b>, আপনার অর্ডারটি সিস্টেমে যুক্ত করা হয়েছে এবং একটি কনফার্মেশন ইমেইল পাঠানো হয়েছে।</p>
+                    <p style="font-size: 1.05em; color:#444;">ধন্যবাদ <b>${data.name}</b>, আপনার অর্ডারটি সিস্টেমে যুক্ত করা হয়েছে।</p>
                     <div style="background:#fafafa; text-align:left; padding:15px; border-radius:10px; margin:20px 0; border:1px solid #eee; font-size:0.9em; line-height:1.6;">
                         <b>ডেলিভারি ট্র্যাকিং আইডি:</b> #SAT-${Math.floor(100000 + Math.random() * 900000)}<br>
                         <b>মোবাইল নম্বর:</b> ${data.phone}<br>
-                        <b>ইমেইল:</b> ${data.email}<br>
                         <b>মোট বিল:</b> ${data.totalBill}<br>
+                        <b>অগ্রিম পেমেন্ট:</b> ${data.advanceAmount}<br>
                         <b>স্টাফ রেফারেন্স:</b> ${data.staffCode}
                     </div>
                     <p style="font-size:0.88em; color:#777;">খুব দ্রুত আমাদের প্রতিনিধি কল দিয়ে আপনার অর্ডারটি কনফার্ম করবে।</p>
