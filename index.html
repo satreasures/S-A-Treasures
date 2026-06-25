@@ -136,7 +136,6 @@
 
         .container { display: flex; flex-wrap: wrap; justify-content: center; gap: 35px; padding: 20px 20px 50px; max-width: 1200px; margin: 0 auto; }
         
-        /* Interactive Product Card Style */
         .card { background: var(--card-bg); border-radius: 20px; box-shadow: 0 10px 25px rgba(59, 20, 60, 0.03); width: 330px; padding: 20px; transition: all 0.3s ease; position: relative; border: 2px solid #e2e8f0; box-sizing: border-box; display: flex; flex-direction: column; }
         .card.hidden { display: none !important; }
         .card:hover { transform: translateY(-5px); border-color: var(--accent); box-shadow: 0 15px 35px rgba(59, 20, 60, 0.12); }
@@ -148,13 +147,12 @@
         .main-img { width: 100%; height: 280px; object-fit: cover; border-radius: 15px; margin-bottom: 12px; border: 1px solid #e2e8f0; transition: transform 0.3s ease; }
         .card:hover .main-img { transform: scale(1.02); }
         
-        h3 { color: #1e293b; margin: 15px 0 5px; font-size: 1.35em; font-weight: 600; }
+        h3 { color: #1e293b; margin: 15px 0 5px; font-size: 1.2em; font-weight: 600; line-height: 1.4; }
         .price-container { margin-bottom: 15px; }
         .regular-price { text-decoration: line-through; color: #94a3b8; font-size: 0.9em; margin-right: 8px; }
         .offer-price { color: var(--primary); font-weight: bold; font-size: 1.35em; }
         .shipping-tag { font-size: 0.85em; color: var(--primary); font-weight: 600; display: block; margin-top: 4px; }
         
-        /* Colour Selector Attributes */
         .color-selector-title { font-size: 0.85em; font-weight: bold; color: #475569; margin: 5px 0; }
         .color-options { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 15px; }
         .color-btn { padding: 6px 14px; border: 1px solid #cbd5e1; border-radius: 20px; font-size: 0.8em; font-weight: 600; cursor: pointer; background: #fff; transition: all 0.2s; color: #475569; }
@@ -168,10 +166,7 @@
         .order-btn:hover { background-color: var(--primary); color: white; box-shadow: 0 3px 10px rgba(59, 20, 60, 0.2); }
         .order-btn:disabled { background: #cbd5e1; color: #94a3b8; cursor: not-allowed; box-shadow: none; }
         
-        .fb-btn { display: block; background-color: #1877F2; color: white; padding: 12px; text-decoration: none; border-radius: 12px; font-weight: bold; text-align: center; transition: 0.3s; font-size: 0.95em; box-shadow: 0 3px 10px rgba(24, 119, 242, 0.15); }
-        .fb-btn:hover { background-color: #145dbf; }
-
-        /* --- New Product Inner View Modal System --- */
+        /* Product Inner View Modal System */
         .product-modal { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.6); z-index: 2000; display: none; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.3s ease; padding: 15px; box-sizing: border-box; }
         .product-modal.active { display: flex; opacity: 1; }
         .modal-content { background: #fff; width: 100%; max-width: 650px; border-radius: 25px; box-shadow: 0 20px 40px rgba(0,0,0,0.3); animation: slideUp 0.4s ease; display: flex; flex-direction: column; overflow: hidden; position: relative; border: 3px solid var(--primary); }
@@ -186,7 +181,6 @@
         .modal-info-wrap { display: flex; flex-direction: column; }
         .modal-desc { font-size: 0.9em; color: #475569; line-height: 1.5; margin: 10px 0; }
 
-        /* Existing Styles Retained */
         .cart-sidebar { position: fixed; top: 0; right: -420px; width: 380px; height: 100%; background: white; box-shadow: -8px 0 25px rgba(59, 20, 60, 0.08); z-index: 1000; transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1); padding: 25px; display: flex; flex-direction: column; box-sizing: border-box; border-left: 3px solid var(--primary); }
         .cart-sidebar.active { right: 0; }
         .cart-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #e2e8f0; padding-bottom: 15px; }
@@ -214,6 +208,8 @@
         .form-group label { display: block; margin-bottom: 8px; font-weight: 600; font-size: 0.95em; color: var(--primary); }
         .form-group input, .form-group textarea, .form-group select { width: 100%; padding: 14px; border: 1px solid #cbd5e1; border-radius: 10px; box-sizing: border-box; font-family: inherit; font-size: 0.95em; transition: 0.2s; background: #fafafa; }
         .form-group input:focus, .form-group textarea:focus, .form-group select:focus { border-color: var(--accent); background: #fff; outline: none; box-shadow: 0 0 0 3px rgba(251, 204, 231, 0.4); }
+
+        .cable-restriction-alert { background: #fee2e2; border: 2px dashed #ef4444; color: #b91c1c; font-weight: bold; padding: 15px; border-radius: 12px; margin-bottom: 20px; font-size: 0.95em; display: none; animation: fadeIn 0.3s ease; }
 
         .submit-order-btn { display: block; background-color: var(--primary); color: white; padding: 16px; border: none; border-radius: 12px; font-weight: bold; font-size: 1.15em; width: 100%; box-shadow: 0 4px 15px rgba(59, 20, 60, 0.25); cursor: pointer; transition: 0.3s ease; }
         .submit-order-btn:hover { background-color: var(--primary-hover); transform: translateY(-2px); }
@@ -263,7 +259,7 @@
 <body>
 
     <div class="shipping-banner">
-        🎉 FREE HOME DELIVERY ALL OVER BANGLADESH! 🚚💨
+        🎉 FREE DELIVERY: INSIDE DHAKA > ৳800 | OUTSIDE DHAKA > ৳1200! 🚚💨
     </div>
 
     <a href="https://wa.me/8801532178827" class="whatsapp-float" target="_blank">
@@ -292,14 +288,12 @@
         </div>
     </div>
 
-    <!-- Container Area Rendered By JavaScript Data Matrix For High Control -->
     <h2 class="section-title product-heading" data-category="aesthetic">✨ Our Premium Aesthetic Gifts ✨</h2>
     <div class="container product-container" id="aestheticContainer" data-category="aesthetic"></div>
 
     <h2 class="section-title product-heading" data-category="livalia">🌿 Official Livalia Collection (100% COD) 🌿</h2>
     <div class="container product-container" id="livaliaContainer" data-category="livalia"></div>
 
-    <!-- Product Details Inner Modal System -->
     <div class="product-modal" id="productModal" onclick="closeProductModal(event)">
         <div class="modal-content">
             <span class="modal-close" onclick="document.getElementById('productModal').classList.remove('active')">&times;</span>
@@ -314,7 +308,7 @@
         </div>
         <div class="cart-items" id="cartItemsContainer"></div>
         <div class="cart-total">
-            <span>Total Amount:</span>
+            <span>Total Bill:</span>
             <span id="cartTotalAmount">0 BDT</span>
         </div>
         <button class="checkout-btn" onclick="showCheckout()">Proceed to Checkout</button>
@@ -324,8 +318,12 @@
         <div id="checkoutFormWrapper">
             <h2 style="color: var(--primary); text-align:center; margin-top:0;">📋 Complete Your Order</h2>
             
+            <div class="cable-restriction-alert" id="cableRestrictionAlertBox">
+                ⚠️ দুঃখিত! শুধুমাত্র ক্যাবল প্রটেক্টর (Cable Protector) এককভাবে হোম ডেলিভারি করা সম্ভব নয়। দয়া করে কার্টে অন্য যেকোনো একটি প্রোডাক্ট যুক্ত করুন।
+            </div>
+
             <div class="live-summary-box">
-                <div class="live-summary-title">📝 Selected Items Summary (You can update here)</div>
+                <div class="live-summary-title">📝 Selected Items Summary</div>
                 <div id="liveCartSummaryRows"></div>
             </div>
 
@@ -343,6 +341,13 @@
                     <input type="email" id="custEmail" placeholder="example@mail.com" required>
                 </div>
                 <div class="form-group">
+                    <label>Delivery Location Zone *</label>
+                    <select id="deliveryZone" onchange="updateCartDOM()" required>
+                        <option value="inside" selected>Inside Dhaka (ডেলিভারি চার্জ ৳৮০ | ৳৮০০+ অর্ডারে ফ্রি)</option>
+                        <option value="outside">Outside Dhaka (ডেলিভারি চার্জ ৳১৫০ | ৳১২০০+ অর্ডারে ফ্রি)</option>
+                    </select>
+                </div>
+                <div class="form-group">
                     <label>Full Delivery Address *</label>
                     <textarea id="custAddress" rows="3" placeholder="জেলা, থানা, এলাকা এবং রোড নম্বর বিস্তারিত লিখুন" required></textarea>
                 </div>
@@ -350,7 +355,7 @@
                 <div class="form-group">
                     <label>Staff Code (স্টাফ কোড) *</label>
                     <select id="staffCode" required>
-                        <option value="" disabled selected>আপনার স্টাফ কোডটি সিলেক্ট করুন</option>
+                        <option value="" disabled selected>আপনারスタッフ কোডটি সিলেক্ট করুন</option>
                         <option value="SAT 1">SAT 1</option>
                         <option value="SAT 2">SAT 2</option>
                         <option value="SAT 3">SAT 3</option>
@@ -369,31 +374,31 @@
                     </p>
 
                     <p id="advanceNoticeBox" style="font-size:0.95em; color:var(--primary); margin:-5px 0 12px; background: #fff5f7; padding: 12px; border-radius: 8px; border: 1px dashed var(--primary); font-weight: 500;">
-                        ⚠️ আপনার কার্ট অনুযায়ী অর্ডার কনফার্ম করতে ৳<strong id="advanceAmountDisplay" style="font-size: 1.15em;">0</strong> (১০% অগ্রিম পেমেন্ট) করুন।
+                        ⚠️ আপনার অর্ডার কনফার্ম করতে মোট প্রোডাক্ট বিলের ১০% এবং ডেলিভারি চার্জ সহ সর্বমোট ৳<strong id="advanceAmountDisplay" style="font-size: 1.15em;">0</strong> অগ্রিম পেমেন্ট করতে হবে।
                     </p>
-                    <p id="advanceSubNotice" style="font-size:0.82em; color:#64748b; margin-bottom: 8px;">(নিচের বিকাশ বা নগদ নাম্বারে এই টাকা পাঠিয়ে নিচে আপনার পেমেন্ট মাধ্যম ও TrxID লিখুন)</p>
+                    <p id="advanceSubNotice" style="font-size:0.82em; color:#64748b; margin-bottom: 8px;">(নিচের বিকাশ বা নগদ নাম্বারে টাকা পাঠিয়ে নিচে আপনার পেমেন্ট মাধ্যম ও TrxID লিখুন)</p>
                     <input type="text" id="custPayment" placeholder="e.g., bKash Personal - 017XXXXXXXX - TrxID: XXXXXX" required>
                 </div>
 
-                <button type="submit" class="submit-order-btn">Place Order & Confirm 🛍️</button>
+                <button type="submit" class="submit-order-btn" id="submitOrderFinalBtn">Place Order & Confirm 🛍️</button>
             </form>
         </div>
     </section>
 
     <section class="notice-section" id="noticeSectionBox">
-        <h2 style="color: var(--primary); margin-bottom: 15px;"><i class="fas fa-truck"></i> ডেলিভারি ও অগ্রিম পেমেন্ট</h2>
+        <h2 style="color: var(--primary); margin-bottom: 15px;"><i class="fas fa-truck"></i> ডেলিভারি ও অগ্রিম পেমেন্ট পলিসি</h2>
         <div style="font-size: 1.1em; line-height: 1.6; color: #334155;">
-            <p>আমরা সারা বাংলাদেশে <strong>ফ্রি হোম ডেলিভারি</strong> প্রদান করছি! 🚚</p>
+            <p>আমরা সারা বাংলাদেশে অত্যন্ত দ্রুততার সাথে হোম ডেলিভারি প্রদান করছি! 🚚</p>
             <div id="dynamicNoticeText" class="mandatory-box">
-                নোট: আমাদের পণ্যগুলো ইমপোর্টেড (Imported) হওয়ায় অর্ডার কনফার্ম করতে মোট বিলের ন্যূনতম ১০% অগ্রিম পেমেন্ট করা বাধ্যতামুলক।
+                ঢাকা সিটিতে ৳৮০০ এবং ঢাকার বাইরে ৳১২০০ এর বেশি অর্ডারে ডেলিভারি চার্জ সম্পূর্ণ ফ্রি! অন্যথায় ঢাকা সিটিতে ৳৮০ এবং ঢাকার বাইরে ৳১৫০ ডেলিভারি চার্জ প্রযোজ্য।
             </div>
-            <p style="margin-top: 10px;">বাকি টাকা পণ্য হাতে পাওয়ার পর পরিশোধ করতে পারবেন (Cash on Delivery)।</p>
+            <p style="margin-top: 10px;">অর্ডার কনফার্ম করার জন্য প্রোডাক্ট মূল্যের ১০% এবং ডেলিভারি চার্জ অগ্রিম পেমেন্ট করতে হবে। বাকি টাকা ক্যাশ অন ডেলিভারি।</p>
         </div>
     </section>
 
     <section class="payment-info" id="paymentInfoBox">
         <h2 style="color: var(--primary);">পেমেন্ট পদ্ধতি (Payment Procedure)</h2>
-        <p id="dynamicPaymentSubtitle">নিচের যেকোনো মাধ্যমে <b>১০% অগ্রিম</b> পেমেন্ট সম্পন্ন করে চেকআউট ফরমে আপনার <b>Transaction Info</b> জমা দিন:</p>
+        <p id="dynamicPaymentSubtitle">নিচের যেকোনো মাধ্যমে প্রয়োজনীয় অগ্রিম পেমেন্ট সম্পন্ন করে চেকআউট ফরমে আপনার <b>Transaction Info</b> জমা দিন:</p>
         
         <div class="payment-grid">
             <div class="pay-card">
@@ -424,97 +429,102 @@
         </div>
     </footer>
 
-    <!-- --- JAVASCRIPT LOGIC MATRIX WITH VARIANTS & INNER VIEW SYSTEM --- -->
     <script>
-        // 🔮 Dynamic Product Matrix with Color Database and Stock counts
+        // 🔮 Precise Current Updated Business Inventory Architecture Matrix
         const productsData = [
             {
                 id: "p1",
-                name: "Aesthetic Butterfly Keychain",
-                tagline: "Elegant crystal metallic charm",
-                desc: "This premium crystal butterfly keychain features subtle metallic accents that shimmer beautifully in the sunlight. Ideal as a decorative charm or thoughtful gift.",
+                name: "Astronaut Sunset Light Bedroom Robot Atmosphere Light",
+                tagline: "RGB intelligent color change - USB charging",
+                desc: "An ambient masterwork setup featuring magnetic articulation. Project a selection of crisp, high-definition chromatic sunset effects anywhere across your studio space.",
                 category: "aesthetic",
-                regPrice: 275,
-                offPrice: 235,
+                regPrice: null,
+                offPrice: 357.40,
                 isLivalia: false,
-                fbLink: "https://www.facebook.com/share/1B5Wuq2Ke3/",
+                isCableProtector: false,
                 variants: [
-                    { color: "Crystal Pink", stock: 12, img: "https://i.postimg.cc/HnMq2Gcw/O1CN01T5o-ZZ52Es-SQBsn-FTE-2219476018800-0-cib.jpg" },
-                    { color: "Ocean Blue", stock: 5, img: "https://i.postimg.cc/W1fPT7vt/phone-chain-11.jpg" },
-                    { color: "Diamond White", stock: 0, img: "https://i.postimg.cc/PJB2SPsj/Gemini-Generated-Image-ael0b7ael0b7ael0.png" }
+                    { color: "Peter Pan [USB Charging]", stock: 14, img: "image_3d5a6a.png" }
                 ]
             },
             {
                 id: "p2",
-                name: "Cute Character Phone Strap",
-                tagline: "Aesthetic beaded phone lanyard",
-                desc: "Express your style with this custom beaded phone strap featuring delightful character beads and micro-pearl lines designed to fit any premium handset secure layout.",
+                name: "Cartoon Mobile Phone Rope Beaded Acrylic Lanyard",
+                tagline: "Aesthetic handmade smartphone wrist accessory",
+                desc: "Express your style with this custom beaded phone strap featuring delightful character beads and lines designed to fit any premium handset layout.",
                 category: "aesthetic",
-                regPrice: 180,
-                offPrice: 145,
+                regPrice: null,
+                offPrice: 49.54,
                 isLivalia: false,
-                fbLink: "https://www.facebook.com/share/1B5Wuq2Ke3/",
+                isCableProtector: false,
                 variants: [
-                    { color: "Lavender Kitty", stock: 18, img: "https://i.postimg.cc/W1fPT7vt/phone-chain-11.jpg" },
-                    { color: "Sakura Pink", stock: 8, img: "https://i.postimg.cc/HnMq2Gcw/O1CN01T5o-ZZ52Es-SQBsn-FTE-2219476018800-0-cib.jpg" }
+                    { color: "Purple", stock: 5, img: "image_3d5ae7.png" },
+                    { color: "Blue", stock: 5, img: "image_3d5ae7.png" },
+                    { color: "Yellow", stock: 5, img: "image_3d5ae7.png" },
+                    { color: "Pink", stock: 5, img: "image_3d5ae7.png" },
+                    { color: "Dark Pink", stock: 5, img: "image_3d5ae7.png" }
                 ]
             },
             {
                 id: "p3",
-                name: "Premium Beaded Phone Wristlet",
-                tagline: "Selected Big Pearl Premium Edition",
-                desc: "Handcrafted using AAA grade oversized synthetic pearls. Extremely durable and comfortable for wrist deployment, complementing high-end luxury fashion setups.",
+                name: "Wholesale Cross-Border Key Chains with Bowknot Beads",
+                tagline: "Premium matching aesthetic keychain set",
+                desc: "Handcrafted style bowknot elements mixed elegantly. Highly durable and perfect decoration for bags, airpods, and everyday essential keys.",
                 category: "aesthetic",
-                regPrice: 335,
-                offPrice: 305,
+                regPrice: null,
+                offPrice: 86.18,
                 isLivalia: false,
-                fbLink: "https://www.facebook.com/share/1B5Wuq2Ke3/",
+                isCableProtector: false,
                 variants: [
-                    { color: "Pearl White", stock: 15, img: "https://i.postimg.cc/PJB2SPsj/Gemini-Generated-Image-ael0b7ael0b7ael0.png" }
+                    { color: "pl-2270", stock: 5, img: "image_3d5dec.png" },
+                    { color: "pl-2269", stock: 5, img: "image_3d5dec.png" },
+                    { color: "pl-2271", stock: 5, img: "image_3d5dec.png" },
+                    { color: "pl-2272", stock: 5, img: "image_3d5dec.png" },
+                    { color: "pl-2274", stock: 5, img: "image_3d5dec.png" }
                 ]
             },
             {
                 id: "p4",
-                name: "Animal Cable Protectors",
-                tagline: "Cute cartoon data cable saver",
-                desc: "Stop replacing charging cables! These thick high-grade silicone animal accessories clasp securely onto lightning/Type-C joints preventing breaks elegantly.",
+                name: "Cute Milk Curry Color Data Line Protective Cover",
+                tagline: "Silicone animal charger line saver protection",
+                desc: "Stop replacing charging cables! These thick high-grade silicone animal accessories clasp securely onto lightning/Type-C joints. Cannot be delivered alone.",
                 category: "aesthetic",
-                regPrice: 107,
-                offPrice: 75,
+                regPrice: null,
+                offPrice: 20.36,
                 isLivalia: false,
-                fbLink: "https://www.facebook.com/share/1B5Wuq2Ke3/",
+                isCableProtector: true, // Core flag parameter for execution restrictions
                 variants: [
-                    { color: "Panda Cute", stock: 25, img: "https://i.postimg.cc/N0SDsKFj/Cable-Protector-1.jpg" },
-                    { color: "Pink Cat", stock: 0, img: "https://i.postimg.cc/7hDgh0kN/Kitty-Necklace.jpg" }
+                    { color: "White Bear Option", stock: 24, img: "image_3d5e6a.png" },
+                    { color: "Brown Bear Option", stock: 26, img: "image_3d5e6a.png" }
                 ]
             },
             {
                 id: "p5",
-                name: "Hello Kitty Dancing Stone Necklace",
-                tagline: "Dancing zircon silver gift item",
-                desc: "Features a centrally suspended high-refraction dancing zirconia gem inside an iconic layout silhouette that catches every micro-vibration to emit intense sparkle.",
+                name: "Smart Hello Kitty Cat Necklace Cute Girl Pendant",
+                tagline: "Refraction intense luxury sparkling necklace",
+                desc: "Features a centrally suspended high-refraction dancing zircon gem inside an iconic layout silhouette that catches every micro-vibration to emit intense sparkle.",
                 category: "aesthetic",
-                regPrice: 445,
-                offPrice: 400,
+                regPrice: null,
+                offPrice: 72.38,
                 isLivalia: false,
-                fbLink: "https://www.facebook.com/share/1B5Wuq2Ke3/",
+                isCableProtector: false,
                 variants: [
-                    { color: "Pure Silver", stock: 7, img: "https://i.postimg.cc/7hDgh0kN/Kitty-Necklace.jpg" },
-                    { color: "Rose Gold", stock: 3, img: "https://i.postimg.cc/PJB2SPsj/Gemini-Generated-Image-ael0b7ael0b7ael0.png" }
+                    { color: "Smart Kitty Variant", stock: 14, img: "image_3d5ead.png" }
                 ]
             },
             {
                 id: "p6",
-                name: "Astronaut Sunset Lamp (7 Colors)",
-                tagline: "Rechargeable Touch Control 360° Rotate",
-                desc: "An ambient masterwork setup featuring magnetic articulation. Project a selection of crisp, high-definition chromatic sunset effects anywhere across your studio space.",
+                name: "Sweet Cool Style Alloy Butterfly Simple Keychain",
+                tagline: "Metallic dynamic crystal aesthetic charm",
+                desc: "This premium butterfly keychain features subtle metallic accents that shimmer beautifully. Ideal as a decorative charm or thoughtful gift choice.",
                 category: "aesthetic",
-                regPrice: 935,
-                offPrice: 880,
+                regPrice: null,
+                offPrice: 67.63,
                 isLivalia: false,
-                fbLink: "https://www.facebook.com/share/1B5Wuq2Ke3/",
+                isCableProtector: false,
                 variants: [
-                    { color: "Classic White", stock: 9, img: "https://i.postimg.cc/DZqNvnBB/Gemini-Generated-Image-4tcavf4tcavf4tca.png" }
+                    { color: "Pink", stock: 5, img: "image_3d5f05.png" },
+                    { color: "Purple", stock: 5, img: "image_3d5f05.png" },
+                    { color: "Blue", stock: 5, img: "image_3d5f05.png" }
                 ]
             },
             {
@@ -526,75 +536,17 @@
                 regPrice: null,
                 offPrice: 880,
                 isLivalia: true,
-                fbLink: null,
+                isCableProtector: false,
                 variants: [
                     { color: "Standard Pack", stock: 40, img: "https://i.postimg.cc/L8ZrFgm0/Night-Spot.jpg" }
-                ]
-            },
-            {
-                id: "p8",
-                name: "Livalia Neem Toothpaste",
-                tagline: "Complete Care & Healthy Fresh Teeth",
-                desc: "Formulated with pure active neem leaf concentrates to ensure robust antimicrobial defense throughout your gum layers. Promotes fresh breath and dynamic tartar guard.",
-                category: "livalia",
-                regPrice: null,
-                offPrice: 320,
-                isLivalia: true,
-                fbLink: null,
-                variants: [
-                    { color: "Standard Herbal", stock: 50, img: "https://i.postimg.cc/Vkb3P0zp/Tooth-Paste.png" }
-                ]
-            },
-            {
-                id: "p9",
-                name: "Livalia Alovera Shampoo",
-                tagline: "Intense Root Care & Hair Fall Solution",
-                desc: "Enriched with cold-pressed natural aloe enzymes to strengthen brittle hair strands starting from the deepest roots. Keeps hydration locked to combat standard hairfall parameters.",
-                category: "livalia",
-                regPrice: null,
-                offPrice: 640,
-                isLivalia: true,
-                fbLink: null,
-                variants: [
-                    { color: "Aloe Active 200ml", stock: 35, img: "https://i.postimg.cc/nhQ6f9nW/Shampoo.png" }
-                ]
-            },
-            {
-                id: "p10",
-                name: "Livalia Scavia Soap",
-                tagline: "Anti-Scabies & Antiparasitic Glycerin Soap",
-                desc: "A specialized clinical grade glycerin structure created to systematically soothe extreme skin irritations, fight unwanted parasitic fungi elements, and deliver smooth skin layer protection.",
-                category: "livalia",
-                regPrice: null,
-                offPrice: 420,
-                isLivalia: true,
-                fbLink: null,
-                variants: [
-                    { color: "Standard 100g", stock: 22, img: "https://i.postimg.cc/436qmC7p/Soap.png" }
-                ]
-            },
-            {
-                id: "p11",
-                name: "Livalia Neem Facewash",
-                tagline: "Cleans Active - Helps Fight Acne Bacteria",
-                desc: "A targeted antibacterial wash that deeply targets trapped dirt complexes within pores. Curates an optimal line of defense to safely strip away persistent acne-triggering oils.",
-                category: "livalia",
-                regPrice: null,
-                offPrice: 460,
-                isLivalia: true,
-                fbLink: null,
-                variants: [
-                    { color: "Active Neem 150ml", stock: 19, img: "https://i.postimg.cc/0NYFbgMp/Face-Wash.png" }
                 ]
             }
         ];
 
         let cart = [];
         let currentCategory = 'all';
-        // Object to map product index configuration selections
         let selectedProductVariants = {}; 
 
-        // Initialize and Build Products UI Grid
         function renderProductsGrid() {
             const aesContainer = document.getElementById('aestheticContainer');
             const livContainer = document.getElementById('livaliaContainer');
@@ -603,7 +555,6 @@
             livContainer.innerHTML = '';
 
             productsData.forEach(prod => {
-                // Default to first variant selection index 0 initially
                 selectedProductVariants[prod.id] = 0; 
                 const currentVar = prod.variants[0];
 
@@ -614,14 +565,12 @@
 
                 let badgeHtml = prod.isLivalia ? `<span class="livelia-badge">LIVALIA PARTNER</span>` : '';
                 let regPriceHtml = prod.regPrice ? `<span class="regular-price">${prod.regPrice} TK</span>` : '';
-                let currencySymbol = prod.isLivalia ? " BDT" : " TK";
-                let shippingHtml = !prod.isLivalia ? `<span class="shipping-tag">✨ Free Home Delivery</span>` : '';
-                let fbButtonHtml = prod.fbLink ? `<a href="${prod.fbLink}" class="fb-btn" target="_blank"><i class="fab fa-facebook"></i> ফেসবুক পেজ দেখুন</a>` : '';
+                
+                let totalQtyCounter = prod.variants.reduce((total, v) => total + v.stock, 0);
 
-                // Build color select buttons dynamically
                 let colorButtons = '';
                 if(prod.variants.length > 1) {
-                    colorButtons = `<div class="color-selector-title">Select Color:</div><div class="color-options">`;
+                    colorButtons = `<div class="color-selector-title">Select Option:</div><div class="color-options">`;
                     prod.variants.forEach((v, idx) => {
                         let outClass = v.stock === 0 ? 'out-of-stock' : '';
                         let selClass = idx === 0 ? 'selected' : '';
@@ -630,10 +579,9 @@
                     colorButtons += `</div>`;
                 }
 
-                // Initial stock state definition
                 let stockText = getStockText(currentVar.stock);
                 let btnDisabled = currentVar.stock === 0 ? 'disabled' : '';
-                let btnLabel = currentVar.stock === 0 ? 'Out of Stock' : 'Add To Cart';
+                let btnLabel = currentVar.stock === 0 ? 'Out of Stock' : 'Add to Bag 🛍️';
 
                 card.innerHTML = `
                     ${badgeHtml}
@@ -644,13 +592,12 @@
                     </div>
                     <div class="price-container">
                         ${regPriceHtml}
-                        <span class="offer-price">${prod.offPrice}${currencySymbol}</span>
-                        ${shippingHtml}
+                        <span class="offer-price">৳${prod.offPrice.toFixed(2)}</span>
+                        <span class="shipping-tag" style="color:#64748b; font-weight:normal;">Total Inventory Available: ${totalQtyCounter} pcs</span>
                     </div>
                     ${colorButtons}
                     <div class="stock-indicator" id="stock-${prod.id}">${stockText}</div>
                     <button class="order-btn" id="btn-${prod.id}" ${btnDisabled} onclick="handleAddCartClick('${prod.id}')">${btnLabel}</button>
-                    ${fbButtonHtml}
                 `;
 
                 if(prod.category === 'aesthetic') {
@@ -663,19 +610,17 @@
 
         function getStockText(stock) {
             if (stock === 0) return `<span class="stock-indicator out-stock"><i class="fas fa-times-circle"></i> Out of Stock</span>`;
-            if (stock <= 5) return `<span class="stock-indicator low-stock"><i class="fas fa-exclamation-triangle"></i> Only ${stock} items left in stock!</span>`;
+            if (stock <= 5) return `<span class="stock-indicator low-stock"><i class="fas fa-exclamation-triangle"></i> Limited Stock (${stock} left)</span>`;
             return `<span class="stock-indicator"><i class="fas fa-check-circle"></i> In Stock (${stock} available)</span>`;
         }
 
-        // Handles active dynamic selection variant alteration
         function selectVariant(event, prodId, varIdx, isInsideModal) {
-            if(event) event.stopPropagation(); // Stop firing trigger modal click
+            if(event) event.stopPropagation(); 
             
             const prod = productsData.find(p => p.id === prodId);
             const variant = prod.variants[varIdx];
             selectedProductVariants[prodId] = varIdx;
 
-            // Target Context Elements both in main grid layout and inside detailed modals if active
             const mainImg = document.getElementById(`img-${prodId}`);
             const stockInd = document.getElementById(`stock-${prodId}`);
             const actionBtn = document.getElementById(`btn-${prodId}`);
@@ -689,26 +634,22 @@
                     actionBtn.innerText = "Out of Stock";
                 } else {
                     actionBtn.disabled = false;
-                    actionBtn.innerText = "Add To Cart";
+                    actionBtn.innerText = "Add to Bag 🛍️";
                 }
             }
 
-            // Sync visual button state highlight
             const scopeContainer = event ? event.target.closest('.color-options') : null;
             if(scopeContainer) {
                 scopeContainer.querySelectorAll('.color-btn').forEach(b => b.classList.remove('selected'));
                 event.target.classList.add('selected');
             }
 
-            // Sync structural modification inside modal architecture seamlessly
             if(!isInsideModal) {
                 const modalWrap = document.getElementById('productModal');
                 if(modalWrap && modalWrap.classList.contains('active')) {
-                    // Refresh inner modal content sync state
                     openProductInnerView(prodId);
                 }
             } else {
-                // If clicked inside modal, update the primary outer page parameters mirror state
                 const primaryCard = document.querySelector(`.card[data-id="${prodId}"]`);
                 if(primaryCard) {
                     const gridColorButtons = primaryCard.querySelectorAll('.color-btn');
@@ -720,29 +661,26 @@
             }
         }
 
-        // Handle addition trigger matching state matrix setup arrays
         function handleAddCartClick(prodId) {
             const prod = productsData.find(p => p.id === prodId);
             const varIdx = selectedProductVariants[prodId];
             const variant = prod.variants[varIdx];
             
             const uniqueCartName = prod.variants.length > 1 ? `${prod.name} (${variant.color})` : prod.name;
-            addToCart(uniqueCartName, prod.offPrice, prod.isLivalia);
+            addToCart(uniqueCartName, prod.offPrice, prod.isLivalia, prod.isCableProtector);
         }
 
-        // --- New Product Deep Inner View Window Generator ---
         function openProductInnerView(prodId) {
             const prod = productsData.find(p => p.id === prodId);
             const activeVarIdx = selectedProductVariants[prodId];
             const variant = prod.variants[activeVarIdx];
 
             const modalBody = document.getElementById('modalBodyData');
-            let currencySymbol = prod.isLivalia ? " BDT" : " TK";
             let regPriceHtml = prod.regPrice ? `<span class="regular-price" style="font-size:1.1em;">${prod.regPrice} TK</span>` : '';
 
             let colorButtons = '';
             if(prod.variants.length > 1) {
-                colorButtons = `<div class="color-selector-title" style="margin-top:15px;">Select Color Variant:</div><div class="color-options">`;
+                colorButtons = `<div class="color-selector-title" style="margin-top:15px;">Select Option Criteria:</div><div class="color-options">`;
                 prod.variants.forEach((v, idx) => {
                     let outClass = v.stock === 0 ? 'out-of-stock' : '';
                     let selClass = idx === activeVarIdx ? 'selected' : '';
@@ -752,24 +690,23 @@
             }
 
             let btnDisabled = variant.stock === 0 ? 'disabled' : '';
-            let btnLabel = variant.stock === 0 ? 'Out of Stock' : 'Add Selected Variant to Bag 🛍️';
+            let btnLabel = variant.stock === 0 ? 'Out of Stock' : 'Add Selected Option to Bag 🛍️';
 
             modalBody.innerHTML = `
                 <div class="modal-img-wrap">
                     <img src="${variant.img}" alt="${prod.name}">
                 </div>
                 <div class="modal-info-wrap">
-                    <h2 style="color:var(--primary); margin:0 0 5px 0; font-size:1.6em;">${prod.name}</h2>
+                    <h2 style="color:var(--primary); margin:0 0 5px 0; font-size:1.4em; line-height:1.3;">${prod.name}</h2>
                     <p style="font-size: 0.95em; color: #64748b; font-style:italic; margin:0 0 15px 0;">${prod.tagline}</p>
                     
                     <div class="price-container" style="background:#f8fafc; padding:12px; border-radius:10px; border:1px solid #e2e8f0;">
                         ${regPriceHtml}
-                        <span class="offer-price" style="font-size:1.5em;">${prod.offPrice}${currencySymbol}</span>
-                        <span style="font-size:0.85em; display:block; color:var(--primary); font-weight:bold; margin-top:5px;"><i class="fas fa-check-circle"></i> Free Home Delivery Enabled</span>
+                        <span class="offer-price" style="font-size:1.5em;">৳${prod.offPrice.toFixed(2)}</span>
                     </div>
 
                     <div class="modal-desc">
-                        <strong>Description:</strong><br>
+                        <strong>Product Details:</strong><br>
                         ${prod.desc}
                     </div>
 
@@ -793,17 +730,15 @@
             document.getElementById('cartSidebar').classList.toggle('active');
         }
 
-        function addToCart(name, price, isLivalia) {
+        function addToCart(name, price, isLivalia, isCableProtector) {
             const existingItem = cart.find(item => item.name === name);
             if (existingItem) {
                 existingItem.qty += 1;
             } else {
-                cart.push({ name, price, qty: 1, isLivalia });
+                cart.push({ name, price, qty: 1, isLivalia, isCableProtector });
             }
             updateCartDOM();
             document.getElementById('cartSidebar').classList.add('active');
-            
-            // Close details modal if open upon safe add action completion
             document.getElementById('productModal').classList.remove('active');
         }
 
@@ -822,6 +757,7 @@
             }
         }
 
+        // 🧮 SYSTEM SHIPPING MATRIX & ADVANCE PAYMENT ENGINE
         function updateCartDOM() {
             const totalItems = cart.reduce((sum, item) => sum + item.qty, 0);
             document.getElementById('cartCount').innerText = totalItems;
@@ -829,32 +765,60 @@
             const container = document.getElementById('cartItemsContainer');
             container.innerHTML = '';
 
-            let totalAmount = 0;
+            let productSubtotalBill = 0;
             let hasLivalia = false;
+            let containsNonCableItems = false;
 
             cart.forEach(item => {
-                totalAmount += (item.price * item.qty);
+                productSubtotalBill += (item.price * item.qty);
                 if (item.isLivalia) hasLivalia = true;
+                if (!item.isCableProtector) containsNonCableItems = true;
 
                 const itemEl = document.createElement('div');
                 itemEl.className = 'cart-item';
                 itemEl.innerHTML = `
                     <div class="cart-item-details">
                         <strong style="font-size:0.95em; color:#1e293b;">${item.name}</strong>
-                        <div style="color:var(--primary); font-weight:600; margin-top:3px;">${item.price} x ${item.qty}</div>
+                        <div style="color:var(--primary); font-weight:600; margin-top:3px;">৳${item.price.toFixed(2)} x ${item.qty}</div>
                         <div class="qty-controls">
                             <button class="qty-btn" onclick="changeQty('${item.name}', -1)">-</button>
                             <span style="font-weight:bold; min-width:15px; text-align:center;">${item.qty}</span>
                             <button class="qty-btn" onclick="changeQty('${item.name}', 1)">+</button>
                         </div>
                     </div>
-                    <div style="font-weight:bold; color:#1e293b;">${item.price * item.qty} TK</div>
+                    <div style="font-weight:bold; color:#1e293b;">৳ ${(item.price * item.qty).toFixed(2)}</div>
                 `;
                 container.appendChild(itemEl);
             });
 
-            document.getElementById('cartTotalAmount').innerText = totalAmount + " BDT";
+            // Delivery Logic Matrix Implementation
+            const activeZone = document.getElementById('deliveryZone').value;
+            let currentDeliveryCharge = 0;
 
+            if (cart.length > 0) {
+                if (activeZone === 'inside') {
+                    currentDeliveryCharge = productSubtotalBill > 800 ? 0 : 80;
+                } else {
+                    currentDeliveryCharge = productSubtotalBill > 1200 ? 0 : 150;
+                }
+            }
+
+            let completeGrandTotalBill = productSubtotalBill + currentDeliveryCharge;
+            document.getElementById('cartTotalAmount').innerText = completeGrandTotalBill.toFixed(2) + " BDT";
+
+            // Cable restriction interface check
+            const restrictionAlert = document.getElementById('cableRestrictionAlertBox');
+            const finalBtn = document.getElementById('submitOrderFinalBtn');
+
+            if (cart.length > 0 && !containsNonCableItems) {
+                if (restrictionAlert) restrictionAlert.style.display = 'block';
+                if (finalBtn) finalBtn.disabled = true;
+            } else {
+                if (restrictionAlert) restrictionAlert.style.display = 'none';
+                if (finalBtn) finalBtn.disabled = false;
+            }
+
+            // Advanced Advance Calculation Logic Updates
             const livBox = document.getElementById('liveliaNoticeBox');
             const advBox = document.getElementById('advanceNoticeBox');
             const advSub = document.getElementById('advanceSubNotice');
@@ -864,7 +828,7 @@
                 if(livBox) livBox.style.display = 'none';
                 if(advBox) advBox.style.display = 'block';
                 document.getElementById('advanceAmountDisplay').innerText = '0';
-                renderLiveSummary();
+                renderLiveSummary(productSubtotalBill, currentDeliveryCharge, completeGrandTotalBill);
                 return;
             }
 
@@ -874,7 +838,7 @@
                 if(advSub) advSub.style.display = 'none';
                 
                 if(payInput) {
-                    payInput.value = "100% Cash on Delivery (Livalia Brand Order)";
+                    payInput.value = "100% Cash on Delivery (Livalia Official Free Advance)";
                     payInput.readOnly = true;
                     payInput.style.background = "#ebebeb";
                 }
@@ -883,8 +847,9 @@
                 if(advBox) advBox.style.display = 'block';
                 if(advSub) advSub.style.display = 'block';
                 
-                const advanceRequired = Math.ceil(totalAmount * 0.10);
-                document.getElementById('advanceAmountDisplay').innerText = advanceRequired;
+                // Advanced Core Formula Execution: (10% of items bill) + active shipping fee
+                let advanceRequiredCalculated = Math.ceil(productSubtotalBill * 0.10) + currentDeliveryCharge;
+                document.getElementById('advanceAmountDisplay').innerText = advanceRequiredCalculated;
                 
                 if(payInput) {
                     if(payInput.value.includes("Cash on Delivery")) payInput.value = "";
@@ -893,10 +858,10 @@
                 }
             }
 
-            renderLiveSummary();
+            renderLiveSummary(productSubtotalBill, currentDeliveryCharge, completeGrandTotalBill);
         }
 
-        function renderLiveSummary() {
+        function renderLiveSummary(sub, delivery, grand) {
             const summaryContainer = document.getElementById('liveCartSummaryRows');
             if(!summaryContainer) return;
             
@@ -910,31 +875,50 @@
                 const row = document.createElement('div');
                 row.className = 'live-summary-row';
                 row.innerHTML = `
-                    <span style="flex:2;">${item.name}</span> 
+                    <span style="flex:2; font-size:0.9em;">${item.name}</span> 
                     <div style="display:flex; align-items:center; gap:8px; margin-right:15px;">
                         <button type="button" class="qty-btn" onclick="changeQty('${item.name}', -1)">-</button>
-                        <span style="font-weight:bold;">${item.qty}</span>
+                        <span style="font-weight:bold; font-size:0.9em;">${item.qty}</span>
                         <button type="button" class="qty-btn" onclick="changeQty('${item.name}', 1)">+</button>
                     </div>
-                    <b style="min-width:70px; text-align:right;">${item.price * item.qty} TK</b>`;
+                    <b style="min-width:80px; text-align:right;">৳ ${(item.price * item.qty).toFixed(2)}</b>`;
                 summaryContainer.appendChild(row);
             });
             
-            const grandTotal = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
+            // Subtotal row
+            const subRow = document.createElement('div');
+            subRow.className = 'live-summary-row';
+            subRow.style.marginTop = "10px";
+            subRow.innerHTML = `<span>Items Subtotal:</span> <span></span> <b>৳ ${sub.toFixed(2)}</b>`;
+            summaryContainer.appendChild(subRow);
+
+            // Shipping charge row
+            const shipRow = document.createElement('div');
+            shipRow.className = 'live-summary-row';
+            shipRow.innerHTML = `<span>Delivery Charge:</span> <span></span> <b>${delivery === 0 ? "FREE" : "৳ " + delivery}</b>`;
+            summaryContainer.appendChild(shipRow);
+
+            // Grand Total row
             const totalRow = document.createElement('div');
             totalRow.className = 'live-summary-row';
             totalRow.style.borderTop = "2px solid var(--primary)";
-            totalRow.style.marginTop = "10px";
             totalRow.style.paddingTop = "8px";
-            totalRow.innerHTML = `<span style="font-weight:bold; color:var(--primary);">Total Bill:</span> <span></span> <b style="color:var(--primary); font-size:1.1em;">${grandTotal} TK</b>`;
+            totalRow.innerHTML = `<span style="font-weight:bold; color:var(--primary);">Total Bill:</span> <span></span> <b style="color:var(--primary); font-size:1.1em;">৳ ${grand.toFixed(2)}</b>`;
             summaryContainer.appendChild(totalRow);
         }
 
         function showCheckout() {
             if (cart.length === 0) {
-                alert('Your cart is empty!');
+                alert('Your bag is empty!');
                 return;
             }
+
+            let containsNonCableItems = cart.some(item => !item.isCableProtector);
+            if (!containsNonCableItems) {
+                alert('দুঃখিত, শুধুমাত্র Cable Protector এককভাবে অর্ডার করা যাবে না। দয়া করে অন্য আরেকটি প্রোডাক্ট যুক্ত করুন।');
+                return;
+            }
+
             const checkoutSec = document.getElementById('checkoutSection');
             checkoutSec.classList.add('active');
             checkoutSec.scrollIntoView({ behavior: 'smooth' });
@@ -997,15 +981,30 @@
         function submitToGoogleSheets(event) {
             event.preventDefault();
             if (cart.length === 0) {
-                alert('Your cart is empty! Cannot place order.');
+                alert('Your cart is empty!');
+                return;
+            }
+
+            let containsNonCableItems = cart.some(item => !item.isCableProtector);
+            if (!containsNonCableItems) {
+                alert('দুঃখিত, শুধুমাত্র Cable Protector এককভাবে অর্ডার করা যাবে না!');
                 return;
             }
 
             const orderedItemsSummary = cart.map(item => `${item.name} (Qty: ${item.qty})`).join(', ');
-            const grandTotal = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
+            
+            let productSubtotalBill = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
+            const activeZone = document.getElementById('deliveryZone').value;
+            let currentDeliveryCharge = 0;
+            if (activeZone === 'inside') {
+                currentDeliveryCharge = productSubtotalBill > 800 ? 0 : 80;
+            } else {
+                currentDeliveryCharge = productSubtotalBill > 1200 ? 0 : 150;
+            }
+            let completeGrandTotalBill = productSubtotalBill + currentDeliveryCharge;
             
             const hasLivalia = cart.some(item => item.isLivalia);
-            const advanceAmt = hasLivalia ? "0 TK" : Math.ceil(grandTotal * 0.10) + " TK";
+            const advanceAmt = hasLivalia ? "0 TK (Livalia Free COD)" : (Math.ceil(productSubtotalBill * 0.10) + currentDeliveryCharge) + " TK";
 
             const payload = {
                 name: document.getElementById('custName').value,
@@ -1013,13 +1012,13 @@
                 email: document.getElementById('custEmail').value,
                 address: document.getElementById('custAddress').value,
                 items: orderedItemsSummary,
-                totalBill: grandTotal + " TK",
+                totalBill: completeGrandTotalBill.toFixed(2) + " TK",
                 advanceAmount: advanceAmt,
                 paymentInfo: document.getElementById('custPayment').value,
                 staffCode: document.getElementById('staffCode').value
             };
 
-            const submitBtn = event.target.querySelector('.submit-order-btn');
+            const submitBtn = document.getElementById('submitOrderFinalBtn');
             submitBtn.disabled = true;
             submitBtn.innerText = "Processing Order... Please Wait ⏳";
 
@@ -1038,7 +1037,7 @@
                 displaySuccessUI(payload, liveOrderId);
             })
             .catch(error => {
-                console.error("Submission Handling:", error);
+                console.error("Submission Handling Error:", error);
                 const fallbackId = "SAT-" + Math.floor(100000 + Math.random() * 900000);
                 displaySuccessUI(payload, fallbackId); 
             });
@@ -1054,8 +1053,8 @@
                     <div style="background:#fffcfd; text-align:left; padding:20px; border-radius:10px; margin:20px 0; border:2px solid var(--primary); font-size:0.95em; line-height:1.6;">
                         <b style="color:var(--primary); font-size:1.1em;">অর্ডার ট্র্যাকিং আইডি: #${generatedId}</b><br>
                         <b>মোবাইল নম্বর:</b> ${data.phone}<br>
-                        <b>মোট বিল:</b> ${data.totalBill}<br>
-                        <b>অগ্রিম পেমেন্ট:</b> ${data.advanceAmount}<br>
+                        <b>মোট বিল (ডেলিভারি সহ):</b> ${data.totalBill}<br>
+                        <b>অগ্রিম পেমেন্ট হিসেব:</b> ${data.advanceAmount}<br>
                         <b>স্টাফ রেফারেন্স:</b> ${data.staffCode}
                     </div>
                     <p style="font-size:0.88em; color:#64748b;">খুব দ্রুত আমাদের প্রতিনিধি কল দিয়ে আপনার অর্ডারটি ভেরিফাই করবে।</p>
@@ -1072,7 +1071,6 @@
             if(payInfoSec) payInfoSec.style.display = 'none';
         }
 
-        // Execution Launcher Setup
         window.onload = function() {
             renderProductsGrid();
         };
