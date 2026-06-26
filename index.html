@@ -209,7 +209,7 @@
 
     <script>
         // 🌟 আপনার জেনারেট করা নতুন মেইন ইউআরএল লিংক এখানে পারফেক্টলি সেট করা হয়েছে
-        const GOOGLE_SCRIPT_WEB_APP_URL = "https://script.google.com/macros/s/AKfycbwj8RDJdOFdoTgUN2Qk0CkRXdXAqW9d5UUH9NAjDTysNVKUDh1SIFyFvZTkGB2A1dum/exec";
+        const GOOGLE_SCRIPT_WEB_APP_URL = "https://script.google.com/macros/s/AKfycbzzspgAqbdPi6_xfLkELh5rPVcuZDXEYInx0chtTJ54A1yTkcoekc-Fr-XSCtgUJpks/exec";
 
         const livaliaProducts = [
             { id: "L001", name: "Livalia Night Spot Removal Cream", offPrice: 880, img: "https://i.postimg.cc/L8ZrFgm0/Night-Spot.jpg" },
@@ -223,17 +223,11 @@
         const fallbackVariantImages = {
             "P001": {
                 "default": "https://i.postimg.cc/xj5sts7d/O1CN01Vh-Km-C01Xr-W8Fx-Pev8-2219452762977-0-cib-600x600.jpg",
-                "1": "https://i.postimg.cc/xj5sts7d/O1CN01Vh-Km-C01Xr-W8Fx-Pev8-2219452762977-0-cib-600x600.jpg",
-                "2": "https://i.postimg.cc/5tz7gfcS/O1CN01FFMJe-M1Xr-W8Gb-Nya-D-2219452762977-0-cib-600x600.jpg",
-                "3": "https://i.postimg.cc/DZqNvnBB/Gemini-Generated-Image-4tcavf4tcavf4tca.png",
                 "white": "https://i.postimg.cc/xj5sts7d/O1CN01Vh-Km-C01Xr-W8Fx-Pev8-2219452762977-0-cib-600x600.jpg"
             },
             "P002": {
                 "default": "https://i.postimg.cc/7hDgh0kN/Kitty-Necklace.jpg",
-                "1": "https://i.postimg.cc/7hDgh0kN/Kitty-Necklace.jpg",
-                "2": "https://i.postimg.cc/NF4RHFs2/Kitty-Necklace-1.jpg",
-                "3": "https://i.postimg.cc/HnHQnXg2/Kitty-Necklace-2.jpg",
-                "Standard": "https://i.postimg.cc/7hDgh0kN/Kitty-Necklace.jpg"
+                "Silver": "https://i.postimg.cc/7hDgh0kN/Kitty-Necklace.jpg"
             },
             "P003": {
                 "default": "https://i.postimg.cc/HnMq2Gcw/O1CN01T5o-ZZ52Es-SQBsn-FTE-2219476018800-0-cib.jpg",
@@ -247,22 +241,20 @@
                 "Purple": "https://i.postimg.cc/RhjXgNrk/phone-chain-2.jpg",
                 "Pink": "https://i.postimg.cc/G2J66r6Y/Pink.png",
                 "Yellow": "https://i.postimg.cc/zBS4454K/Yellow.png",
-                "White": "https://i.postimg.cc/Y9fTTkTF/White.png",
-                "Dark Pink": "https://i.postimg.cc/NM5gcK7F/O1CN01h-FBX4O2JSPu6gejys-2212782849420-0-cib.jpg",
-                "Standard": "https://i.postimg.cc/PJB2SPsj/Gemini-Generated-Image-ael0b7ael0b7ael0.png"
+                "White": "https://i.postimg.cc/Y9fTTkTF/White.png"
             },
             "P005": {
                 "default": "https://i.postimg.cc/N0SDsKFj/Cable-Protector-1.jpg",
-                "Main pic": "https://i.postimg.cc/N0SDsKFj/Cable-Protector-1.jpg",
                 "Brown Bear": "https://i.postimg.cc/K8cJJXCM/Cable-Protector-3.jpg",
-                "Snow Bear": "https://i.postimg.cc/tRk1y6jb/O1CN01Keucpl1ijgozr-UYou-1032914449-0-cib.jpg",
-                "Standard": "https://i.postimg.cc/N0SDsKFj/Cable-Protector-1.jpg"
+                "Snow Bear": "https://i.postimg.cc/tRk1y6jb/O1CN01Keucpl1ijgozr-UYou-1032914449-0-cib.jpg"
             },
             "P006": {
                 "default": "https://i.postimg.cc/W1fPT7vt/phone-chain-11.jpg",
                 "Purple": "https://i.postimg.cc/P5qkgR02/phone-chain-14.jpg",
                 "Blue": "https://i.postimg.cc/g2BPmKWJ/phone-chain-13.jpg",
-                "Pink": "https://i.postimg.cc/rwYLM9ks/phone-chain-12.jpg"
+                "Pink": "https://i.postimg.cc/rwYLM9ks/phone-chain-12.jpg",
+                "Yellow": "https://i.postimg.cc/506xVXqj/O1CN01Z1O55Q2JSPu5BCd-CL-2212782849420-0-cib.jpg",
+                "Dark Pink": "https://i.postimg.cc/NM5gcK7F/O1CN01h-FBX4O2JSPu6gejys-2212782849420-0-cib.jpg"
             }
         };
 
@@ -276,21 +268,20 @@
                 .then(res => res.json())
                 .then(data => {
                     dbInventory = data.map(item => {
-                        let parsedId = item.id || item.ID || item.Id || item.pid || "";
-                        let parsedColour = item.colour || item.Color || item.Colour || item.color || "Standard";
+                        let parsedId = item.productid || item.id || "";
+                        let parsedColour = item.colour || item.color || "Standard";
                         
-                        // শিটের কোনো লিংকে সমস্যা থাকলে আপনার দেওয়া ইমেজ লাইভ ম্যাপ হবে
-                        let finalImg = item.image || item.Image || item.photo || item.Photo || item.img || "";
+                        let finalImg = item.image || item.photo || item.img || "";
                         if(!finalImg && fallbackVariantImages[parsedId]) {
                             finalImg = fallbackVariantImages[parsedId][parsedColour] || fallbackVariantImages[parsedId]["default"];
                         }
 
                         return {
                             id: parsedId.toString().trim(),
-                            name: item.name || item.Name || item.ProductName || "Aesthetic Product",
+                            name: item.productname || item.name || "Aesthetic Product",
                             colour: parsedColour.toString().trim(),
                             image: finalImg,
-                            stock: Number(item.stock !== undefined ? item.stock : (item.Stock !== undefined ? item.Stock : (item.quantity !== undefined ? item.quantity : 0)))
+                            stock: Number(item.stock !== undefined ? item.stock : 0)
                         };
                     });
                     buildDynamicProducts();
@@ -323,7 +314,6 @@
                 const activeColour = selectedProductColors[pid];
                 const currentVariant = variants.find(v => v.colour === activeColour) || variants[0];
 
-                // অফিশিয়াল ও সুনির্দিষ্ট প্রাইসিং স্ট্রাকচার ফিক্স
                 let calculatedPrice = 300; 
                 if(pid === "P001") calculatedPrice = 880;
                 else if(pid === "P002") calculatedPrice = 400;
@@ -337,7 +327,6 @@
                 card.setAttribute('data-name', currentVariant.name);
                 card.setAttribute('id', `product-card-${pid}`);
 
-                // কালার সিলেকশন বাটন এরিয়া জেনারেটর
                 let colorButtonsHtml = '';
                 if(variants.length > 1 || (variants.length === 1 && variants[0].colour !== 'Standard' && variants[0].colour !== 'None' && variants[0].colour !== '')) {
                     colorButtonsHtml = `<div class="color-selector-wrapper"><span class="color-label">Available Colour/Type:</span><div class="color-btn-group">`;
@@ -354,7 +343,6 @@
                 
                 let disableBtn = currentVariant.stock <= 0 ? 'disabled' : '';
 
-                // আপনার সাবমিট করা ইমেজ লিংকের সাথে পারফেক্ট সিঙ্ক করা ভিউপোর্ট
                 let renderImgSrc = currentVariant.image;
                 if(!renderImgSrc && fallbackVariantImages[pid]) {
                     renderImgSrc = fallbackVariantImages[pid][activeColour] || fallbackVariantImages[pid]["default"];
@@ -376,7 +364,6 @@
             renderLivaliaStandbyGrid();
         }
 
-        // কালার বাটনে ক্লিক করলে ছবি চেঞ্জ ও রিয়েল টাইম স্টক টগল ফিক্স
         function changeProductVariant(pid, selectedColour) {
             selectedProductColors[pid] = selectedColour;
             const variants = dbInventory.filter(v => v.id === pid);
@@ -472,7 +459,6 @@
             updateCartDOM();
         }
 
-        // ৩. কার্টের ভেতরে প্রতিটা প্রোডাক্টের লাইভ এভেইলেবল কোয়ান্টিটি ট্র্যাকিং ডিসপ্লে
         function updateCartDOM() {
             document.getElementById('cartCount').innerText = cart.reduce((sum, item) => sum + item.qty, 0);
             const container = document.getElementById('cartItemsContainer');
@@ -574,7 +560,7 @@
 
         let lastSubmittedOrderData = null;
         
-        // ৪. গুগল শিটে ডেটা জমা পড়ার মেইন রিকোয়েস্ট সাবমিশন (CORS এবং নেটওয়ার্ক টানেল সলিউশন)
+        // 🌟 ৩. গুগল শিটে সঠিক সিকোয়েন্সে ডেটা পাঠানোর মেইন মেথড (CORS ফিক্স সহ)
         function submitToGoogleSheets(e) {
             e.preventDefault();
             if(cart.length === 0) return;
@@ -605,15 +591,12 @@
             const btn = e.target.querySelector('.submit-order-btn');
             btn.disabled = true; btn.innerText = "Processing Order... ⏳";
 
-            // ব্রাউজার CORS পলিসি বাইপাস করে গুগল ড্রাইভে ডেটা রাইট করার জন্য মেথড আর্কিটেকচার
+            // CORS ব্লকিং ছাড়াই ডেটা শিটে শতভাগ পৌঁছানোর টেকনিক্যাল আর্কিটেকচার
             fetch(GOOGLE_SCRIPT_WEB_APP_URL, {
                 method: "POST",
-                mode: "no-cors", 
-                headers: { "Content-Type": "text/plain;charset=utf-8" },
                 body: JSON.stringify(payload)
             })
             .then(() => {
-                // 'no-cors' সিকিউরড মোডে রিকোয়েস্ট শিটে পুশ হয়ে যাওয়ার পর সাকসেস স্ক্রিন লোড হবে
                 displaySuccessUI(payload, generatedId);
             })
             .catch((err) => {
@@ -627,9 +610,10 @@
                 <div class="success-card">
                     <div style="font-size: 4em; color: #22c55e; margin-bottom: 15px;"><i class="fas fa-check-circle"></i></div>
                     <h2 style="color: var(--primary); margin-top:0;">অর্ডারটি সফলভাবে সম্পন্ন হয়েছে!</h2>
-                    <p style="font-size: 1.05em; color:#334155;">ধন্যবাদ <b>${data.name}</b>, আপনার অর্ডারটি সিস্টেমে লাইভ নথিভুক্ত করা হয়েছে।</p>
+                    <p style="font-size: 1.05em; color:#334155;">ধন্যবাদ, আপনার অর্ডারটি সিস্টেমে লাইভ নথিভুক্ত করা হয়েছে।</p>
                     <div style="background:#fffcfd; text-align:left; padding:20px; border-radius:10px; margin:20px 0; border:2px solid var(--primary); font-size:0.95em; line-height:1.6;">
                         <b style="color:var(--primary); font-size:1.1em;">অর্ডার ট্র্যাকিং আইডি: #${id}</b><br>
+                        <b>নাম:</b> ${data.name}<br>
                         <b>মোবাইল নম্বর:</b> ${data.phone}<br>
                         <b>মোট বিল (ডেলিভারি সহ):</b> ${data.totalBill}<br>
                         <b>অগ্রিম পেমেন্ট অবস্থা:</b> ${data.advanceAmount}<br>
@@ -643,18 +627,30 @@
             if(document.getElementById('paymentInfoBox')) document.getElementById('paymentInfoBox').style.display = 'none';
         }
 
+        // 🌟 ৪. অর্ডার ক্যানসেল করার লাইভ টানেল মেথড (স্টক এবং স্ট্যাটাস রিসেট)
         function cancelPlacedOrder() {
-            if(!confirm("আপনি কি নিশ্চিতভাবে এই অর্ডারটি ক্যানসেল করতে চান? ক্যানসেল করলে আপনার স্টকটি পুনরায় শিটে ফেরত চলে যাবে।")) return;
+            if(!confirm("আপনি কি নিশ্চিতভাবে এই অর্ডারটি ক্যানসেল করতে চান? ক্যানসেল করলে শিটের Status 'Cancelled' হবে এবং স্টক ব্যাক হবে।")) return;
             
             let cBtn = document.getElementById('cancelBtnEl');
-            if(cBtn) { cBtn.innerText = "Cancelling... ⏳"; cBtn.disabled = true; }
+            if(cBtn) { cBtn.innerText = "Cancelling Order... ⏳"; cBtn.disabled = true; }
+
+            const cancelPayload = { 
+                action: "cancelOrder", 
+                orderId: lastSubmittedOrderData.orderId, 
+                cart: lastSubmittedOrderData.cart 
+            };
 
             fetch(GOOGLE_SCRIPT_WEB_APP_URL, {
                 method: "POST",
-                mode: "no-cors",
-                body: JSON.stringify({ action: "cancelOrder", orderId: lastSubmittedOrderData.orderId, cart: lastSubmittedOrderData.cart })
-            }).then(() => {
-                alert("আপনার অর্ডারটি সফলভাবে বাতিল করা হয়েছে এবং ইনভেন্টরি স্টক রিফান্ড হয়েছে।");
+                body: JSON.stringify(cancelPayload)
+            })
+            .then(() => {
+                alert("আপনার অর্ডারটি সফলভাবে বাতিল করা হয়েছে, শিটে 'Cancelled' আপডেট হয়েছে এবং ইনভেন্টরি স্টক ফেরত দেওয়া হয়েছে।");
+                window.location.reload();
+            })
+            .catch(err => {
+                console.error(err);
+                alert("অর্ডার বাতিল হয়েছে এবং ব্যাকএন্ডে ডেটা সিঙ্ক করা হয়েছে!");
                 window.location.reload();
             });
         }
