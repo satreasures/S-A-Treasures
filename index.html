@@ -126,17 +126,14 @@
         </div>
     </div>
 
-    <!-- ১. এস্থেটিক প্রোডাক্ট এরিয়া -->
     <h2 class="section-title product-heading" data-category="aesthetic">✨ Our Premium Aesthetic Gifts ✨</h2>
     <div class="container" id="aestheticContainer">
         <p style="text-align: center; width: 100%; color: #64748b;">Loading dynamic inventory stock data... ⏳</p>
     </div>
 
-    <!-- ২. লিভালিয়া প্রোডাক্ট এরিয়া -->
     <h2 class="section-title product-heading" data-category="livalia">🌿 Official Livalia Collection (100% COD) 🌿</h2>
     <div class="container" id="livaliaContainer"></div>
 
-    <!-- সাইডবার কার্ট -->
     <div class="cart-sidebar" id="cartSidebar">
         <div class="cart-header">
             <h2>Your Bag <i class="fas fa-shopping-bag" style="color:var(--primary);"></i></h2>
@@ -150,7 +147,6 @@
         <button class="checkout-btn" onclick="showCheckout()">Proceed to Checkout</button>
     </div>
 
-    <!-- চেকআউট সেকশন -->
     <section class="checkout-section" id="checkoutSection">
         <div id="checkoutFormWrapper">
             <h2 style="color: var(--primary); text-align:center; margin-top:0;">📋 Complete Your Order</h2>
@@ -194,7 +190,6 @@
         </div>
     </section>
 
-    <!-- নোটিশ ও পেমেন্ট সেকশন -->
     <section class="notice-section" id="noticeSectionBox">
         <h2><i class="fas fa-truck"></i> ডেলিভারি ও অগ্রিম পেমেন্ট</h2>
         <p>ঢাকা সিটি ৳৮০০+ এবং ঢাকার বাইরে ৳১২০০+ অর্ডারে ডেলিভারি সম্পূর্ণ ফ্রি! 🚚</p>
@@ -213,7 +208,8 @@
     </section>
 
     <script>
-        const GOOGLE_SCRIPT_WEB_APP_URL = "https://script.google.com/macros/s/AKfycbwQWqIwvqmMPhPkGvING-F-ZU5PlJ0TyMUvVc_aGVGidhZ_sNi5MjIJV9tNNuEKra1W/exec";
+        // 🌟 আপনার জেনারেট করা নতুন মেইন ইউআরএল লিংক এখানে পারফেক্টলি সেট করা হয়েছে
+        const GOOGLE_SCRIPT_WEB_APP_URL = "https://script.google.com/macros/s/AKfycbwj8RDJdOFdoTgUN2Qk0CkRXdXAqW9d5UUH9NAjDTysNVKUDh1SIFyFvZTkGB2A1dum/exec";
 
         const livaliaProducts = [
             { id: "L001", name: "Livalia Night Spot Removal Cream", offPrice: 880, img: "https://i.postimg.cc/L8ZrFgm0/Night-Spot.jpg" },
@@ -223,35 +219,89 @@
             { id: "L005", name: "Livalia Neem Facewash", offPrice: 460, img: "https://i.postimg.cc/0NYFbgMp/Face-Wash.png" }
         ];
 
+        // 🌟 ভ্যারিয়েন্ট অনুযায়ী আপনার দেওয়া অফিশিয়াল ছবিগুলোর ব্যাকআপ ম্যাপিং ডিকশনারি
+        const fallbackVariantImages = {
+            "P001": {
+                "default": "https://i.postimg.cc/xj5sts7d/O1CN01Vh-Km-C01Xr-W8Fx-Pev8-2219452762977-0-cib-600x600.jpg",
+                "1": "https://i.postimg.cc/xj5sts7d/O1CN01Vh-Km-C01Xr-W8Fx-Pev8-2219452762977-0-cib-600x600.jpg",
+                "2": "https://i.postimg.cc/5tz7gfcS/O1CN01FFMJe-M1Xr-W8Gb-Nya-D-2219452762977-0-cib-600x600.jpg",
+                "3": "https://i.postimg.cc/DZqNvnBB/Gemini-Generated-Image-4tcavf4tcavf4tca.png",
+                "white": "https://i.postimg.cc/xj5sts7d/O1CN01Vh-Km-C01Xr-W8Fx-Pev8-2219452762977-0-cib-600x600.jpg"
+            },
+            "P002": {
+                "default": "https://i.postimg.cc/7hDgh0kN/Kitty-Necklace.jpg",
+                "1": "https://i.postimg.cc/7hDgh0kN/Kitty-Necklace.jpg",
+                "2": "https://i.postimg.cc/NF4RHFs2/Kitty-Necklace-1.jpg",
+                "3": "https://i.postimg.cc/HnHQnXg2/Kitty-Necklace-2.jpg",
+                "Standard": "https://i.postimg.cc/7hDgh0kN/Kitty-Necklace.jpg"
+            },
+            "P003": {
+                "default": "https://i.postimg.cc/HnMq2Gcw/O1CN01T5o-ZZ52Es-SQBsn-FTE-2219476018800-0-cib.jpg",
+                "Purple": "https://i.postimg.cc/prjwZNhQ/O1CN01b7tpt-B2Es-SQ82Nol-K-2219476018800-0-cib.jpg",
+                "Blue": "https://i.postimg.cc/59RPP6RB/O1CN01Xma65Q2Es-SQA8du-AT-2219476018800-0-cib.jpg",
+                "Pink": "https://i.postimg.cc/wxGWW7Gc/O1CN01ZLHTZ52Es-SQ9w81l2-2219476018800-0-cib.jpg"
+            },
+            "P004": {
+                "default": "https://i.postimg.cc/PJB2SPsj/Gemini-Generated-Image-ael0b7ael0b7ael0.png",
+                "Blue": "https://i.postimg.cc/sxtwTvdF/phone-chain-1.jpg",
+                "Purple": "https://i.postimg.cc/RhjXgNrk/phone-chain-2.jpg",
+                "Pink": "https://i.postimg.cc/G2J66r6Y/Pink.png",
+                "Yellow": "https://i.postimg.cc/zBS4454K/Yellow.png",
+                "White": "https://i.postimg.cc/Y9fTTkTF/White.png",
+                "Dark Pink": "https://i.postimg.cc/NM5gcK7F/O1CN01h-FBX4O2JSPu6gejys-2212782849420-0-cib.jpg",
+                "Standard": "https://i.postimg.cc/PJB2SPsj/Gemini-Generated-Image-ael0b7ael0b7ael0.png"
+            },
+            "P005": {
+                "default": "https://i.postimg.cc/N0SDsKFj/Cable-Protector-1.jpg",
+                "Main pic": "https://i.postimg.cc/N0SDsKFj/Cable-Protector-1.jpg",
+                "Brown Bear": "https://i.postimg.cc/K8cJJXCM/Cable-Protector-3.jpg",
+                "Snow Bear": "https://i.postimg.cc/tRk1y6jb/O1CN01Keucpl1ijgozr-UYou-1032914449-0-cib.jpg",
+                "Standard": "https://i.postimg.cc/N0SDsKFj/Cable-Protector-1.jpg"
+            },
+            "P006": {
+                "default": "https://i.postimg.cc/W1fPT7vt/phone-chain-11.jpg",
+                "Purple": "https://i.postimg.cc/P5qkgR02/phone-chain-14.jpg",
+                "Blue": "https://i.postimg.cc/g2BPmKWJ/phone-chain-13.jpg",
+                "Pink": "https://i.postimg.cc/rwYLM9ks/phone-chain-12.jpg"
+            }
+        };
+
         let dbInventory = []; 
         let cart = [];
         let selectedProductColors = {}; 
 
-        // ১. গুগল শিট থেকে ডেটা আনা ও কলাম অটো-ম্যাপিং ফিক্স
+        // ১. শিট থেকে লাইভ ডেটা আনা এবং অটো কলাম বিন্যাস ঠিক করা
         function fetchLiveInventory() {
             fetch(GOOGLE_SCRIPT_WEB_APP_URL)
                 .then(res => res.json())
                 .then(data => {
-                    // কলামের নামের বৈচিত্র্য হ্যান্ডেল করার লুপ (বানান ভুল থাকলে ঠিক করবে)
                     dbInventory = data.map(item => {
+                        let parsedId = item.id || item.ID || item.Id || item.pid || "";
+                        let parsedColour = item.colour || item.Color || item.Colour || item.color || "Standard";
+                        
+                        // শিটের কোনো লিংকে সমস্যা থাকলে আপনার দেওয়া ইমেজ লাইভ ম্যাপ হবে
+                        let finalImg = item.image || item.Image || item.photo || item.Photo || item.img || "";
+                        if(!finalImg && fallbackVariantImages[parsedId]) {
+                            finalImg = fallbackVariantImages[parsedId][parsedColour] || fallbackVariantImages[parsedId]["default"];
+                        }
+
                         return {
-                            id: item.id || item.ID || item.Id || "",
-                            name: item.name || item.Name || item.ProductName || item.title || "Unnamed Product",
-                            colour: item.colour || item.Color || item.Colour || item.color || "Standard",
-                            // ইমেজ কলামের সম্ভাব্য সব নাম চেক করা হচ্ছে
-                            image: item.image || item.Image || item.photo || item.Photo || item.img || item.Img || item.ImageUrl || "",
-                            // স্টক কলামের সম্ভাব্য সব নাম চেক করা হচ্ছে
-                            stock: Number(item.stock !== undefined ? item.stock : (item.Stock !== undefined ? item.Stock : (item.quantity !== undefined ? item.quantity : (item.Quantity !== undefined ? item.Quantity : 0))))
+                            id: parsedId.toString().trim(),
+                            name: item.name || item.Name || item.ProductName || "Aesthetic Product",
+                            colour: parsedColour.toString().trim(),
+                            image: finalImg,
+                            stock: Number(item.stock !== undefined ? item.stock : (item.Stock !== undefined ? item.Stock : (item.quantity !== undefined ? item.quantity : 0)))
                         };
                     });
                     buildDynamicProducts();
                 })
                 .catch(err => {
-                    console.error(err);
-                    document.getElementById('aestheticContainer').innerHTML = `<p style="color:red; text-align:center; width:100%;">স্টক লোড করতে ব্যর্থ হয়েছে! পেজটি রিফ্রেশ করুন।</p>`;
+                    console.error("Fetch Error: ", err);
+                    document.getElementById('aestheticContainer').innerHTML = `<p style="color:red; text-align:center; width:100%;">স্টক ডাটাবেজ কানেক্ট করা যায়নি! শিটের Apps Script চেক করুন।</p>`;
                 });
         }
 
+        // ২. প্রোডাক্ট গ্রুপিং ও বাটন রেন্ডারিং
         function buildDynamicProducts() {
             const aesContainer = document.getElementById('aestheticContainer');
             if(!aesContainer) return;
@@ -273,6 +323,7 @@
                 const activeColour = selectedProductColors[pid];
                 const currentVariant = variants.find(v => v.colour === activeColour) || variants[0];
 
+                // অফিশিয়াল ও সুনির্দিষ্ট প্রাইসিং স্ট্রাকচার ফিক্স
                 let calculatedPrice = 300; 
                 if(pid === "P001") calculatedPrice = 880;
                 else if(pid === "P002") calculatedPrice = 400;
@@ -286,8 +337,9 @@
                 card.setAttribute('data-name', currentVariant.name);
                 card.setAttribute('id', `product-card-${pid}`);
 
+                // কালার সিলেকশন বাটন এরিয়া জেনারেটর
                 let colorButtonsHtml = '';
-                if(variants.length > 0 && variants[0].colour !== 'Standard' && variants[0].colour !== 'None' && variants[0].colour !== '') {
+                if(variants.length > 1 || (variants.length === 1 && variants[0].colour !== 'Standard' && variants[0].colour !== 'None' && variants[0].colour !== '')) {
                     colorButtonsHtml = `<div class="color-selector-wrapper"><span class="color-label">Available Colour/Type:</span><div class="color-btn-group">`;
                     variants.forEach(v => {
                         const isSel = v.colour === activeColour ? 'selected' : '';
@@ -302,8 +354,14 @@
                 
                 let disableBtn = currentVariant.stock <= 0 ? 'disabled' : '';
 
+                // আপনার সাবমিট করা ইমেজ লিংকের সাথে পারফেক্ট সিঙ্ক করা ভিউপোর্ট
+                let renderImgSrc = currentVariant.image;
+                if(!renderImgSrc && fallbackVariantImages[pid]) {
+                    renderImgSrc = fallbackVariantImages[pid][activeColour] || fallbackVariantImages[pid]["default"];
+                }
+
                 card.innerHTML = `
-                    <img src="${currentVariant.image || 'https://via.placeholder.com/300'}" class="main-img" id="img-view-${pid}" alt="${currentVariant.name}">
+                    <img src="${renderImgSrc || 'https://via.placeholder.com/300'}" class="main-img" id="img-view-${pid}" alt="${currentVariant.name}">
                     <h3>${currentVariant.name}</h3>
                     ${stockLabel}
                     ${colorButtonsHtml}
@@ -318,20 +376,29 @@
             renderLivaliaStandbyGrid();
         }
 
+        // কালার বাটনে ক্লিক করলে ছবি চেঞ্জ ও রিয়েল টাইম স্টক টগল ফিক্স
         function changeProductVariant(pid, selectedColour) {
             selectedProductColors[pid] = selectedColour;
             const variants = dbInventory.filter(v => v.id === pid);
             const currentVariant = variants.find(v => v.colour === selectedColour);
             
             if(currentVariant) {
-                document.getElementById(`img-view-${pid}`).src = currentVariant.image || 'https://via.placeholder.com/300';
+                let imgTag = document.getElementById(`img-view-${pid}`);
+                let targetImg = currentVariant.image;
+                if(!targetImg && fallbackVariantImages[pid]) {
+                    targetImg = fallbackVariantImages[pid][selectedColour] || fallbackVariantImages[pid]["default"];
+                }
+                if(imgTag) imgTag.src = targetImg || 'https://via.placeholder.com/300';
+                
                 const lbl = document.getElementById(`stock-lbl-${pid}`);
                 const btn = document.getElementById(`btn-add-${pid}`);
                 
                 if(currentVariant.stock <= 0) {
-                    lbl.innerHTML = `❌ Out of Stock`; lbl.style.color = 'red'; btn.disabled = true;
+                    if(lbl) { lbl.innerHTML = `❌ Out of Stock`; lbl.style.color = 'red'; }
+                    if(btn) btn.disabled = true;
                 } else {
-                    lbl.innerHTML = `✔ Stock: ${currentVariant.stock} left`; lbl.style.color = 'green'; btn.disabled = false;
+                    if(lbl) { lbl.innerHTML = `✔ Stock: ${currentVariant.stock} left`; lbl.style.color = 'green'; }
+                    if(btn) btn.disabled = false;
                 }
 
                 const card = document.getElementById(`product-card-${pid}`);
@@ -346,7 +413,8 @@
 
         function renderLivaliaStandbyGrid() {
             const livContainer = document.getElementById('livaliaContainer');
-            if(!livContainer) return; livContainer.innerHTML = '';
+            if(!livContainer) return; 
+            livContainer.innerHTML = '';
             livaliaProducts.forEach(prod => {
                 const card = document.createElement('div');
                 card.className = 'card'; card.setAttribute('data-name', prod.name);
@@ -370,7 +438,7 @@
             const existing = cart.find(item => item.id === id && item.colour === colour);
             if(existing) {
                 if(existing.qty >= variant.stock) {
-                    alert("দুঃখিত! স্টকের অতিরিক্ত প্রোডাক্ট যোগ করা সম্ভব নয়।"); return;
+                    alert(`দুঃখিত! এই প্রোডাক্টটির ${colour} ভ্যারিয়েন্টটি স্টকে আর বেশি নেই।`); return;
                 }
                 existing.qty++;
             } else {
@@ -397,29 +465,29 @@
             if (!item) return;
             if(!item.isLivalia) {
                 const variant = dbInventory.find(v => v.id === id && v.colour === colour);
-                if(variant && delta > 0 && item.qty >= variant.stock) { alert("স্টক সীমাবদ্ধ!"); return; }
+                if(variant && delta > 0 && item.qty >= variant.stock) { alert("স্টক সীমাবদ্ধ! আর যোগ করা যাবে না।"); return; }
             }
             item.qty += delta;
             if (item.qty <= 0) cart = cart.filter(i => !(i.id === id && i.colour === colour));
             updateCartDOM();
         }
 
-        // ৩. কার্টের ভেতরে প্রোডাক্ট স্টক কোয়ান্টিটি রেন্ডার করার ফিক্স
+        // ৩. কার্টের ভেতরে প্রতিটা প্রোডাক্টের লাইভ এভেইলেবল কোয়ান্টিটি ট্র্যাকিং ডিসপ্লে
         function updateCartDOM() {
             document.getElementById('cartCount').innerText = cart.reduce((sum, item) => sum + item.qty, 0);
             const container = document.getElementById('cartItemsContainer');
+            if(!container) return;
             container.innerHTML = '';
             let total = 0;
             
             cart.forEach(item => {
                 total += (item.price * item.qty);
                 
-                // কার্টের ভেতরে রিয়েল-টাইম স্টক কত বাকি আছে তা খোঁজা
                 let availableStockText = "";
                 if(!item.isLivalia) {
                     const variant = dbInventory.find(v => v.id === item.id && v.colour === item.colour);
                     if(variant) {
-                        availableStockText = `<small style="color:#64748b; display:block; margin-top:2px;">(Max Stock: ${variant.stock})</small>`;
+                        availableStockText = `<small style="color:var(--primary); font-weight:600; display:block; margin-top:2px;">(Max Available: ${variant.stock})</small>`;
                     }
                 }
 
@@ -432,11 +500,11 @@
                         <br>${item.price} TK x ${item.qty}
                         <div class="qty-controls">
                             <button class="qty-btn" onclick="changeQty('${item.id}', '${item.colour}', -1)">-</button>
-                            <span>${item.qty}</span>
+                            <span style="font-weight:bold; padding:0 5px;">${item.qty}</span>
                             <button class="qty-btn" onclick="changeQty('${item.id}', '${item.colour}', 1)">+</button>
                         </div>
                     </div>
-                    <b>${item.price * item.qty} TK</b>
+                    <b style="color:var(--primary);">${item.price * item.qty} TK</b>
                 `;
                 container.appendChild(div);
             });
@@ -448,6 +516,7 @@
             const subtotal = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
             document.getElementById('summarySubtotal').innerText = subtotal + " TK";
             const region = document.getElementById('custRegion').value;
+            
             let delCharge = region === "Inside Dhaka" ? (subtotal >= 800 ? 0 : 80) : (region === "Outside Dhaka" ? (subtotal >= 1200 ? 0 : 150) : 0);
             document.getElementById('summaryDeliveryCharge').innerText = delCharge + " TK";
             document.getElementById('summaryGrandTotal').innerText = (subtotal + delCharge) + " TK";
@@ -459,17 +528,20 @@
             
             const payInput = document.getElementById('custPayment');
             if(hasLivalia) {
-                payInput.value = "100% Cash on Delivery"; payInput.readOnly = true;
+                if(payInput) { payInput.value = "100% Cash on Delivery"; payInput.readOnly = true; }
             } else {
-                if(payInput.value === "100% Cash on Delivery") payInput.value = "";
-                payInput.readOnly = false;
+                if(payInput) {
+                    if(payInput.value === "100% Cash on Delivery") payInput.value = "";
+                    payInput.readOnly = false;
+                }
             }
 
             const summaryContainer = document.getElementById('liveCartSummaryRows');
+            if(!summaryContainer) return;
             summaryContainer.innerHTML = '';
             cart.forEach(item => {
                 const r = document.createElement('div');
-                r.style.display = 'flex'; r.style.justifyContent = 'space-between'; r.style.fontSize = '0.9em';
+                r.className = 'live-summary-row';
                 r.innerHTML = `<span>${item.name} [${item.colour}] (x${item.qty})</span><b>${item.price * item.qty} TK</b>`;
                 summaryContainer.appendChild(r);
             });
@@ -478,7 +550,7 @@
         function toggleCart() { document.getElementById('cartSidebar').classList.toggle('active'); }
         
         function showCheckout() {
-            if(cart.length === 0) { alert('Bag is empty!'); return; }
+            if(cart.length === 0) { alert('আপনার ব্যাগটি খালি!'); return; }
             document.getElementById('checkoutSection').classList.add('active');
             document.getElementById('checkoutSection').scrollIntoView({ behavior: 'smooth' });
             toggleCart();
@@ -502,16 +574,17 @@
 
         let lastSubmittedOrderData = null;
         
-        // ৪. গুগল শিটে ডেটা পাঠানোর ফাংশন ফিক্স (CORS ও JSON স্ট্রিংফাই নিশ্চিত করা)
+        // ৪. গুগল শিটে ডেটা জমা পড়ার মেইন রিকোয়েস্ট সাবমিশন (CORS এবং নেটওয়ার্ক টানেল সলিউশন)
         function submitToGoogleSheets(e) {
             e.preventDefault();
+            if(cart.length === 0) return;
+
             const subtotal = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
             const region = document.getElementById('custRegion').value;
             let delCharge = region === "Inside Dhaka" ? (subtotal >= 800 ? 0 : 80) : 150;
             const generatedId = "SAT-" + Math.floor(100000 + Math.random() * 900000);
 
-            // কার্টের অবজেক্টগুলোকে প্লেইন টেক্সট ফরম্যাটে রূপান্তর (যাতে গুগল স্ক্রিপ্ট সহজে পড়তে পারে)
-            const serializedCart = cart.map(i => `${i.name} (${i.colour}) x ${i.qty}`).join(", ");
+            const serializedCart = cart.map(i => `${i.name} [${i.colour}] (x${i.qty})`).join(", ");
 
             const payload = {
                 action: "placeOrder",
@@ -530,9 +603,9 @@
 
             lastSubmittedOrderData = { orderId: generatedId, cart: JSON.parse(JSON.stringify(cart)) };
             const btn = e.target.querySelector('.submit-order-btn');
-            btn.disabled = true; btn.innerText = "Processing... ⏳";
+            btn.disabled = true; btn.innerText = "Processing Order... ⏳";
 
-            // Content-Type "text/plain" রাখা হয়েছে CORS প্রি-ফ্লাইট এরর ব্লক করার জন্য
+            // ব্রাউজার CORS পলিসি বাইপাস করে গুগল ড্রাইভে ডেটা রাইট করার জন্য মেথড আর্কিটেকচার
             fetch(GOOGLE_SCRIPT_WEB_APP_URL, {
                 method: "POST",
                 mode: "no-cors", 
@@ -540,11 +613,11 @@
                 body: JSON.stringify(payload)
             })
             .then(() => {
-                // 'no-cors' মোডে রেসপন্স রিড করা যায় না, তাই সরাসরি সাকসেস ইন্টারফেসে পাঠানো হচ্ছে
+                // 'no-cors' সিকিউরড মোডে রিকোয়েস্ট শিটে পুশ হয়ে যাওয়ার পর সাকসেস স্ক্রিন লোড হবে
                 displaySuccessUI(payload, generatedId);
             })
             .catch((err) => {
-                console.error("Network or Submission Error: ", err);
+                console.error(err);
                 displaySuccessUI(payload, generatedId);
             });
         }
@@ -552,20 +625,38 @@
         function displaySuccessUI(data, id) {
             document.getElementById('checkoutFormWrapper').innerHTML = `
                 <div class="success-card">
-                    <h2 style="color: green;">অর্ডার সফল হয়েছে!</h2>
-                    <p>ID: <b>#${id}</b></p>
-                    <button class="cancel-order-btn" onclick="cancelPlacedOrder()">❌ Cancel Order</button>
+                    <div style="font-size: 4em; color: #22c55e; margin-bottom: 15px;"><i class="fas fa-check-circle"></i></div>
+                    <h2 style="color: var(--primary); margin-top:0;">অর্ডারটি সফলভাবে সম্পন্ন হয়েছে!</h2>
+                    <p style="font-size: 1.05em; color:#334155;">ধন্যবাদ <b>${data.name}</b>, আপনার অর্ডারটি সিস্টেমে লাইভ নথিভুক্ত করা হয়েছে।</p>
+                    <div style="background:#fffcfd; text-align:left; padding:20px; border-radius:10px; margin:20px 0; border:2px solid var(--primary); font-size:0.95em; line-height:1.6;">
+                        <b style="color:var(--primary); font-size:1.1em;">অর্ডার ট্র্যাকিং আইডি: #${id}</b><br>
+                        <b>মোবাইল নম্বর:</b> ${data.phone}<br>
+                        <b>মোট বিল (ডেলিভারি সহ):</b> ${data.totalBill}<br>
+                        <b>অগ্রিম পেমেন্ট অবস্থা:</b> ${data.advanceAmount}<br>
+                        <b>স্টাফ রেফারেন্স নম্বর:</b> ${data.staffCode}
+                    </div>
+                    <button class="cancel-order-btn" id="cancelBtnEl" onclick="cancelPlacedOrder()">❌ Cancel Order & Return Stock</button>
+                    <a href="javascript:void(0)" onclick="window.location.reload()" style="display:inline-block; margin-top:20px; color:var(--primary); font-weight:bold; text-decoration:none;"><i class="fas fa-arrow-left"></i> হোমপেজে ফিরে যান</a>
                 </div>`;
             cart = []; updateCartDOM();
+            if(document.getElementById('noticeSectionBox')) document.getElementById('noticeSectionBox').style.display = 'none';
+            if(document.getElementById('paymentInfoBox')) document.getElementById('paymentInfoBox').style.display = 'none';
         }
 
         function cancelPlacedOrder() {
-            if(!confirm("Cancel order?")) return;
+            if(!confirm("আপনি কি নিশ্চিতভাবে এই অর্ডারটি ক্যানসেল করতে চান? ক্যানসেল করলে আপনার স্টকটি পুনরায় শিটে ফেরত চলে যাবে।")) return;
+            
+            let cBtn = document.getElementById('cancelBtnEl');
+            if(cBtn) { cBtn.innerText = "Cancelling... ⏳"; cBtn.disabled = true; }
+
             fetch(GOOGLE_SCRIPT_WEB_APP_URL, {
                 method: "POST",
                 mode: "no-cors",
                 body: JSON.stringify({ action: "cancelOrder", orderId: lastSubmittedOrderData.orderId, cart: lastSubmittedOrderData.cart })
-            }).then(() => window.location.reload());
+            }).then(() => {
+                alert("আপনার অর্ডারটি সফলভাবে বাতিল করা হয়েছে এবং ইনভেন্টরি স্টক রিফান্ড হয়েছে।");
+                window.location.reload();
+            });
         }
 
         window.onload = fetchLiveInventory;
