@@ -286,21 +286,24 @@
             "P003": "আপনার ফোনে সহজে কানেক্ট করে হাতের কব্জিতে ঝুলিয়ে বা পেঁচিয়ে স্টাইলিশ ভাবে নিয়ে ঘোরার জন্য এই প্রিমিয়াম বিডেড রিস্টলেট চেইনটি দারুণ! বড় মুক্তা ও কালারফুল বিডের তৈরি এই প্রিমিয়াম সংস্করণটি আপনার ফোনকে দেবে আকর্ষণীয় লুক।",
             "P004": "ফোন হাত থেকে পড়ে যাওয়া রোধ করতে এবং একই সাথে ফোনে একটি কিউট, ইউনিক ও ট্রেন্ডি ভাইব যোগ করতে এই কালারফুল ক্যারেক্টার ফোন স্ট্র্যাপ-টির জুড়ি নেই!",
             "P005": "আপনার চাবিগুলোকে গুছিয়ে রাখতে এবং একই সাথে ব্যাগে বা লুপে একটি চমৎকার নান্দনিক ছোঁয়া দিতে এই স্টাইলিশ ক্রিস্টাল বাটারফ্লাই কিচেনটি দারুণ পছন্দ হতে পারে।",
-            "P006": "আপনার চার্জার ও ডেটা কেবলের মাথা ভেঙে যাওয়া বা নষ্ট হওয়া থেকে শতভাগ সুরক্ষিত রাখতে এই কিউট ও কালারফুল অ্যানিমেল কেবল প্রোটেক্টরগুলো দারুণ কাজের!",
+            "P006": "আপনার চার্জার ও ডেটা কেবলের মাথা ভেঙে যাওয়া বা নষ্ট হওয়া থেকে শতভাগ সুরক্ষিত রাখতে এই কিউট ও কালারফুল এনিমেল কেবল প্রোটেক্টরগুলো দারুণ কাজের!",
             "P007": "আপনার পড়ার টেবিল বা ঘরের কোণকে কিউট ও মায়াবী আলোয় রাঙিয়ে তুলতে এই মাল্টিকালার অ্যানিমেল ডেস্ক ল্যাম্পটি দারুণ কার্যকর। রিচার্জেবল ও সহজে বহনযোগ্য এই লাইটটি উপহার দেওয়ার জন্য চমৎকার।"
         };
 
+        // প্রতিটি প্রোডাক্টের মেইন আকর্ষণীয় ছবি এবং কালার ভ্যারিয়েন্টগুলোর ম্যাপিং ডেটাবেজ
         const localColorImages = {
             "P001": {
                 "Pic 1": "https://i.postimg.cc/xj5sts7d/O1CN01Vh-Km-C01Xr-W8Fx-Pev8-2219452762977-0-cib-600x600.jpg",
                 "Pic 2": "https://i.postimg.cc/5tz7gfcS/O1CN01FFMJe-M1Xr-W8Gb-Nya-D-2219452762977-0-cib-600x600.jpg",
                 "Pic 3": "https://i.postimg.cc/DZqNvnBB/Gemini-Generated-Image-4tcavf4tcavf4tca.png",
+                "Main Pic": "https://i.postimg.cc/xj5sts7d/O1CN01Vh-Km-C01Xr-W8Fx-Pev8-2219452762977-0-cib-600x600.jpg",
                 "Standard": "https://i.postimg.cc/xj5sts7d/O1CN01Vh-Km-C01Xr-W8Fx-Pev8-2219452762977-0-cib-600x600.jpg"
             },
             "P002": {
                 "Pic 1": "https://i.postimg.cc/7hDgh0kN/Kitty-Necklace.jpg",
                 "Pic 2": "https://i.postimg.cc/NF4RHFs2/Kitty-Necklace-1.jpg",
                 "Pic 3": "https://i.postimg.cc/HnHQnXg2/Kitty-Necklace-2.jpg",
+                "Main Pic": "https://i.postimg.cc/7hDgh0kN/Kitty-Necklace.jpg",
                 "Standard": "https://i.postimg.cc/7hDgh0kN/Kitty-Necklace.jpg"
             },
             "P003": {
@@ -335,6 +338,7 @@
                 "Standard": "https://i.postimg.cc/N0SDsKFj/Cable-Protector-1.jpg"
             },
             "P007": {
+                "Main Pic": "https://i.postimg.cc/L8Zwg81z/Gemini-Generated-Image-lrbd6slrbd6slrbd.png",
                 "Multi Colour": "https://i.postimg.cc/L8Zwg81z/Gemini-Generated-Image-lrbd6slrbd6slrbd.png",
                 "Standard": "https://i.postimg.cc/L8Zwg81z/Gemini-Generated-Image-lrbd6slrbd6slrbd.png"
             }
@@ -375,7 +379,7 @@
                             colour: parsedColour,
                             image: finalImg,
                             stock: Number(item.stock !== undefined ? item.stock : 0),
-                            oldPrice: Number(item.oldprice || 0) // শিটে কলাম থাকলে রিড করবে
+                            oldPrice: Number(item.oldprice || 0)
                         };
                     });
                     buildDynamicProducts();
@@ -400,15 +404,30 @@
 
             Object.keys(grouped).forEach(pid => {
                 const variants = grouped[pid];
-                if(!selectedProductColors[pid]) selectedProductColors[pid] = variants[0].colour;
+                
+                // ডিফোল্ট কালার সিলেকশন লজিক উন্নত করা হয়েছে (সবচেয়ে প্রথমে মেইন পিকচার সিলেক্ট হবে)
+                let defaultColour = "Standard";
+                const hasMainPic = variants.some(v => v.colour === "Main Pic");
+                const hasStandard = variants.some(v => v.colour === "Standard");
+                const hasPic1 = variants.some(v => v.colour === "Pic 1");
+
+                if (hasMainPic) defaultColour = "Main Pic";
+                else if (hasStandard) defaultColour = "Standard";
+                else if (hasPic1) defaultColour = "Pic 1";
+                else defaultColour = variants[0].colour;
+
+                if(!selectedProductColors[pid]) selectedProductColors[pid] = defaultColour;
                 const activeColour = selectedProductColors[pid];
                 let currentVariant = variants.find(v => v.colour === activeColour) || variants[0];
 
-                if(!currentVariant.image && localColorImages[pid]) {
-                    currentVariant.image = localColorImages[pid][activeColour] || localColorImages[pid]["Standard"];
+                // নিশ্চিত করা হচ্ছে যেন ডিফোল্ট ভিউতে সবসময় মেইন আকর্ষণীয় প্রিমিয়াম অফিশিয়াল ছবিটিই লোড হয়
+                let firstDisplayImg = "";
+                if (localColorImages[pid]) {
+                    firstDisplayImg = localColorImages[pid]["Main Pic"] || localColorImages[pid]["Standard"] || currentVariant.image;
+                } else {
+                    firstDisplayImg = currentVariant.image;
                 }
 
-                // আপনার ফাইনাল ডিসকাউন্টেড দাম (Offer Price)
                 let calculatedPrice = 0; 
                 if (pid === "P001") calculatedPrice = 880; 
                 else if (pid === "P002") calculatedPrice = 400; 
@@ -419,7 +438,6 @@
                 else if (pid === "P007") calculatedPrice = 600; 
                 else calculatedPrice = 250; 
 
-                // শুধুমাত্র আপনার প্রোডাক্টগুলোর জন্য আগের রেগুলার প্রাইস জেনারেশন
                 let currentOldPrice = currentVariant.oldPrice || 0;
                 if(!currentOldPrice) {
                     if(pid === "P001") currentOldPrice = 1250;
@@ -447,8 +465,14 @@
                 if(variants.length > 1 || (variants.length === 1 && variants[0].colour !== 'Standard' && variants[0].colour !== 'None' && variants[0].colour !== '')) {
                     colorButtonsHtml = `<div class="color-selector-wrapper"><span class="color-label">Available Colour/Type:</span><div class="color-btn-group">`;
                     variants.forEach(v => {
+                        // ব্যাকএন্ডের 'Main Pic' বা 'Standard' টেক্সটগুলোকে কাস্টমারের সামনে সুন্দর দেখানোর জন্য 'Main View' করা হলো
+                        let displayName = v.colour;
+                        if(v.colour === "Main Pic" || v.colour === "Standard") {
+                            displayName = "Main View 📷";
+                        }
+                        
                         const isSel = v.colour === activeColour ? 'selected' : '';
-                        colorButtonsHtml += `<button type="button" class="color-option-btn ${isSel}" onclick="changeProductVariant('${pid}', '${v.colour}')">${v.colour}</button>`;
+                        colorButtonsHtml += `<button type="button" class="color-option-btn ${isSel}" onclick="changeProductVariant('${pid}', '${v.colour}')">${displayName}</button>`;
                     });
                     colorButtonsHtml += `</div></div>`;
                 }
@@ -460,7 +484,7 @@
                 let disableBtn = currentVariant.stock <= 0 ? 'disabled' : '';
 
                 card.innerHTML = `
-                    <img src="${currentVariant.image || 'https://via.placeholder.com/300'}" class="main-img" id="img-view-${pid}" alt="${currentVariant.name}">
+                    <img src="${firstDisplayImg || 'https://via.placeholder.com/300'}" class="main-img" id="img-view-${pid}" alt="${currentVariant.name}">
                     <h3>${currentVariant.name}</h3>
                     <p class="prod-description">${pDesc}</p>
                     ${stockLabel}
@@ -504,14 +528,19 @@
                 const card = document.getElementById(`product-card-${pid}`);
                 if(card) {
                     card.querySelectorAll('.color-option-btn').forEach(b => {
-                        if(b.innerText.trim() === selectedColour.trim()) b.classList.add('selected');
-                        else b.classList.remove('selected');
+                        let btnText = b.innerText.trim();
+                        if(selectedColour === "Main Pic" || selectedColour === "Standard") {
+                            if(btnText.startsWith("Main View")) b.classList.add('selected');
+                            else b.classList.remove('selected');
+                        } else {
+                            if(btnText === selectedColour.trim()) b.classList.add('selected');
+                            else b.classList.remove('selected');
+                        }
                     });
                 }
             }
         }
 
-        // লিভালিয়া প্রোডাক্টের দাম ও ডিসপ্লে সম্পূর্ণ অপরিবর্তিত (Unchanged) রাখা হলো
         function renderLivaliaStandbyGrid() {
             const livContainer = document.getElementById('livaliaContainer');
             if(!livContainer) return; 
@@ -624,7 +653,7 @@
             });
         }
 
-        function toggleCart() { document.getElementById('cartSidebar').classList.toggle('active'); }
+        function toggleCart() { document.getElementById('cartSidebar').classList.toggle('toggle'); document.getElementById('cartSidebar').classList.toggle('active'); }
         
         function showCheckout() {
             if(cart.length === 0) { alert('আপনার ব্যাগটি খালি!'); return; }
