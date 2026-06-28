@@ -53,6 +53,9 @@
         .stock-indicator { font-size: 0.85em; font-weight: 600; margin-bottom: 8px; }
         .main-img { width: 100%; height: 280px; object-fit: cover; border-radius: 15px; margin-bottom: 12px; border: 1px solid #e2e8f0; }
         
+        /* ডেসক্রিপশন টেক্সটের জন্য নতুন স্টাইল */
+        .prod-description { font-size: 0.88em; color: #4b5563; line-height: 1.5; margin: 8px 0 12px 0; min-height: 54px; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; text-overflow: ellipsis; }
+
         .color-selector-wrapper { margin: 10px 0; }
         .color-label { font-size: 0.85em; font-weight: bold; color: #475569; margin-bottom: 5px; display: block; }
         .color-btn-group { display: flex; gap: 6px; flex-wrap: wrap; }
@@ -94,7 +97,6 @@
         
         .live-summary-row { display: flex; justify-content: space-between; font-size: 0.9em; margin-bottom: 6px; border-bottom: 1px dotted #f3e8ee; padding-bottom: 4px;}
 
-        /* কন্ট্যাক্ট ফুটার সেকশনের স্টাইল */
         footer { background: var(--primary); color: white; padding: 40px 20px; text-align: center; border-top: 4px solid var(--accent); margin-top: 60px; }
         .footer-container { max-width: 1000px; margin: 0 auto; display: flex; flex-wrap: wrap; justify-content: space-around; gap: 30px; text-align: left; }
         .footer-section { flex: 1; min-width: 250px; }
@@ -115,7 +117,6 @@
         🎉 100% CASH ON DELIVERY: সারা বাংলাদেশে কোনো অগ্রিম পেমেন্ট ছাড়াই অর্ডার করুন! ঢাকা সিটি ৳৮০০+ এবং বাইরে ৳১২০০+ এ ডেলিভারি ফ্রি! 🚚
     </div>
 
-    <!-- ফ্লোটিং হোয়াটসঅ্যাপ বাটন -->
     <a href="https://wa.me/8801532178827" class="whatsapp-float" target="_blank"><i class="fab fa-whatsapp"></i></a>
 
     <button class="cart-float" onclick="toggleCart()">
@@ -202,7 +203,6 @@
         <p>সারা বাংলাদেশে ক্যাশ অন ডেলিভারি দেওয়া হয়। ঢাকা সিটি ৳৮০০+ এবং ঢাকার বাইরে ৳১২০০+ অর্ডারে ডেলিভারি সম্পূর্ণ ফ্রি! 🚚</p>
     </section>
 
-    <!-- কন্ট্যাক্ট ফুটার সেকশন (আপডেটেড ডিটেইলস সহ) -->
     <footer>
         <div class="footer-container">
             <div class="footer-section">
@@ -252,15 +252,26 @@
                 else if (cleanRef === "sat6") trackedStaffCode = "SAT 6";
                 else if (cleanRef === "sat7") trackedStaffCode = "SAT 7";
             }
-            console.log("Tracked Staff Code Source:", trackedStaffCode);
         }
 
+        // কাস্টমার-কনভিন্সিং সেলস ডেসক্রিপশন ম্যাপিং (Aesthetic Gifts-এর জন্য)
+        const aestheticDescriptions = {
+            "P001": "আপনার আউটফিটে ক্লাসি ও নান্দনিক ভাইব যোগ করতে এই বিডেড রিস্টলেটটি একদম পারফেক্ট। এর প্রিমিয়াম ও কিউট লুক নিমিষেই যে কারো নজর কাড়বে!",
+            "P002": "মেয়েদের গলার শোভা বাড়াতে এক্সক্লুসিভ কিটি নেকলেস। যেকোনো ক্যাজুয়াল বা পার্টি ওয়্যারের সাথে এটি আপনাকে দেবে চমৎকার এবং কিউট একটি অ্যাপিয়ারেন্স!",
+            "P003": "আপনার সাধারণ ফোনটিকে এক নিমেষে করে তুলুন গর্জিয়াস এবং কিউট! এই ট্রেন্ডি পার্ল বিডেড চেইনটি স্টাইলিশ মেয়েদের প্রথম পছন্দ।",
+            "P004": "ইউনিক কার্টুন ক্যারেক্টার ও কালারফুল বিডসের এক অপূর্ব কম্বিনেশন। আপনার ফোনের ব্যাকপার্টের কিউটনেস বাড়াতে এর জুড়ি নেই!",
+            "P005": "আপনার সাধের চার্জিং ক্যাবলটিকে ভাঙা বা ছিঁড়ে যাওয়া থেকে রক্ষা করুন অত্যন্ত কিউট ও মজবুত এই অ্যানিমেল বিয়ার প্রোটেক্টর দিয়ে। কিউটনেস এবং সেফটি একসাথে!",
+            "P006": "স্টাইলিশ এবং গর্জিয়াস কাস্টম কালার কম্বিনেশনের ফোন স্ট্র্যাপ। যেকোনো ফোন কভারের সাথে এটি দেখতে ভীষণ ট্রেন্ডি এবং নান্দনিক লাগে।",
+            "P007": "নান্দনিক কালারফুল ক্রিস্টাল ও পার্লের রিস্টলেট চেইন। ব্যাগে বা ফোনে হোল্ড করার জন্য এটি অত্যন্ত নিখুঁত কারুকাজে তৈরি একটি লাক্সারি পিস!"
+        };
+
+        // সেলস-ফোকাসড বেনিফিট ডেসক্রিপশন (Livalia Herbal Collection-এর জন্য)
         const livaliaProducts = [
-            { id: "L001", name: "Livalia Night Spot Removal Cream", offPrice: 880, img: "https://i.postimg.cc/L8ZrFgm0/Night-Spot.jpg" },
-            { id: "L002", name: "Livalia Neem Toothpaste", offPrice: 320, img: "https://i.postimg.cc/Vkb3P0zp/Tooth-Paste.png" },
-            { id: "L003", name: "Livalia Alovera Shampoo", offPrice: 640, img: "https://i.postimg.cc/nhQ6f9nW/Shampoo.png" },
-            { id: "L004", name: "Livalia Scavia Soap", offPrice: 420, img: "https://i.postimg.cc/436qmC7p/Soap.png" },
-            { id: "L005", name: "Livalia Neem Facewash", offPrice: 460, img: "https://i.postimg.cc/0NYFbgMp/Face-Wash.png" }
+            { id: "L001", name: "Livalia Night Spot Removal Cream", offPrice: 880, img: "https://i.postimg.cc/L8ZrFgm0/Night-Spot.jpg", desc: "ত্বকের কালচে দাগ, মেছতা ও পিগমেন্টেশন দূর করে ন্যাচারাল উজ্জ্বলতা ফিরিয়ে আনতে অত্যন্ত কার্যকরী একটি ভেষজ নাইট ক্রিম।" },
+            { id: "L002", name: "Livalia Neem Toothpaste", offPrice: 320, img: "https://i.postimg.cc/Vkb3P0zp/Tooth-Paste.png", desc: "নিমের প্রাকৃতিক গুণে সমৃদ্ধ! মাড়ি মজবুত করতে, মুখের দুর্গন্ধ দূর করতে এবং দাঁতের হলদেটে ভাব দূর করে ফ্রেশ অনুভূতি দিতে অনন্য।" },
+            { id: "L003", name: "Livalia Alovera Shampoo", offPrice: 640, img: "https://i.postimg.cc/nhQ6f9nW/Shampoo.png", desc: "অ্যালোভেরার পুষ্টিগুণে ঠাসা, যা চুল পড়া বন্ধ করে, চুলের গোড়া মজবুত করে এবং চুলকে করে তোলে একদম সিল্কি, সফট ও শাইনি।" },
+            { id: "L004", name: "Livalia Scavia Soap", offPrice: 420, img: "https://i.postimg.cc/436qmC7p/Soap.png", desc: "ত্বকের গভীর থেকে ধুলোবালি ও জীবাণু পরিষ্কার করে ব্রণমুক্ত, মসৃণ এবং হেলদি স্কিন পেতে সাহায্য করে এই প্রিমিয়াম হারবাল সোপ।" },
+            { id: "L005", name: "Livalia Neem Facewash", offPrice: 460, img: "https://i.postimg.cc/0NYFbgMp/Face-Wash.png", desc: "অয়েলি স্কিনের জন্য ম্যাজিক! নিমের অ্যান্টি-ব্যাকটেরিয়াল উপাদান ত্বকের অতিরিক্ত তেল দূর করে এবং ব্রণ ওঠা স্থায়ীভাবে রোধ করে।" }
         ];
 
         const fallbackVariantImages = {
@@ -302,7 +313,7 @@
                 })
                 .catch(err => {
                     console.error("Fetch Error: ", err);
-                    document.getElementById('aestheticContainer').innerHTML = `<p style="color:red; text-align:center; width:100%;">স্টক ডাটাবেজ কানেক্ট করা যায়নি! শিটের Apps Script চেক করুন।</p>`;
+                    document.getElementById('aestheticContainer').innerHTML = `<p style="color:red; text-align:center; width:100%;">স্টক ডাটাবেজ কানেক্ট করা যায়নি!</p>`;
                 });
         }
 
@@ -333,6 +344,9 @@
                 else if(pid === "P006") calculatedPrice = 145;
                 else if(pid === "P007") calculatedPrice = 500; 
 
+                // নির্দিষ্ট ডেসক্রিপশন সেট করা, না থাকলে ডিফল্ট দেওয়া
+                const pDesc = aestheticDescriptions[pid] || "Premium limited edition handmade design. Perfect choice for trends and premium gifting.";
+
                 const card = document.createElement('div');
                 card.className = 'card';
                 card.setAttribute('data-name', currentVariant.name);
@@ -354,9 +368,11 @@
                 
                 let disableBtn = currentVariant.stock <= 0 ? 'disabled' : '';
 
+                // ডেসক্রিপশন ক্লাসটি কার্ড ডিজাইনে ইন্টিগ্রেট করা হয়েছে
                 card.innerHTML = `
                     <img src="${currentVariant.image || 'https://via.placeholder.com/300'}" class="main-img" id="img-view-${pid}" alt="${currentVariant.name}">
                     <h3>${currentVariant.name}</h3>
+                    <p class="prod-description">${pDesc}</p>
                     ${stockLabel}
                     ${colorButtonsHtml}
                     <div class="price-container"><span class="offer-price">${calculatedPrice} TK</span></div>
@@ -409,10 +425,13 @@
             livaliaProducts.forEach(prod => {
                 const card = document.createElement('div');
                 card.className = 'card'; card.setAttribute('data-name', prod.name);
+                
+                // Livalia কালেকশনেও ডেসক্রিপশন যোগ করা হয়েছে
                 card.innerHTML = `
                     <span class="livelia-badge">LIVALIA PARTNER</span>
                     <img src="${prod.img}" class="main-img" alt="${prod.name}">
                     <h3>${prod.name}</h3>
+                    <p class="prod-description">${prod.desc}</p>
                     <span class="stock-indicator" style="color:green;">✔ Standby Available</span>
                     <div class="price-container"><span class="offer-price">${prod.offPrice} BDT</span></div>
                     <button class="order-btn" onclick="addLivaliaToCart('${prod.id}')">Add To Cart</button>
@@ -626,7 +645,7 @@
                 body: JSON.stringify(cancelPayload)
             })
             .then(() => {
-                alert("আপনার অর্ডারটি সফলভাবে বাতিল করা হয়েছে, শিটে 'Cancelled' আপডেট হয়েছে এবং ইনভেন্টরি স্টক ফেরত দেওয়া হয়েছে।");
+                alert("আপনার অর্ডারটি সফলভাবে বাতিল করা হয়েছে।");
                 window.location.reload();
             })
             .catch(err => {
