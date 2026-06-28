@@ -181,7 +181,7 @@
                     <label>Delivery Area *</label>
                     <select id="custRegion" onchange="updateCalculations()" required>
                         <option value="" disabled selected>Select Area</option>
-                        <option value="Inside Dhaka">Inside Dhaka City (৳৮ো)</option>
+                        <option value="Inside Dhaka">Inside Dhaka City (৳৮০)</option>
                         <option value="Outside Dhaka">Outside Dhaka City (৳১৫০)</option>
                     </select>
                 </div>
@@ -253,16 +253,14 @@
             }
         }
 
-        // আপডেটেড কাস্টমার-কনভিন্সিং এবং সেলস-ফোকাসড প্রোডাক্ট ডেসক্রিপশন ম্যাপিং
         const aestheticDescriptions = {
             "P001": "আপনার ডেস্কে বা ঘরে একটি কিউট ও মহাজাগতিক ভাইব নিয়ে আসতে এই Astronaut শোপিসটি একদম চমৎকার। ট্রেন্ডি লুকের জন্য মেয়েদের রুমে রাখার দারুণ চয়েস!",
             "P002": "প্রজাপতির ডানার মতো সুন্দর ও নান্দনিক এই Butterfly Key Chain আপনার চাবির গোছা কিংবা ব্যাগের সৌন্দর্য এক নিমিষেই দ্বিগুণ বাড়িয়ে দেবে। উপহার দেওয়ার জন্য সেরা!",
             "P003": "আপনার ফোনে সহজে কানেক্ট করে হাতের কব্জিতে ঝুলিয়ে বা পেঁচিয়ে স্টাইলিশ ভাবে নিয়ে ঘোরার জন্য এই Phone Wristlet চেইনটি দারুণ! এটি যেমন দেখতে গর্জিয়াস ও আই-ক্যাচিং, তেমনি ফোন হাত থেকে পড়ে যাওয়া থেকেও সেফ রাখে।",
             "P004": "ফোন হাত থেকে পড়ে যাওয়া রোধ করতে এবং একই সাথে ফোনে একটি কিউট, ইউনিক ও ট্রেন্ডি লুক যোগ করতে এই কালারফুল Phone Strap-টির জুড়ি নেই!",
-            "P005": "নরম ও মায়াবী আলোয় আপনার পড়ার টেবিল বা বেডরুমকে সাজিয়ে তুলতে এই নান্দনিক Lamp-টি পারফেক্ট। রাতের ঘরকে করে তুলবে চমৎকার আরামদায়ক ও রোমান্টিক।"
+            "P005": "নরম ও মায়াবী আলোয় আপনার পড়ার টেবিল বা বেডরুমকে সাজিয়ে তুলতে এই নান্দনিক Lamp-টি পারফেক্ট। রাতের ঘরকে করে তুলবে চমৎকার আরামদায়ক ও রোমান্টিক।"
         };
 
-        // সেলস-ফোকাসড বেনিফিট ডেসক্রিপশন (Livalia Herbal Collection)
         const livaliaProducts = [
             { id: "L001", name: "Livalia Night Spot Removal Cream", offPrice: 880, img: "https://i.postimg.cc/L8ZrFgm0/Night-Spot.jpg", desc: "ত্বকের কালচে দাগ, মেছতা ও পিগমেন্টেশন দূর করে ন্যাচারাল উজ্জ্বলতা ফিরিয়ে আনতে অত্যন্ত কার্যকরী একটি ভেষজ নাইট ক্রিম।" },
             { id: "L002", name: "Livalia Neem Toothpaste", offPrice: 320, img: "https://i.postimg.cc/Vkb3P0zp/Tooth-Paste.png", desc: "নিমের প্রাকৃতিক গুণে সমৃদ্ধ! মাড়ি মজবুত করতে, মুখের দুর্গন্ধ দূর করতে এবং দাঁতের হলদেটে ভাব দূর করে ফ্রেশ অনুভূতি দিতে অনন্য।" },
@@ -271,6 +269,7 @@
             { id: "L005", name: "Livalia Neem Facewash", offPrice: 460, img: "https://i.postimg.cc/0NYFbgMp/Face-Wash.png", desc: "অয়েলি স্কিনের জন্য ম্যাজিক! নিমের অ্যান্টি-ব্যাকটেরিয়াল উপাদান ত্বকের অতিরিক্ত তেল দূর করে এবং ব্রণ ওঠা স্থায়ীভাবে রোধ করে।" }
         ];
 
+        // ভাঙা ইমেজের লিংকগুলোকে এখানে সঠিক অরিজিনাল ইউআরএল দিয়ে ফিক্স করা হয়েছে
         const fallbackVariantImages = {
             "P001": { "default": "https://i.postimg.cc/xj5sts7d/O1CN01Vh-Km-C01Xr-W8Fx-Pev8-2219452762977-0-cib-600x600.jpg" },
             "P002": { "default": "https://i.postimg.cc/7hDgh0kN/Kitty-Necklace.jpg" },
