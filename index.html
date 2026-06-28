@@ -93,6 +93,20 @@
         .whatsapp-float { position: fixed; bottom: 20px; right: 20px; background-color: #25d366; color: white; width: 60px; height: 60px; border-radius: 50px; text-align: center; font-size: 32px; display: flex; align-items: center; justify-content: center; text-decoration: none; z-index: 100; }
         
         .live-summary-row { display: flex; justify-content: space-between; font-size: 0.9em; margin-bottom: 6px; border-bottom: 1px dotted #f3e8ee; padding-bottom: 4px;}
+
+        /* কন্ট্যাক্ট ফুটার সেকশনের স্টাইল */
+        footer { background: var(--primary); color: white; padding: 40px 20px; text-align: center; border-top: 4px solid var(--accent); margin-top: 60px; }
+        .footer-container { max-width: 1000px; margin: 0 auto; display: flex; flex-wrap: wrap; justify-content: space-around; gap: 30px; text-align: left; }
+        .footer-section { flex: 1; min-width: 250px; }
+        .footer-section h4 { color: var(--accent); font-size: 1.2em; margin-bottom: 15px; text-transform: uppercase; letter-spacing: 1px; }
+        .footer-links { list-style: none; padding: 0; margin: 0; }
+        .footer-links li { margin-bottom: 12px; display: flex; align-items: flex-start; gap: 10px; font-size: 0.95em; line-height: 1.4; }
+        .footer-links a { color: white; text-decoration: none; transition: 0.2s; }
+        .footer-links a:hover { color: var(--accent); text-decoration: underline; }
+        .social-icons { display: flex; gap: 15px; margin-top: 10px; }
+        .social-icon-btn { background: rgba(255, 255, 255, 0.1); color: white; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 18px; text-decoration: none; transition: 0.3s; }
+        .social-icon-btn:hover { background: var(--accent); color: var(--primary); transform: translateY(-3px); }
+        .copyright { text-align: center; margin-top: 40px; padding-top: 20px; border-top: 1px solid rgba(255, 255, 255, 0.1); font-size: 0.85em; color: #cbd5e1; }
     </style>
 </head>
 <body>
@@ -101,6 +115,7 @@
         🎉 100% CASH ON DELIVERY: সারা বাংলাদেশে কোনো অগ্রিম পেমেন্ট ছাড়াই অর্ডার করুন! ঢাকা সিটি ৳৮০০+ এবং বাইরে ৳১২০০+ এ ডেলিভারি ফ্রি! 🚚
     </div>
 
+    <!-- ফ্লোটিং হোয়াটসঅ্যাপ বাটন -->
     <a href="https://wa.me/8801532178827" class="whatsapp-float" target="_blank"><i class="fab fa-whatsapp"></i></a>
 
     <button class="cart-float" onclick="toggleCart()">
@@ -187,8 +202,39 @@
         <p>সারা বাংলাদেশে ক্যাশ অন ডেলিভারি দেওয়া হয়। ঢাকা সিটি ৳৮০০+ এবং ঢাকার বাইরে ৳১২০০+ অর্ডারে ডেলিভারি সম্পূর্ণ ফ্রি! 🚚</p>
     </section>
 
+    <!-- কন্ট্যাক্ট ফুটার সেকশন (আপডেটেড ডিটেইলস সহ) -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-section">
+                <h4>About S&A Treasures</h4>
+                <p style="font-size: 0.9em; line-height: 1.6; color: #e2e8f0; margin: 0;">
+                    We offer the trendiest Aesthetic gifts and premium Livalia Herbal products right to your doorstep with 100% Cash on Delivery across Bangladesh.
+                </p>
+            </div>
+            <div class="footer-section">
+                <h4>Contact Us</h4>
+                <ul class="footer-links">
+                    <li><i class="fas fa-phone-alt" style="color:var(--accent); margin-top: 3px;"></i> <a href="tel:+8801532178827">+880 1532-178827</a></li>
+                    <li><i class="fas fa-envelope" style="color:var(--accent); margin-top: 3px;"></i> <a href="mailto:hello.trasures.sa@gmail.com">hello.trasures.sa@gmail.com</a></li>
+                    <li><i class="fas fa-map-marker-alt" style="color:var(--accent); margin-top: 3px;"></i> <span style="color: #e2e8f0;">S&A Treasures Factory, House 22, Road 7, Block L Taltola Bajar, Dhaka 1216</span></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Follow Our Page & Channel</h4>
+                <p style="font-size: 0.9em; color: #e2e8f0; margin-bottom: 10px;">আমাদের আপডেট এবং ভিডিওগুলো দেখতে সামাজিক মাধ্যমে যুক্ত হোন:</p>
+                <div class="social-icons">
+                    <a href="https://www.facebook.com/satreasures.official" target="_blank" class="social-icon-btn" title="Facebook Page"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://www.youtube.com/@SATreasures-v9l" target="_blank" class="social-icon-btn" title="YouTube Channel" style="font-size: 16px;"><i class="fab fa-youtube"></i></a>
+                    <a href="https://wa.me/8801532178827" target="_blank" class="social-icon-btn" title="WhatsApp Chat"><i class="fab fa-whatsapp"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="copyright">
+            &copy; 2026 S&A Treasures. All Rights Reserved. | Crafted with Love ✨
+        </div>
+    </footer>
+
     <script>
-        // 🎯 আপনার নতুন লাইভ Google Apps Script Web App URL
         const GOOGLE_SCRIPT_WEB_APP_URL = "https://script.google.com/macros/s/AKfycbxEBNKTUyvchfRBWfhjn5rbgnVPcK_lEw91NnfiEhSRUmv_ta5QEtaDF34zfp6s-zw/exec";
 
         let trackedStaffCode = "Direct"; 
@@ -217,7 +263,6 @@
             { id: "L005", name: "Livalia Neem Facewash", offPrice: 460, img: "https://i.postimg.cc/0NYFbgMp/Face-Wash.png" }
         ];
 
-        // 🎯 আপনার নতুন প্রোডাক্টের ইমেজ ম্যাপিং সহ ব্যাকআপ ভ্যারিয়েন্ট লিংকসমূহ
         const fallbackVariantImages = {
             "P001": { "default": "https://i.postimg.cc/xj5sts7d/O1CN01Vh-Km-C01Xr-W8Fx-Pev8-2219452762977-0-cib-600x600.jpg", "white": "https://i.postimg.cc/xj5sts7d/O1CN01Vh-Km-C01Xr-W8Fx-Pev8-2219452762977-0-cib-600x600.jpg" },
             "P002": { "default": "https://i.postimg.cc/7hDgh0kN/Kitty-Necklace.jpg", "Silver": "https://i.postimg.cc/7hDgh0kN/Kitty-Necklace.jpg" },
@@ -279,7 +324,6 @@
                 const activeColour = selectedProductColors[pid];
                 const currentVariant = variants.find(v => v.colour === activeColour) || variants[0];
 
-                // 🎯 প্রাইস ক্যালকুলেশন মেকানিজম (P007 এর জন্য ৬০০ টাকা সেট করা হলো)
                 let calculatedPrice = 300; 
                 if(pid === "P001") calculatedPrice = 880;
                 else if(pid === "P002") calculatedPrice = 400;
@@ -287,7 +331,7 @@
                 else if(pid === "P004") calculatedPrice = 305;
                 else if(pid === "P005") calculatedPrice = 75;
                 else if(pid === "P006") calculatedPrice = 145;
-                else if(pid === "P007") calculatedPrice = 600; 
+                else if(pid === "P007") calculatedPrice = 500; 
 
                 const card = document.createElement('div');
                 card.className = 'card';
@@ -506,11 +550,9 @@
 
             const serializedCart = cart.map(i => `${i.name} [${i.colour}] (x${i.qty})`).join(", ");
 
-            // 🎯 কন্ডিশনাল এজেন্ট কোড লজিক: কার্ট-এ কোনো Livalia পণ্য আছে কি না চেক করা
             let baseAddress = document.getElementById('custAddress').value.trim();
             const hasLivaliaItem = cart.some(item => item.isLivalia === true);
             
-            // যদি লিমালিয়ার পণ্য থাকে, তবে অ্যাড্রেসের শেষে আপনার এজেন্ট কোড অটো অ্যাড হবে
             if (hasLivaliaItem) {
                 baseAddress = baseAddress + ", Agent Code: LL-ES-0010";
             }
