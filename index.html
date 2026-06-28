@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <title>S&A Treasures | Aesthetic & Herbal Collection</title>
-    <meta name="description" content="Explore S&A Treasures for Aesthetic Beaded Wristlets, Character Phone Straps, and premium Livalia Herbal Soaps & Shampoos.">
+    <meta name="description" content="Explore S&A Treasures for Aesthetic Gifts and premium Livalia Herbal Soaps & Shampoos.">
     
     <link rel="icon" type="image/png" href="https://i.postimg.cc/4yJdwXKp/Gemini-Generated-Image-r2qw9dr2qw9dr2qw.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -53,7 +53,6 @@
         .stock-indicator { font-size: 0.85em; font-weight: 600; margin-bottom: 8px; }
         .main-img { width: 100%; height: 280px; object-fit: cover; border-radius: 15px; margin-bottom: 12px; border: 1px solid #e2e8f0; }
         
-        /* ডেসক্রিপশন টেক্সটের জন্য নতুন স্টাইল */
         .prod-description { font-size: 0.88em; color: #4b5563; line-height: 1.5; margin: 8px 0 12px 0; min-height: 54px; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; text-overflow: ellipsis; }
 
         .color-selector-wrapper { margin: 10px 0; }
@@ -182,7 +181,7 @@
                     <label>Delivery Area *</label>
                     <select id="custRegion" onchange="updateCalculations()" required>
                         <option value="" disabled selected>Select Area</option>
-                        <option value="Inside Dhaka">Inside Dhaka City (৳৮০)</option>
+                        <option value="Inside Dhaka">Inside Dhaka City (৳৮ো)</option>
                         <option value="Outside Dhaka">Outside Dhaka City (৳১৫০)</option>
                     </select>
                 </div>
@@ -254,18 +253,16 @@
             }
         }
 
-        // কাস্টমার-কনভিন্সিং সেলস ডেসক্রিপশন ম্যাপিং (Aesthetic Gifts-এর জন্য)
+        // আপডেটেড কাস্টমার-কনভিন্সিং এবং সেলস-ফোকাসড প্রোডাক্ট ডেসক্রিপশন ম্যাপিং
         const aestheticDescriptions = {
-            "P001": "আপনার আউটফিটে ক্লাসি ও নান্দনিক ভাইব যোগ করতে এই বিডেড রিস্টলেটটি একদম পারফেক্ট। এর প্রিমিয়াম ও কিউট লুক নিমিষেই যে কারো নজর কাড়বে!",
-            "P002": "মেয়েদের গলার শোভা বাড়াতে এক্সক্লুসিভ কিটি নেকলেস। যেকোনো ক্যাজুয়াল বা পার্টি ওয়্যারের সাথে এটি আপনাকে দেবে চমৎকার এবং কিউট একটি অ্যাপিয়ারেন্স!",
-            "P003": "আপনার সাধারণ ফোনটিকে এক নিমেষে করে তুলুন গর্জিয়াস এবং কিউট! এই ট্রেন্ডি পার্ল বিডেড চেইনটি স্টাইলিশ মেয়েদের প্রথম পছন্দ।",
-            "P004": "ইউনিক কার্টুন ক্যারেক্টার ও কালারফুল বিডসের এক অপূর্ব কম্বিনেশন। আপনার ফোনের ব্যাকপার্টের কিউটনেস বাড়াতে এর জুড়ি নেই!",
-            "P005": "আপনার সাধের চার্জিং ক্যাবলটিকে ভাঙা বা ছিঁড়ে যাওয়া থেকে রক্ষা করুন অত্যন্ত কিউট ও মজবুত এই অ্যানিমেল বিয়ার প্রোটেক্টর দিয়ে। কিউটনেস এবং সেফটি একসাথে!",
-            "P006": "স্টাইলিশ এবং গর্জিয়াস কাস্টম কালার কম্বিনেশনের ফোন স্ট্র্যাপ। যেকোনো ফোন কভারের সাথে এটি দেখতে ভীষণ ট্রেন্ডি এবং নান্দনিক লাগে।",
-            "P007": "নান্দনিক কালারফুল ক্রিস্টাল ও পার্লের রিস্টলেট চেইন। ব্যাগে বা ফোনে হোল্ড করার জন্য এটি অত্যন্ত নিখুঁত কারুকাজে তৈরি একটি লাক্সারি পিস!"
+            "P001": "আপনার ডেস্কে বা ঘরে একটি কিউট ও মহাজাগতিক ভাইব নিয়ে আসতে এই Astronaut শোপিসটি একদম চমৎকার। ট্রেন্ডি লুকের জন্য মেয়েদের রুমে রাখার দারুণ চয়েস!",
+            "P002": "প্রজাপতির ডানার মতো সুন্দর ও নান্দনিক এই Butterfly Key Chain আপনার চাবির গোছা কিংবা ব্যাগের সৌন্দর্য এক নিমিষেই দ্বিগুণ বাড়িয়ে দেবে। উপহার দেওয়ার জন্য সেরা!",
+            "P003": "আপনার ফোনে সহজে কানেক্ট করে হাতের কব্জিতে ঝুলিয়ে বা পেঁচিয়ে স্টাইলিশ ভাবে নিয়ে ঘোরার জন্য এই Phone Wristlet চেইনটি দারুণ! এটি যেমন দেখতে গর্জিয়াস ও আই-ক্যাচিং, তেমনি ফোন হাত থেকে পড়ে যাওয়া থেকেও সেফ রাখে।",
+            "P004": "ফোন হাত থেকে পড়ে যাওয়া রোধ করতে এবং একই সাথে ফোনে একটি কিউট, ইউনিক ও ট্রেন্ডি লুক যোগ করতে এই কালারফুল Phone Strap-টির জুড়ি নেই!",
+            "P005": "নরম ও মায়াবী আলোয় আপনার পড়ার টেবিল বা বেডরুমকে সাজিয়ে তুলতে এই নান্দনিক Lamp-টি পারফেক্ট। রাতের ঘরকে করে তুলবে চমৎকার আরামদায়ক ও রোমান্টিক।"
         };
 
-        // সেলস-ফোকাসড বেনিফিট ডেসক্রিপশন (Livalia Herbal Collection-এর জন্য)
+        // সেলস-ফোকাসড বেনিফিট ডেসক্রিপশন (Livalia Herbal Collection)
         const livaliaProducts = [
             { id: "L001", name: "Livalia Night Spot Removal Cream", offPrice: 880, img: "https://i.postimg.cc/L8ZrFgm0/Night-Spot.jpg", desc: "ত্বকের কালচে দাগ, মেছতা ও পিগমেন্টেশন দূর করে ন্যাচারাল উজ্জ্বলতা ফিরিয়ে আনতে অত্যন্ত কার্যকরী একটি ভেষজ নাইট ক্রিম।" },
             { id: "L002", name: "Livalia Neem Toothpaste", offPrice: 320, img: "https://i.postimg.cc/Vkb3P0zp/Tooth-Paste.png", desc: "নিমের প্রাকৃতিক গুণে সমৃদ্ধ! মাড়ি মজবুত করতে, মুখের দুর্গন্ধ দূর করতে এবং দাঁতের হলদেটে ভাব দূর করে ফ্রেশ অনুভূতি দিতে অনন্য।" },
@@ -275,13 +272,11 @@
         ];
 
         const fallbackVariantImages = {
-            "P001": { "default": "https://i.postimg.cc/xj5sts7d/O1CN01Vh-Km-C01Xr-W8Fx-Pev8-2219452762977-0-cib-600x600.jpg", "white": "https://i.postimg.cc/xj5sts7d/O1CN01Vh-Km-C01Xr-W8Fx-Pev8-2219452762977-0-cib-600x600.jpg" },
-            "P002": { "default": "https://i.postimg.cc/7hDgh0kN/Kitty-Necklace.jpg", "Silver": "https://i.postimg.cc/7hDgh0kN/Kitty-Necklace.jpg" },
-            "P003": { "default": "https://i.postimg.cc/HnMq2Gcw/O1CN01T5o-ZZ52Es-SQBsn-FTE-2219476018800-0-cib.jpg", "Purple": "https://i.postimg.cc/prjwZNhQ/O1CN01b7tpt-B2Es-SQ82Nol-K-2219476018800-0-cib.jpg", "Blue": "https://i.postimg.cc/59RPP6RB/O1CN01Xma65Q2Es-SQA8du-AT-2219476018800-0-cib.jpg", "Pink": "https://i.postimg.cc/wxGWW7Gc/O1CN01ZLHTZ52Es-SQ9w81l2-2219476018800-0-cib.jpg" },
-            "P004": { "default": "https://i.postimg.cc/PJB2SPsj/Gemini-Generated-Image-ael0b7ael0b7ael0.png", "Blue": "https://i.postimg.cc/sxtwTvdF/phone-chain-1.jpg", "Purple": "https://i.postimg.cc/RhjXgNrk/phone-chain-2.jpg", "Pink": "https://i.postimg.cc/G2J66r6Y/Pink.png", "Yellow": "https://i.postimg.cc/zBS4454K/Yellow.png", "White": "https://i.postimg.cc/Y9fTTkTF/White.png" },
-            "P005": { "default": "https://i.postimg.cc/N0SDsKFj/Cable-Protector-1.jpg", "Brown Bear": "https://i.postimg.cc/K8cJJXCM/Cable-Protector-3.jpg", "Snow Bear": "https://i.postimg.cc/tRk1y6jb/O1CN01Keucpl1ijgozr-UYou-1032914449-0-cib.jpg" },
-            "P006": { "default": "https://i.postimg.cc/W1fPT7vt/phone-chain-11.jpg", "Purple": "https://i.postimg.cc/P5qkgR02/phone-chain-14.jpg", "Blue": "https://i.postimg.cc/g2BPmKWJ/phone-chain-13.jpg", "Pink": "https://i.postimg.cc/rwYLM9ks/phone-chain-12.jpg", "Yellow": "https://i.postimg.cc/506xVXqj/O1CN01Z1O55Q2JSPu5BCd-CL-2212782849420-0-cib.jpg", "Dark Pink": "https://i.postimg.cc/NM5gcK7F/O1CN01h-FBX4O2JSPu6gejys-2212782849420-0-cib.jpg" },
-            "P007": { "default": "https://i.postimg.cc/L8Zwg81z/Gemini-Generated-Image-lrbd6slrbd6slrbd.png" }
+            "P001": { "default": "https://i.postimg.cc/xj5sts7d/O1CN01Vh-Km-C01Xr-W8Fx-Pev8-2219452762977-0-cib-600x600.jpg" },
+            "P002": { "default": "https://i.postimg.cc/7hDgh0kN/Kitty-Necklace.jpg" },
+            "P003": { "default": "https://i.postimg.cc/HnMq2Gcw/O1CN01T5o-ZZ52Es-SQBsn-FTE-2219476018800-0-cib.jpg" },
+            "P004": { "default": "https://i.postimg.cc/PJB2SPsj/Gemini-Generated-Image-ael0b7ael0b7ael0.png" },
+            "P005": { "default": "https://i.postimg.cc/N0SDsKFj/Cable-Protector-1.jpg" }
         };
 
         let dbInventory = []; 
@@ -341,11 +336,8 @@
                 else if(pid === "P003") calculatedPrice = 235;
                 else if(pid === "P004") calculatedPrice = 305;
                 else if(pid === "P005") calculatedPrice = 75;
-                else if(pid === "P006") calculatedPrice = 145;
-                else if(pid === "P007") calculatedPrice = 500; 
 
-                // নির্দিষ্ট ডেসক্রিপশন সেট করা, না থাকলে ডিফল্ট দেওয়া
-                const pDesc = aestheticDescriptions[pid] || "Premium limited edition handmade design. Perfect choice for trends and premium gifting.";
+                const pDesc = aestheticDescriptions[pid] || "Premium limited edition design. Perfect choice for shifting trends and aesthetic gifting.";
 
                 const card = document.createElement('div');
                 card.className = 'card';
@@ -368,7 +360,6 @@
                 
                 let disableBtn = currentVariant.stock <= 0 ? 'disabled' : '';
 
-                // ডেসক্রিপশন ক্লাসটি কার্ড ডিজাইনে ইন্টিগ্রেট করা হয়েছে
                 card.innerHTML = `
                     <img src="${currentVariant.image || 'https://via.placeholder.com/300'}" class="main-img" id="img-view-${pid}" alt="${currentVariant.name}">
                     <h3>${currentVariant.name}</h3>
@@ -426,7 +417,6 @@
                 const card = document.createElement('div');
                 card.className = 'card'; card.setAttribute('data-name', prod.name);
                 
-                // Livalia কালেকশনেও ডেসক্রিপশন যোগ করা হয়েছে
                 card.innerHTML = `
                     <span class="livelia-badge">LIVALIA PARTNER</span>
                     <img src="${prod.img}" class="main-img" alt="${prod.name}">
