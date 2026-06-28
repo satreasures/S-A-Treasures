@@ -188,7 +188,7 @@
     </section>
 
     <script>
-        // 🌟 আপডেট হওয়া লাইভ Google Apps Script Web App URL লিংক
+        // 🌟 আপনার লাইভ Google Apps Script Web App URL লিংক
         const GOOGLE_SCRIPT_WEB_APP_URL = "https://script.google.com/macros/s/AKfycbwgn9zJRuxnW8Fwy6_mOaXksqs4KC_raMNCTQn7y1xoLrWJboaUl_-hDWf4oq94spCg/exec";
 
         let trackedStaffCode = "Direct"; 
@@ -502,13 +502,22 @@
 
             const serializedCart = cart.map(i => `${i.name} [${i.colour}] (x${i.qty})`).join(", ");
 
+            // 🎯 কন্ডিশনাল এজেন্ট কোড লজিক: কার্ট-এ কোনো Livalia পণ্য আছে কি না চেক করা
+            let baseAddress = document.getElementById('custAddress').value.trim();
+            const hasLivaliaItem = cart.some(item => item.isLivalia === true);
+            
+            // যদি লিমালিয়ার পণ্য থাকে, তবে অ্যাড্রেসের শেষে আপনার এজেন্ট কোড অটো অ্যাড হবে
+            if (hasLivaliaItem) {
+                baseAddress = baseAddress + ", Agent Code: LL-ES-0010";
+            }
+
             const payload = {
                 action: "placeOrder",
                 orderId: generatedId,
                 name: document.getElementById('custName').value,
                 phone: document.getElementById('custPhone').value,
                 email: document.getElementById('custEmail').value,
-                address: document.getElementById('custAddress').value,
+                address: baseAddress, 
                 cart: cart, 
                 cartDetails: serializedCart,
                 totalBill: (subtotal + delCharge) + " TK",
