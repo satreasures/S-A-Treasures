@@ -279,7 +279,7 @@
                 const activeColour = selectedProductColors[pid];
                 const currentVariant = variants.find(v => v.colour === activeColour) || variants[0];
 
-                // 🎯 প্রাইস ক্যালকুলেশন মেকানিজম (P007 এর জন্য ৫০০ টাকা সেট করা হলো)
+                // 🎯 প্রাইস ক্যালকুলেশন মেকানিজম (P007 এর জন্য ৬০০ টাকা সেট করা হলো)
                 let calculatedPrice = 300; 
                 if(pid === "P001") calculatedPrice = 880;
                 else if(pid === "P002") calculatedPrice = 400;
@@ -287,7 +287,7 @@
                 else if(pid === "P004") calculatedPrice = 305;
                 else if(pid === "P005") calculatedPrice = 75;
                 else if(pid === "P006") calculatedPrice = 145;
-                else if(pid === "P007") calculatedPrice = 500; 
+                else if(pid === "P007") calculatedPrice = 600; 
 
                 const card = document.createElement('div');
                 card.className = 'card';
