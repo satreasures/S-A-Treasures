@@ -90,16 +90,13 @@
         .cancel-order-btn { display: block; width: 100%; background-color: #ef4444; color: white; padding: 14px 0; border: none; border-radius: 12px; font-weight: bold; cursor: pointer; margin-top: 15px; }
 
         .notice-section { background: #f3f4f6; padding: 35px 25px; text-align: center; border-radius: 20px; margin: 40px auto; max-width: 900px; border: 1px solid #cbd5e1; width: 90%; box-sizing: border-box; }
-        .payment-info { background: #fff; padding: 40px 25px; text-align: center; border-radius: 20px; margin: 40px auto; max-width: 900px; border: 2px dashed var(--primary); width: 90%; box-sizing: border-box; }
-        .payment-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; margin-top: 25px; }
-        .pay-card { border: 1px solid #cbd5e1; padding: 22px; border-radius: 15px; width: 230px; background: #f8fafc; }
         .whatsapp-float { position: fixed; bottom: 20px; right: 20px; background-color: #25d366; color: white; width: 60px; height: 60px; border-radius: 50px; text-align: center; font-size: 32px; display: flex; align-items: center; justify-content: center; text-decoration: none; z-index: 100; }
     </style>
 </head>
 <body>
 
     <div class="shipping-banner">
-        🎉 FREE HOME DELIVERY: ঢাকা সিটি ৳৮০০+ এবং ঢাকার বাইরে ৳১২০০+ অর্ডারে ডেলিভারি সম্পূর্ণ ফ্রি! 🚚
+        🎉 100% CASH ON DELIVERY: সারা বাংলাদেশে কোনো অগ্রিম পেমেন্ট ছাড়াই অর্ডার করুন! ঢাকা সিটি ৳৮০০+ এবং বাইরে ৳১২০০+ এ ডেলিভারি ফ্রি! 🚚
     </div>
 
     <a href="https://wa.me/8801532178827" class="whatsapp-float" target="_blank"><i class="fab fa-whatsapp"></i></a>
@@ -126,14 +123,17 @@
         </div>
     </div>
 
+    <!-- এস্থেটিক প্রোডাক্ট এরিয়া -->
     <h2 class="section-title product-heading" data-category="aesthetic">✨ Our Premium Aesthetic Gifts ✨</h2>
     <div class="container" id="aestheticContainer">
         <p style="text-align: center; width: 100%; color: #64748b;">Loading dynamic inventory stock data... ⏳</p>
     </div>
 
-    <h2 class="section-title product-heading" data-category="livalia">🌿 Official Livalia Collection (100% COD) 🌿</h2>
+    <!-- লিভালিয়া প্রোডাক্ট এরিয়া -->
+    <h2 class="section-title product-heading" data-category="livalia">🌿 Official Livalia Collection 🌿</h2>
     <div class="container" id="livaliaContainer"></div>
 
+    <!-- সাইডবার কার্ট -->
     <div class="cart-sidebar" id="cartSidebar">
         <div class="cart-header">
             <h2>Your Bag <i class="fas fa-shopping-bag" style="color:var(--primary);"></i></h2>
@@ -147,6 +147,7 @@
         <button class="checkout-btn" onclick="showCheckout()">Proceed to Checkout</button>
     </div>
 
+    <!-- চেকআউট সেকশন -->
     <section class="checkout-section" id="checkoutSection">
         <div id="checkoutFormWrapper">
             <h2 style="color: var(--primary); text-align:center; margin-top:0;">📋 Complete Your Order</h2>
@@ -168,49 +169,52 @@
                     <select id="custRegion" onchange="updateCalculations()" required>
                         <option value="" disabled selected>Select Area</option>
                         <option value="Inside Dhaka">Inside Dhaka City (৳৮০)</option>
-                        <option value="Outside Dhaka">Outside Dhaka City (৳১৫০)</option>
+                        <option value="Outside Dhaka">Outside Dhaka City (৳১৫ۆ)</option>
                     </select>
                 </div>
                 <div class="form-group"><label>Full Delivery Address *</label><textarea id="custAddress" rows="3" required></textarea></div>
+                
                 <div class="form-group">
-                    <label>Staff Code *</label>
-                    <select id="staffCode" required>
-                        <option value="" disabled selected>Select Staff Code</option>
-                        <option value="SAT 1">SAT 1</option><option value="SAT 2">SAT 2</option><option value="SAT 3">SAT 3</option><option value="SAT 4">SAT 4</option><option value="SAT 5">SAT 5</option><option value="SAT 6">SAT 6</option><option value="SAT 7">SAT 7</option>
-                    </select>
-                </div>
-                <div class="form-group" id="paymentInputGroup">
-                    <label>Payment Method & Advance Transaction Info *</label>
-                    <p id="liveliaNoticeBox" style="font-size:0.95em; color:green; background: #f0fdf4; padding: 10px; border-radius: 8px; border: 1px solid #bbf7d0; font-weight: bold; display:none;">🟢 Livalia Brand Order! ১০০% ক্যাশ অন ডেলিভারি (Advance = 0)।</p>
-                    <p id="advanceNoticeBox" style="font-size:0.95em; color:var(--primary); background: #fff5f7; padding: 10px; border-radius: 8px; border: 1px dashed var(--primary);">⚠️ অর্ডার কনফার্ম করতে ১০% অগ্রিম পেমেন্ট ৳<strong id="advanceAmountDisplay">0</strong> করুন।</p>
-                    <input type="text" id="custPayment" placeholder="e.g., bKash Personal - 017XXXXXXXX - TrxID" required>
+                    <p style="font-size:0.95em; color:green; background: #f0fdf4; padding: 12px; border-radius: 8px; border: 1px solid #bbf7d0; font-weight: bold; margin: 0;">
+                        🟢 সম্পূর্ণ ক্যাশ অন ডেলিভারি পেমেন্ট (পণ্য হাতে পেয়ে টাকা পরিশোধ করবেন)। কোনো অগ্রিম টাকা দিতে হবে না।
+                    </p>
                 </div>
                 <button type="submit" class="submit-order-btn">Place Order & Confirm 🛍️</button>
             </form>
         </div>
     </section>
 
+    <!-- নোটিশ সেকশন -->
     <section class="notice-section" id="noticeSectionBox">
-        <h2><i class="fas fa-truck"></i> ডেলিভারি ও অগ্রিম পেমেন্ট</h2>
-        <p>ঢাকা সিটি ৳৮০০+ এবং ঢাকার বাইরে ৳১২০০+ অর্ডারে ডেলিভারি সম্পূর্ণ ফ্রি! 🚚</p>
-    </section>
-
-    <section class="payment-info" id="paymentInfoBox">
-        <h2>পেমেন্ট পদ্ধতি (Payment Procedure)</h2>
-        <div class="payment-grid">
-            <div class="pay-card"><strong style="color: #d12053;">bKash</strong><br><b>01635303579</b><br>(Personal)</div>
-            <div class="pay-card"><strong style="color: #f7941d;">Nagad</strong><br><b>01945436987</b><br>(Personal)</div>
-            <div class="pay-card" style="width: 280px; text-align: left;">
-                <strong style="color: var(--primary);">Bank Details</strong><br>
-                Bank: <b>The City Bank Plc</b><br>A/C: <b>2184686981001</b><br>Branch: <b>Banani</b><br>Name: <b>Arafat Islam Apurba</b>
-            </div>
-        </div>
+        <h2><i class="fas fa-truck"></i> ডেলিভারি ও কন্ডিশন</h2>
+        <p>সারা বাংলাদেশে ক্যাশ অন ডেলিভারি দেওয়া হয়। ঢাকা সিটি ৳৮০০+ এবং ঢাকার বাইরে ৳১২০০+ অর্ডারে ডেলিভারি সম্পূর্ণ ফ্রি! 🚚</p>
     </section>
 
     <script>
-        // 🌟 আপনার জেনারেট করা নতুন মেইন ইউআরএল লিংক এখানে পারফেক্টলি সেট করা হয়েছে
+        // 🌟 আপনার জেনარეট করা মেইন ইউআরএল লিংক
         const GOOGLE_SCRIPT_WEB_APP_URL = "https://script.google.com/macros/s/AKfycbzzspgAqbdPi6_xfLkELh5rPVcuZDXEYInx0chtTJ54A1yTkcoekc-Fr-XSCtgUJpks/exec";
 
+        // 🌟 গ্লোবাল ভ্যারিয়েবল অটো স্টাফ কোড ট্র্যাকিং হ্যান্ডেল করার জন্য
+        let trackedStaffCode = "Direct"; 
+
+        // URL থেকে রিলেশন ট্র্যাক করার ফাংশন (যেমন: ?ref=sat1 বা ?ref=sat4)
+        function trackReferralStaffCode() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const ref = urlParams.get('ref');
+            if (ref) {
+                const cleanRef = ref.toLowerCase().trim();
+                if (cleanRef === "sat1") trackedStaffCode = "SAT 1";
+                else if (cleanRef === "sat2") trackedStaffCode = "SAT 2";
+                else if (cleanRef === "sat3") trackedStaffCode = "SAT 3";
+                else if (cleanRef === "sat4") trackedStaffCode = "SAT 4";
+                else if (cleanRef === "sat5") trackedStaffCode = "SAT 5";
+                else if (cleanRef === "sat6") trackedStaffCode = "SAT 6";
+                else if (cleanRef === "sat7") trackedStaffCode = "SAT 7";
+            }
+            console.log("Tracked Staff Code Source:", trackedStaffCode);
+        }
+
+        // অরিজিনাল ছোট আইডিগুলোই অক্ষুণ্ণ রাখা হলো
         const livaliaProducts = [
             { id: "L001", name: "Livalia Night Spot Removal Cream", offPrice: 880, img: "https://i.postimg.cc/L8ZrFgm0/Night-Spot.jpg" },
             { id: "L002", name: "Livalia Neem Toothpaste", offPrice: 320, img: "https://i.postimg.cc/Vkb3P0zp/Tooth-Paste.png" },
@@ -219,50 +223,19 @@
             { id: "L005", name: "Livalia Neem Facewash", offPrice: 460, img: "https://i.postimg.cc/0NYFbgMp/Face-Wash.png" }
         ];
 
-        // 🌟 ভ্যারিয়েন্ট অনুযায়ী আপনার দেওয়া অফিশিয়াল ছবিগুলোর ব্যাকআপ ম্যাপিং ডিকশনারি
         const fallbackVariantImages = {
-            "P001": {
-                "default": "https://i.postimg.cc/xj5sts7d/O1CN01Vh-Km-C01Xr-W8Fx-Pev8-2219452762977-0-cib-600x600.jpg",
-                "white": "https://i.postimg.cc/xj5sts7d/O1CN01Vh-Km-C01Xr-W8Fx-Pev8-2219452762977-0-cib-600x600.jpg"
-            },
-            "P002": {
-                "default": "https://i.postimg.cc/7hDgh0kN/Kitty-Necklace.jpg",
-                "Silver": "https://i.postimg.cc/7hDgh0kN/Kitty-Necklace.jpg"
-            },
-            "P003": {
-                "default": "https://i.postimg.cc/HnMq2Gcw/O1CN01T5o-ZZ52Es-SQBsn-FTE-2219476018800-0-cib.jpg",
-                "Purple": "https://i.postimg.cc/prjwZNhQ/O1CN01b7tpt-B2Es-SQ82Nol-K-2219476018800-0-cib.jpg",
-                "Blue": "https://i.postimg.cc/59RPP6RB/O1CN01Xma65Q2Es-SQA8du-AT-2219476018800-0-cib.jpg",
-                "Pink": "https://i.postimg.cc/wxGWW7Gc/O1CN01ZLHTZ52Es-SQ9w81l2-2219476018800-0-cib.jpg"
-            },
-            "P004": {
-                "default": "https://i.postimg.cc/PJB2SPsj/Gemini-Generated-Image-ael0b7ael0b7ael0.png",
-                "Blue": "https://i.postimg.cc/sxtwTvdF/phone-chain-1.jpg",
-                "Purple": "https://i.postimg.cc/RhjXgNrk/phone-chain-2.jpg",
-                "Pink": "https://i.postimg.cc/G2J66r6Y/Pink.png",
-                "Yellow": "https://i.postimg.cc/zBS4454K/Yellow.png",
-                "White": "https://i.postimg.cc/Y9fTTkTF/White.png"
-            },
-            "P005": {
-                "default": "https://i.postimg.cc/N0SDsKFj/Cable-Protector-1.jpg",
-                "Brown Bear": "https://i.postimg.cc/K8cJJXCM/Cable-Protector-3.jpg",
-                "Snow Bear": "https://i.postimg.cc/tRk1y6jb/O1CN01Keucpl1ijgozr-UYou-1032914449-0-cib.jpg"
-            },
-            "P006": {
-                "default": "https://i.postimg.cc/W1fPT7vt/phone-chain-11.jpg",
-                "Purple": "https://i.postimg.cc/P5qkgR02/phone-chain-14.jpg",
-                "Blue": "https://i.postimg.cc/g2BPmKWJ/phone-chain-13.jpg",
-                "Pink": "https://i.postimg.cc/rwYLM9ks/phone-chain-12.jpg",
-                "Yellow": "https://i.postimg.cc/506xVXqj/O1CN01Z1O55Q2JSPu5BCd-CL-2212782849420-0-cib.jpg",
-                "Dark Pink": "https://i.postimg.cc/NM5gcK7F/O1CN01h-FBX4O2JSPu6gejys-2212782849420-0-cib.jpg"
-            }
+            "P001": { "default": "https://i.postimg.cc/xj5sts7d/O1CN01Vh-Km-C01Xr-W8Fx-Pev8-2219452762977-0-cib-600x600.jpg", "white": "https://i.postimg.cc/xj5sts7d/O1CN01Vh-Km-C01Xr-W8Fx-Pev8-2219452762977-0-cib-600x600.jpg" },
+            "P002": { "default": "https://i.postimg.cc/7hDgh0kN/Kitty-Necklace.jpg", "Silver": "https://i.postimg.cc/7hDgh0kN/Kitty-Necklace.jpg" },
+            "P003": { "default": "https://i.postimg.cc/HnMq2Gcw/O1CN01T5o-ZZ52Es-SQBsn-FTE-2219476018800-0-cib.jpg", "Purple": "https://i.postimg.cc/prjwZNhQ/O1CN01b7tpt-B2Es-SQ82Nol-K-2219476018800-0-cib.jpg", "Blue": "https://i.postimg.cc/59RPP6RB/O1CN01Xma65Q2Es-SQA8du-AT-2219476018800-0-cib.jpg", "Pink": "https://i.postimg.cc/wxGWW7Gc/O1CN01ZLHTZ52Es-SQ9w81l2-2219476018800-0-cib.jpg" },
+            "P004": { "default": "https://i.postimg.cc/PJB2SPsj/Gemini-Generated-Image-ael0b7ael0b7ael0.png", "Blue": "https://i.postimg.cc/sxtwTvdF/phone-chain-1.jpg", "Purple": "https://i.postimg.cc/RhjXgNrk/phone-chain-2.jpg", "Pink": "https://i.postimg.cc/G2J66r6Y/Pink.png", "Yellow": "https://i.postimg.cc/zBS4454K/Yellow.png", "White": "https://i.postimg.cc/Y9fTTkTF/White.png" },
+            "P005": { "default": "https://i.postimg.cc/N0SDsKFj/Cable-Protector-1.jpg", "Brown Bear": "https://i.postimg.cc/K8cJJXCM/Cable-Protector-3.jpg", "Snow Bear": "https://i.postimg.cc/tRk1y6jb/O1CN01Keucpl1ijgozr-UYou-1032914449-0-cib.jpg" },
+            "P006": { "default": "https://i.postimg.cc/W1fPT7vt/phone-chain-11.jpg", "Purple": "https://i.postimg.cc/P5qkgR02/phone-chain-14.jpg", "Blue": "https://i.postimg.cc/g2BPmKWJ/phone-chain-13.jpg", "Pink": "https://i.postimg.cc/rwYLM9ks/phone-chain-12.jpg", "Yellow": "https://i.postimg.cc/506xVXqj/O1CN01Z1O55Q2JSPu5BCd-CL-2212782849420-0-cib.jpg", "Dark Pink": "https://i.postimg.cc/NM5gcK7F/O1CN01h-FBX4O2JSPu6gejys-2212782849420-0-cib.jpg" }
         };
 
         let dbInventory = []; 
         let cart = [];
         let selectedProductColors = {}; 
 
-        // ১. শিট থেকে লাইভ ডেটা আনা এবং অটো কলাম বিন্যাস ঠিক করা
         function fetchLiveInventory() {
             fetch(GOOGLE_SCRIPT_WEB_APP_URL)
                 .then(res => res.json())
@@ -292,7 +265,6 @@
                 });
         }
 
-        // ২. প্রোডাক্ট গ্রুপিং ও বাটন রেন্ডারিং
         function buildDynamicProducts() {
             const aesContainer = document.getElementById('aestheticContainer');
             if(!aesContainer) return;
@@ -307,10 +279,7 @@
 
             Object.keys(grouped).forEach(pid => {
                 const variants = grouped[pid];
-                
-                if(!selectedProductColors[pid]) {
-                    selectedProductColors[pid] = variants[0].colour;
-                }
+                if(!selectedProductColors[pid]) selectedProductColors[pid] = variants[0].colour;
                 const activeColour = selectedProductColors[pid];
                 const currentVariant = variants.find(v => v.colour === activeColour) || variants[0];
 
@@ -343,19 +312,12 @@
                 
                 let disableBtn = currentVariant.stock <= 0 ? 'disabled' : '';
 
-                let renderImgSrc = currentVariant.image;
-                if(!renderImgSrc && fallbackVariantImages[pid]) {
-                    renderImgSrc = fallbackVariantImages[pid][activeColour] || fallbackVariantImages[pid]["default"];
-                }
-
                 card.innerHTML = `
-                    <img src="${renderImgSrc || 'https://via.placeholder.com/300'}" class="main-img" id="img-view-${pid}" alt="${currentVariant.name}">
+                    <img src="${currentVariant.image || 'https://via.placeholder.com/300'}" class="main-img" id="img-view-${pid}" alt="${currentVariant.name}">
                     <h3>${currentVariant.name}</h3>
                     ${stockLabel}
                     ${colorButtonsHtml}
-                    <div class="price-container">
-                        <span class="offer-price">${calculatedPrice} TK</span>
-                    </div>
+                    <div class="price-container"><span class="offer-price">${calculatedPrice} TK</span></div>
                     <button class="order-btn" id="btn-add-${pid}" ${disableBtn} onclick="addDynamicToCart('${pid}', '${calculatedPrice}')">Add To Cart</button>
                 `;
                 aesContainer.appendChild(card);
@@ -424,9 +386,7 @@
 
             const existing = cart.find(item => item.id === id && item.colour === colour);
             if(existing) {
-                if(existing.qty >= variant.stock) {
-                    alert(`দুঃখিত! এই প্রোডাক্টটির ${colour} ভ্যারিয়েন্টটি স্টকে আর বেশি নেই।`); return;
-                }
+                if(existing.qty >= variant.stock) { alert(`দুঃখিত! এই প্রোডাক্টটির ${colour} ভ্যারিয়েন্টটি স্টকে আর বেশি নেই।`); return; }
                 existing.qty++;
             } else {
                 cart.push({ id, name: variant.name, price: parseInt(price, 10), qty: 1, colour, isLivalia: false });
@@ -438,11 +398,8 @@
         function addLivaliaToCart(id) {
             const item = livaliaProducts.find(p => p.id === id);
             const existing = cart.find(i => i.id === id);
-            if(existing) {
-                existing.qty++;
-            } else {
-                cart.push({ id, name: item.name, price: item.offPrice, qty: 1, colour: "Standard", isLivalia: true });
-            }
+            if(existing) existing.qty++;
+            else cart.push({ id, name: item.name, price: item.offPrice, qty: 1, colour: "Standard", isLivalia: true });
             updateCartDOM();
             document.getElementById('cartSidebar').classList.add('active');
         }
@@ -462,19 +419,15 @@
         function updateCartDOM() {
             document.getElementById('cartCount').innerText = cart.reduce((sum, item) => sum + item.qty, 0);
             const container = document.getElementById('cartItemsContainer');
-            if(!container) return;
-            container.innerHTML = '';
+            if(!container) return; container.innerHTML = '';
             let total = 0;
             
             cart.forEach(item => {
                 total += (item.price * item.qty);
-                
                 let availableStockText = "";
                 if(!item.isLivalia) {
                     const variant = dbInventory.find(v => v.id === item.id && v.colour === item.colour);
-                    if(variant) {
-                        availableStockText = `<small style="color:var(--primary); font-weight:600; display:block; margin-top:2px;">(Max Available: ${variant.stock})</small>`;
-                    }
+                    if(variant) availableStockText = `<small style="color:var(--primary); font-weight:600; display:block; margin-top:2px;">(Max Available: ${variant.stock})</small>`;
                 }
 
                 const div = document.createElement('div');
@@ -507,24 +460,8 @@
             document.getElementById('summaryDeliveryCharge').innerText = delCharge + " TK";
             document.getElementById('summaryGrandTotal').innerText = (subtotal + delCharge) + " TK";
 
-            const hasLivalia = cart.some(i => i.isLivalia);
-            document.getElementById('liveliaNoticeBox').style.display = hasLivalia ? 'block' : 'none';
-            document.getElementById('advanceNoticeBox').style.display = hasLivalia ? 'none' : 'block';
-            document.getElementById('advanceAmountDisplay').innerText = Math.ceil(subtotal * 0.10);
-            
-            const payInput = document.getElementById('custPayment');
-            if(hasLivalia) {
-                if(payInput) { payInput.value = "100% Cash on Delivery"; payInput.readOnly = true; }
-            } else {
-                if(payInput) {
-                    if(payInput.value === "100% Cash on Delivery") payInput.value = "";
-                    payInput.readOnly = false;
-                }
-            }
-
             const summaryContainer = document.getElementById('liveCartSummaryRows');
-            if(!summaryContainer) return;
-            summaryContainer.innerHTML = '';
+            if(!summaryContainer) return; summaryContainer.innerHTML = '';
             cart.forEach(item => {
                 const r = document.createElement('div');
                 r.className = 'live-summary-row';
@@ -560,7 +497,6 @@
 
         let lastSubmittedOrderData = null;
         
-        // 🌟 ৩. গুগল শিটে সঠিক সিকোয়েন্সে ডেটা পাঠানোর মেইন মেথড (CORS ফিক্স সহ)
         function submitToGoogleSheets(e) {
             e.preventDefault();
             if(cart.length === 0) return;
@@ -582,16 +518,15 @@
                 cart: cart, 
                 cartDetails: serializedCart,
                 totalBill: (subtotal + delCharge) + " TK",
-                advanceAmount: cart.some(i => i.isLivalia) ? "0 TK" : Math.ceil(subtotal * 0.10) + " TK",
-                paymentInfo: document.getElementById('custPayment').value,
-                staffCode: document.getElementById('staffCode').value
+                advanceAmount: "0 TK", 
+                paymentInfo: "Cash on Delivery", 
+                staffCode: trackedStaffCode 
             };
 
             lastSubmittedOrderData = { orderId: generatedId, cart: JSON.parse(JSON.stringify(cart)) };
             const btn = e.target.querySelector('.submit-order-btn');
             btn.disabled = true; btn.innerText = "Processing Order... ⏳";
 
-            // CORS ব্লকিং ছাড়াই ডেটা শিটে শতভাগ পৌঁছানোর টেকনিক্যাল আর্কিটেকচার
             fetch(GOOGLE_SCRIPT_WEB_APP_URL, {
                 method: "POST",
                 body: JSON.stringify(payload)
@@ -610,24 +545,22 @@
                 <div class="success-card">
                     <div style="font-size: 4em; color: #22c55e; margin-bottom: 15px;"><i class="fas fa-check-circle"></i></div>
                     <h2 style="color: var(--primary); margin-top:0;">অর্ডারটি সফলভাবে সম্পন্ন হয়েছে!</h2>
-                    <p style="font-size: 1.05em; color:#334155;">ধন্যবাদ, আপনার অর্ডারটি সিস্টেমে লাইভ নথিভুক্ত করা হয়েছে।</p>
+                    <p style="font-size: 1.05em; color:#334155;">ধন্যবাদ, কোনো অগ্রিম টাকা ছাড়াই ক্যাশ অন ডেলিভারিতে অর্ডার কনফার্ম করা হয়েছে।</p>
                     <div style="background:#fffcfd; text-align:left; padding:20px; border-radius:10px; margin:20px 0; border:2px solid var(--primary); font-size:0.95em; line-height:1.6;">
                         <b style="color:var(--primary); font-size:1.1em;">অর্ডার ট্র্যাকিং আইডি: #${id}</b><br>
                         <b>নাম:</b> ${data.name}<br>
                         <b>মোবাইল নম্বর:</b> ${data.phone}<br>
                         <b>মোট বিল (ডেলিভারি সহ):</b> ${data.totalBill}<br>
-                        <b>অগ্রিম পেমেন্ট অবস্থা:</b> ${data.advanceAmount}<br>
-                        <b>স্টাফ রেফারেন্স নম্বর:</b> ${data.staffCode}
+                        <b>পেমেন্ট মেথড:</b> Cash on Delivery (COD)<br>
+                        <b>স্টাফ কোড ট্র্যাকিং:</b> ${data.staffCode}
                     </div>
                     <button class="cancel-order-btn" id="cancelBtnEl" onclick="cancelPlacedOrder()">❌ Cancel Order & Return Stock</button>
                     <a href="javascript:void(0)" onclick="window.location.reload()" style="display:inline-block; margin-top:20px; color:var(--primary); font-weight:bold; text-decoration:none;"><i class="fas fa-arrow-left"></i> হোমপেজে ফিরে যান</a>
                 </div>`;
             cart = []; updateCartDOM();
             if(document.getElementById('noticeSectionBox')) document.getElementById('noticeSectionBox').style.display = 'none';
-            if(document.getElementById('paymentInfoBox')) document.getElementById('paymentInfoBox').style.display = 'none';
         }
 
-        // 🌟 ৪. অর্ডার ক্যানসেল করার লাইভ টানেল মেথড (স্টক এবং স্ট্যাটাস রিসেট)
         function cancelPlacedOrder() {
             if(!confirm("আপনি কি নিশ্চিতভাবে এই অর্ডারটি ক্যানসেল করতে চান? ক্যানসেল করলে শিটের Status 'Cancelled' হবে এবং স্টক ব্যাক হবে।")) return;
             
@@ -655,7 +588,10 @@
             });
         }
 
-        window.onload = fetchLiveInventory;
+        window.onload = function() {
+            trackReferralStaffCode(); 
+            fetchLiveInventory();     
+        };
     </script>
 </body>
 </html>
