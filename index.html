@@ -91,6 +91,8 @@
 
         .notice-section { background: #f3f4f6; padding: 35px 25px; text-align: center; border-radius: 20px; margin: 40px auto; max-width: 900px; border: 1px solid #cbd5e1; width: 90%; box-sizing: border-box; }
         .whatsapp-float { position: fixed; bottom: 20px; right: 20px; background-color: #25d366; color: white; width: 60px; height: 60px; border-radius: 50px; text-align: center; font-size: 32px; display: flex; align-items: center; justify-content: center; text-decoration: none; z-index: 100; }
+        
+        .live-summary-row { display: flex; justify-content: space-between; font-size: 0.9em; margin-bottom: 6px; border-bottom: 1px dotted #f3e8ee; padding-bottom: 4px;}
     </style>
 </head>
 <body>
@@ -123,17 +125,14 @@
         </div>
     </div>
 
-    <!-- এস্থেটিক প্রোডাক্ট এরিয়া -->
     <h2 class="section-title product-heading" data-category="aesthetic">✨ Our Premium Aesthetic Gifts ✨</h2>
     <div class="container" id="aestheticContainer">
         <p style="text-align: center; width: 100%; color: #64748b;">Loading dynamic inventory stock data... ⏳</p>
     </div>
 
-    <!-- লিভালিয়া প্রোডাক্ট এরিয়া -->
     <h2 class="section-title product-heading" data-category="livalia">🌿 Official Livalia Collection 🌿</h2>
     <div class="container" id="livaliaContainer"></div>
 
-    <!-- সাইডবার কার্ট -->
     <div class="cart-sidebar" id="cartSidebar">
         <div class="cart-header">
             <h2>Your Bag <i class="fas fa-shopping-bag" style="color:var(--primary);"></i></h2>
@@ -147,7 +146,6 @@
         <button class="checkout-btn" onclick="showCheckout()">Proceed to Checkout</button>
     </div>
 
-    <!-- চেকআউট সেকশন -->
     <section class="checkout-section" id="checkoutSection">
         <div id="checkoutFormWrapper">
             <h2 style="color: var(--primary); text-align:center; margin-top:0;">📋 Complete Your Order</h2>
@@ -155,9 +153,9 @@
             <div style="background: #fffcfd; border: 1px solid var(--accent); padding: 15px; border-radius: 10px; margin-bottom: 20px;">
                 <div style="font-weight:bold; color:var(--primary); margin-bottom:10px;">📝 Selected Items Summary</div>
                 <div id="liveCartSummaryRows"></div>
-                <div style="display:flex; justify-content:between; margin-top:10px;"><span>Subtotal: </span><span id="summarySubtotal" style="margin-left:auto;">0 TK</span></div>
-                <div style="display:flex; justify-content:between;"><span>Delivery Charge: </span><span id="summaryDeliveryCharge" style="margin-left:auto;">0 TK</span></div>
-                <div style="display:flex; justify-content:between; font-weight:bold; color:var(--primary); font-size:1.1em; border-top:1px dashed var(--accent); padding-top:6px;"><span>Total Bill: </span><span id="summaryGrandTotal" style="margin-left:auto;">0 TK</span></div>
+                <div style="display:flex; justify-content:space-between; margin-top:10px;"><span>Subtotal: </span><span id="summarySubtotal" style="margin-left:auto;">0 TK</span></div>
+                <div style="display:flex; justify-content:space-between;"><span>Delivery Charge: </span><span id="summaryDeliveryCharge" style="margin-left:auto;">0 TK</span></div>
+                <div style="display:flex; justify-content:space-between; font-weight:bold; color:var(--primary); font-size:1.1em; border-top:1px dashed var(--accent); padding-top:6px;"><span>Total Bill: </span><span id="summaryGrandTotal" style="margin-left:auto;">0 TK</span></div>
             </div>
 
             <form id="orderForm" onsubmit="submitToGoogleSheets(event)">
@@ -169,7 +167,7 @@
                     <select id="custRegion" onchange="updateCalculations()" required>
                         <option value="" disabled selected>Select Area</option>
                         <option value="Inside Dhaka">Inside Dhaka City (৳৮০)</option>
-                        <option value="Outside Dhaka">Outside Dhaka City (৳১৫ۆ)</option>
+                        <option value="Outside Dhaka">Outside Dhaka City (৳১৫০)</option>
                     </select>
                 </div>
                 <div class="form-group"><label>Full Delivery Address *</label><textarea id="custAddress" rows="3" required></textarea></div>
@@ -184,20 +182,17 @@
         </div>
     </section>
 
-    <!-- নোটিশ সেকশন -->
     <section class="notice-section" id="noticeSectionBox">
         <h2><i class="fas fa-truck"></i> ডেলিভারি ও কন্ডিশন</h2>
         <p>সারা বাংলাদেশে ক্যাশ অন ডেলিভারি দেওয়া হয়। ঢাকা সিটি ৳৮০০+ এবং ঢাকার বাইরে ৳১২০০+ অর্ডারে ডেলিভারি সম্পূর্ণ ফ্রি! 🚚</p>
     </section>
 
     <script>
-        // 🌟 আপনার জেনარეট করা মেইন ইউআরএল লিংক
-        const GOOGLE_SCRIPT_WEB_APP_URL = "https://script.google.com/macros/s/AKfycbzzspgAqbdPi6_xfLkELh5rPVcuZDXEYInx0chtTJ54A1yTkcoekc-Fr-XSCtgUJpks/exec";
+        // 🌟 আপডেট হওয়া লাইভ Google Apps Script Web App URL লিংক
+        const GOOGLE_SCRIPT_WEB_APP_URL = "https://script.google.com/macros/s/AKfycbwgn9zJRuxnW8Fwy6_mOaXksqs4KC_raMNCTQn7y1xoLrWJboaUl_-hDWf4oq94spCg/exec";
 
-        // 🌟 গ্লোবাল ভ্যারিয়েবল অটো স্টাফ কোড ট্র্যাকিং হ্যান্ডেল করার জন্য
         let trackedStaffCode = "Direct"; 
 
-        // URL থেকে রিলেশন ট্র্যাক করার ফাংশন (যেমন: ?ref=sat1 বা ?ref=sat4)
         function trackReferralStaffCode() {
             const urlParams = new URLSearchParams(window.location.search);
             const ref = urlParams.get('ref');
@@ -214,7 +209,6 @@
             console.log("Tracked Staff Code Source:", trackedStaffCode);
         }
 
-        // অরিজিনাল ছোট আইডিগুলোই অক্ষুণ্ণ রাখা হলো
         const livaliaProducts = [
             { id: "L001", name: "Livalia Night Spot Removal Cream", offPrice: 880, img: "https://i.postimg.cc/L8ZrFgm0/Night-Spot.jpg" },
             { id: "L002", name: "Livalia Neem Toothpaste", offPrice: 320, img: "https://i.postimg.cc/Vkb3P0zp/Tooth-Paste.png" },
@@ -497,8 +491,8 @@
 
         let lastSubmittedOrderData = null;
         
-        function submitToGoogleSheets(e) {
-            e.preventDefault();
+        function submitToGoogleSheets(event) {
+            event.preventDefault();
             if(cart.length === 0) return;
 
             const subtotal = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
@@ -518,13 +512,12 @@
                 cart: cart, 
                 cartDetails: serializedCart,
                 totalBill: (subtotal + delCharge) + " TK",
-                advanceAmount: "0 TK", 
-                paymentInfo: "Cash on Delivery", 
+                paymentInfo: "100% Cash on Delivery", 
                 staffCode: trackedStaffCode 
             };
 
             lastSubmittedOrderData = { orderId: generatedId, cart: JSON.parse(JSON.stringify(cart)) };
-            const btn = e.target.querySelector('.submit-order-btn');
+            const btn = event.target.querySelector('.submit-order-btn');
             btn.disabled = true; btn.innerText = "Processing Order... ⏳";
 
             fetch(GOOGLE_SCRIPT_WEB_APP_URL, {
