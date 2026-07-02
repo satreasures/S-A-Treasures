@@ -22,6 +22,7 @@
             --success: #3b82f6; 
             --livelia-color: #3b143c; 
             --input-focus: #3b143c;
+            --warning: #f59e0b;
         }
 
         body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: var(--bg-color); color: var(--text-main); margin: 0; padding: 0; }
@@ -91,9 +92,10 @@
         .offer-price { color: var(--primary); font-weight: bold; font-size: 1.35em; }
         .old-price-cut { text-decoration: line-through; color: #94a3b8; font-size: 0.9em; margin-right: 8px; font-weight: 500; }
         
-        .order-btn { display: block; width: 100%; background-color: var(--accent); color: var(--primary); padding: 14px 0; border: none; border-radius: 12px; font-weight: bold; text-align: center; font-size: 1em; cursor: pointer; margin-top: 10px; }
+        .order-btn { display: block; width: 100%; background-color: var(--accent); color: var(--primary); padding: 14px 0; border: none; border-radius: 12px; font-weight: bold; text-align: center; font-size: 1em; cursor: pointer; margin-top: 10px; transition: 0.2s; }
         .order-btn:hover { background-color: var(--primary); color: white; }
-        .order-btn:disabled { background-color: #cbd5e1; color: #94a3b8; cursor: not-allowed; }
+        .order-btn.preorder-style { background-color: var(--warning); color: white; }
+        .order-btn.preorder-style:hover { background-color: #d97706; }
 
         .cart-sidebar { position: fixed; top: 0; right: -420px; width: 380px; height: 100%; background: white; box-shadow: -8px 0 25px rgba(59, 20, 60, 0.08); z-index: 1000; transition: 0.3s ease; padding: 25px; display: flex; flex-direction: column; box-sizing: border-box; border-left: 3px solid var(--primary); }
         .cart-sidebar.active { right: 0; }
@@ -112,6 +114,9 @@
         .form-group { margin-bottom: 22px; }
         .form-group label { display: block; margin-bottom: 8px; font-weight: 600; color: var(--primary); }
         .form-group input, .form-group textarea, .form-group select { width: 100%; padding: 14px; border: 1px solid #cbd5e1; border-radius: 10px; box-sizing: border-box; background: #fafafa; }
+
+        .advance-payment-box { background: #fffcfd; border: 2px dashed #3b143c; padding: 15px; border-radius: 12px; margin-top: 15px; display: none; }
+        .advance-payment-box.active { display: block; }
 
         .submit-order-btn { display: block; background-color: var(--primary); color: white; padding: 16px; border: none; border-radius: 12px; font-weight: bold; font-size: 1.15em; width: 100%; cursor: pointer; }
         .success-card { background: white; border-radius: 20px; padding: 40px 20px; text-align: center; border: 3px solid var(--primary); box-shadow: 0 10px 35px rgba(59, 20, 60, 0.15); }
@@ -216,10 +221,28 @@
                 <div class="form-group"><label>Full Delivery Address *</label><textarea id="custAddress" rows="3" required></textarea></div>
                 
                 <div class="form-group">
-                    <p style="font-size:0.95em; color:green; background: #f0fdf4; padding: 12px; border-radius: 8px; border: 1px solid #bbf7d0; font-weight: bold; margin: 0;">
-                        🟢 সম্পূর্ণ ক্যাশ অন ডেলিভারি পেমেন্ট (পণ্য হাতে পেয়ে টাকা পরিশোধ করবেন)। কোনো অগ্রিম টাকা দিতে হবে না।
-                    </p>
+                    <label>Payment Method *</label>
+                    <select id="paymentMethod" onchange="togglePaymentBox()" required>
+                        <option value="COD" selected>Cash On Delivery (ক্যাশ অন ডেলিভারি)</option>
+                        <option value="Advance">Advance Payment (বিকাশ / নগদ / রকেট)</option>
+                    </select>
+
+                    <div class="advance-payment-box" id="advancePaymentBox">
+                        <p style="font-size: 0.9em; color: #3b143c; margin-top: 0;">
+                            📌 আমাদের পার্সোনাল বিকাশ/নগদ নাম্বারে টাকা পাঠিয়ে নিচের ঘরে তথ্য দিন:<br>
+                            👉 <b>বিকাশ / নগদ (Personal):</b> 01532178827
+                        </p>
+                        <div class="form-group" style="margin-bottom: 12px;">
+                            <label style="font-size: 0.85em;">TrxID / Sender Number</label>
+                            <input type="text" id="payDetails" placeholder="e.g., BK-017XXXXXXXX / TrxID">
+                        </div>
+                        <div class="form-group" style="margin-bottom: 0;">
+                            <label style="font-size: 0.85em;">Payment Screenshot (Optional)</label>
+                            <input type="file" id="payScreenshot" accept="image/*">
+                        </div>
+                    </div>
                 </div>
+
                 <button type="submit" class="submit-order-btn">Place Order & Confirm 🛍️</button>
             </form>
         </div>
@@ -270,13 +293,10 @@
             const ref = urlParams.get('ref');
             if (ref) {
                 const cleanRef = ref.toLowerCase().trim();
-                if (cleanRef === "sat1") trackedStaffCode = "SAT 1";
-                else if (cleanRef === "sat2") trackedStaffCode = "SAT 2";
-                else if (cleanRef === "sat3") trackedStaffCode = "SAT 3";
-                else if (cleanRef === "sat4") trackedStaffCode = "SAT 4";
-                else if (cleanRef === "sat5") trackedStaffCode = "SAT 5";
-                else if (cleanRef === "sat6") trackedStaffCode = "SAT 6";
-                else if (cleanRef === "sat7") trackedStaffCode = "SAT 7";
+                const allowed = ["sat1", "sat2", "sat3", "sat4", "sat5", "sat6", "sat7"];
+                if (allowed.includes(cleanRef)) {
+                    trackedStaffCode = "SAT " + cleanRef.replace("sat", "");
+                }
             }
         }
 
@@ -285,12 +305,11 @@
             "P002": "হ্যালো কিটি লাভারদের জন্য একটি চমৎকার উপহার! গলার চেইন হিসেবে চমৎকার মায়াবী ও আকর্ষণীয় এই ড্যান্সিং স্টোন নেকলেসটি যেকোনো ড্রেসের সাথে দারুণ মানিয়ে যায়।",
             "P003": "আপনার ফোনে সহজে কানেক্ট করে হাতের কব্জিতে ঝুলিয়ে বা পেঁচিয়ে স্টাইলিশ ভাবে নিয়ে ঘোরার জন্য এই প্রিমিয়াম বিডেড রিস্টলেট চেইনটি দারুণ! বড় মুক্তা ও কালারফুল বিডের তৈরি এই প্রিমিয়াম সংস্করণটি আপনার ফোনকে দেবে আকর্ষণীয় লুক।",
             "P004": "ফোন হাত থেকে পড়ে যাওয়া রোধ করতে এবং একই সাথে ফোনে একটি কিউট, ইউনিক ও ট্রেন্ডি ভাইব যোগ করতে এই কালারফুল ক্যারেক্টার ফোন স্ট্র্যাপ-টির জুড়ি নেই!",
-            "P005": "আপনার চাবিগুলোকে গুছিয়ে রাখতে এবং একই সাথে ব্যাগে বা লুপে একটি চমৎকার নান্দনিক ছোঁয়া দিতে এই স্টাইলিশ ক্রিস্টাল বাটারফ্লাই কিচেনটি দারুণ পছন্দ হতে পারে।",
+            "P005": "আপনার চাবিগুলোকে গুছিয়ে রাখতে এবং একই সাথে ব্যাগে বা লুপে একটি চমৎকার নান্দনিক ছোঁয়া দিতে এই স্টাইলিশ ক্রিস্টাল বাটারфলাই কিচেনটি দারুণ পছন্দ হতে পারে।",
             "P006": "আপনার চার্জার ও ডেটা কেবলের মাথা ভেঙে যাওয়া বা নষ্ট হওয়া থেকে শতভাগ সুরক্ষিত রাখতে এই কিউট ও কালারফুল এনিমেল কেবল প্রোটেক্টরগুলো দারুণ কাজের!",
             "P007": "আপনার পড়ার টেবিল বা ঘরের কোণকে কিউট ও মায়াবী আলোয় রাঙিয়ে তুলতে এই মাল্টিকালার অ্যানিমেল ডেস্ক ল্যাম্পটি দারুণ কার্যকর। রিচার্জেবল ও সহজে বহনযোগ্য এই লাইটটি উপহার দেওয়ার জন্য চমৎকার।"
         };
 
-        // প্রতিটি প্রোডাক্টের মেইন আকর্ষণীয় ছবি এবং কালার ভ্যারিয়েন্টগুলোর ম্যাপিং ডেটাবেজ
         const localColorImages = {
             "P001": {
                 "Pic 1": "https://i.postimg.cc/xj5sts7d/O1CN01Vh-Km-C01Xr-W8Fx-Pev8-2219452762977-0-cib-600x600.jpg",
@@ -348,7 +367,7 @@
             { id: "L001", name: "Livalia Night Spot Removal Cream", offPrice: 880, img: "https://i.postimg.cc/L8ZrFgm0/Night-Spot.jpg", desc: "ত্বকের কালচে দাগ, মেছতা ও পিগমেন্টেশন দূর করে ন্যাচারাল উজ্জ্বলতা ফিরিয়ে আনতে অত্যন্ত কার্যকরী একটি ভেষজ নাইট ক্রিম।" },
             { id: "L002", name: "Livalia Neem Toothpaste", offPrice: 320, img: "https://i.postimg.cc/Vkb3P0zp/Tooth-Paste.png", desc: "নিমের প্রাকৃতিক গুণে সমৃদ্ধ! মাড়ি মজবুত করতে, মুখের দুর্গন্ধ দূর করতে এবং দাঁতের হলদেটে ভাব দূর করে ফ্রেশ অনুভূতি দিতে অনন্য।" },
             { id: "L003", name: "Livalia Alovera Shampoo", offPrice: 640, img: "https://i.postimg.cc/nhQ6f9nW/Shampoo.png", desc: "অ্যালোভেরার পুষ্টিগুণে ঠাসা, যা চুল পড়া বন্ধ করে, চুলের গোড়া মজবুত করে এবং চুলকে করে তোলে একদম সিল্কি, সফট ও শাইনি।" },
-            { id: "L004", name: "Livalia Scavia Soap", offPrice: 420, img: "https://i.postimg.cc/436qmC7p/Soap.png", desc: "ত্বকের গভীর থেকে ধুলোবালি ও জীবাণু পরিষ্কার করে ব্রণমুক্ত, মসৃণ এবং হেলদি স্কিন পেতে সাহায্য করে এই প্রিমিয়াম হারবাল সোপ।" },
+            { id: "L004", name: "Livalia Scavia Soap", offPrice: 420, img: "https://i.postimg.cc/436qmC7p/Soap.png", desc: "ত্বকের গভীর থেকে ধুলোবালি ও জীবাণু পরিষ্কার করে ব্রণমুক্ত, মসৃণ এবং হেলদি স্কিন পেতে সাহায্য করে এই primium হারবাল সোপ।" },
             { id: "L005", name: "Livalia Neem Facewash", offPrice: 460, img: "https://i.postimg.cc/0NYFbgMp/Face-Wash.png", desc: "অয়েলি স্কিনের জন্য ম্যাজিক! নিমের অ্যান্টি-ব্যাকটেরিয়াল উপাদান ত্বকের অতিরিক্ত তেল দূর করে এবং ব্রণ ওঠা স্থায়ীভাবে রোধ করে।" }
         ];
 
@@ -405,7 +424,6 @@
             Object.keys(grouped).forEach(pid => {
                 const variants = grouped[pid];
                 
-                // ডিফোল্ট কালার সিলেকশন লজিক উন্নত করা হয়েছে (সবচেয়ে প্রথমে মেইন পিকচার সিলেক্ট হবে)
                 let defaultColour = "Standard";
                 const hasMainPic = variants.some(v => v.colour === "Main Pic");
                 const hasStandard = variants.some(v => v.colour === "Standard");
@@ -420,7 +438,6 @@
                 const activeColour = selectedProductColors[pid];
                 let currentVariant = variants.find(v => v.colour === activeColour) || variants[0];
 
-                // নিশ্চিত করা হচ্ছে যেন ডিফোল্ট ভিউতে সবসময় মেইন আকর্ষণীয় প্রিমিয়াম অফিশিয়াল ছবিটিই লোড হয়
                 let firstDisplayImg = "";
                 if (localColorImages[pid]) {
                     firstDisplayImg = localColorImages[pid]["Main Pic"] || localColorImages[pid]["Standard"] || currentVariant.image;
@@ -465,7 +482,6 @@
                 if(variants.length > 1 || (variants.length === 1 && variants[0].colour !== 'Standard' && variants[0].colour !== 'None' && variants[0].colour !== '')) {
                     colorButtonsHtml = `<div class="color-selector-wrapper"><span class="color-label">Available Colour/Type:</span><div class="color-btn-group">`;
                     variants.forEach(v => {
-                        // ব্যাকএন্ডের 'Main Pic' বা 'Standard' টেক্সটগুলোকে কাস্টমারের সামনে সুন্দর দেখানোর জন্য 'Main View' করা হলো
                         let displayName = v.colour;
                         if(v.colour === "Main Pic" || v.colour === "Standard") {
                             displayName = "Main View 📷";
@@ -477,11 +493,18 @@
                     colorButtonsHtml += `</div></div>`;
                 }
 
-                let stockLabel = currentVariant.stock <= 0 ? 
-                    `<span class="stock-indicator" id="stock-lbl-${pid}" style="color:red;">❌ Out of Stock</span>` : 
-                    `<span class="stock-indicator" id="stock-lbl-${pid}" style="color:green;">✔ Stock: ${currentVariant.stock} left</span>`;
-                
-                let disableBtn = currentVariant.stock <= 0 ? 'disabled' : '';
+                // প্রি-অর্ডার মোড লজিক সেটআপ
+                let stockLabel = '';
+                let buttonText = 'Add To Cart';
+                let btnClass = 'order-btn';
+
+                if (currentVariant.stock <= 0) {
+                    stockLabel = `<span class="stock-indicator" id="stock-lbl-${pid}" style="color:var(--warning);">🔴 Out of Stock (Available for Pre-Order)</span>`;
+                    buttonText = 'Pre-Order Now ⏳';
+                    btnClass = 'order-btn preorder-style';
+                } else {
+                    stockLabel = `<span class="stock-indicator" id="stock-lbl-${pid}" style="color:green;">✔ Stock: ${currentVariant.stock} left</span>`;
+                }
 
                 card.innerHTML = `
                     <img src="${firstDisplayImg || 'https://via.placeholder.com/300'}" class="main-img" id="img-view-${pid}" alt="${currentVariant.name}">
@@ -493,7 +516,7 @@
                         ${oldPriceHtml}
                         <span class="offer-price">৳${calculatedPrice}</span>
                     </div>
-                    <button class="order-btn" id="btn-add-${pid}" ${disableBtn} onclick="addDynamicToCart('${pid}', '${calculatedPrice}')">Add To Cart</button>
+                    <button class="${btnClass}" id="btn-add-${pid}" onclick="addDynamicToCart('${pid}', '${calculatedPrice}')">${buttonText}</button>
                 `;
                 aesContainer.appendChild(card);
             });
@@ -503,41 +526,58 @@
 
         function changeProductVariant(pid, selectedColour) {
             selectedProductColors[pid] = selectedColour;
+            
+            let imgTag = document.getElementById(`img-view-${pid}`);
+            if (imgTag && localColorImages[pid]) {
+                imgTag.src = localColorImages[pid][selectedColour] || localColorImages[pid]["Main Pic"] || localColorImages[pid]["Standard"];
+            }
+
             const variants = dbInventory.filter(v => v.id === pid);
             let currentVariant = variants.find(v => v.colour === selectedColour);
             
             if(currentVariant) {
-                if(!currentVariant.image && localColorImages[pid]) {
-                    currentVariant.image = localColorImages[pid][selectedColour] || localColorImages[pid]["Standard"];
-                }
-
-                let imgTag = document.getElementById(`img-view-${pid}`);
-                if(imgTag) imgTag.src = currentVariant.image || 'https://via.placeholder.com/300';
-                
                 const lbl = document.getElementById('stock-lbl-' + pid);
                 const btn = document.getElementById('btn-add-' + pid);
                 
                 if(currentVariant.stock <= 0) {
-                    if(lbl) { lbl.innerHTML = `❌ Out of Stock`; lbl.style.color = 'red'; }
-                    if(btn) btn.disabled = true;
+                    if(lbl) { lbl.innerHTML = `🔴 Out of Stock (Available for Pre-Order)`; lbl.style.color = 'var(--warning)'; }
+                    if(btn) {
+                        btn.innerText = 'Pre-Order Now ⏳';
+                        btn.className = 'order-btn preorder-style';
+                    }
                 } else {
                     if(lbl) { lbl.innerHTML = `✔ Stock: ${currentVariant.stock} left`; lbl.style.color = 'green'; }
-                    if(btn) btn.disabled = false;
+                    if(btn) {
+                        btn.innerText = 'Add To Cart';
+                        btn.className = 'order-btn';
+                    }
                 }
+            }
 
-                const card = document.getElementById(`product-card-${pid}`);
-                if(card) {
-                    card.querySelectorAll('.color-option-btn').forEach(b => {
-                        let btnText = b.innerText.trim();
-                        if(selectedColour === "Main Pic" || selectedColour === "Standard") {
-                            if(btnText.startsWith("Main View")) b.classList.add('selected');
-                            else b.classList.remove('selected');
-                        } else {
-                            if(btnText === selectedColour.trim()) b.classList.add('selected');
-                            else b.classList.remove('selected');
-                        }
-                    });
-                }
+            const card = document.getElementById(`product-card-${pid}`);
+            if(card) {
+                card.querySelectorAll('.color-option-btn').forEach(b => {
+                    let btnText = b.innerText.trim();
+                    if(selectedColour === "Main Pic" || selectedColour === "Standard") {
+                        if(btnText.startsWith("Main View")) b.classList.add('selected');
+                        else b.classList.remove('selected');
+                    } else {
+                        if(btnText === selectedColour.trim()) b.classList.add('selected');
+                        else b.classList.remove('selected');
+                    }
+                });
+            }
+        }
+
+        function togglePaymentBox() {
+            const method = document.getElementById('paymentMethod').value;
+            const pBox = document.getElementById('advancePaymentBox');
+            if(method === "Advance") {
+                pBox.classList.add('active');
+            } else {
+                pBox.classList.remove('active');
+                document.getElementById('payDetails').value = "";
+                document.getElementById('payScreenshot').value = "";
             }
         }
 
@@ -567,12 +607,26 @@
             const variant = dbInventory.find(v => v.id === id && v.colour === colour);
             if(!variant) return;
 
+            // যদি স্টক ০ বা তার কম হয়, তবে এটি প্রি-অর্ডার মোড চালু করবে
+            const isPreOrderMode = variant.stock <= 0;
+
             const existing = cart.find(item => item.id === id && item.colour === colour);
             if(existing) {
-                if(existing.qty >= variant.stock) { alert(`দুঃখিত! এই প্রোডাক্টটির ${colour} ভ্যারিয়েন্টটি স্টকে আর বেশি নেই।`); return; }
+                // যদি রেডি স্টকের আইটেম হয়, তবে স্টক লিমিট ক্রস করতে পারবে না। কিন্তু প্রি-অর্ডার হলে আনলিমিটেড নেওয়া যাবে।
+                if(!isPreOrderMode && existing.qty >= variant.stock) { 
+                    alert(`দুঃখিত! এই প্রোডাক্টটির রেডি স্টক শেষ। পরবর্তী আইটেমগুলো প্রি-অর্ডার হিসেবে যুক্ত হবে।`); 
+                }
                 existing.qty++;
             } else {
-                cart.push({ id, name: variant.name, price: parseInt(price, 10), qty: 1, colour, isLivalia: false });
+                cart.push({ 
+                    id, 
+                    name: variant.name, 
+                    price: parseInt(price, 10), 
+                    qty: 1, 
+                    colour, 
+                    isLivalia: false,
+                    isPreOrder: isPreOrderMode 
+                });
             }
             updateCartDOM();
             document.getElementById('cartSidebar').classList.add('active');
@@ -582,7 +636,7 @@
             const item = livaliaProducts.find(p => p.id === id);
             const existing = cart.find(i => i.id === id);
             if(existing) existing.qty++;
-            else cart.push({ id, name: item.name, price: item.offPrice, qty: 1, colour: "Standard", isLivalia: true });
+            else cart.push({ id, name: item.name, price: item.offPrice, qty: 1, colour: "Standard", isLivalia: true, isPreOrder: false });
             updateCartDOM();
             document.getElementById('cartSidebar').classList.add('active');
         }
@@ -590,10 +644,6 @@
         function changeQty(id, colour, delta) {
             const item = cart.find(i => i.id === id && i.colour === colour);
             if (!item) return;
-            if(!item.isLivalia) {
-                const variant = dbInventory.find(v => v.id === id && v.colour === colour);
-                if(variant && delta > 0 && item.qty >= variant.stock) { alert("স্টক সীমাবদ্ধ! আর যোগ করা যাবে না।"); return; }
-            }
             item.qty += delta;
             if (item.qty <= 0) cart = cart.filter(i => !(i.id === id && i.colour === colour));
             updateCartDOM();
@@ -607,18 +657,16 @@
             
             cart.forEach(item => {
                 total += (item.price * item.qty);
-                let availableStockText = "";
-                if(!item.isLivalia) {
-                    const variant = dbInventory.find(v => v.id === item.id && v.colour === item.colour);
-                    if(variant) availableStockText = `<small style="color:var(--primary); font-weight:600; display:block; margin-top:2px;">(Max Available: ${variant.stock})</small>`;
+                let tagText = item.colour;
+                if(item.isPreOrder) {
+                    tagText += " - Pre Order ⏳";
                 }
 
                 const div = document.createElement('div');
                 div.className = 'cart-item';
                 div.innerHTML = `
                     <div>
-                        <strong>${item.name} [${item.colour}]</strong>
-                        ${availableStockText}
+                        <strong style="${item.isPreOrder ? 'color:#d97706;' : ''}">${item.name} [${tagText}]</strong>
                         <br>${item.price} TK x ${item.qty}
                         <div class="qty-controls">
                             <button class="qty-btn" onclick="changeQty('${item.id}', '${item.colour}', -1)">-</button>
@@ -648,7 +696,11 @@
             cart.forEach(item => {
                 const r = document.createElement('div');
                 r.className = 'live-summary-row';
-                r.innerHTML = `<span>${item.name} [${item.colour}] (x${item.qty})</span><b>${item.price * item.qty} TK</b>`;
+                let labelName = `${item.name} [${item.colour}]`;
+                if(item.isPreOrder) {
+                    labelName += " [Pre-Order]";
+                }
+                r.innerHTML = `<span>${labelName} (x${item.qty})</span><b>${item.price * item.qty} TK</b>`;
                 summaryContainer.appendChild(r);
             });
         }
@@ -680,7 +732,16 @@
 
         let lastSubmittedOrderData = null;
         
-        function submitToGoogleSheets(event) {
+        function getBase64(file) {
+            return new Promise((resolve, reject) => {
+                const reader = new FileReader();
+                reader.readAsDataURL(file);
+                reader.onload = () => resolve(reader.result);
+                reader.onerror = error => reject(error);
+            });
+        }
+
+        async function submitToGoogleSheets(event) {
             event.preventDefault();
             if(cart.length === 0) return;
 
@@ -689,13 +750,35 @@
             let delCharge = region === "Inside Dhaka" ? (subtotal >= 800 ? 0 : 80) : 150;
             const generatedId = "SAT-" + Math.floor(100000 + Math.random() * 900000);
 
-            const serializedCart = cart.map(i => `${i.name} [${i.colour}] (x${i.qty})`).join(", ");
+            // শীটের Cart Details কলামে [Pre-Order] পুশ করার জন্য ফরম্যাটিং লজিক
+            const serializedCart = cart.map(i => {
+                let tag = i.isPreOrder ? " [Pre-Order]" : "";
+                return `${i.name} [${i.colour}]${tag} (x${i.qty})`;
+            }).join(", ");
 
             let baseAddress = document.getElementById('custAddress').value.trim();
             const hasLivaliaItem = cart.some(item => item.isLivalia === true);
             
             if (hasLivaliaItem) {
                 baseAddress = baseAddress + ", Agent Code: LL-ES-0010";
+            }
+
+            const method = document.getElementById('paymentMethod').value;
+            let finalPaymentInfo = "100% Cash on Delivery";
+            let screenshotBase64 = "";
+
+            if(method === "Advance") {
+                const pDetails = document.getElementById('payDetails').value.trim();
+                finalPaymentInfo = "Advance Paid via (" + (pDetails ? pDetails : "Not Specified") + ")";
+                
+                const fileInput = document.getElementById('payScreenshot');
+                if(fileInput.files.length > 0) {
+                    try {
+                        screenshotBase64 = await getBase64(fileInput.files[0]);
+                    } catch (e) {
+                        console.error("Screenshot conversion failed", e);
+                    }
+                }
             }
 
             const payload = {
@@ -708,7 +791,8 @@
                 cart: cart, 
                 cartDetails: serializedCart,
                 totalBill: (subtotal + delCharge) + " TK",
-                paymentInfo: "100% Cash on Delivery", 
+                paymentInfo: finalPaymentInfo, 
+                screenshot: screenshotBase64, 
                 staffCode: trackedStaffCode 
             };
 
@@ -729,13 +813,13 @@
                 <div class="success-card">
                     <div style="font-size: 4em; color: #22c55e; margin-bottom: 15px;"><i class="fas fa-check-circle"></i></div>
                     <h2 style="color: var(--primary); margin-top:0;">অর্ডারটি সফলভাবে সম্পন্ন হয়েছে!</h2>
-                    <p style="font-size: 1.05em; color:#334155;">ধন্যবাদ, কোনো অগ্রিম টাকা ছাড়াই ক্যাশ অন ডেলিভারিতে অর্ডার কনফার্ম করা হয়েছে।</p>
+                    <p style="font-size: 1.05em; color:#334155;">ধন্যবাদ, আপনার অর্ডার ডাটাবেজে কনফার্ম করা হয়েছে।</p>
                     <div style="background:#fffcfd; text-align:left; padding:20px; border-radius:10px; margin:20px 0; border:2px solid var(--primary); font-size:0.95em; line-height:1.6;">
                         <b style="color:var(--primary); font-size:1.1em;">অর্ডার ট্র্যাকিং আইডি: #${id}</b><br>
                         <b>নাম:</b> ${data.name}<br>
                         <b>মোবাইল নম্বর:</b> ${data.phone}<br>
                         <b>মোট বিল (ডেলিভারি সহ):</b> ${data.totalBill}<br>
-                        <b>পেমেন্ট মেথড:</b> Cash on Delivery (COD)<br>
+                        <b>পেমেন্ট মেথড:</b> ${data.paymentInfo}<br>
                         <b>স্টাফ কোড ট্র্যাকিং:</b> ${data.staffCode}
                     </div>
                     <button class="cancel-order-btn" id="cancelBtnEl" onclick="cancelPlacedOrder()">❌ Cancel Order & Return Stock</button>
