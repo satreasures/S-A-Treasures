@@ -27,7 +27,6 @@
 
         body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: var(--bg-color); color: var(--text-main); margin: 0; padding: 0; }
         
-        /* ব্যানার ক্রলিং ইফেক্ট */
         .shipping-banner { 
             background: linear-gradient(90deg, var(--primary), #5c265e); 
             color: white; 
@@ -381,7 +380,7 @@
                 .then(res => res.json())
                 .then(data => {
                     dbInventory = data.map(item => {
-                        let parsedId = (item.productid || item.id || "").toString().trim();
+                        let parsedId = (item.productid || item.id || "").toString().trim().toUpperCase();
                         let parsedColour = (item.colour || item.color || "Standard").toString().trim();
                         
                         let finalImg = item.image || item.photo || item.img || "";
@@ -402,7 +401,12 @@
                             oldPrice: Number(item.oldprice || 0)
                         };
                     });
+                    
                     buildDynamicProducts();
+                    
+                    Object.keys(selectedProductColors).forEach(pid => {
+                        changeProductVariant(pid, selectedProductColors[pid]);
+                    });
                 })
                 .catch(err => {
                     console.error("Fetch Error: ", err);
@@ -494,7 +498,6 @@
                     colorButtonsHtml += `</div></div>`;
                 }
 
-                // প্রি-অর্ডার মোড লজিক সেটআপ
                 let stockLabel = '';
                 let buttonText = 'Add To Cart';
                 let btnClass = 'order-btn';
@@ -608,12 +611,10 @@
             const variant = dbInventory.find(v => v.id === id && v.colour === colour);
             if(!variant) return;
 
-            // যদি স্টক ০ বা তার কম হয়, তবে এটি প্রি-অর্ডার মোড চালু করবে
             const isPreOrderMode = variant.stock <= 0;
 
             const existing = cart.find(item => item.id === id && item.colour === colour);
             if(existing) {
-                // যদি রেডি স্টকের আইটেম হয়, তবে স্টক লিমিট ক্রস করতে পারবে না। কিন্তু প্রি-অর্ডার হলে আনলিমিটেড নেওয়া যাবে।
                 if(!isPreOrderMode && existing.qty >= variant.stock) { 
                     alert(`দুঃখিত! এই প্রোডাক্টটির রেডি স্টক শেষ। পরবর্তী আইটেমগুলো প্রি-অর্ডার হিসেবে যুক্ত হবে।`); 
                 }
@@ -756,7 +757,6 @@
             let delCharge = region === "Inside Dhaka" ? (subtotal >= 800 ? 0 : 80) : 150;
             const generatedId = "SAT-" + Math.floor(100000 + Math.random() * 900000);
 
-            // শীটের Cart Details কলামে [Pre-Order] পুশ করার জন্য ফরম্যাটিং লজিক
             const serializedCart = cart.map(i => {
                 let tag = i.isPreOrder ? " [Pre-Order]" : "";
                 return `${i.name} [${i.colour}]${tag} (x${i.qty})`;
