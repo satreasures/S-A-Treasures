@@ -99,6 +99,7 @@
 
         .cart-sidebar { position: fixed; top: 0; right: -420px; width: 380px; height: 100%; background: white; box-shadow: -8px 0 25px rgba(59, 20, 60, 0.08); z-index: 1000; transition: 0.3s ease; padding: 25px; display: flex; flex-direction: column; box-sizing: border-box; border-left: 3px solid var(--primary); }
         .cart-sidebar.active { right: 0; }
+        .cart-sidebar.toggle { right: -420px; }
         .cart-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #e2e8f0; padding-bottom: 15px; }
         .close-cart { background: none; border: none; font-size: 28px; cursor: pointer; color: #94a3b8; }
         .cart-items { flex: 1; overflow-y: auto; padding: 15px 0; }
@@ -630,6 +631,7 @@
             }
             updateCartDOM();
             document.getElementById('cartSidebar').classList.add('active');
+            document.getElementById('cartSidebar').classList.remove('toggle');
         }
 
         function addLivaliaToCart(id) {
@@ -639,6 +641,7 @@
             else cart.push({ id, name: item.name, price: item.offPrice, qty: 1, colour: "Standard", isLivalia: true, isPreOrder: false });
             updateCartDOM();
             document.getElementById('cartSidebar').classList.add('active');
+            document.getElementById('cartSidebar').classList.remove('toggle');
         }
 
         function changeQty(id, colour, delta) {
@@ -705,7 +708,10 @@
             });
         }
 
-        function toggleCart() { document.getElementById('cartSidebar').classList.toggle('toggle'); document.getElementById('cartSidebar').classList.toggle('active'); }
+        function toggleCart() { 
+            document.getElementById('cartSidebar').classList.toggle('toggle'); 
+            document.getElementById('cartSidebar').classList.toggle('active'); 
+        }
         
         function showCheckout() {
             if(cart.length === 0) { alert('আপনার ব্যাগটি খালি!'); return; }
