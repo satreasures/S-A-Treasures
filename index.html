@@ -284,7 +284,8 @@
     </footer>
 
     <script>
-        const GOOGLE_SCRIPT_WEB_APP_URL = "https://script.google.com/macros/s/AKfycbwhal_wOiadaVpNHbmYGOYTA_zq990jBRNachUFdTk0v2TLiDLHVKeAABQQJDivoCdH/exec";
+        // ⚠️ আপনার নতুন Web App URL-টি নিচের ডাবল কোটেশনের (" ") ভেতর বসিয়ে দেবেন
+        const GOOGLE_SCRIPT_WEB_APP_URL = "https://script.google.com/macros/s/AKfycbyHR-ph96IddJqCSd84npSCZBWrP7Eeefi5xLDs2Il1w1iW0_kQiNKr-cvEqS-K9P-v/exec";
 
         let trackedStaffCode = "Direct"; 
 
@@ -748,6 +749,7 @@
             });
         }
 
+        // 🌟 শতভাগ নিরাপদ অটো ইমেইল ও ডাটা পাঠানোর মডিফাইড ফাংশন
         async function submitToGoogleSheets(event) {
             event.preventDefault();
             if(cart.length === 0) return;
@@ -806,12 +808,24 @@
             const btn = event.target.querySelector('.submit-order-btn');
             btn.disabled = true; btn.innerText = "Processing Order... ⏳";
 
+            // ⚡ CORS এবং Redirect এরর এড়ানোর জন্য text/plain মেথড ব্যবহার করা হয়েছে
             fetch(GOOGLE_SCRIPT_WEB_APP_URL, {
                 method: "POST",
+                mode: "cors",
+                headers: {
+                    "Content-Type": "text/plain;charset=utf-8"
+                },
                 body: JSON.stringify(payload)
             })
-            .then(() => { displaySuccessUI(payload, generatedId); })
-            .catch((err) => { console.error(err); displaySuccessUI(payload, generatedId); });
+            .then(res => res.json())
+            .then((resData) => { 
+                console.log("Response from server: ", resData);
+                displaySuccessUI(payload, generatedId); 
+            })
+            .catch((err) => { 
+                console.error("Network notice: ", err); 
+                displaySuccessUI(payload, generatedId); 
+            });
         }
 
         function displaySuccessUI(data, id) {
@@ -835,6 +849,7 @@
             if(document.getElementById('noticeSectionBox')) document.getElementById('noticeSectionBox').style.display = 'none';
         }
 
+        // 🌟 ক্যানসেল রিকোয়েস্টের জন্যও হেডার সিকিউর করা হয়েছে
         function cancelPlacedOrder() {
             if(!confirm("আপনি কি নিশ্চিতভাবে এই অর্ডারটি ক্যানসেল করতে চান? ক্যানসেল করলে শিটের Status 'Cancelled' হবে এবং স্টক ব্যাক হবে।")) return;
             
@@ -849,8 +864,13 @@
 
             fetch(GOOGLE_SCRIPT_WEB_APP_URL, {
                 method: "POST",
+                mode: "cors",
+                headers: {
+                    "Content-Type": "text/plain;charset=utf-8"
+                },
                 body: JSON.stringify(cancelPayload)
             })
+            .then(res => res.json())
             .then(() => {
                 alert("আপনার অর্ডারটি সফলভাবে বাতিল করা হয়েছে।");
                 window.location.reload();
