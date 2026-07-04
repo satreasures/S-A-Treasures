@@ -1,0 +1,871 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="google-site-verification" content="1IO6DARE2tmtY6UgOyPrumKuu2tA0K8Vehn0aZK0DSA" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>S&A Treasures | Aesthetic & Herbal Collection</title>
+    <meta name="description" content="Explore S&A Treasures for Aesthetic Gifts and premium Livalia Herbal Soaps & Shampoos.">
+    
+    <link rel="icon" type="image/png" href="https://i.postimg.cc/4yJdwXKp/Gemini-Generated-Image-r2qw9dr2qw9dr2qw.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary: #3b143c;       
+            --primary-hover: #260a27; 
+            --bg-color: #FFF9FB;      
+            --card-bg: #ffffff;
+            --text-main: #2d2d2d;     
+            --accent: #FBCCE7;        
+            --success: #3b82f6; 
+            --livelia-color: #3b143c; 
+            --input-focus: #3b143c;
+            --warning: #f59e0b;
+        }
+
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: var(--bg-color); color: var(--text-main); margin: 0; padding: 0; }
+        
+        .shipping-banner { 
+            background: linear-gradient(90deg, var(--primary), #5c265e); 
+            color: white; 
+            padding: 12px 0; 
+            font-weight: bold; 
+            font-size: 0.95em; 
+            position: sticky; 
+            top: 0; 
+            z-index: 99; 
+            box-shadow: 0 2px 10px rgba(59, 20, 60, 0.15);
+            overflow: hidden;
+            white-space: nowrap;
+        }
+        .banner-text {
+            display: inline-block;
+            padding-left: 100%;
+            animation: bulletin-marquee 25s linear infinite;
+        }
+        .banner-text:hover { animation-play-state: paused; }
+        @keyframes bulletin-marquee {
+            0% { transform: translate3d(0, 0, 0); }
+            100% { transform: translate3d(-100%, 0, 0); }
+        }
+
+        header { padding: 50px 20px; background: #fff; text-align: center; border-bottom: 2px solid rgba(251, 204, 231, 0.3); }
+        .logo-container { margin-bottom: 15px; }
+        .business-logo { width: 130px; height: 130px; border-radius: 50%; object-fit: cover; box-shadow: 0 6px 15px rgba(59, 20, 60, 0.1); border: 3px solid var(--primary); }
+        h1 { color: var(--primary); margin: 0; font-size: 2.5em; letter-spacing: 2px; text-transform: uppercase; font-weight: 700; }
+        .tagline { color: #64748b; font-style: italic; margin-top: 10px; font-size: 1.1em; }
+
+        .filter-container { max-width: 900px; width: 90%; margin: 30px auto 10px; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 15px; background: #fff; padding: 15px 25px; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.02); border: 1px solid var(--accent); box-sizing: border-box; }
+        .search-input { flex: 1; min-width: 250px; padding: 12px; border: 1px solid #cbd5e1; border-radius: 10px; font-size: 0.95em; outline: none; background: #fafafa; transition: 0.2s; }
+        .search-input:focus { border-color: var(--input-focus); background: #fff; box-shadow: 0 0 0 3px rgba(251, 204, 231, 0.5); }
+        .filter-buttons { display: flex; gap: 10px; }
+        .filter-btn { padding: 10px 20px; border: none; border-radius: 8px; font-weight: 600; font-size: 0.9em; cursor: pointer; transition: 0.2s; background: #f1f5f9; color: #475569; }
+        .filter-btn.active { background: var(--primary); color: white; }
+        
+        .cart-float { position: fixed; bottom: 95px; right: 20px; background-color: var(--primary); color: white; width: 60px; height: 60px; border-radius: 50px; text-align: center; font-size: 24px; box-shadow: 0 4px 15px rgba(59, 20, 60, 0.3); z-index: 100; display: flex; align-items: center; justify-content: center; text-decoration: none; border: none; cursor: pointer; }
+        .cart-count { position: absolute; top: -5px; right: -5px; background: var(--primary); color: white; font-size: 12px; width: 22px; height: 22px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; border: 2px solid white; }
+
+        .section-title { text-align: center; width: 100%; margin: 40px 0 10px; color: var(--primary); font-size: 1.8em; font-weight: 700; }
+        .section-title::after { content: ''; display: block; width: 50px; height: 3px; background-color: var(--accent); margin: 8px auto 0; border-radius: 2px; }
+
+        .container { display: flex; flex-wrap: wrap; justify-content: center; gap: 35px; padding: 20px 20px 50px; max-width: 1200px; margin: 0 auto; }
+        .card { background: var(--card-bg); border-radius: 20px; box-shadow: 0 10px 25px rgba(59, 20, 60, 0.03); width: 330px; padding: 20px; transition: all 0.3s ease; position: relative; border: 2px solid #e2e8f0; box-sizing: border-box; display: flex; flex-direction: column; }
+        .card:hover { transform: translateY(-8px); border-color: var(--accent); }
+        
+        .livelia-badge { position: absolute; top: 15px; right: 15px; background: var(--livelia-color); color: white; padding: 6px 14px; border-radius: 20px; font-size: 0.78em; font-weight: bold; z-index: 2; border: 1px solid var(--accent); }
+        .stock-indicator { font-size: 0.85em; font-weight: 600; margin-bottom: 8px; }
+        .main-img { width: 100%; height: 280px; object-fit: cover; border-radius: 15px; margin-bottom: 12px; border: 1px solid #e2e8f0; }
+        
+        .prod-description { font-size: 0.88em; color: #4b5563; line-height: 1.5; margin: 8px 0 12px 0; flex-grow: 1; display: block; }
+
+        .color-selector-wrapper { margin: 10px 0; }
+        .color-label { font-size: 0.85em; font-weight: bold; color: #475569; margin-bottom: 5px; display: block; }
+        .color-btn-group { display: flex; gap: 6px; flex-wrap: wrap; }
+        .color-option-btn { padding: 6px 12px; border: 1px solid #cbd5e1; border-radius: 20px; font-size: 0.8em; font-weight: 600; cursor: pointer; background: #fff; color: #475569; }
+        .color-option-btn.selected { background: var(--primary); color: #fff; border-color: var(--primary); }
+
+        h3 { color: #1e293b; margin: 10px 0 5px; font-size: 1.35em; font-weight: 600; min-height: 40px; }
+        .price-container { margin-bottom: 18px; margin-top: auto; display: flex; align-items: center; }
+        .offer-price { color: var(--primary); font-weight: bold; font-size: 1.35em; }
+        .old-price-cut { text-decoration: line-through; color: #94a3b8; font-size: 0.9em; margin-right: 8px; font-weight: 500; }
+        
+        .order-btn { display: block; width: 100%; background-color: var(--accent); color: var(--primary); padding: 14px 0; border: none; border-radius: 12px; font-weight: bold; text-align: center; font-size: 1em; cursor: pointer; margin-top: 10px; transition: 0.2s; }
+        .order-btn:hover { background-color: var(--primary); color: white; }
+        .order-btn.preorder-style { background-color: var(--warning); color: white; }
+        .order-btn.preorder-style:hover { background-color: #d97706; }
+
+        .cart-sidebar { position: fixed; top: 0; right: -420px; width: 380px; height: 100%; background: white; box-shadow: -8px 0 25px rgba(59, 20, 60, 0.08); z-index: 1000; transition: 0.3s ease; padding: 25px; display: flex; flex-direction: column; box-sizing: border-box; border-left: 3px solid var(--primary); }
+        .cart-sidebar.active { right: 0; }
+        .cart-sidebar.toggle { right: -420px; }
+        .cart-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #e2e8f0; padding-bottom: 15px; }
+        .close-cart { background: none; border: none; font-size: 28px; cursor: pointer; color: #94a3b8; }
+        .cart-items { flex: 1; overflow-y: auto; padding: 15px 0; }
+        .cart-item { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; border-bottom: 1px solid #f1f5f9; padding-bottom: 12px; }
+        .qty-controls { display: flex; align-items: center; gap: 10px; margin-top: 8px; }
+        .qty-btn { background: #e2e8f0; border: none; padding: 4px 10px; border-radius: 6px; cursor: pointer; font-weight: bold; }
+        .cart-total { font-size: 1.25em; font-weight: bold; border-top: 1px solid #e2e8f0; padding-top: 18px; display: flex; justify-content: space-between; margin-bottom: 18px; color: var(--primary); }
+        
+        .checkout-btn { background: var(--primary); color: white; width: 100%; padding: 15px; border: none; border-radius: 12px; font-weight: bold; cursor: pointer; text-align: center; }
+        
+        .checkout-section { background: white; padding: 40px 30px; border-radius: 20px; margin: 40px auto; max-width: 600px; box-shadow: 0 10px 30px rgba(59, 20, 60, 0.03); display: none; border: 2px solid var(--primary); box-sizing: border-box; }
+        .checkout-section.active { display: block; }
+        .form-group { margin-bottom: 22px; }
+        .form-group label { display: block; margin-bottom: 8px; font-weight: 600; color: var(--primary); }
+        .form-group input, .form-group textarea, .form-group select { width: 100%; padding: 14px; border: 1px solid #cbd5e1; border-radius: 10px; box-sizing: border-box; background: #fafafa; }
+
+        .advance-payment-box { background: #fffcfd; border: 2px dashed #3b143c; padding: 15px; border-radius: 12px; margin-top: 15px; display: none; }
+        .advance-payment-box.active { display: block; }
+
+        .submit-order-btn { display: block; background-color: var(--primary); color: white; padding: 16px; border: none; border-radius: 12px; font-weight: bold; font-size: 1.15em; width: 100%; cursor: pointer; }
+        .success-card { background: white; border-radius: 20px; padding: 40px 20px; text-align: center; border: 3px solid var(--primary); box-shadow: 0 10px 35px rgba(59, 20, 60, 0.15); }
+        .cancel-order-btn { display: block; width: 100%; background-color: #ef4444; color: white; padding: 14px 0; border: none; border-radius: 12px; font-weight: bold; cursor: pointer; margin-top: 15px; }
+
+        .notice-section { background: #f3f4f6; padding: 35px 25px; text-align: center; border-radius: 20px; margin: 40px auto; max-width: 900px; border: 1px solid #cbd5e1; width: 90%; box-sizing: border-box; }
+        .whatsapp-float { position: fixed; bottom: 20px; right: 20px; background-color: #25d366; color: white; width: 60px; height: 60px; border-radius: 50px; text-align: center; font-size: 32px; display: flex; align-items: center; justify-content: center; text-decoration: none; z-index: 100; }
+        
+        .live-summary-row { display: flex; justify-content: space-between; font-size: 0.9em; margin-bottom: 6px; border-bottom: 1px dotted #f3e8ee; padding-bottom: 4px;}
+
+        footer { background: var(--primary); color: white; padding: 40px 20px; text-align: center; border-top: 4px solid var(--accent); margin-top: 60px; }
+        .footer-container { max-width: 1000px; margin: 0 auto; display: flex; flex-wrap: wrap; justify-content: space-around; gap: 30px; text-align: left; }
+        .footer-section { flex: 1; min-width: 250px; }
+        .footer-section h4 { color: var(--accent); font-size: 1.2em; margin-bottom: 15px; text-transform: uppercase; letter-spacing: 1px; }
+        .footer-links { list-style: none; padding: 0; margin: 0; }
+        .footer-links li { margin-bottom: 12px; display: flex; align-items: flex-start; gap: 10px; font-size: 0.95em; line-height: 1.4; }
+        .footer-links a { color: white; text-decoration: none; transition: 0.2s; }
+        .footer-links a:hover { color: var(--accent); text-decoration: underline; }
+        .social-icons { display: flex; gap: 15px; margin-top: 10px; }
+        .social-icon-btn { background: rgba(255, 255, 255, 0.1); color: white; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 18px; text-decoration: none; transition: 0.3s; }
+        .social-icon-btn:hover { background: var(--accent); color: var(--primary); transform: translateY(-3px); }
+        .copyright { text-align: center; margin-top: 40px; padding-top: 20px; border-top: 1px solid rgba(255, 255, 255, 0.1); font-size: 0.85em; color: #cbd5e1; }
+    </style>
+</head>
+<body>
+
+    <div class="shipping-banner">
+        <div class="banner-text">
+            🎉 100% CASH ON DELIVERY: সারা বাংলাদেশে কোনো অগ্রিম পেমেন্ট ছাড়াই অর্ডার করুন! ঢাকা সিটি ৳৮০০+ এবং বাইরে ৳১২০০+ এ ডেলিভারি ফ্রি! 🚚 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ✨ S&A Treasures - Love yourself, buy gifts, and spread happiness among your loved ones. ✨
+        </div>
+    </div>
+
+    <a href="https://wa.me/8801532178827" class="whatsapp-float" target="_blank"><i class="fab fa-whatsapp"></i></a>
+
+    <button class="cart-float" onclick="toggleCart()">
+        <i class="fas fa-shopping-bag"></i>
+        <span class="cart-count" id="cartCount">0</span>
+    </button>
+
+    <header>
+        <div class="logo-container">
+            <img src="https://i.postimg.cc/4yJdwXKp/Gemini-Generated-Image-r2qw9dr2qw9dr2qw.png" class="business-logo" alt="Logo">
+        </div>
+        <h1>S&A Treasures</h1>
+        <p class="tagline">Love yourself, buy gifts, and spread happiness among your loved ones. ✨</p>
+    </header>
+
+    <div class="filter-container">
+        <input type="text" id="searchBar" oninput="filterGridProducts()" placeholder="🔍 Search products..." class="search-input">
+        <div class="filter-buttons">
+            <button onclick="filterGridCategory('all', this)" class="filter-btn active">All</button>
+            <button onclick="filterGridCategory('aesthetic', this)" class="filter-btn">Aesthetic Gifts</button>
+            <button onclick="filterGridCategory('livalia', this)" class="filter-btn">Livalia Herbal</button>
+        </div>
+    </div>
+
+    <h2 class="section-title product-heading" data-category="aesthetic">✨ Our Premium Aesthetic Gifts ✨</h2>
+    <div class="container" id="aestheticContainer">
+        <p style="text-align: center; width: 100%; color: #64748b;">Loading dynamic inventory stock data... ⏳</p>
+    </div>
+
+    <h2 class="section-title product-heading" data-category="livalia">🌿 Official Livalia Collection 🌿</h2>
+    <div class="container" id="livaliaContainer"></div>
+
+    <div class="cart-sidebar" id="cartSidebar">
+        <div class="cart-header">
+            <h2>Your Bag <i class="fas fa-shopping-bag" style="color:var(--primary);"></i></h2>
+            <button class="close-cart" onclick="toggleCart()">&times;</button>
+        </div>
+        <div class="cart-items" id="cartItemsContainer"></div>
+        <div class="cart-total">
+            <span>Subtotal Amount:</span>
+            <span id="cartTotalAmount">0 TK</span>
+        </div>
+        <button class="checkout-btn" onclick="showCheckout()">Proceed to Checkout</button>
+    </div>
+
+    <section class="checkout-section" id="checkoutSection">
+        <div id="checkoutFormWrapper">
+            <h2 style="color: var(--primary); text-align:center; margin-top:0;">📋 Complete Your Order</h2>
+            
+            <div style="background: #fffcfd; border: 1px solid var(--accent); padding: 15px; border-radius: 10px; margin-bottom: 20px;">
+                <div style="font-weight:bold; color:var(--primary); margin-bottom:10px;">📝 Selected Items Summary</div>
+                <div id="liveCartSummaryRows"></div>
+                <div style="display:flex; justify-content:space-between; margin-top:10px;"><span>Subtotal: </span><span id="summarySubtotal" style="margin-left:auto;">0 TK</span></div>
+                <div style="display:flex; justify-content:space-between;"><span>Delivery Charge: </span><span id="summaryDeliveryCharge" style="margin-left:auto;">0 TK</span></div>
+                <div style="display:flex; justify-content:space-between; font-weight:bold; color:var(--primary); font-size:1.1em; border-top:1px dashed var(--accent); padding-top:6px;"><span>Total Bill: </span><span id="summaryGrandTotal" style="margin-left:auto;">0 TK</span></div>
+            </div>
+
+            <form id="orderForm" onsubmit="submitToGoogleSheets(event)">
+                <div class="form-group"><label>Full Name *</label><input type="text" id="custName" required></div>
+                <div class="form-group"><label>Phone Number *</label><input type="tel" id="custPhone" required></div>
+                <div class="form-group"><label>Email Address *</label><input type="email" id="custEmail" required></div>
+                <div class="form-group">
+                    <label>Delivery Area *</label>
+                    <select id="custRegion" onchange="updateCalculations()" required>
+                        <option value="" disabled selected>Select Area</option>
+                        <option value="Inside Dhaka">Inside Dhaka City (৳৮০)</option>
+                        <option value="Outside Dhaka">Outside Dhaka City (৳১৫০)</option>
+                    </select>
+                </div>
+                <div class="form-group"><label>Full Delivery Address *</label><textarea id="custAddress" rows="3" required></textarea></div>
+                
+                <div class="form-group">
+                    <label>Payment Method *</label>
+                    <select id="paymentMethod" onchange="togglePaymentBox()" required>
+                        <option value="COD" selected>Cash On Delivery (ক্যাশ অন ডেলিভারি)</option>
+                        <option value="Advance">Advance Payment (বিকাশ / নগদ / রকেট)</option>
+                    </select>
+
+                    <div class="advance-payment-box" id="advancePaymentBox">
+                        <p style="font-size: 0.9em; color: #3b143c; margin-top: 0;">
+                            📌 আমাদের পার্সোনাল বিকাশ/নগদ নাম্বারে টাকা পাঠিয়ে নিচের ঘরে তথ্য দিন:<br>
+                            👉 <b>বিকাশ / নগদ (Personal):</b> 01532178827
+                        </p>
+                        <div class="form-group" style="margin-bottom: 12px;">
+                            <label style="font-size: 0.85em;">TrxID / Sender Number</label>
+                            <input type="text" id="payDetails" placeholder="e.g., BK-017XXXXXXXX / TrxID">
+                        </div>
+                        <div class="form-group" style="margin-bottom: 0;">
+                            <label style="font-size: 0.85em;">Payment Screenshot (Optional)</label>
+                            <input type="file" id="payScreenshot" accept="image/*">
+                        </div>
+                    </div>
+                </div>
+
+                <button type="submit" class="submit-order-btn">Place Order & Confirm 🛍️</button>
+            </form>
+        </div>
+    </section>
+
+    <section class="notice-section" id="noticeSectionBox">
+        <h2><i class="fas fa-truck"></i> ডেলিভারি ও কন্ডিশন</h2>
+        <p>সারা বাংলাদেশে ক্যাশ অন ডেলিভারি দেওয়া হয়। ঢাকা সিটি ৳৮০০+ এবং ঢাকার বাইরে ৳১২০০+ অর্ডারে ডেলিভারি সম্পূর্ণ ফ্রি! 🚚</p>
+    </section>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-section">
+                <h4>About S&A Treasures</h4>
+                <p style="font-size: 0.9em; line-height: 1.6; color: #e2e8f0; margin: 0;">
+                    We offer the trendiest Aesthetic gifts and premium Livalia Herbal products right to your doorstep with 100% Cash on Delivery across Bangladesh.
+                </p>
+            </div>
+            <div class="footer-section">
+                <h4>Contact Us</h4>
+                <ul class="footer-links">
+                    <li><i class="fas fa-phone-alt" style="color:var(--accent); margin-top: 3px;"></i> <a href="tel:+8801532178827">+880 1532-178827</a></li>
+                    <li><i class="fas fa-envelope" style="color:var(--accent); margin-top: 3px;"></i> <a href="mailto:hello.trasures.sa@gmail.com">hello.trasures.sa@gmail.com</a></li>
+                    <li><i class="fas fa-map-marker-alt" style="color:var(--accent); margin-top: 3px;"></i> <span style="color: #e2e8f0;">S&A Treasures Factory, House 22, Road 7, Block L Taltola Bajar, Dhaka 1216</span></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Follow Our Page & Channel</h4>
+                <div class="social-icons">
+                    <a href="https://www.facebook.com/satreasures.official" target="_blank" class="social-icon-btn" title="Facebook Page"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://www.youtube.com/@SATreasures-v9l" target="_blank" class="social-icon-btn" title="YouTube Channel"><i class="fab fa-youtube"></i></a>
+                    <a href="https://wa.me/8801532178827" target="_blank" class="social-icon-btn" title="WhatsApp Chat"><i class="fab fa-whatsapp"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="copyright">
+            &copy; 2026 S&A Treasures. All Rights Reserved. | Crafted with Love ✨
+        </div>
+    </footer>
+
+    <script>
+        const GOOGLE_SCRIPT_WEB_APP_URL = "https://script.google.com/macros/s/AKfycbwhal_wOiadaVpNHbmYGOYTA_zq990jBRNachUFdTk0v2TLiDLHVKeAABQQJDivoCdH/exec";
+
+        let trackedStaffCode = "Direct"; 
+
+        function trackReferralStaffCode() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const ref = urlParams.get('ref');
+            if (ref) {
+                const cleanRef = ref.toLowerCase().trim();
+                const allowed = ["sat1", "sat2", "sat3", "sat4", "sat5", "sat6", "sat7"];
+                if (allowed.includes(cleanRef)) {
+                    trackedStaffCode = "SAT " + cleanRef.replace("sat", "");
+                }
+            }
+        }
+
+        const aestheticDescriptions = {
+            "P001": "আপনার ডেস্কে বা ঘরে একটি কিউট ও মহাজাগতিক ভাইব নিয়ে আসতে এই Astronaut শোপিস ও ৭ কালারের সানসেট ল্যাম্পটি একদম চমৎকার। ট্রেন্ডি লুকের জন্য রুমে রাখার দারুণ চয়েস!",
+            "P002": "হ্যালো কিটি লাভারদের জন্য একটি চমৎকার উপহার! গলার চেইন হিসেবে চমৎকার মায়াবী ও আকর্ষণীয় এই ড্যান্সিং স্টোন নেকলেসটি যেকোনো ড্রেসের সাথে দারুণ মানিয়ে যায়।",
+            "P003": "আপনার ফোনে সহজে কানেক্ট করে হাতের কব্জিতে ঝুলিয়ে বা পেঁচিয়ে স্টাইলিশ ভাবে নিয়ে ঘোরার জন্য এই প্রিমিয়াম বিডেড রিস্টলেট চেইনটি দারুণ! বড় মুক্তা ও কালারফুল বিডের তৈরি এই প্রিমিয়াম সংস্করণটি আপনার ফোনকে দেবে আকর্ষণীয় লুক।",
+            "P004": "ফোন হাত থেকে পড়ে যাওয়া রোধ করতে এবং একই সাথে ফোনে একটি কিউট, ইউনিক ও ট্রেন্ডি ভাইব যোগ করতে এই কালারফুল ক্যারেক্টার ফোন স্ট্র্যাপ-টির জুড়ি নেই!",
+            "P005": "আপনার চাবিগুলোকে গুছিয়ে রাখতে এবং একই সাথে ব্যাগে বা লুপে একটি চমৎকার নান্দনিক ছোঁয়া দিতে এই স্টাইলিশ ক্রিস্টাল বাটারфলাই কিচেনটি দারুণ পছন্দ হতে পারে।",
+            "P006": "আপনার চার্জার ও ডেটা কেবলের মাথা ভেঙে যাওয়া বা নষ্ট হওয়া থেকে শতভাগ সুরক্ষিত রাখতে এই কিউট ও কালারফুল এনিমেল কেবল প্রোটেক্টরগুলো দারুণ কাজের!",
+            "P007": "আপনার পড়ার টেবিল বা ঘরের কোণকে কিউট ও মায়াবী আলোয় রাঙিয়ে তুলতে এই মাল্টিকালার অ্যানিমেল ডেস্ক ল্যাম্পটি দারুণ কার্যকর। রিচার্জেবল ও সহজে বহনযোগ্য এই লাইটটি উপহার দেওয়ার জন্য চমৎকার।"
+        };
+
+        const localColorImages = {
+            "P001": {
+                "Pic 1": "https://i.postimg.cc/xj5sts7d/O1CN01Vh-Km-C01Xr-W8Fx-Pev8-2219452762977-0-cib-600x600.jpg",
+                "Pic 2": "https://i.postimg.cc/5tz7gfcS/O1CN01FFMJe-M1Xr-W8Gb-Nya-D-2219452762977-0-cib-600x600.jpg",
+                "Pic 3": "https://i.postimg.cc/DZqNvnBB/Gemini-Generated-Image-4tcavf4tcavf4tca.png",
+                "Main Pic": "https://i.postimg.cc/xj5sts7d/O1CN01Vh-Km-C01Xr-W8Fx-Pev8-2219452762977-0-cib-600x600.jpg",
+                "Standard": "https://i.postimg.cc/xj5sts7d/O1CN01Vh-Km-C01Xr-W8Fx-Pev8-2219452762977-0-cib-600x600.jpg"
+            },
+            "P002": {
+                "Pic 1": "https://i.postimg.cc/7hDgh0kN/Kitty-Necklace.jpg",
+                "Pic 2": "https://i.postimg.cc/NF4RHFs2/Kitty-Necklace-1.jpg",
+                "Pic 3": "https://i.postimg.cc/HnHQnXg2/Kitty-Necklace-2.jpg",
+                "Main Pic": "https://i.postimg.cc/7hDgh0kN/Kitty-Necklace.jpg",
+                "Standard": "https://i.postimg.cc/7hDgh0kN/Kitty-Necklace.jpg"
+            },
+            "P003": {
+                "Main Pic": "https://i.postimg.cc/PJB2SPsj/Gemini-Generated-Image-ael0b7ael0b7ael0.png",
+                "Pink": "https://i.postimg.cc/G2J66r6Y/Pink.png",
+                "Purple": "https://i.postimg.cc/RhjXgNrk/phone-chain-2.jpg",
+                "Blue": "https://i.postimg.cc/sxtwTvdF/phone-chain-1.jpg",
+                "Yellow": "https://i.postimg.cc/zBS4454K/Yellow.png",
+                "White": "https://i.postimg.cc/Y9fTTkTF/White.png",
+                "Standard": "https://i.postimg.cc/PJB2SPsj/Gemini-Generated-Image-ael0b7ael0b7ael0.png"
+            },
+            "P004": {
+                "Main Pic": "https://i.postimg.cc/W1fPT7vt/phone-chain-11.jpg",
+                "Pink": "https://i.postimg.cc/rwYLM9ks/phone-chain-12.jpg",
+                "Purple": "https://i.postimg.cc/P5qkgR02/phone-chain-14.jpg",
+                "Dark Pink": "https://i.postimg.cc/NM5gcK7F/O1CN01h-FBX4O2JSPu6gejys-2212782849420-0-cib.jpg",
+                "Blue": "https://i.postimg.cc/g2BPmKWJ/phone-chain-13.jpg",
+                "Yellow": "https://i.postimg.cc/506xVXqj/O1CN01Z1O55Q2JSPu5BCd-CL-2212782849420-0-cib.jpg",
+                "Standard": "https://i.postimg.cc/W1fPT7vt/phone-chain-11.jpg"
+            },
+            "P005": {
+                "Main Pic": "https://i.postimg.cc/HnMq2Gcw/O1CN01T5o-ZZ52Es-SQBsn-FTE-2219476018800-0-cib.jpg",
+                "Blue": "https://i.postimg.cc/59RPP6RB/O1CN01Xma65Q2Es-SQA8du-AT-2219476018800-0-cib.jpg",
+                "Purple": "https://i.postimg.cc/prjwZNhQ/O1CN01b7tpt-B2Es-SQ82Nol-K-2219476018800-0-cib.jpg",
+                "Pink": "https://i.postimg.cc/wxGWW7Gc/O1CN01ZLHTZ52Es-SQ9w81l2-2219476018800-0-cib.jpg",
+                "Standard": "https://i.postimg.cc/HnMq2Gcw/O1CN01T5o-ZZ52Es-SQBsn-FTE-2219476018800-0-cib.jpg"
+            },
+            "P006": {
+                "Main Pic": "https://i.postimg.cc/N0SDsKFj/Cable-Protector-1.jpg",
+                "Brown Bear": "https://i.postimg.cc/QdN00Lv5/Cable-Protector-2.jpg",
+                "Snow Bear": "https://i.postimg.cc/tRk1y6jb/O1CN01Keucpl1ijgozr-UYou-1032914449-0-cib.jpg",
+                "Standard": "https://i.postimg.cc/N0SDsKFj/Cable-Protector-1.jpg"
+            },
+            "P007": {
+                "Main Pic": "https://i.postimg.cc/L8Zwg81z/Gemini-Generated-Image-lrbd6slrbd6slrbd.png",
+                "Multi Colour": "https://i.postimg.cc/L8Zwg81z/Gemini-Generated-Image-lrbd6slrbd6slrbd.png",
+                "Standard": "https://i.postimg.cc/L8Zwg81z/Gemini-Generated-Image-lrbd6slrbd6slrbd.png"
+            }
+        };
+
+        const livaliaProducts = [
+            { id: "L001", name: "Livalia Night Spot Removal Cream", offPrice: 880, img: "https://i.postimg.cc/L8ZrFgm0/Night-Spot.jpg", desc: "ত্বকের কালচে দাগ, মেছতা ও পিগমেন্টেশন দূর করে ন্যাচারাল উজ্জ্বলতা ফিরিয়ে আনতে অত্যন্ত কার্যকরী একটি ভেষজ নাইট ক্রিম।" },
+            { id: "L002", name: "Livalia Neem Toothpaste", offPrice: 320, img: "https://i.postimg.cc/Vkb3P0zp/Tooth-Paste.png", desc: "নিমের প্রাকৃতিক গুণে সমৃদ্ধ! মাড়ি মজবুত করতে, মুখের দুর্গন্ধ দূর করতে এবং দাঁতের হলদেটে ভাব দূর করে ফ্রেশ অনুভূতি দিতে অনন্য।" },
+            { id: "L003", name: "Livalia Alovera Shampoo", offPrice: 640, img: "https://i.postimg.cc/nhQ6f9nW/Shampoo.png", desc: "অ্যালোভেরার পুষ্টিগুণে ঠাসা, যা চুল পড়া বন্ধ করে, চুলের গোড়া মজবুত করে এবং চুলকে করে তোলে একদম সিল্কি, সফট ও শাইনি।" },
+            { id: "L004", name: "Livalia Scavia Soap", offPrice: 420, img: "https://i.postimg.cc/436qmC7p/Soap.png", desc: "ত্বকের গভীর থেকে ধুলোবালি ও জীবাণু পরিষ্কার করে ব্রণমুক্ত, মসৃণ এবং হেলদি স্কিন পেতে সাহায্য করে এই primium হারবাল সোপ।" },
+            { id: "L005", name: "Livalia Neem Facewash", offPrice: 460, img: "https://i.postimg.cc/0NYFbgMp/Face-Wash.png", desc: "অয়েলি স্কিনের জন্য ম্যাজিক! নিমের অ্যান্টি-ব্যাকটেরিয়াল উপাদান ত্বকের অতিরিক্ত তেল দূর করে এবং ব্রণ ওঠা স্থায়ীভাবে রোধ করে।" }
+        ];
+
+        let dbInventory = []; 
+        let cart = [];
+        let selectedProductColors = {}; 
+
+        function fetchLiveInventory() {
+            fetch(GOOGLE_SCRIPT_WEB_APP_URL)
+                .then(res => res.json())
+                .then(data => {
+                    dbInventory = data.map(item => {
+                        let parsedId = (item.productid || item.id || "").toString().trim().toUpperCase();
+                        let parsedColour = (item.colour || item.color || "Standard").toString().trim();
+                        
+                        let finalImg = item.image || item.photo || item.img || "";
+                        if(!finalImg || finalImg.includes("placeholder") || finalImg === "") {
+                            if(localColorImages[parsedId] && localColorImages[parsedId][parsedColour]) {
+                                finalImg = localColorImages[parsedId][parsedColour];
+                            } else if (localColorImages[parsedId] && localColorImages[parsedId]["Standard"]) {
+                                finalImg = localColorImages[parsedId]["Standard"];
+                            }
+                        }
+
+                        return {
+                            id: parsedId,
+                            name: item.productname || item.name || "Aesthetic Product",
+                            colour: parsedColour,
+                            image: finalImg,
+                            stock: Number(item.stock !== undefined ? item.stock : 0),
+                            oldPrice: Number(item.oldprice || 0)
+                        };
+                    });
+                    
+                    buildDynamicProducts();
+                    
+                    Object.keys(selectedProductColors).forEach(pid => {
+                        changeProductVariant(pid, selectedProductColors[pid]);
+                    });
+                })
+                .catch(err => {
+                    console.error("Fetch Error: ", err);
+                    document.getElementById('aestheticContainer').innerHTML = `<p style="color:red; text-align:center; width:100%;">স্টক ডাটাবেজ কানেক্ট করা যায়নি!</p>`;
+                });
+        }
+
+        function buildDynamicProducts() {
+            const aesContainer = document.getElementById('aestheticContainer');
+            if(!aesContainer) return;
+            aesContainer.innerHTML = '';
+
+            const grouped = {};
+            dbInventory.forEach(item => {
+                if(!item.id) return;
+                if(!grouped[item.id]) grouped[item.id] = [];
+                grouped[item.id].push(item);
+            });
+
+            Object.keys(grouped).forEach(pid => {
+                const variants = grouped[pid];
+                
+                let defaultColour = "Standard";
+                const hasMainPic = variants.some(v => v.colour === "Main Pic");
+                const hasStandard = variants.some(v => v.colour === "Standard");
+                const hasPic1 = variants.some(v => v.colour === "Pic 1");
+
+                if (hasMainPic) defaultColour = "Main Pic";
+                else if (hasStandard) defaultColour = "Standard";
+                else if (hasPic1) defaultColour = "Pic 1";
+                else defaultColour = variants[0].colour;
+
+                if(!selectedProductColors[pid]) selectedProductColors[pid] = defaultColour;
+                const activeColour = selectedProductColors[pid];
+                let currentVariant = variants.find(v => v.colour === activeColour) || variants[0];
+
+                let firstDisplayImg = "";
+                if (localColorImages[pid]) {
+                    firstDisplayImg = localColorImages[pid]["Main Pic"] || localColorImages[pid]["Standard"] || currentVariant.image;
+                } else {
+                    firstDisplayImg = currentVariant.image;
+                }
+
+                let calculatedPrice = 0; 
+                if (pid === "P001") calculatedPrice = 880; 
+                else if (pid === "P002") calculatedPrice = 400; 
+                else if (pid === "P003") calculatedPrice = 320; 
+                else if (pid === "P004") calculatedPrice = 300; 
+                else if (pid === "P005") calculatedPrice = 275; 
+                else if (pid === "P006") calculatedPrice = 85; 
+                else if (pid === "P007") calculatedPrice = 600; 
+                else calculatedPrice = 250; 
+
+                let currentOldPrice = currentVariant.oldPrice || 0;
+                if(!currentOldPrice) {
+                    if(pid === "P001") currentOldPrice = 1250;
+                    else if(pid === "P002") currentOldPrice = 650;
+                    else if(pid === "P003") currentOldPrice = 490;
+                    else if(pid === "P004") currentOldPrice = 450;
+                    else if(pid === "P005") currentOldPrice = 399;
+                    else if(pid === "P006") currentOldPrice = 150;
+                    else if(pid === "P007") currentOldPrice = 890;
+                }
+
+                let oldPriceHtml = '';
+                if(currentOldPrice > calculatedPrice) {
+                    oldPriceHtml = `<span class="old-price-cut">৳${currentOldPrice}</span>`;
+                }
+
+                const pDesc = aestheticDescriptions[pid] || "Premium limited edition design. Perfect choice for shifting trends and aesthetic gifting.";
+
+                const card = document.createElement('div');
+                card.className = 'card';
+                card.setAttribute('data-name', currentVariant.name);
+                card.setAttribute('id', `product-card-${pid}`);
+
+                let colorButtonsHtml = '';
+                if(variants.length > 1 || (variants.length === 1 && variants[0].colour !== 'Standard' && variants[0].colour !== 'None' && variants[0].colour !== '')) {
+                    colorButtonsHtml = `<div class="color-selector-wrapper"><span class="color-label">Available Colour/Type:</span><div class="color-btn-group">`;
+                    variants.forEach(v => {
+                        let displayName = v.colour;
+                        if(v.colour === "Main Pic" || v.colour === "Standard") {
+                            displayName = "Main View 📷";
+                        }
+                        
+                        const isSel = v.colour === activeColour ? 'selected' : '';
+                        colorButtonsHtml += `<button type="button" class="color-option-btn ${isSel}" onclick="changeProductVariant('${pid}', '${v.colour}')">${displayName}</button>`;
+                    });
+                    colorButtonsHtml += `</div></div>`;
+                }
+
+                let stockLabel = '';
+                let buttonText = 'Add To Cart';
+                let btnClass = 'order-btn';
+
+                if (currentVariant.stock <= 0) {
+                    stockLabel = `<span class="stock-indicator" id="stock-lbl-${pid}" style="color:var(--warning);">🔴 Out of Stock (Available for Pre-Order)</span>`;
+                    buttonText = 'Pre-Order Now ⏳';
+                    btnClass = 'order-btn preorder-style';
+                } else {
+                    stockLabel = `<span class="stock-indicator" id="stock-lbl-${pid}" style="color:green;">✔ Stock: ${currentVariant.stock} left</span>`;
+                }
+
+                card.innerHTML = `
+                    <img src="${firstDisplayImg || 'https://via.placeholder.com/300'}" class="main-img" id="img-view-${pid}" alt="${currentVariant.name}">
+                    <h3>${currentVariant.name}</h3>
+                    <p class="prod-description">${pDesc}</p>
+                    ${stockLabel}
+                    ${colorButtonsHtml}
+                    <div class="price-container">
+                        ${oldPriceHtml}
+                        <span class="offer-price">৳${calculatedPrice}</span>
+                    </div>
+                    <button class="${btnClass}" id="btn-add-${pid}" onclick="addDynamicToCart('${pid}', '${calculatedPrice}')">${buttonText}</button>
+                `;
+                aesContainer.appendChild(card);
+            });
+
+            renderLivaliaStandbyGrid();
+        }
+
+        function changeProductVariant(pid, selectedColour) {
+            selectedProductColors[pid] = selectedColour;
+            
+            let imgTag = document.getElementById(`img-view-${pid}`);
+            if (imgTag && localColorImages[pid]) {
+                imgTag.src = localColorImages[pid][selectedColour] || localColorImages[pid]["Main Pic"] || localColorImages[pid]["Standard"];
+            }
+
+            const variants = dbInventory.filter(v => v.id === pid);
+            let currentVariant = variants.find(v => v.colour === selectedColour);
+            
+            if(currentVariant) {
+                const lbl = document.getElementById('stock-lbl-' + pid);
+                const btn = document.getElementById('btn-add-' + pid);
+                
+                if(currentVariant.stock <= 0) {
+                    if(lbl) { lbl.innerHTML = `🔴 Out of Stock (Available for Pre-Order)`; lbl.style.color = 'var(--warning)'; }
+                    if(btn) {
+                        btn.innerText = 'Pre-Order Now ⏳';
+                        btn.className = 'order-btn preorder-style';
+                    }
+                } else {
+                    if(lbl) { lbl.innerHTML = `✔ Stock: ${currentVariant.stock} left`; lbl.style.color = 'green'; }
+                    if(btn) {
+                        btn.innerText = 'Add To Cart';
+                        btn.className = 'order-btn';
+                    }
+                }
+            }
+
+            const card = document.getElementById(`product-card-${pid}`);
+            if(card) {
+                card.querySelectorAll('.color-option-btn').forEach(b => {
+                    let btnText = b.innerText.trim();
+                    if(selectedColour === "Main Pic" || selectedColour === "Standard") {
+                        if(btnText.startsWith("Main View")) b.classList.add('selected');
+                        else b.classList.remove('selected');
+                    } else {
+                        if(btnText === selectedColour.trim()) b.classList.add('selected');
+                        else b.classList.remove('selected');
+                    }
+                });
+            }
+        }
+
+        function togglePaymentBox() {
+            const method = document.getElementById('paymentMethod').value;
+            const pBox = document.getElementById('advancePaymentBox');
+            if(method === "Advance") {
+                pBox.classList.add('active');
+            } else {
+                pBox.classList.remove('active');
+                document.getElementById('payDetails').value = "";
+                document.getElementById('payScreenshot').value = "";
+            }
+        }
+
+        function renderLivaliaStandbyGrid() {
+            const livContainer = document.getElementById('livaliaContainer');
+            if(!livContainer) return; 
+            livContainer.innerHTML = '';
+            livaliaProducts.forEach(prod => {
+                const card = document.createElement('div');
+                card.className = 'card'; card.setAttribute('data-name', prod.name);
+                
+                card.innerHTML = `
+                    <span class="livelia-badge">LIVALIA PARTNER</span>
+                    <img src="${prod.img}" class="main-img" alt="${prod.name}">
+                    <h3>${prod.name}</h3>
+                    <p class="prod-description">${prod.desc}</p>
+                    <span class="stock-indicator" style="color:green;">✔ Standby Available</span>
+                    <div class="price-container"><span class="offer-price">${prod.offPrice} BDT</span></div>
+                    <button class="order-btn" onclick="addLivaliaToCart('${prod.id}')">Add To Cart</button>
+                `;
+                livContainer.appendChild(card);
+            });
+        }
+
+        function addDynamicToCart(id, price) {
+            const colour = selectedProductColors[id] || "Standard";
+            const variant = dbInventory.find(v => v.id === id && v.colour === colour);
+            if(!variant) return;
+
+            const isPreOrderMode = variant.stock <= 0;
+
+            const existing = cart.find(item => item.id === id && item.colour === colour);
+            if(existing) {
+                if(!isPreOrderMode && existing.qty >= variant.stock) { 
+                    alert(`দুঃখিত! এই প্রোডাক্টটির রেডি স্টক শেষ। পরবর্তী আইটেমগুলো প্রি-অর্ডার হিসেবে যুক্ত হবে।`); 
+                }
+                existing.qty++;
+            } else {
+                cart.push({ 
+                    id, 
+                    name: variant.name, 
+                    price: parseInt(price, 10), 
+                    qty: 1, 
+                    colour, 
+                    isLivalia: false,
+                    isPreOrder: isPreOrderMode 
+                });
+            }
+            updateCartDOM();
+            document.getElementById('cartSidebar').classList.add('active');
+            document.getElementById('cartSidebar').classList.remove('toggle');
+        }
+
+        function addLivaliaToCart(id) {
+            const item = livaliaProducts.find(p => p.id === id);
+            const existing = cart.find(i => i.id === id);
+            if(existing) existing.qty++;
+            else cart.push({ id, name: item.name, price: item.offPrice, qty: 1, colour: "Standard", isLivalia: true, isPreOrder: false });
+            updateCartDOM();
+            document.getElementById('cartSidebar').classList.add('active');
+            document.getElementById('cartSidebar').classList.remove('toggle');
+        }
+
+        function changeQty(id, colour, delta) {
+            const item = cart.find(i => i.id === id && i.colour === colour);
+            if (!item) return;
+            item.qty += delta;
+            if (item.qty <= 0) cart = cart.filter(i => !(i.id === id && i.colour === colour));
+            updateCartDOM();
+        }
+
+        function updateCartDOM() {
+            document.getElementById('cartCount').innerText = cart.reduce((sum, item) => sum + item.qty, 0);
+            const container = document.getElementById('cartItemsContainer');
+            if(!container) return; container.innerHTML = '';
+            let total = 0;
+            
+            cart.forEach(item => {
+                total += (item.price * item.qty);
+                let tagText = item.colour;
+                if(item.isPreOrder) {
+                    tagText += " - Pre Order ⏳";
+                }
+
+                const div = document.createElement('div');
+                div.className = 'cart-item';
+                div.innerHTML = `
+                    <div>
+                        <strong style="${item.isPreOrder ? 'color:#d97706;' : ''}">${item.name} [${tagText}]</strong>
+                        <br>${item.price} TK x ${item.qty}
+                        <div class="qty-controls">
+                            <button class="qty-btn" onclick="changeQty('${item.id}', '${item.colour}', -1)">-</button>
+                            <span style="font-weight:bold; padding:0 5px;">${item.qty}</span>
+                            <button class="qty-btn" onclick="changeQty('${item.id}', '${item.colour}', 1)">+</button>
+                        </div>
+                    </div>
+                    <b style="color:var(--primary);">${item.price * item.qty} TK</b>
+                `;
+                container.appendChild(div);
+            });
+            document.getElementById('cartTotalAmount').innerText = total + " TK";
+            updateCalculations();
+        }
+
+        function updateCalculations() {
+            const subtotal = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
+            document.getElementById('summarySubtotal').innerText = subtotal + " TK";
+            const region = document.getElementById('custRegion').value;
+            
+            let delCharge = region === "Inside Dhaka" ? (subtotal >= 800 ? 0 : 80) : (region === "Outside Dhaka" ? (subtotal >= 1200 ? 0 : 150) : 0);
+            document.getElementById('summaryDeliveryCharge').innerText = delCharge + " TK";
+            document.getElementById('summaryGrandTotal').innerText = (subtotal + delCharge) + " TK";
+
+            const summaryContainer = document.getElementById('liveCartSummaryRows');
+            if(!summaryContainer) return; summaryContainer.innerHTML = '';
+            cart.forEach(item => {
+                const r = document.createElement('div');
+                r.className = 'live-summary-row';
+                let labelName = `${item.name} [${item.colour}]`;
+                if(item.isPreOrder) {
+                    labelName += " [Pre-Order]";
+                }
+                r.innerHTML = `<span>${labelName} (x${item.qty})</span><b>${item.price * item.qty} TK</b>`;
+                summaryContainer.appendChild(r);
+            });
+        }
+
+        function toggleCart() { 
+            document.getElementById('cartSidebar').classList.toggle('toggle'); 
+            document.getElementById('cartSidebar').classList.toggle('active'); 
+        }
+        
+        function showCheckout() {
+            if(cart.length === 0) { alert('আপনার ব্যাগটি খালি!'); return; }
+            document.getElementById('checkoutSection').classList.add('active');
+            document.getElementById('checkoutSection').scrollIntoView({ behavior: 'smooth' });
+            toggleCart();
+        }
+
+        function filterGridCategory(category, btn) {
+            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            document.getElementById('aestheticContainer').style.display = (category==='all' || category==='aesthetic') ? 'flex' : 'none';
+            document.querySelector('.product-heading[data-category="aesthetic"]').style.display = (category==='all' || category==='aesthetic') ? 'block' : 'none';
+            document.getElementById('livaliaContainer').style.display = (category==='all' || category==='livalia') ? 'flex' : 'none';
+            document.querySelector('.product-heading[data-category="livalia"]').style.display = (category==='all' || category==='livalia') ? 'block' : 'none';
+        }
+
+        function filterGridProducts() {
+            const q = document.getElementById('searchBar').value.toLowerCase().trim();
+            document.querySelectorAll('.card').forEach(c => {
+                c.style.display = c.getAttribute('data-name').toLowerCase().includes(q) ? 'flex' : 'none';
+            });
+        }
+
+        let lastSubmittedOrderData = null;
+        
+        function getBase64(file) {
+            return new Promise((resolve, reject) => {
+                const reader = new FileReader();
+                reader.readAsDataURL(file);
+                reader.onload = () => resolve(reader.result);
+                reader.onerror = error => reject(error);
+            });
+        }
+
+        async function submitToGoogleSheets(event) {
+            event.preventDefault();
+            if(cart.length === 0) return;
+
+            const subtotal = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
+            const region = document.getElementById('custRegion').value;
+            let delCharge = region === "Inside Dhaka" ? (subtotal >= 800 ? 0 : 80) : 150;
+            const generatedId = "SAT-" + Math.floor(100000 + Math.random() * 900000);
+
+            const serializedCart = cart.map(i => {
+                let tag = i.isPreOrder ? " [Pre-Order]" : "";
+                return `${i.name} [${i.colour}]${tag} (x${i.qty})`;
+            }).join(", ");
+
+            let baseAddress = document.getElementById('custAddress').value.trim();
+            const hasLivaliaItem = cart.some(item => item.isLivalia === true);
+            
+            if (hasLivaliaItem) {
+                baseAddress = baseAddress + ", Agent Code: LL-ES-0010";
+            }
+
+            const method = document.getElementById('paymentMethod').value;
+            let finalPaymentInfo = "100% Cash on Delivery";
+            let screenshotBase64 = "";
+
+            if(method === "Advance") {
+                const pDetails = document.getElementById('payDetails').value.trim();
+                finalPaymentInfo = "Advance Paid via (" + (pDetails ? pDetails : "Not Specified") + ")";
+                
+                const fileInput = document.getElementById('payScreenshot');
+                if(fileInput.files.length > 0) {
+                    try {
+                        screenshotBase64 = await getBase64(fileInput.files[0]);
+                    } catch (e) {
+                        console.error("Screenshot conversion failed", e);
+                    }
+                }
+            }
+
+            const payload = {
+                action: "placeOrder",
+                orderId: generatedId,
+                name: document.getElementById('custName').value,
+                phone: document.getElementById('custPhone').value,
+                email: document.getElementById('custEmail').value,
+                address: baseAddress, 
+                cart: cart, 
+                cartDetails: serializedCart,
+                totalBill: (subtotal + delCharge) + " TK",
+                paymentInfo: finalPaymentInfo, 
+                screenshot: screenshotBase64, 
+                staffCode: trackedStaffCode 
+            };
+
+            lastSubmittedOrderData = { orderId: generatedId, cart: JSON.parse(JSON.stringify(cart)) };
+            const btn = event.target.querySelector('.submit-order-btn');
+            btn.disabled = true; btn.innerText = "Processing Order... ⏳";
+
+            fetch(GOOGLE_SCRIPT_WEB_APP_URL, {
+                method: "POST",
+                body: JSON.stringify(payload)
+            })
+            .then(() => { displaySuccessUI(payload, generatedId); })
+            .catch((err) => { console.error(err); displaySuccessUI(payload, generatedId); });
+        }
+
+        function displaySuccessUI(data, id) {
+            document.getElementById('checkoutFormWrapper').innerHTML = `
+                <div class="success-card">
+                    <div style="font-size: 4em; color: #22c55e; margin-bottom: 15px;"><i class="fas fa-check-circle"></i></div>
+                    <h2 style="color: var(--primary); margin-top:0;">অর্ডারটি সফলভাবে সম্পন্ন হয়েছে!</h2>
+                    <p style="font-size: 1.05em; color:#334155;">ধন্যবাদ, আপনার অর্ডার ডাটাবেজে কনফার্ম করা হয়েছে।</p>
+                    <div style="background:#fffcfd; text-align:left; padding:20px; border-radius:10px; margin:20px 0; border:2px solid var(--primary); font-size:0.95em; line-height:1.6;">
+                        <b style="color:var(--primary); font-size:1.1em;">অর্ডার ট্র্যাকিং আইডি: #${id}</b><br>
+                        <b>নাম:</b> ${data.name}<br>
+                        <b>মোবাইল নম্বর:</b> ${data.phone}<br>
+                        <b>মোট বিল (ডেলিভারি সহ):</b> ${data.totalBill}<br>
+                        <b>পেমেন্ট মেথড:</b> ${data.paymentInfo}<br>
+                        <b>স্টাফ কোড ট্র্যাকিং:</b> ${data.staffCode}
+                    </div>
+                    <button class="cancel-order-btn" id="cancelBtnEl" onclick="cancelPlacedOrder()">❌ Cancel Order & Return Stock</button>
+                    <a href="javascript:void(0)" onclick="window.location.reload()" style="display:inline-block; margin-top:20px; color:var(--primary); font-weight:bold; text-decoration:none;"><i class="fas fa-arrow-left"></i> হোমপেজে ফিরে যান</a>
+                </div>`;
+            cart = []; updateCartDOM();
+            if(document.getElementById('noticeSectionBox')) document.getElementById('noticeSectionBox').style.display = 'none';
+        }
+
+        function cancelPlacedOrder() {
+            if(!confirm("আপনি কি নিশ্চিতভাবে এই অর্ডারটি ক্যানসেল করতে চান? ক্যানসেল করলে শিটের Status 'Cancelled' হবে এবং স্টক ব্যাক হবে।")) return;
+            
+            let cBtn = document.getElementById('cancelBtnEl');
+            if(cBtn) { cBtn.innerText = "Cancelling Order... ⏳"; cBtn.disabled = true; }
+
+            const cancelPayload = { 
+                action: "cancelOrder", 
+                orderId: lastSubmittedOrderData.orderId, 
+                cart: lastSubmittedOrderData.cart 
+            };
+
+            fetch(GOOGLE_SCRIPT_WEB_APP_URL, {
+                method: "POST",
+                body: JSON.stringify(cancelPayload)
+            })
+            .then(() => {
+                alert("আপনার অর্ডারটি সফলভাবে বাতিল করা হয়েছে।");
+                window.location.reload();
+            })
+            .catch(err => {
+                console.error(err);
+                alert("অর্ডার বাতিল হয়েছে এবং ব্যাকএন্ডে ডেটা সিঙ্ক করা হয়েছে!");
+                window.location.reload();
+            });
+        }
+
+        window.onload = function() {
+            trackReferralStaffCode(); 
+            fetchLiveInventory();     
+        };
+    </script>
+</body>
+</html>
