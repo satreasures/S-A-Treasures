@@ -284,7 +284,6 @@
     </footer>
 
     <script>
-        // ⚠️ আপনার নতুন Web App URL-টি নিচের ডাবল কোটেশনের (" ") ভেতর বসিয়ে দেবেন
         const GOOGLE_SCRIPT_WEB_APP_URL = "https://script.google.com/macros/s/AKfycbyHR-ph96IddJqCSd84npSCZBWrP7Eeefi5xLDs2Il1w1iW0_kQiNKr-cvEqS-K9P-v/exec";
 
         let trackedStaffCode = "Direct"; 
@@ -368,7 +367,7 @@
             { id: "L001", name: "Livalia Night Spot Removal Cream", offPrice: 880, img: "https://i.postimg.cc/L8ZrFgm0/Night-Spot.jpg", desc: "ত্বকের কালচে দাগ, মেছতা ও পিগমেন্টেশন দূর করে ন্যাচারাল উজ্জ্বলতা ফিরিয়ে আনতে অত্যন্ত কার্যকরী একটি ভেষজ নাইট ক্রিম।" },
             { id: "L002", name: "Livalia Neem Toothpaste", offPrice: 320, img: "https://i.postimg.cc/Vkb3P0zp/Tooth-Paste.png", desc: "নিমের প্রাকৃতিক গুণে সমৃদ্ধ! মাড়ি মজবুত করতে, মুখের দুর্গন্ধ দূর করতে এবং দাঁতের হলদেটে ভাব দূর করে ফ্রেশ অনুভূতি দিতে অনন্য।" },
             { id: "L003", name: "Livalia Alovera Shampoo", offPrice: 640, img: "https://i.postimg.cc/nhQ6f9nW/Shampoo.png", desc: "অ্যালোভেরার পুষ্টিগুণে ঠাসা, যা চুল পড়া বন্ধ করে, চুলের গোড়া মজবুত করে এবং চুলকে করে তোলে একদম সিল্কি, সফট ও শাইনি।" },
-            { id: "L004", name: "Livalia Scavia Soap", offPrice: 420, img: "https://i.postimg.cc/436qmC7p/Soap.png", desc: "ত্বকের গভীর থেকে ধুলোবালি ও জীবাণু পরিষ্কার করে ব্রণমুক্ত, মসৃণ এবং হেলদি স্কিন পেতে সাহায্য করে এই primium হারবাল সোপ।" },
+            { id: "L004", name: "Livalia Scavia Soap", offPrice: 420, img: "https://i.postimg.cc/436qmC7p/Soap.png", desc: "ত্বকের গভীর থেকে ধুলোবালি ও জীবাণু পরিষ্কার করে ব্রণমুক্ত, মসৃণ এবং হেলদি স্কিন পেতে সাহায্য করে এই primium হারবাল सোপ।" },
             { id: "L005", name: "Livalia Neem Facewash", offPrice: 460, img: "https://i.postimg.cc/0NYFbgMp/Face-Wash.png", desc: "অয়েলি স্কিনের জন্য ম্যাজিক! নিমের অ্যান্টি-ব্যাকটেরিয়াল উপাদান ত্বকের অতিরিক্ত তেল দূর করে এবং ব্রণ ওঠা স্থায়ীভাবে রোধ করে।" }
         ];
 
@@ -749,7 +748,6 @@
             });
         }
 
-        // 🌟 শতভাগ নিরাপদ অটো ইমেইল ও ডাটা পাঠানোর মডিফাইড ফাংশন
         async function submitToGoogleSheets(event) {
             event.preventDefault();
             if(cart.length === 0) return;
@@ -808,24 +806,12 @@
             const btn = event.target.querySelector('.submit-order-btn');
             btn.disabled = true; btn.innerText = "Processing Order... ⏳";
 
-            // ⚡ CORS এবং Redirect এরর এড়ানোর জন্য text/plain মেথড ব্যবহার করা হয়েছে
             fetch(GOOGLE_SCRIPT_WEB_APP_URL, {
                 method: "POST",
-                mode: "cors",
-                headers: {
-                    "Content-Type": "text/plain;charset=utf-8"
-                },
                 body: JSON.stringify(payload)
             })
-            .then(res => res.json())
-            .then((resData) => { 
-                console.log("Response from server: ", resData);
-                displaySuccessUI(payload, generatedId); 
-            })
-            .catch((err) => { 
-                console.error("Network notice: ", err); 
-                displaySuccessUI(payload, generatedId); 
-            });
+            .then(() => { displaySuccessUI(payload, generatedId); })
+            .catch((err) => { console.error(err); displaySuccessUI(payload, generatedId); });
         }
 
         function displaySuccessUI(data, id) {
@@ -849,7 +835,6 @@
             if(document.getElementById('noticeSectionBox')) document.getElementById('noticeSectionBox').style.display = 'none';
         }
 
-        // 🌟 ক্যানসেল রিকোয়েস্টের জন্যও হেডার সিকিউর করা হয়েছে
         function cancelPlacedOrder() {
             if(!confirm("আপনি কি নিশ্চিতভাবে এই অর্ডারটি ক্যানসেল করতে চান? ক্যানসেল করলে শিটের Status 'Cancelled' হবে এবং স্টক ব্যাক হবে।")) return;
             
@@ -864,13 +849,8 @@
 
             fetch(GOOGLE_SCRIPT_WEB_APP_URL, {
                 method: "POST",
-                mode: "cors",
-                headers: {
-                    "Content-Type": "text/plain;charset=utf-8"
-                },
                 body: JSON.stringify(cancelPayload)
             })
-            .then(res => res.json())
             .then(() => {
                 alert("আপনার অর্ডারটি সফলভাবে বাতিল করা হয়েছে।");
                 window.location.reload();
