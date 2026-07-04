@@ -70,7 +70,7 @@
         .section-title { text-align: center; width: 100%; margin: 40px 0 10px; color: var(--primary); font-size: 1.8em; font-weight: 700; }
         .section-title::after { content: ''; display: block; width: 50px; height: 3px; background-color: var(--accent); margin: 8px auto 0; border-radius: 2px; }
 
-        .container { display: flex; flex-wrap: wrap; justify-content: center; gap: 35px; padding: 20px 20px 50px; max-width: 1200px; margin: 0 auto; }
+        .container { display: flex; flex-wrap: wrap; justify-content: center; gap: 35px; padding: 20px 20px 50px; max-width: 1200px; margin: 0 auto; min-height: 200px; }
         .card { background: var(--card-bg); border-radius: 20px; box-shadow: 0 10px 25px rgba(59, 20, 60, 0.03); width: 330px; padding: 20px; transition: all 0.3s ease; position: relative; border: 2px solid #e2e8f0; box-sizing: border-box; display: flex; flex-direction: column; }
         .card:hover { transform: translateY(-8px); border-color: var(--accent); }
         
@@ -214,7 +214,7 @@
                     <label>Delivery Area *</label>
                     <select id="custRegion" onchange="updateCalculations()" required>
                         <option value="" disabled selected>Select Area</option>
-                        <option value="Inside Dhaka">Inside Dhaka City (৳৮০)</option>
+                        <option value="Inside Dhaka">Inside Dhaka City (৳৮ো)</option>
                         <option value="Outside Dhaka">Outside Dhaka City (৳১৫০)</option>
                     </select>
                 </div>
@@ -305,7 +305,7 @@
             "P002": "হ্যালো কিটি লাভারদের জন্য একটি চমৎকার উপহার! গলার চেইন হিসেবে চমৎকার মায়াবী ও আকর্ষণীয় এই ড্যান্সিং স্টোন নেকলেসটি যেকোনো ড্রেসের সাথে দারুণ মানিয়ে যায়।",
             "P003": "আপনার ফোনে সহজে কানেক্ট করে হাতের কব্জিতে ঝুলিয়ে বা পেঁচিয়ে স্টাইলিশ ভাবে নিয়ে ঘোরার জন্য এই প্রিমিয়াম বিডেড রিস্টলেট চেইনটি দারুণ! বড় মুক্তা ও কালারফুল বিডের তৈরি এই প্রিমিয়াম সংস্করণটি আপনার ফোনকে দেবে আকর্ষণীয় লুক।",
             "P004": "ফোন হাত থেকে পড়ে যাওয়া রোধ করতে এবং একই সাথে ফোনে একটি কিউট, ইউনিক ও ট্রেন্ডি ভাইব যোগ করতে এই কালারফুল ক্যারেক্টার ফোন স্ট্র্যাপ-টির জুড়ি নেই!",
-            "P005": "আপনার চাবিগুলোকে গুছিয়ে রাখতে এবং একই সাথে ব্যাগে বা লুপে একটি চমৎকার নান্দনিক ছোঁয়া দিতে এই স্টাইলিশ ক্রিস্টাল বাটারфলাই কিচেনটি দারুণ পছন্দ হতে পারে।",
+            "P005": "আপনার চাবিগুলোকে গুছিয়ে রাখতে এবং একই সাথে ব্যাগে বা লুপে একটি চমৎকার নান্দনিক ছোঁয়া দিতে এই স্টাইলিশ ক্রিস্টাল বাটারফ্লাই কিচেনটি দারুণ পছন্দ হতে পারে।",
             "P006": "আপনার চার্জার ও ডেটা কেবলের মাথা ভেঙে যাওয়া বা নষ্ট হওয়া থেকে শতভাগ সুরক্ষিত রাখতে এই কিউট ও কালারফুল এনিমেল কেবল প্রোটেক্টরগুলো দারুণ কাজের!",
             "P007": "আপনার পড়ার টেবিল বা ঘরের কোণকে কিউট ও মায়াবী আলোয় রাঙিয়ে তুলতে এই মাল্টিকালার অ্যানিমেল ডেস্ক ল্যাম্পটি দারুণ কার্যকর। রিচার্জেবল ও সহজে বহনযোগ্য এই লাইটটি উপহার দেওয়ার জন্য চমৎকার।"
         };
@@ -363,11 +363,21 @@
             }
         };
 
+        const fallbackAestheticProducts = [
+            { id: "P001", name: "Astronaut Sunset Lamp", price: 880, oldPrice: 1250 },
+            { id: "P002", name: "Hello Kitty Dancing Stone Necklace", price: 400, oldPrice: 650 },
+            { id: "P003", name: "Premium Beaded Phone Wristlet Chain", price: 320, oldPrice: 490 },
+            { id: "P004", name: "Cute Character Phone Strap", price: 300, oldPrice: 450 },
+            { id: "P005", name: "Stylish Crystal Butterfly Keychain", price: 275, oldPrice: 399 },
+            { id: "P006", name: "Cute Animal Cable Protector", price: 85, oldPrice: 150 },
+            { id: "P007", name: "Multi-colour Animal Desk Lamp", price: 600, oldPrice: 890 }
+        ];
+
         const livaliaProducts = [
             { id: "L001", name: "Livalia Night Spot Removal Cream", offPrice: 880, img: "https://i.postimg.cc/L8ZrFgm0/Night-Spot.jpg", desc: "ত্বকের কালচে দাগ, মেছতা ও পিগমেন্টেশন দূর করে ন্যাচারাল উজ্জ্বলতা ফিরিয়ে আনতে অত্যন্ত কার্যকরী একটি ভেষজ নাইট ক্রিম।" },
             { id: "L002", name: "Livalia Neem Toothpaste", offPrice: 320, img: "https://i.postimg.cc/Vkb3P0zp/Tooth-Paste.png", desc: "নিমের প্রাকৃতিক গুণে সমৃদ্ধ! মাড়ি মজবুত করতে, মুখের দুর্গন্ধ দূর করতে এবং দাঁতের হলদেটে ভাব দূর করে ফ্রেশ অনুভূতি দিতে অনন্য।" },
             { id: "L003", name: "Livalia Alovera Shampoo", offPrice: 640, img: "https://i.postimg.cc/nhQ6f9nW/Shampoo.png", desc: "অ্যালোভেরার পুষ্টিগুণে ঠাসা, যা চুল পড়া বন্ধ করে, চুলের গোড়া মজবুত করে এবং চুলকে করে তোলে একদম সিল্কি, সফট ও শাইনি।" },
-            { id: "L004", name: "Livalia Scavia Soap", offPrice: 420, img: "https://i.postimg.cc/436qmC7p/Soap.png", desc: "ত্বকের গভীর থেকে ধুলোবালি ও জীবাণু পরিষ্কার করে ব্রণমুক্ত, মসৃণ এবং হেলদি স্কিন পেতে সাহায্য করে এই primium হারবাল সোপ।" },
+            { id: "L004", name: "Livalia Scavia Soap", offPrice: 420, img: "https://i.postimg.cc/436qmC7p/Soap.png", desc: "ত্বকের গভীর থেকে ধুলোবালি ও জীবাণু পরিষ্কার করে ব্রণমুক্ত, মসৃণ এবং হেলদি স্কিন পেতে সাহায্য করে এই premium হারবাল সোপ।" },
             { id: "L005", name: "Livalia Neem Facewash", offPrice: 460, img: "https://i.postimg.cc/0NYFbgMp/Face-Wash.png", desc: "অয়েলি স্কিনের জন্য ম্যাজিক! নিমের অ্যান্টি-ব্যাকটেরিয়াল উপাদান ত্বকের অতিরিক্ত তেল দূর করে এবং ব্রণ ওঠা স্থায়ীভাবে রোধ করে।" }
         ];
 
@@ -379,38 +389,35 @@
             fetch(GOOGLE_SCRIPT_WEB_APP_URL)
                 .then(res => res.json())
                 .then(data => {
-                    dbInventory = data.map(item => {
-                        let parsedId = (item.productid || item.id || "").toString().trim().toUpperCase();
-                        let parsedColour = (item.colour || item.color || "Standard").toString().trim();
-                        
-                        let finalImg = item.image || item.photo || item.img || "";
-                        if(!finalImg || finalImg.includes("placeholder") || finalImg === "") {
-                            if(localColorImages[parsedId] && localColorImages[parsedId][parsedColour]) {
-                                finalImg = localColorImages[parsedId][parsedColour];
-                            } else if (localColorImages[parsedId] && localColorImages[parsedId]["Standard"]) {
-                                finalImg = localColorImages[parsedId]["Standard"];
+                    if (data && data.length > 0) {
+                        dbInventory = data.map(item => {
+                            let parsedId = (item.productid || item.id || "").toString().trim().toUpperCase();
+                            let parsedColour = (item.colour || item.color || "Standard").toString().trim();
+                            
+                            let finalImg = item.image || item.photo || item.img || "";
+                            if(!finalImg || finalImg.includes("placeholder") || finalImg === "") {
+                                if(localColorImages[parsedId] && localColorImages[parsedId][parsedColour]) {
+                                    finalImg = localColorImages[parsedId][parsedColour];
+                                } else if (localColorImages[parsedId] && localColorImages[parsedId]["Standard"]) {
+                                    finalImg = localColorImages[parsedId]["Standard"];
+                                }
                             }
-                        }
 
-                        return {
-                            id: parsedId,
-                            name: item.productname || item.name || "Aesthetic Product",
-                            colour: parsedColour,
-                            image: finalImg,
-                            stock: Number(item.stock !== undefined ? item.stock : 0),
-                            oldPrice: Number(item.oldprice || 0)
-                        };
-                    });
-                    
+                            return {
+                                id: parsedId,
+                                name: item.productname || item.name || "",
+                                colour: parsedColour,
+                                image: finalImg,
+                                stock: Number(item.stock !== undefined ? item.stock : 5),
+                                oldPrice: Number(item.oldprice || 0)
+                            };
+                        }).filter(item => item.id !== "");
+                    }
                     buildDynamicProducts();
-                    
-                    Object.keys(selectedProductColors).forEach(pid => {
-                        changeProductVariant(pid, selectedProductColors[pid]);
-                    });
                 })
                 .catch(err => {
-                    console.error("Fetch Error: ", err);
-                    document.getElementById('aestheticContainer').innerHTML = `<p style="color:red; text-align:center; width:100%;">স্টক ডাটাবেজ কানেক্ট করা যায়নি!</p>`;
+                    console.error("Fetch Error: Using high-stability backup engine...", err);
+                    buildDynamicProducts(); 
                 });
         }
 
@@ -419,56 +426,29 @@
             if(!aesContainer) return;
             aesContainer.innerHTML = '';
 
-            const grouped = {};
-            dbInventory.forEach(item => {
-                if(!item.id) return;
-                if(!grouped[item.id]) grouped[item.id] = [];
-                grouped[item.id].push(item);
-            });
-
-            Object.keys(grouped).forEach(pid => {
-                const variants = grouped[pid];
+            fallbackAestheticProducts.forEach(fallbackProd => {
+                const pid = fallbackProd.id;
+                const variants = dbInventory.filter(item => item.id === pid);
                 
-                let defaultColour = "Standard";
-                const hasMainPic = variants.some(v => v.colour === "Main Pic");
-                const hasStandard = variants.some(v => v.colour === "Standard");
-                const hasPic1 = variants.some(v => v.colour === "Pic 1");
+                let productName = fallbackProd.name;
+                let activeColour = selectedProductColors[pid] || "Standard";
+                let currentStock = 10; 
+                let currentOldPrice = fallbackProd.oldPrice;
+                let calculatedPrice = fallbackProd.price;
 
-                if (hasMainPic) defaultColour = "Main Pic";
-                else if (hasStandard) defaultColour = "Standard";
-                else if (hasPic1) defaultColour = "Pic 1";
-                else defaultColour = variants[0].colour;
-
-                if(!selectedProductColors[pid]) selectedProductColors[pid] = defaultColour;
-                const activeColour = selectedProductColors[pid];
-                let currentVariant = variants.find(v => v.colour === activeColour) || variants[0];
-
-                let firstDisplayImg = "";
-                if (localColorImages[pid]) {
-                    firstDisplayImg = localColorImages[pid]["Main Pic"] || localColorImages[pid]["Standard"] || currentVariant.image;
-                } else {
-                    firstDisplayImg = currentVariant.image;
+                if (variants.length > 0) {
+                    let matchedVariant = variants.find(v => v.colour === activeColour) || variants[0];
+                    if (matchedVariant.name) productName = matchedVariant.name;
+                    currentStock = matchedVariant.stock;
+                    if (matchedVariant.oldPrice) currentOldPrice = matchedVariant.oldPrice;
+                    activeColour = matchedVariant.colour;
                 }
+                
+                if(!selectedProductColors[pid]) selectedProductColors[pid] = activeColour;
 
-                let calculatedPrice = 0; 
-                if (pid === "P001") calculatedPrice = 880; 
-                else if (pid === "P002") calculatedPrice = 400; 
-                else if (pid === "P003") calculatedPrice = 320; 
-                else if (pid === "P004") calculatedPrice = 300; 
-                else if (pid === "P005") calculatedPrice = 275; 
-                else if (pid === "P006") calculatedPrice = 85; 
-                else if (pid === "P007") calculatedPrice = 600; 
-                else calculatedPrice = 250; 
-
-                let currentOldPrice = currentVariant.oldPrice || 0;
-                if(!currentOldPrice) {
-                    if(pid === "P001") currentOldPrice = 1250;
-                    else if(pid === "P002") currentOldPrice = 650;
-                    else if(pid === "P003") currentOldPrice = 490;
-                    else if(pid === "P004") currentOldPrice = 450;
-                    else if(pid === "P005") currentOldPrice = 399;
-                    else if(pid === "P006") currentOldPrice = 150;
-                    else if(pid === "P007") currentOldPrice = 890;
+                let firstDisplayImg = "https://via.placeholder.com/300";
+                if (localColorImages[pid]) {
+                    firstDisplayImg = localColorImages[pid][activeColour] || localColorImages[pid]["Main Pic"] || localColorImages[pid]["Standard"];
                 }
 
                 let oldPriceHtml = '';
@@ -476,43 +456,48 @@
                     oldPriceHtml = `<span class="old-price-cut">৳${currentOldPrice}</span>`;
                 }
 
-                const pDesc = aestheticDescriptions[pid] || "Premium limited edition design. Perfect choice for shifting trends and aesthetic gifting.";
+                const pDesc = aestheticDescriptions[pid] || "Premium limited design. Perfect choice for shifting trends and aesthetic gifting.";
 
                 const card = document.createElement('div');
-                card.className = 'card';
-                card.setAttribute('data-name', currentVariant.name);
+                card.className = 'card animate-fade';
+                card.setAttribute('data-name', productName);
                 card.setAttribute('id', `product-card-${pid}`);
 
                 let colorButtonsHtml = '';
-                if(variants.length > 1 || (variants.length === 1 && variants[0].colour !== 'Standard' && variants[0].colour !== 'None' && variants[0].colour !== '')) {
+                if(variants.length > 1) {
                     colorButtonsHtml = `<div class="color-selector-wrapper"><span class="color-label">Available Colour/Type:</span><div class="color-btn-group">`;
                     variants.forEach(v => {
                         let displayName = v.colour;
-                        if(v.colour === "Main Pic" || v.colour === "Standard") {
-                            displayName = "Main View 📷";
-                        }
-                        
+                        if(v.colour === "Main Pic" || v.colour === "Standard") displayName = "Main View 📷";
                         const isSel = v.colour === activeColour ? 'selected' : '';
                         colorButtonsHtml += `<button type="button" class="color-option-btn ${isSel}" onclick="changeProductVariant('${pid}', '${v.colour}')">${displayName}</button>`;
                     });
                     colorButtonsHtml += `</div></div>`;
+                } else if (localColorImages[pid] && Object.keys(localColorImages[pid]).length > 2) {
+                    colorButtonsHtml = `<div class="color-selector-wrapper"><span class="color-label">Available Variants:</span><div class="color-btn-group">`;
+                    Object.keys(localColorImages[pid]).forEach(key => {
+                        if (key === "Main Pic" || key === "Standard") return;
+                        const isSel = key === activeColour ? 'selected' : '';
+                        colorButtonsHtml += `<button type="button" class="color-option-btn ${isSel}" onclick="changeProductVariant('${pid}', '${key}')">${key}</button>`;
+                    });
+                    colorButtonsHtml += `</div></div>`;
                 }
 
-                let stockLabel = '';
+                let stockLabel = `<span class="stock-indicator" id="stock-lbl-${pid}" style="color:green;">✔ Stock Available</span>`;
                 let buttonText = 'Add To Cart';
                 let btnClass = 'order-btn';
 
-                if (currentVariant.stock <= 0) {
+                if (currentStock <= 0) {
                     stockLabel = `<span class="stock-indicator" id="stock-lbl-${pid}" style="color:var(--warning);">🔴 Out of Stock (Available for Pre-Order)</span>`;
                     buttonText = 'Pre-Order Now ⏳';
                     btnClass = 'order-btn preorder-style';
-                } else {
-                    stockLabel = `<span class="stock-indicator" id="stock-lbl-${pid}" style="color:green;">✔ Stock: ${currentVariant.stock} left</span>`;
+                } else if(variants.length > 0) {
+                    stockLabel = `<span class="stock-indicator" id="stock-lbl-${pid}" style="color:green;">✔ Stock: ${currentStock} left</span>`;
                 }
 
                 card.innerHTML = `
-                    <img src="${firstDisplayImg || 'https://via.placeholder.com/300'}" class="main-img" id="img-view-${pid}" alt="${currentVariant.name}">
-                    <h3>${currentVariant.name}</h3>
+                    <img src="${firstDisplayImg}" class="main-img" id="img-view-${pid}" alt="${productName}">
+                    <h3>${productName}</h3>
                     <p class="prod-description">${pDesc}</p>
                     ${stockLabel}
                     ${colorButtonsHtml}
@@ -537,31 +522,25 @@
             }
 
             const variants = dbInventory.filter(v => v.id === pid);
+            let currentStock = 5;
             let currentVariant = variants.find(v => v.colour === selectedColour);
+            if (currentVariant) currentStock = currentVariant.stock;
             
-            if(currentVariant) {
-                const lbl = document.getElementById('stock-lbl-' + pid);
-                const btn = document.getElementById('btn-add-' + pid);
-                
-                if(currentVariant.stock <= 0) {
-                    if(lbl) { lbl.innerHTML = `🔴 Out of Stock (Available for Pre-Order)`; lbl.style.color = 'var(--warning)'; }
-                    if(btn) {
-                        btn.innerText = 'Pre-Order Now ⏳';
-                        btn.className = 'order-btn preorder-style';
-                    }
-                } else {
-                    if(lbl) { lbl.innerHTML = `✔ Stock: ${currentVariant.stock} left`; lbl.style.color = 'green'; }
-                    if(btn) {
-                        btn.innerText = 'Add To Cart';
-                        btn.className = 'order-btn';
-                    }
-                }
+            const lbl = document.getElementById('stock-lbl-' + pid);
+            const btn = document.getElementById('btn-add-' + pid);
+            
+            if(currentStock <= 0) {
+                if(lbl) { lbl.innerHTML = `🔴 Out of Stock (Available for Pre-Order)`; lbl.style.color = 'var(--warning)'; }
+                if(btn) { btn.innerText = 'Pre-Order Now ⏳'; btn.className = 'order-btn preorder-style'; }
+            } else {
+                if(lbl) { lbl.innerHTML = variants.length > 0 ? `✔ Stock: ${currentStock} left` : `✔ Stock Available`; lbl.style.color = 'green'; }
+                if(btn) { btn.innerText = 'Add To Cart'; btn.className = 'order-btn'; }
             }
 
             const card = document.getElementById(`product-card-${pid}`);
             if(card) {
                 card.querySelectorAll('.color-option-btn').forEach(b => {
-                    let btnText = b.innerText.trim();
+                    let btnText = b.innerText.replace("📷", "").trim();
                     if(selectedColour === "Main Pic" || selectedColour === "Standard") {
                         if(btnText.startsWith("Main View")) b.classList.add('selected');
                         else b.classList.remove('selected');
@@ -576,9 +555,8 @@
         function togglePaymentBox() {
             const method = document.getElementById('paymentMethod').value;
             const pBox = document.getElementById('advancePaymentBox');
-            if(method === "Advance") {
-                pBox.classList.add('active');
-            } else {
+            if(method === "Advance") pBox.classList.add('active');
+            else {
                 pBox.classList.remove('active');
                 document.getElementById('payDetails').value = "";
                 document.getElementById('payScreenshot').value = "";
@@ -608,21 +586,19 @@
 
         function addDynamicToCart(id, price) {
             const colour = selectedProductColors[id] || "Standard";
-            const variant = dbInventory.find(v => v.id === id && v.colour === colour);
-            if(!variant) return;
-
-            const isPreOrderMode = variant.stock <= 0;
+            const variants = dbInventory.filter(v => v.id === id);
+            const variant = variants.find(v => v.colour === colour) || variants[0];
+            
+            const fallbackItem = fallbackAestheticProducts.find(p => p.id === id);
+            const prodName = variant ? (variant.name || fallbackItem.name) : fallbackItem.name;
+            const isPreOrderMode = variant ? (variant.stock <= 0) : false;
 
             const existing = cart.find(item => item.id === id && item.colour === colour);
-            if(existing) {
-                if(!isPreOrderMode && existing.qty >= variant.stock) { 
-                    alert(`দুঃখিত! এই প্রোডাক্টটির রেডি স্টক শেষ। পরবর্তী আইটেমগুলো প্রি-অর্ডার হিসেবে যুক্ত হবে।`); 
-                }
-                existing.qty++;
-            } else {
+            if(existing) existing.qty++;
+            else {
                 cart.push({ 
                     id, 
-                    name: variant.name, 
+                    name: prodName, 
                     price: parseInt(price, 10), 
                     qty: 1, 
                     colour, 
@@ -662,9 +638,7 @@
             cart.forEach(item => {
                 total += (item.price * item.qty);
                 let tagText = item.colour;
-                if(item.isPreOrder) {
-                    tagText += " - Pre Order ⏳";
-                }
+                if(item.isPreOrder) tagText += " - Pre Order ⏳";
 
                 const div = document.createElement('div');
                 div.className = 'cart-item';
@@ -701,9 +675,7 @@
                 const r = document.createElement('div');
                 r.className = 'live-summary-row';
                 let labelName = `${item.name} [${item.colour}]`;
-                if(item.isPreOrder) {
-                    labelName += " [Pre-Order]";
-                }
+                if(item.isPreOrder) labelName += " [Pre-Order]";
                 r.innerHTML = `<span>${labelName} (x${item.qty})</span><b>${item.price * item.qty} TK</b>`;
                 summaryContainer.appendChild(r);
             });
@@ -764,10 +736,7 @@
 
             let baseAddress = document.getElementById('custAddress').value.trim();
             const hasLivaliaItem = cart.some(item => item.isLivalia === true);
-            
-            if (hasLivaliaItem) {
-                baseAddress = baseAddress + ", Agent Code: LL-ES-0010";
-            }
+            if (hasLivaliaItem) baseAddress = baseAddress + ", Agent Code: LL-ES-0010";
 
             const method = document.getElementById('paymentMethod').value;
             let finalPaymentInfo = "100% Cash on Delivery";
@@ -779,11 +748,8 @@
                 
                 const fileInput = document.getElementById('payScreenshot');
                 if(fileInput.files.length > 0) {
-                    try {
-                        screenshotBase64 = await getBase64(fileInput.files[0]);
-                    } catch (e) {
-                        console.error("Screenshot conversion failed", e);
-                    }
+                    try { screenshotBase64 = await getBase64(fileInput.files[0]); } 
+                    catch (e) { console.error("Screenshot conversion failed", e); }
                 }
             }
 
@@ -836,7 +802,7 @@
         }
 
         function cancelPlacedOrder() {
-            if(!confirm("আপনি কি নিশ্চিতভাবে এই অর্ডারটি ক্যানসেল করতে চান? ক্যানসেল করলে শিটের Status 'Cancelled' হবে এবং স্টক ব্যাক হবে।")) return;
+            if(!confirm("আপনি কি নিশ্চিতভাবে এই অর্ডারটি ক্যানসেল করতে চান?")) return;
             
             let cBtn = document.getElementById('cancelBtnEl');
             if(cBtn) { cBtn.innerText = "Cancelling Order... ⏳"; cBtn.disabled = true; }
@@ -852,12 +818,12 @@
                 body: JSON.stringify(cancelPayload)
             })
             .then(() => {
-                alert("আপনার অর্ডারটি সফলভাবে বাতিল করা হয়েছে।");
+                alert("অর্ডারটি সফলভাবে বাতিল করা হয়েছে।");
                 window.location.reload();
             })
             .catch(err => {
                 console.error(err);
-                alert("অর্ডার বাতিল হয়েছে এবং ব্যাকএন্ডে ডেটা সিঙ্ক করা হয়েছে!");
+                alert("অর্ডার বাতিল হয়েছে!");
                 window.location.reload();
             });
         }
