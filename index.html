@@ -131,6 +131,7 @@
         .footer-container { max-width: 1000px; margin: 0 auto; display: flex; flex-wrap: wrap; justify-content: space-around; gap: 30px; text-align: left; }
         .footer-section { flex: 1; min-width: 250px; }
         .footer-section h4 { color: var(--accent); font-size: 1.2em; margin-bottom: 15px; text-transform: uppercase; letter-spacing: 1px; }
+        .footer-section h4 { color: var(--accent); font-size: 1.2em; margin-bottom: 15px; text-transform: uppercase; letter-spacing: 1px; }
         .footer-links { list-style: none; padding: 0; margin: 0; }
         .footer-links li { margin-bottom: 12px; display: flex; align-items: flex-start; gap: 10px; font-size: 0.95em; line-height: 1.4; }
         .footer-links a { color: white; text-decoration: none; transition: 0.2s; }
@@ -174,7 +175,7 @@
         </div>
     </div>
 
-    <!-- NEW SECTION: Creative Studio (Gifts & Decor) -->
+    <!-- SECTION: Creative Studio (Gifts & Decor) -->
     <h2 class="section-title product-heading" data-category="creative">🎨 Our Creative Studio (Gifts & Decor) 🎨</h2>
     <div class="container" id="creativeContainer"></div>
 
@@ -378,9 +379,33 @@
             { id: "P007", name: "Multi-colour Animal Desk Lamp", price: 550, oldPrice: 700 }
         ];
 
+        // Creative Studio Products Config with Updated Prices and Multiple Images
         const creativeStudioProducts = [
-            { id: "C001", name: "Customized Ceramic Mug", offPrice: 350, img: "https://via.placeholder.com/300", desc: "আপনার প্রিয় মুহূর্তের ছবি বা মনের মতো লেখা দিয়ে মগ কাস্টমাইজড করে নিন। প্রিমিয়াম কোয়ালিটি প্রিন্ট, যা দীর্ঘস্থায়ী এবং উজ্জ্বল থাকবে। উপহার দেওয়ার জন্য একদম পারফেক্ট!" },
-            { id: "C002", name: "Handcrafted Fairy Light Bottle", offPrice: 450, img: "https://via.placeholder.com/300", desc: "কাঁচের বোতলের ভেতর চমৎকার ফুল এবং ওয়ার্ম এলইডি ফেয়ারি লাইটের কম্বিনেশনে তৈরি একটি অসাধারণ হ্যান্ডমেড ল্যাম্প। ঘরের কোণ বা রিডিং টেবিলকে মায়াবী আলোয় রাঙিয়ে তুলতে এর জুড়ি নেই।" }
+            { 
+                id: "C001", 
+                name: "Customized Ceramic Mug", 
+                offPrice: 403, 
+                oldPrice: 479,
+                desc: "আপনার প্রিয় মুহূর্তের ছবি বা মনের মতো লেখা দিয়ে মগ কাস্টমাইজড করে নিন। প্রিমিয়াম কোয়ালিটি প্রিন্ট, যা দীর্ঘস্থায়ী এবং উজ্জ্বল থাকবে। উপহার দেওয়ার জন্য বা নিজের কালেকশনে রাখার জন্য একদম পারফেক্ট!",
+                images: {
+                    "View 1": "https://i.postimg.cc/NFySS39H/Gemini-Generated-Image-194jjj194jjj194j.png",
+                    "View 2": "https://i.postimg.cc/gjwQQCX6/Gemini-Generated-Image-nvqcpinvqcpinvqc.png"
+                },
+                defaultView: "View 1"
+            },
+            { 
+                id: "C002", 
+                name: "Handcrafted Fairy Light Bottle", 
+                offPrice: 444, 
+                oldPrice: 649,
+                desc: "কাঁচের বোতলের ভেতর চমৎকার ফুল এবং ওয়ার্ম এলইডি ফেয়ারি লাইটের কম্বিনেশনে তৈরি একটি অসাধারণ হ্যান্ডমেড ল্যাম্প। আপনার ঘরের কোণ বা রিডিং টেবিলকে মায়াবী আলোয় রাঙিয়ে তুলতে এর জুড়ি নেই।",
+                images: {
+                    "View 1": "https://i.postimg.cc/jSZVW4bd/Whats-App-Image-2026-07-12-at-14-34-24-(1).jpg",
+                    "View 2": "https://i.postimg.cc/qvjftxTB/Whats-App-Image-2026-07-12-at-14-34-24.jpg",
+                    "View 3": "https://i.postimg.cc/Gmq0BxCL/Whats-App-Image-2026-07-12-at-14-34-23.jpg"
+                },
+                defaultView: "View 1"
+            }
         ];
 
         const livaliaProducts = [
@@ -394,6 +419,7 @@
         let dbInventory = []; 
         let cart = [];
         let selectedProductColors = {}; 
+        let selectedCreativeViews = { "C001": "View 1", "C002": "View 1" };
 
         function fetchLiveInventory() {
             fetch(GOOGLE_SCRIPT_WEB_APP_URL)
@@ -432,7 +458,6 @@
         }
 
         function buildDynamicProducts() {
-            // Render Creative Studio Items First
             renderCreativeStudioGrid();
 
             const aesContainer = document.getElementById('aestheticContainer');
@@ -530,21 +555,56 @@
             const creativeContainer = document.getElementById('creativeContainer');
             if(!creativeContainer) return;
             creativeContainer.innerHTML = '';
+            
             creativeStudioProducts.forEach(prod => {
                 const card = document.createElement('div');
                 card.className = 'card'; 
                 card.setAttribute('data-name', prod.name);
-                
+                card.setAttribute('id', `creative-card-${prod.id}`);
+
+                let activeView = selectedCreativeViews[prod.id] || prod.defaultView;
+                let currentImg = prod.images[activeView];
+
+                let viewButtonsHtml = `<div class="color-selector-wrapper"><span class="color-label">Product Angle/View:</span><div class="color-btn-group">`;
+                Object.keys(prod.images).forEach(viewName => {
+                    const isSel = viewName === activeView ? 'selected' : '';
+                    viewButtonsHtml += `<button type="button" class="color-option-btn ${isSel}" onclick="changeCreativeView('${prod.id}', '${viewName}')">${viewName}</button>`;
+                });
+                viewButtonsHtml += `</div></div>`;
+
+                let oldPriceHtml = `<span class="old-price-cut">৳${prod.oldPrice}</span>`;
+
                 card.innerHTML = `
-                    <img src="${prod.img}" class="main-img" alt="${prod.name}">
+                    <img src="${currentImg}" class="main-img" id="creative-img-${prod.id}" alt="${prod.name}">
                     <h3>${prod.name}</h3>
                     <p class="prod-description">${prod.desc}</p>
-                    <span class="stock-indicator" style="color:green;">✔ Available</span>
-                    <div class="price-container"><span class="offer-price">${prod.offPrice} TK</span></div>
+                    <span class="stock-indicator" style="color:green;">✔ Stock Available</span>
+                    ${viewButtonsHtml}
+                    <div class="price-container">
+                        ${oldPriceHtml}
+                        <span class="offer-price">${prod.offPrice} TK</span>
+                    </div>
                     <button class="order-btn" onclick="addCreativeToCart('${prod.id}')">Add To Cart</button>
                 `;
                 creativeContainer.appendChild(card);
             });
+        }
+
+        function changeCreativeView(prodId, viewName) {
+            selectedCreativeViews[prodId] = viewName;
+            const prod = creativeStudioProducts.find(p => p.id === prodId);
+            if(prod) {
+                const imgEl = document.getElementById(`creative-img-${prodId}`);
+                if(imgEl) imgEl.src = prod.images[viewName];
+                
+                const cardEl = document.getElementById(`creative-card-${prodId}`);
+                if(cardEl) {
+                    cardEl.querySelectorAll('.color-option-btn').forEach(btn => {
+                        if(btn.innerText.trim() === viewName) btn.classList.add('selected');
+                        else btn.classList.remove('selected');
+                    });
+                }
+            }
         }
 
         function changeProductVariant(pid, selectedColour) {
@@ -647,9 +707,12 @@
 
         function addCreativeToCart(id) {
             const item = creativeStudioProducts.find(p => p.id === id);
-            const existing = cart.find(i => i.id === id);
+            const activeView = selectedCreativeViews[id] || item.defaultView;
+            const existing = cart.find(i => i.id === id && i.colour === activeView);
+            
             if(existing) existing.qty++;
-            else cart.push({ id, name: item.name, price: item.offPrice, qty: 1, colour: "Standard", isLivalia: false, isPreOrder: false });
+            else cart.push({ id, name: item.name, price: item.offPrice, qty: 1, colour: activeView, isLivalia: false, isPreOrder: false });
+            
             updateCartDOM();
             document.getElementById('cartSidebar').classList.add('active');
             document.getElementById('cartSidebar').classList.remove('toggle');
