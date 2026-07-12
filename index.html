@@ -168,10 +168,15 @@
         <input type="text" id="searchBar" oninput="filterGridProducts()" placeholder="🔍 Search products..." class="search-input">
         <div class="filter-buttons">
             <button onclick="filterGridCategory('all', this)" class="filter-btn active">All</button>
+            <button onclick="filterGridCategory('creative', this)" class="filter-btn">Creative Studio</button>
             <button onclick="filterGridCategory('aesthetic', this)" class="filter-btn">Aesthetic Gifts</button>
             <button onclick="filterGridCategory('livalia', this)" class="filter-btn">Livalia Herbal</button>
         </div>
     </div>
+
+    <!-- NEW SECTION: Creative Studio (Gifts & Decor) -->
+    <h2 class="section-title product-heading" data-category="creative">🎨 Our Creative Studio (Gifts & Decor) 🎨</h2>
+    <div class="container" id="creativeContainer"></div>
 
     <h2 class="section-title product-heading" data-category="aesthetic">✨ Our Premium Aesthetic Gifts ✨</h2>
     <div class="container" id="aestheticContainer">
@@ -306,7 +311,7 @@
             "P003": "আপনার ফোনে সহজে কানেক্ট করে হাতের কব্জিতে ঝুলিয়ে বা পেঁচিয়ে স্টাইলিশ ভাবে নিয়ে ঘোরার জন্য এই প্রিমিয়াম বিডেড রিস্টলেট চেইনটি দারুণ! বড় মুক্তা ও কালারফুল বিডের তৈরি এই প্রিমিয়াম সংস্করণটি আপনার ফোনকে দেবে আকর্ষণীয় লুক।",
             "P004": "ফোন হাত থেকে পড়ে যাওয়া রোধ করতে এবং একই সাথে ফোনে একটি কিউট, ইউনিক ও ট্রেন্ডি ভাইব যোগ করতে এই কালারফুল ক্যারেক্টার ফোন স্ট্র্যাপ-টির জুড়ি নেই!",
             "P005": "আপনার চাবিগুলোকে গুছিয়ে রাখতে এবং একই সাথে ব্যাগে বা লুপে একটি চমৎকার নান্দনিক ছোঁয়া দিতে এই স্টাইলিশ ক্রিস্টাল বাটারফ্লাই কিচেনটি দারুণ পছন্দ হতে পারে।",
-            "P006": "আপনার চার্জার ও ডেটা কেবলের মাথা ভেঙে যাওয়া বা নষ্ট হওয়া থেকে শতভাগ সুরক্ষিত রাখতে এই কিউট ও কালারফুল এনিমেল কেবল প্রোটেক্টরগুলো দারুণ কাজের!",
+            "P006": "আপনার চার্জার ও ডেটা কেবলের মাথা ভেঙে যাওয়া বা নষ্ট হিসেবে শতভাগ সুরক্ষিত রাখতে এই কিউট ও কালারফুল এনিমেল কেবল প্রোটেক্টরগুলো দারুণ কাজের!",
             "P007": "আপনার পড়ার টেবিল বা ঘরের কোণকে কিউট ও মায়াবী আলোয় রাঙিয়ে তুলতে এই মাল্টিকালার অ্যানিমেল ডেস্ক ল্যাম্পটি দারুণ কার্যকর। রিচার্জেবল ও সহজে বহনযোগ্য এই লাইটটি উপহার দেওয়ার জন্য চমৎকার।"
         };
 
@@ -373,6 +378,11 @@
             { id: "P007", name: "Multi-colour Animal Desk Lamp", price: 550, oldPrice: 700 }
         ];
 
+        const creativeStudioProducts = [
+            { id: "C001", name: "Customized Ceramic Mug", offPrice: 350, img: "https://via.placeholder.com/300", desc: "আপনার প্রিয় মুহূর্তের ছবি বা মনের মতো লেখা দিয়ে মগ কাস্টমাইজড করে নিন। প্রিমিয়াম কোয়ালিটি প্রিন্ট, যা দীর্ঘস্থায়ী এবং উজ্জ্বল থাকবে। উপহার দেওয়ার জন্য একদম পারফেক্ট!" },
+            { id: "C002", name: "Handcrafted Fairy Light Bottle", offPrice: 450, img: "https://via.placeholder.com/300", desc: "কাঁচের বোতলের ভেতর চমৎকার ফুল এবং ওয়ার্ম এলইডি ফেয়ারি লাইটের কম্বিনেশনে তৈরি একটি অসাধারণ হ্যান্ডমেড ল্যাম্প। ঘরের কোণ বা রিডিং টেবিলকে মায়াবী আলোয় রাঙিয়ে তুলতে এর জুড়ি নেই।" }
+        ];
+
         const livaliaProducts = [
             { id: "L001", name: "Livalia Night Spot Removal Cream", offPrice: 880, img: "https://i.postimg.cc/L8ZrFgm0/Night-Spot.jpg", desc: "ত্বকের কালচে দাগ, মেছতা ও পিগমেন্টেশন দূর করে ন্যাচারাল উজ্জ্বলতা ফিরিয়ে আনতে অত্যন্ত কার্যকরী একটি ভেষজ নাইট ক্রিম।" },
             { id: "L002", name: "Livalia Neem Toothpaste", offPrice: 320, img: "https://i.postimg.cc/Vkb3P0zp/Tooth-Paste.png", desc: "নিমের প্রাকৃতিক গুণে সমৃদ্ধ! মাড়ি মজবুত করতে, মুখের দুর্গন্ধ দূর করতে এবং দাঁতের হলদেটে ভাব দূর করে ফ্রেশ অনুভূতি দিতে অনন্য।" },
@@ -422,6 +432,9 @@
         }
 
         function buildDynamicProducts() {
+            // Render Creative Studio Items First
+            renderCreativeStudioGrid();
+
             const aesContainer = document.getElementById('aestheticContainer');
             if(!aesContainer) return;
             aesContainer.innerHTML = '';
@@ -511,6 +524,27 @@
             });
 
             renderLivaliaStandbyGrid();
+        }
+
+        function renderCreativeStudioGrid() {
+            const creativeContainer = document.getElementById('creativeContainer');
+            if(!creativeContainer) return;
+            creativeContainer.innerHTML = '';
+            creativeStudioProducts.forEach(prod => {
+                const card = document.createElement('div');
+                card.className = 'card'; 
+                card.setAttribute('data-name', prod.name);
+                
+                card.innerHTML = `
+                    <img src="${prod.img}" class="main-img" alt="${prod.name}">
+                    <h3>${prod.name}</h3>
+                    <p class="prod-description">${prod.desc}</p>
+                    <span class="stock-indicator" style="color:green;">✔ Available</span>
+                    <div class="price-container"><span class="offer-price">${prod.offPrice} TK</span></div>
+                    <button class="order-btn" onclick="addCreativeToCart('${prod.id}')">Add To Cart</button>
+                `;
+                creativeContainer.appendChild(card);
+            });
         }
 
         function changeProductVariant(pid, selectedColour) {
@@ -611,6 +645,16 @@
             document.getElementById('cartSidebar').classList.remove('toggle');
         }
 
+        function addCreativeToCart(id) {
+            const item = creativeStudioProducts.find(p => p.id === id);
+            const existing = cart.find(i => i.id === id);
+            if(existing) existing.qty++;
+            else cart.push({ id, name: item.name, price: item.offPrice, qty: 1, colour: "Standard", isLivalia: false, isPreOrder: false });
+            updateCartDOM();
+            document.getElementById('cartSidebar').classList.add('active');
+            document.getElementById('cartSidebar').classList.remove('toggle');
+        }
+
         function addLivaliaToCart(id) {
             const item = livaliaProducts.find(p => p.id === id);
             const existing = cart.find(i => i.id === id);
@@ -696,8 +740,13 @@
         function filterGridCategory(category, btn) {
             document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
             btn.classList.add('active');
+            
+            document.getElementById('creativeContainer').style.display = (category==='all' || category==='creative') ? 'flex' : 'none';
+            document.querySelector('.product-heading[data-category="creative"]').style.display = (category==='all' || category==='creative') ? 'block' : 'none';
+            
             document.getElementById('aestheticContainer').style.display = (category==='all' || category==='aesthetic') ? 'flex' : 'none';
             document.querySelector('.product-heading[data-category="aesthetic"]').style.display = (category==='all' || category==='aesthetic') ? 'block' : 'none';
+            
             document.getElementById('livaliaContainer').style.display = (category==='all' || category==='livalia') ? 'flex' : 'none';
             document.querySelector('.product-heading[data-category="livalia"]').style.display = (category==='all' || category==='livalia') ? 'block' : 'none';
         }
