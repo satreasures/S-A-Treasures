@@ -71,12 +71,12 @@
         .section-title::after { content: ''; display: block; width: 50px; height: 3px; background-color: var(--accent); margin: 8px auto 0; border-radius: 2px; }
 
         .container { display: flex; flex-wrap: wrap; justify-content: center; gap: 35px; padding: 20px 20px 50px; max-width: 1200px; margin: 0 auto; min-height: 200px; }
-        .card { background: var(--card-bg); border-radius: 20px; box-shadow: 0 10px 25px rgba(59, 20, 60, 0.03); width: 330px; padding: 20px; transition: all 0.3s ease; position: relative; border: 2px solid #e2e8f0; box-sizing: border-box; display: flex; flex-direction: column; }
+        .card { background: var(--card-bg); border-radius: 20px; box-shadow: 0 10px 25px rgba(59, 20, 60, 0.03); width: 330px; padding: 20px; transition: transform 0.2s ease, border-color 0.2s ease; position: relative; border: 2px solid #e2e8f0; box-sizing: border-box; display: flex; flex-direction: column; }
         .card:hover { transform: translateY(-8px); border-color: var(--accent); }
         
         .livelia-badge { position: absolute; top: 15px; right: 15px; background: var(--livelia-color); color: white; padding: 6px 14px; border-radius: 20px; font-size: 0.78em; font-weight: bold; z-index: 2; border: 1px solid var(--accent); }
         .stock-indicator { font-size: 0.85em; font-weight: 600; margin-bottom: 8px; }
-        .main-img { width: 100%; height: 280px; object-fit: cover; border-radius: 15px; margin-bottom: 12px; border: 1px solid #e2e8f0; }
+        .main-img { width: 100%; height: 280px; object-fit: cover; border-radius: 15px; margin-bottom: 12px; border: 1px solid #e2e8f0; content-visibility: auto; }
         
         .prod-description { font-size: 0.88em; color: #4b5563; line-height: 1.5; margin: 8px 0 12px 0; flex-grow: 1; display: block; }
 
@@ -131,7 +131,6 @@
         .footer-container { max-width: 1000px; margin: 0 auto; display: flex; flex-wrap: wrap; justify-content: space-around; gap: 30px; text-align: left; }
         .footer-section { flex: 1; min-width: 250px; }
         .footer-section h4 { color: var(--accent); font-size: 1.2em; margin-bottom: 15px; text-transform: uppercase; letter-spacing: 1px; }
-        .footer-section h4 { color: var(--accent); font-size: 1.2em; margin-bottom: 15px; text-transform: uppercase; letter-spacing: 1px; }
         .footer-links { list-style: none; padding: 0; margin: 0; }
         .footer-links li { margin-bottom: 12px; display: flex; align-items: flex-start; gap: 10px; font-size: 0.95em; line-height: 1.4; }
         .footer-links a { color: white; text-decoration: none; transition: 0.2s; }
@@ -159,7 +158,7 @@
 
     <header>
         <div class="logo-container">
-            <img src="https://i.postimg.cc/4yJdwXKp/Gemini-Generated-Image-r2qw9dr2qw9dr2qw.png" class="business-logo" alt="Logo">
+            <img src="https://i.postimg.cc/4yJdwXKp/Gemini-Generated-Image-r2qw9dr2qw9dr2qw.png" class="business-logo" alt="Logo" loading="eager">
         </div>
         <h1>S&A Treasures</h1>
         <p class="tagline">Love yourself, buy gifts, and spread happiness among your loved ones. ✨</p>
@@ -313,7 +312,7 @@
             "P004": "ফোন হাত থেকে পড়ে যাওয়া রোধ করতে এবং একই সাথে ফোনে একটি কিউট, ইউনিক ও ট্রেন্ডি ভাইব যোগ করতে এই কালারফুল ক্যারেক্টার ফোন স্ট্র্যাপ-টির জুড়ি নেই!",
             "P005": "আপনার চাবিগুলোকে গুছিয়ে রাখতে এবং একই সাথে ব্যাগে বা লুপে একটি চমৎকার নান্দনিক ছোঁয়া দিতে এই স্টাইলিশ ক্রিস্টাল বাটারফ্লাই কিচেনটি দারুণ পছন্দ হতে পারে।",
             "P006": "আপনার চার্জার ও ডেটা কেবলের মাথা ভেঙে যাওয়া বা নষ্ট হিসেবে শতভাগ সুরক্ষিত রাখতে এই কিউট ও কালারফুল এনিমেল কেবল প্রোটেক্টরগুলো দারুণ কাজের!",
-            "P007": "আপনার পড়ার টেবিল বা ঘরের কোণকে কিউট ও মায়াবী আলোয় রাঙিয়ে তুলতে এই মাল্টিকালার অ্যানিমেল ডেস্ক ল্যাম্পটি দারুণ কার্যকর। রিচার্জেবল ও সহজে বহনযোগ্য এই লাইটটি উপহার দেওয়ার জন্য চমৎকার।"
+            "P007": "আপনার পড়ার টেবিল বা ঘরের কোণকে কিউট ও মায়াবী আলোয় রাঙিয়ে তুলতে এই মাল্টিকালার anise ডেস্ক ল্যাম্পটি দারুণ কার্যকর। রিচার্জেবল ও সহজে বহনযোগ্য এই লাইটটি উপহার দেওয়ার জন্য চমৎকার।"
         };
 
         const localColorImages = {
@@ -379,7 +378,6 @@
             { id: "P007", name: "Multi-colour Animal Desk Lamp", price: 550, oldPrice: 700 }
         ];
 
-        // Creative Studio Products Config with Updated Prices and Multiple Images
         const creativeStudioProducts = [
             { 
                 id: "C001", 
@@ -409,7 +407,7 @@
         ];
 
         const livaliaProducts = [
-            { id: "L001", name: "Livalia Night Spot Removal Cream", offPrice: 880, img: "https://i.postimg.cc/L8ZrFgm0/Night-Spot.jpg", desc: "ত্বকের কালচে দাগ, মেছতা ও পিগমেন্টেশন দূর করে ন্যাচারাল উজ্জ্বলতা ফিরিয়ে আনতে অত্যন্ত কার্যকরী একটি ভেষজ নাইট ক্রিম।" },
+            { id: "L001", name: "Livalia Night Spot Removal Cream", offPrice: 880, img: "https://i.postimg.cc/L8ZrFgm0/Night-Spot.jpg", desc: "ত্বকের কালচে দাগ, মেছতা ও পিগメントেশন দূর করে ন্যাচারাল উজ্জ্বলতা ফিরিয়ে আনতে অত্যন্ত কার্যকরী একটি ভেষজ নাইট ক্রিম।" },
             { id: "L002", name: "Livalia Neem Toothpaste", offPrice: 320, img: "https://i.postimg.cc/Vkb3P0zp/Tooth-Paste.png", desc: "নিমের প্রাকৃতিক গুণে সমৃদ্ধ! মাড়ি মজবুত করতে, মুখের দুর্গন্ধ দূর করতে এবং দাঁতের হলদেটে ভাব দূর করে ফ্রেশ অনুভূতি দিতে অনন্য।" },
             { id: "L003", name: "Livalia Alovera Shampoo", offPrice: 640, img: "https://i.postimg.cc/nhQ6f9nW/Shampoo.png", desc: "অ্যালোভেরার পুষ্টিগুণে ঠাসা, যা চুল পড়া বন্ধ করে, চুলের গোড়া মজবুত করে এবং চুলকে করে তোলে একদম সিল্কি, সফট ও শাইনি।" },
             { id: "L004", name: "Livalia Scavia Soap", offPrice: 420, img: "https://i.postimg.cc/436qmC7p/Soap.png", desc: "ত্বকের গভীর থেকে ধুলোবালি ও জীবাণু পরিষ্কার করে ব্রণমুক্ত, মসৃণ এবং হেলদি স্কিন পেতে সাহায্য করে এই premium হারবাল সোপ।" },
@@ -420,6 +418,30 @@
         let cart = [];
         let selectedProductColors = {}; 
         let selectedCreativeViews = { "C001": "View 1", "C002": "View 1" };
+
+        // IMAGE PRELOADER ENGINE - সাইট লোড হওয়ার সময় ব্যাকগ্রাউন্ডে সব ইমেজ ক্যাশ করে নেবে
+        function preloadAllImages() {
+            const allUrls = [];
+            
+            // Creative Image URLs
+            creativeStudioProducts.forEach(p => {
+                Object.values(p.images).forEach(url => allUrls.push(url));
+            });
+            
+            // Aesthetic Local Image URLs
+            Object.values(localColorImages).forEach(obj => {
+                Object.values(obj).forEach(url => allUrls.push(url));
+            });
+
+            // Livalia Image URLs
+            livaliaProducts.forEach(p => allUrls.push(p.img));
+
+            // Execute asynchronous lightweight preloading
+            allUrls.forEach(url => {
+                const img = new Image();
+                img.src = url;
+            });
+        }
 
         function fetchLiveInventory() {
             fetch(GOOGLE_SCRIPT_WEB_APP_URL)
@@ -497,7 +519,7 @@
                 const pDesc = aestheticDescriptions[pid] || "Premium limited design. Perfect choice for shifting trends and aesthetic gifting.";
 
                 const card = document.createElement('div');
-                card.className = 'card animate-fade';
+                card.className = 'card';
                 card.setAttribute('data-name', productName);
                 card.setAttribute('id', `product-card-${pid}`);
 
@@ -534,7 +556,7 @@
                 }
 
                 card.innerHTML = `
-                    <img src="${firstDisplayImg}" class="main-img" id="img-view-${pid}" alt="${productName}">
+                    <img src="${firstDisplayImg}" class="main-img" id="img-view-${pid}" alt="${productName}" fetchpriority="high">
                     <h3>${productName}</h3>
                     <p class="prod-description">${pDesc}</p>
                     ${stockLabel}
@@ -575,7 +597,7 @@
                 let oldPriceHtml = `<span class="old-price-cut">৳${prod.oldPrice}</span>`;
 
                 card.innerHTML = `
-                    <img src="${currentImg}" class="main-img" id="creative-img-${prod.id}" alt="${prod.name}">
+                    <img src="${currentImg}" class="main-img" id="creative-img-${prod.id}" alt="${prod.name}" fetchpriority="high">
                     <h3>${prod.name}</h3>
                     <p class="prod-description">${prod.desc}</p>
                     <span class="stock-indicator" style="color:green;">✔ Stock Available</span>
@@ -914,7 +936,7 @@
         }
 
         function cancelPlacedOrder() {
-            if(!confirm("আপনি কি নিশ্চিতভাবে এই অর্ডারটি ক্যানসেল করতে চান?")) return;
+            if(!confirm("আপনি কি নিশ্চিতভাবে এই অর্ডারটি ক্যানसेल করতে চান?")) return;
             
             let cBtn = document.getElementById('cancelBtnEl');
             if(cBtn) { cBtn.innerText = "Cancelling Order... ⏳"; cBtn.disabled = true; }
@@ -943,6 +965,7 @@
         window.onload = function() {
             trackReferralStaffCode(); 
             fetchLiveInventory();     
+            preloadAllImages(); // রেন্ডারিং এর গতি বাড়ানোর জন্য ইমেজ প্রি-লোডিং ট্রিগার করা হলো 
         };
     </script>
 </body>
