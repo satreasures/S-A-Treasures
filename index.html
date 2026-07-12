@@ -378,9 +378,10 @@
             { id: "P007", name: "Multi-colour Animal Desk Lamp", price: 550, oldPrice: 700 }
         ];
 
+        // গুগল শিটের আইডি P008 এবং P009 এর সাথে সিঙ্ক করা হলো
         const creativeStudioProducts = [
             { 
-                id: "C001", 
+                id: "P008", 
                 name: "Customized Ceramic Mug", 
                 offPrice: 403, 
                 oldPrice: 479,
@@ -392,7 +393,7 @@
                 defaultView: "View 1"
             },
             { 
-                id: "C002", 
+                id: "P009", 
                 name: "Handcrafted Fairy Light Bottle", 
                 offPrice: 444, 
                 oldPrice: 649,
@@ -407,7 +408,7 @@
         ];
 
         const livaliaProducts = [
-            { id: "L001", name: "Livalia Night Spot Removal Cream", offPrice: 880, img: "https://i.postimg.cc/L8ZrFgm0/Night-Spot.jpg", desc: "ত্বকের কালচে দাগ, মেছতা ও পিগメントেশন দূর করে ন্যাচারাল উজ্জ্বলতা ফিরিয়ে আনতে অত্যন্ত কার্যকরী একটি ভেষজ নাইট ক্রিম।" },
+            { id: "L001", name: "Livalia Night Spot Removal Cream", offPrice: 880, img: "https://i.postimg.cc/L8ZrFgm0/Night-Spot.jpg", desc: "ত্বকের কালচে দাগ, মেছতা ও পিগমেন্টেশন দূর করে ন্যাচারাল উজ্জ্বলতা ফিরিয়ে আনতে অত্যন্ত কার্যকরী একটি ভেষজ নাইট ক্রিম।" },
             { id: "L002", name: "Livalia Neem Toothpaste", offPrice: 320, img: "https://i.postimg.cc/Vkb3P0zp/Tooth-Paste.png", desc: "নিমের প্রাকৃতিক গুণে সমৃদ্ধ! মাড়ি মজবুত করতে, মুখের দুর্গন্ধ দূর করতে এবং দাঁতের হলদেটে ভাব দূর করে ফ্রেশ অনুভূতি দিতে অনন্য।" },
             { id: "L003", name: "Livalia Alovera Shampoo", offPrice: 640, img: "https://i.postimg.cc/nhQ6f9nW/Shampoo.png", desc: "অ্যালোভেরার পুষ্টিগুণে ঠাসা, যা চুল পড়া বন্ধ করে, চুলের গোড়া মজবুত করে এবং চুলকে করে তোলে একদম সিল্কি, সফট ও শাইনি।" },
             { id: "L004", name: "Livalia Scavia Soap", offPrice: 420, img: "https://i.postimg.cc/436qmC7p/Soap.png", desc: "ত্বকের গভীর থেকে ধুলোবালি ও জীবাণু পরিষ্কার করে ব্রণমুক্ত, মসৃণ এবং হেলদি স্কিন পেতে সাহায্য করে এই premium হারবাল সোপ।" },
@@ -417,30 +418,14 @@
         let dbInventory = []; 
         let cart = [];
         let selectedProductColors = {}; 
-        let selectedCreativeViews = { "C001": "View 1", "C002": "View 1" };
+        let selectedCreativeViews = { "P008": "View 1", "P009": "View 1" };
 
-        // IMAGE PRELOADER ENGINE - সাইট লোড হওয়ার সময় ব্যাকগ্রাউন্ডে সব ইমেজ ক্যাশ করে নেবে
         function preloadAllImages() {
             const allUrls = [];
-            
-            // Creative Image URLs
-            creativeStudioProducts.forEach(p => {
-                Object.values(p.images).forEach(url => allUrls.push(url));
-            });
-            
-            // Aesthetic Local Image URLs
-            Object.values(localColorImages).forEach(obj => {
-                Object.values(obj).forEach(url => allUrls.push(url));
-            });
-
-            // Livalia Image URLs
+            creativeStudioProducts.forEach(p => { Object.values(p.images).forEach(url => allUrls.push(url)); });
+            Object.values(localColorImages).forEach(obj => { Object.values(obj).forEach(url => allUrls.push(url)); });
             livaliaProducts.forEach(p => allUrls.push(p.img));
-
-            // Execute asynchronous lightweight preloading
-            allUrls.forEach(url => {
-                const img = new Image();
-                img.src = url;
-            });
+            allUrls.forEach(url => { const img = new Image(); img.src = url; });
         }
 
         function fetchLiveInventory() {
@@ -587,6 +572,16 @@
                 let activeView = selectedCreativeViews[prod.id] || prod.defaultView;
                 let currentImg = prod.images[activeView];
 
+                // গুগল শিট থেকে রিয়েলটাইম স্টক রিড করার লজিক
+                const sheetVariant = dbInventory.find(v => v.id === prod.id);
+                let stockLabel = `<span class="stock-indicator" style="color:green;">✔ Stock Available</span>`;
+                if(sheetVariant) {
+                    stockLabel = `<span class="stock-indicator" style="color:green;">✔ Stock: ${sheetVariant.stock} left</span>`;
+                    if(sheetVariant.stock <= 0) {
+                        stockLabel = `<span class="stock-indicator" style="color:var(--warning);">🔴 Out of Stock</span>`;
+                    }
+                }
+
                 let viewButtonsHtml = `<div class="color-selector-wrapper"><span class="color-label">Product Angle/View:</span><div class="color-btn-group">`;
                 Object.keys(prod.images).forEach(viewName => {
                     const isSel = viewName === activeView ? 'selected' : '';
@@ -600,7 +595,7 @@
                     <img src="${currentImg}" class="main-img" id="creative-img-${prod.id}" alt="${prod.name}" fetchpriority="high">
                     <h3>${prod.name}</h3>
                     <p class="prod-description">${prod.desc}</p>
-                    <span class="stock-indicator" style="color:green;">✔ Stock Available</span>
+                    ${stockLabel}
                     ${viewButtonsHtml}
                     <div class="price-container">
                         ${oldPriceHtml}
@@ -965,7 +960,7 @@
         window.onload = function() {
             trackReferralStaffCode(); 
             fetchLiveInventory();     
-            preloadAllImages(); // রেন্ডারিং এর গতি বাড়ানোর জন্য ইমেজ প্রি-লোডিং ট্রিগার করা হলো 
+            preloadAllImages(); 
         };
     </script>
 </body>
