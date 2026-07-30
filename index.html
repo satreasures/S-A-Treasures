@@ -98,7 +98,6 @@
 
         .cart-sidebar { position: fixed; top: 0; right: -420px; width: 380px; height: 100%; background: white; box-shadow: -8px 0 25px rgba(59, 20, 60, 0.08); z-index: 1000; transition: 0.3s ease; padding: 25px; display: flex; flex-direction: column; box-sizing: border-box; border-left: 3px solid var(--primary); }
         .cart-sidebar.active { right: 0; }
-        .cart-sidebar.toggle { right: -420px; }
         .cart-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #e2e8f0; padding-bottom: 15px; }
         .close-cart { background: none; border: none; font-size: 28px; cursor: pointer; color: #94a3b8; }
         .cart-items { flex: 1; overflow-y: auto; padding: 15px 0; }
@@ -149,16 +148,16 @@
         </div>
     </div>
 
-    <a href="https://wa.me/8801532178827" class="whatsapp-float" target="_blank"><i class="fab fa-whatsapp"></i></a>
+    <a href="https://wa.me/8801532178827" class="whatsapp-float" target="_blank" aria-label="WhatsApp Chat"><i class="fab fa-whatsapp"></i></a>
 
-    <button class="cart-float" onclick="toggleCart()">
+    <button class="cart-float" onclick="toggleCart()" aria-label="Shopping Cart">
         <i class="fas fa-shopping-bag"></i>
         <span class="cart-count" id="cartCount">0</span>
     </button>
 
     <header>
         <div class="logo-container">
-            <img src="https://i.postimg.cc/4yJdwXKp/Gemini-Generated-Image-r2qw9dr2qw9dr2qw.png" class="business-logo" alt="Logo" loading="eager">
+            <img src="https://i.postimg.cc/4yJdwXKp/Gemini-Generated-Image-r2qw9dr2qw9dr2qw.png" class="business-logo" alt="Logo" loading="eager" decoding="async">
         </div>
         <h1>S&A Treasures</h1>
         <p class="tagline">Love yourself, buy gifts, and spread happiness among your loved ones. ✨</p>
@@ -174,7 +173,7 @@
         </div>
     </div>
 
-    <!-- SECTION: Creative Studio (Gifts & Decor) -->
+    <!-- SECTION: Creative Studio -->
     <h2 class="section-title product-heading" data-category="creative">🎨 Our Creative Studio (Gifts & Decor) 🎨</h2>
     <div class="container" id="creativeContainer"></div>
 
@@ -378,7 +377,6 @@
             { id: "P007", name: "Multi-colour Animal Desk Lamp", price: 550, oldPrice: 700 }
         ];
 
-        // গুগল শিটের আইডি P008 এবং P009 এর সাথে সিঙ্ক করা হলো
         const creativeStudioProducts = [
             { 
                 id: "P008", 
@@ -421,47 +419,40 @@
         let selectedCreativeViews = { "P008": "View 1", "P009": "View 1" };
 
         function preloadAllImages() {
-            const allUrls = [];
-            creativeStudioProducts.forEach(p => { Object.values(p.images).forEach(url => allUrls.push(url)); });
-            Object.values(localColorImages).forEach(obj => { Object.values(obj).forEach(url => allUrls.push(url)); });
-            livaliaProducts.forEach(p => allUrls.push(p.img));
-            allUrls.forEach(url => { const img = new Image(); img.src = url; });
+            setTimeout(() => {
+                creativeStudioProducts.forEach(p => Object.values(p.images).forEach(url => { new Image().src = url; }));
+                Object.values(localColorImages).forEach(obj => Object.values(obj).forEach(url => { new Image().src = url; }));
+                livaliaProducts.forEach(p => { new Image().src = p.img; });
+            }, 500);
         }
 
-        function fetchLiveInventory() {
-            fetch(GOOGLE_SCRIPT_WEB_APP_URL)
-                .then(res => res.json())
-                .then(data => {
-                    if (data && data.length > 0) {
-                        dbInventory = data.map(item => {
-                            let parsedId = (item.productid || item.id || "").toString().trim().toUpperCase();
-                            let parsedColour = (item.colour || item.color || "Standard").toString().trim();
-                            
-                            let finalImg = item.image || item.photo || item.img || "";
-                            if(!finalImg || finalImg.includes("placeholder") || finalImg === "") {
-                                if(localColorImages[parsedId] && localColorImages[parsedId][parsedColour]) {
-                                    finalImg = localColorImages[parsedId][parsedColour];
-                                } else if (localColorImages[parsedId] && localColorImages[parsedId]["Standard"]) {
-                                    finalImg = localColorImages[parsedId]["Standard"];
-                                }
-                            }
-
-                            return {
-                                id: parsedId,
-                                name: item.productname || item.name || "",
-                                colour: parsedColour,
-                                image: finalImg,
-                                stock: Number(item.stock !== undefined ? item.stock : 5),
-                                oldPrice: Number(item.oldprice || 0)
-                            };
-                        }).filter(item => item.id !== "");
-                    }
-                    buildDynamicProducts();
-                })
-                .catch(err => {
-                    console.error("Fetch Error: Using high-stability backup engine...", err);
-                    buildDynamicProducts(); 
-                });
+        async function fetchLiveInventory() {
+            try {
+                const res = await fetch(GOOGLE_SCRIPT_WEB_APP_URL, { mode: 'cors' });
+                const data = await res.json();
+                if (data && data.length > 0) {
+                    dbInventory = data.map(item => {
+                        let parsedId = (item.productid || item.id || "").toString().trim().toUpperCase();
+                        let parsedColour = (item.colour || item.color || "Standard").toString().trim();
+                        let finalImg = item.image || item.photo || item.img || "";
+                        if(!finalImg || finalImg.includes("placeholder")) {
+                            finalImg = localColorImages[parsedId]?.[parsedColour] || localColorImages[parsedId]?.["Standard"] || "";
+                        }
+                        return {
+                            id: parsedId,
+                            name: item.productname || item.name || "",
+                            colour: parsedColour,
+                            image: finalImg,
+                            stock: Number(item.stock !== undefined ? item.stock : 5),
+                            oldPrice: Number(item.oldprice || 0)
+                        };
+                    }).filter(item => item.id !== "");
+                }
+            } catch (err) {
+                console.warn("Fetch Notice: Initializing localized inventory...", err);
+            } finally {
+                buildDynamicProducts();
+            }
         }
 
         function buildDynamicProducts() {
@@ -469,7 +460,8 @@
 
             const aesContainer = document.getElementById('aestheticContainer');
             if(!aesContainer) return;
-            aesContainer.innerHTML = '';
+            
+            const fragment = document.createDocumentFragment();
 
             fallbackAestheticProducts.forEach(fallbackProd => {
                 const pid = fallbackProd.id;
@@ -491,16 +483,8 @@
                 
                 if(!selectedProductColors[pid]) selectedProductColors[pid] = activeColour;
 
-                let firstDisplayImg = "https://via.placeholder.com/300";
-                if (localColorImages[pid]) {
-                    firstDisplayImg = localColorImages[pid][activeColour] || localColorImages[pid]["Main Pic"] || localColorImages[pid]["Standard"];
-                }
-
-                let oldPriceHtml = '';
-                if(currentOldPrice > calculatedPrice) {
-                    oldPriceHtml = `<span class="old-price-cut">৳${currentOldPrice}</span>`;
-                }
-
+                let firstDisplayImg = localColorImages[pid]?.[activeColour] || localColorImages[pid]?.["Main Pic"] || localColorImages[pid]?.["Standard"] || "https://via.placeholder.com/300";
+                let oldPriceHtml = (currentOldPrice > calculatedPrice) ? `<span class="old-price-cut">৳${currentOldPrice}</span>` : '';
                 const pDesc = aestheticDescriptions[pid] || "Premium limited design. Perfect choice for shifting trends and aesthetic gifting.";
 
                 const card = document.createElement('div');
@@ -512,8 +496,7 @@
                 if(variants.length > 1) {
                     colorButtonsHtml = `<div class="color-selector-wrapper"><span class="color-label">Available Colour/Type:</span><div class="color-btn-group">`;
                     variants.forEach(v => {
-                        let displayName = v.colour;
-                        if(v.colour === "Main Pic" || v.colour === "Standard") displayName = "Main View 📷";
+                        let displayName = (v.colour === "Main Pic" || v.colour === "Standard") ? "Main View 📷" : v.colour;
                         const isSel = v.colour === activeColour ? 'selected' : '';
                         colorButtonsHtml += `<button type="button" class="color-option-btn ${isSel}" onclick="changeProductVariant('${pid}', '${v.colour}')">${displayName}</button>`;
                     });
@@ -541,7 +524,7 @@
                 }
 
                 card.innerHTML = `
-                    <img src="${firstDisplayImg}" class="main-img" id="img-view-${pid}" alt="${productName}" fetchpriority="high">
+                    <img src="${firstDisplayImg}" class="main-img" id="img-view-${pid}" alt="${productName}" loading="lazy" decoding="async">
                     <h3>${productName}</h3>
                     <p class="prod-description">${pDesc}</p>
                     ${stockLabel}
@@ -552,8 +535,11 @@
                     </div>
                     <button class="${btnClass}" id="btn-add-${pid}" onclick="addDynamicToCart('${pid}', '${calculatedPrice}')">${buttonText}</button>
                 `;
-                aesContainer.appendChild(card);
+                fragment.appendChild(card);
             });
+
+            aesContainer.innerHTML = '';
+            aesContainer.appendChild(fragment);
 
             renderLivaliaStandbyGrid();
         }
@@ -561,7 +547,7 @@
         function renderCreativeStudioGrid() {
             const creativeContainer = document.getElementById('creativeContainer');
             if(!creativeContainer) return;
-            creativeContainer.innerHTML = '';
+            const fragment = document.createDocumentFragment();
             
             creativeStudioProducts.forEach(prod => {
                 const card = document.createElement('div');
@@ -572,14 +558,12 @@
                 let activeView = selectedCreativeViews[prod.id] || prod.defaultView;
                 let currentImg = prod.images[activeView];
 
-                // গুগল শিট থেকে রিয়েলটাইম স্টক রিড করার লজিক
                 const sheetVariant = dbInventory.find(v => v.id === prod.id);
                 let stockLabel = `<span class="stock-indicator" style="color:green;">✔ Stock Available</span>`;
                 if(sheetVariant) {
-                    stockLabel = `<span class="stock-indicator" style="color:green;">✔ Stock: ${sheetVariant.stock} left</span>`;
-                    if(sheetVariant.stock <= 0) {
-                        stockLabel = `<span class="stock-indicator" style="color:var(--warning);">🔴 Out of Stock</span>`;
-                    }
+                    stockLabel = sheetVariant.stock <= 0 
+                        ? `<span class="stock-indicator" style="color:var(--warning);">🔴 Out of Stock</span>`
+                        : `<span class="stock-indicator" style="color:green;">✔ Stock: ${sheetVariant.stock} left</span>`;
                 }
 
                 let viewButtonsHtml = `<div class="color-selector-wrapper"><span class="color-label">Product Angle/View:</span><div class="color-btn-group">`;
@@ -589,22 +573,23 @@
                 });
                 viewButtonsHtml += `</div></div>`;
 
-                let oldPriceHtml = `<span class="old-price-cut">৳${prod.oldPrice}</span>`;
-
                 card.innerHTML = `
-                    <img src="${currentImg}" class="main-img" id="creative-img-${prod.id}" alt="${prod.name}" fetchpriority="high">
+                    <img src="${currentImg}" class="main-img" id="creative-img-${prod.id}" alt="${prod.name}" loading="lazy" decoding="async">
                     <h3>${prod.name}</h3>
                     <p class="prod-description">${prod.desc}</p>
                     ${stockLabel}
                     ${viewButtonsHtml}
                     <div class="price-container">
-                        ${oldPriceHtml}
+                        <span class="old-price-cut">৳${prod.oldPrice}</span>
                         <span class="offer-price">${prod.offPrice} TK</span>
                     </div>
                     <button class="order-btn" onclick="addCreativeToCart('${prod.id}')">Add To Cart</button>
                 `;
-                creativeContainer.appendChild(card);
+                fragment.appendChild(card);
             });
+
+            creativeContainer.innerHTML = '';
+            creativeContainer.appendChild(fragment);
         }
 
         function changeCreativeView(prodId, viewName) {
@@ -617,8 +602,7 @@
                 const cardEl = document.getElementById(`creative-card-${prodId}`);
                 if(cardEl) {
                     cardEl.querySelectorAll('.color-option-btn').forEach(btn => {
-                        if(btn.innerText.trim() === viewName) btn.classList.add('selected');
-                        else btn.classList.remove('selected');
+                        btn.classList.toggle('selected', btn.innerText.trim() === viewName);
                     });
                 }
             }
@@ -653,11 +637,9 @@
                 card.querySelectorAll('.color-option-btn').forEach(b => {
                     let btnText = b.innerText.replace("📷", "").trim();
                     if(selectedColour === "Main Pic" || selectedColour === "Standard") {
-                        if(btnText.startsWith("Main View")) b.classList.add('selected');
-                        else b.classList.remove('selected');
+                        b.classList.toggle('selected', btnText.startsWith("Main View"));
                     } else {
-                        if(btnText === selectedColour.trim()) b.classList.add('selected');
-                        else b.classList.remove('selected');
+                        b.classList.toggle('selected', btnText === selectedColour.trim());
                     }
                 });
             }
@@ -666,8 +648,9 @@
         function togglePaymentBox() {
             const method = document.getElementById('paymentMethod').value;
             const pBox = document.getElementById('advancePaymentBox');
-            if(method === "Advance") pBox.classList.add('active');
-            else {
+            if(method === "Advance") {
+                pBox.classList.add('active');
+            } else {
                 pBox.classList.remove('active');
                 document.getElementById('payDetails').value = "";
                 document.getElementById('payScreenshot').value = "";
@@ -677,22 +660,32 @@
         function renderLivaliaStandbyGrid() {
             const livContainer = document.getElementById('livaliaContainer');
             if(!livContainer) return; 
-            livContainer.innerHTML = '';
+            const fragment = document.createDocumentFragment();
+
             livaliaProducts.forEach(prod => {
                 const card = document.createElement('div');
                 card.className = 'card'; card.setAttribute('data-name', prod.name);
                 
                 card.innerHTML = `
                     <span class="livelia-badge">LIVALIA PARTNER</span>
-                    <img src="${prod.img}" class="main-img" alt="${prod.name}">
+                    <img src="${prod.img}" class="main-img" alt="${prod.name}" loading="lazy" decoding="async">
                     <h3>${prod.name}</h3>
                     <p class="prod-description">${prod.desc}</p>
                     <span class="stock-indicator" style="color:green;">✔ Standby Available</span>
                     <div class="price-container"><span class="offer-price">${prod.offPrice} BDT</span></div>
                     <button class="order-btn" onclick="addLivaliaToCart('${prod.id}')">Add To Cart</button>
                 `;
-                livContainer.appendChild(card);
+                fragment.appendChild(card);
             });
+
+            livContainer.innerHTML = '';
+            livContainer.appendChild(fragment);
+        }
+
+        function openCartDrawer() {
+            const sidebar = document.getElementById('cartSidebar');
+            sidebar.classList.add('active');
+            sidebar.classList.remove('toggle');
         }
 
         function addDynamicToCart(id, price) {
@@ -718,8 +711,7 @@
                 });
             }
             updateCartDOM();
-            document.getElementById('cartSidebar').classList.add('active');
-            document.getElementById('cartSidebar').classList.remove('toggle');
+            openCartDrawer();
         }
 
         function addCreativeToCart(id) {
@@ -731,8 +723,7 @@
             else cart.push({ id, name: item.name, price: item.offPrice, qty: 1, colour: activeView, isLivalia: false, isPreOrder: false });
             
             updateCartDOM();
-            document.getElementById('cartSidebar').classList.add('active');
-            document.getElementById('cartSidebar').classList.remove('toggle');
+            openCartDrawer();
         }
 
         function addLivaliaToCart(id) {
@@ -740,9 +731,9 @@
             const existing = cart.find(i => i.id === id);
             if(existing) existing.qty++;
             else cart.push({ id, name: item.name, price: item.offPrice, qty: 1, colour: "Standard", isLivalia: true, isPreOrder: false });
+            
             updateCartDOM();
-            document.getElementById('cartSidebar').classList.add('active');
-            document.getElementById('cartSidebar').classList.remove('toggle');
+            openCartDrawer();
         }
 
         function changeQty(id, colour, delta) {
@@ -756,7 +747,9 @@
         function updateCartDOM() {
             document.getElementById('cartCount').innerText = cart.reduce((sum, item) => sum + item.qty, 0);
             const container = document.getElementById('cartItemsContainer');
-            if(!container) return; container.innerHTML = '';
+            if(!container) return; 
+            
+            const fragment = document.createDocumentFragment();
             let total = 0;
             
             cart.forEach(item => {
@@ -778,8 +771,11 @@
                     </div>
                     <b style="color:var(--primary);">${item.price * item.qty} TK</b>
                 `;
-                container.appendChild(div);
+                fragment.appendChild(div);
             });
+
+            container.innerHTML = '';
+            container.appendChild(fragment);
             document.getElementById('cartTotalAmount').innerText = total + " TK";
             updateCalculations();
         }
@@ -794,20 +790,26 @@
             document.getElementById('summaryGrandTotal').innerText = (subtotal + delCharge) + " TK";
 
             const summaryContainer = document.getElementById('liveCartSummaryRows');
-            if(!summaryContainer) return; summaryContainer.innerHTML = '';
+            if(!summaryContainer) return; 
+
+            const fragment = document.createDocumentFragment();
             cart.forEach(item => {
                 const r = document.createElement('div');
                 r.className = 'live-summary-row';
                 let labelName = `${item.name} [${item.colour}]`;
                 if(item.isPreOrder) labelName += " [Pre-Order]";
                 r.innerHTML = `<span>${labelName} (x${item.qty})</span><b>${item.price * item.qty} TK</b>`;
-                summaryContainer.appendChild(r);
+                fragment.appendChild(r);
             });
+
+            summaryContainer.innerHTML = '';
+            summaryContainer.appendChild(fragment);
         }
 
         function toggleCart() { 
-            document.getElementById('cartSidebar').classList.toggle('toggle'); 
-            document.getElementById('cartSidebar').classList.toggle('active'); 
+            const sidebar = document.getElementById('cartSidebar');
+            sidebar.classList.toggle('toggle'); 
+            sidebar.classList.toggle('active'); 
         }
         
         function showCheckout() {
@@ -821,20 +823,22 @@
             document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
             btn.classList.add('active');
             
-            document.getElementById('creativeContainer').style.display = (category==='all' || category==='creative') ? 'flex' : 'none';
-            document.querySelector('.product-heading[data-category="creative"]').style.display = (category==='all' || category==='creative') ? 'block' : 'none';
+            const isAll = category === 'all';
+            document.getElementById('creativeContainer').style.display = (isAll || category==='creative') ? 'flex' : 'none';
+            document.querySelector('.product-heading[data-category="creative"]').style.display = (isAll || category==='creative') ? 'block' : 'none';
             
-            document.getElementById('aestheticContainer').style.display = (category==='all' || category==='aesthetic') ? 'flex' : 'none';
-            document.querySelector('.product-heading[data-category="aesthetic"]').style.display = (category==='all' || category==='aesthetic') ? 'block' : 'none';
+            document.getElementById('aestheticContainer').style.display = (isAll || category==='aesthetic') ? 'flex' : 'none';
+            document.querySelector('.product-heading[data-category="aesthetic"]').style.display = (isAll || category==='aesthetic') ? 'block' : 'none';
             
-            document.getElementById('livaliaContainer').style.display = (category==='all' || category==='livalia') ? 'flex' : 'none';
-            document.querySelector('.product-heading[data-category="livalia"]').style.display = (category==='all' || category==='livalia') ? 'block' : 'none';
+            document.getElementById('livaliaContainer').style.display = (isAll || category==='livalia') ? 'flex' : 'none';
+            document.querySelector('.product-heading[data-category="livalia"]').style.display = (isAll || category==='livalia') ? 'block' : 'none';
         }
 
         function filterGridProducts() {
             const q = document.getElementById('searchBar').value.toLowerCase().trim();
             document.querySelectorAll('.card').forEach(c => {
-                c.style.display = c.getAttribute('data-name').toLowerCase().includes(q) ? 'flex' : 'none';
+                const isMatch = c.getAttribute('data-name').toLowerCase().includes(q);
+                c.style.display = isMatch ? 'flex' : 'none';
             });
         }
 
@@ -858,14 +862,12 @@
             let delCharge = region === "Inside Dhaka" ? (subtotal >= 800 ? 0 : 80) : 150;
             const generatedId = "SAT-" + Math.floor(100000 + Math.random() * 900000);
 
-            const serializedCart = cart.map(i => {
-                let tag = i.isPreOrder ? " [Pre-Order]" : "";
-                return `${i.name} [${i.colour}]${tag} (x${i.qty})`;
-            }).join(", ");
+            const serializedCart = cart.map(i => `${i.name} [${i.colour}]${i.isPreOrder ? " [Pre-Order]" : ""} (x${i.qty})`).join(", ");
 
             let baseAddress = document.getElementById('custAddress').value.trim();
-            const hasLivaliaItem = cart.some(item => item.isLivalia === true);
-            if (hasLivaliaItem) baseAddress = baseAddress + ", Agent Code: LL-ES-0010";
+            if (cart.some(item => item.isLivalia)) {
+                baseAddress += ", Agent Code: LL-ES-0010";
+            }
 
             const method = document.getElementById('paymentMethod').value;
             let finalPaymentInfo = "100% Cash on Delivery";
@@ -873,7 +875,7 @@
 
             if(method === "Advance") {
                 const pDetails = document.getElementById('payDetails').value.trim();
-                finalPaymentInfo = "Advance Paid via (" + (pDetails ? pDetails : "Not Specified") + ")";
+                finalPaymentInfo = "Advance Paid via (" + (pDetails || "Not Specified") + ")";
                 
                 const fileInput = document.getElementById('payScreenshot');
                 if(fileInput.files.length > 0) {
@@ -901,12 +903,16 @@
             const btn = event.target.querySelector('.submit-order-btn');
             btn.disabled = true; btn.innerText = "Processing Order... ⏳";
 
-            fetch(GOOGLE_SCRIPT_WEB_APP_URL, {
-                method: "POST",
-                body: JSON.stringify(payload)
-            })
-            .then(() => { displaySuccessUI(payload, generatedId); })
-            .catch((err) => { console.error(err); displaySuccessUI(payload, generatedId); });
+            try {
+                await fetch(GOOGLE_SCRIPT_WEB_APP_URL, {
+                    method: "POST",
+                    body: JSON.stringify(payload)
+                });
+            } catch (err) {
+                console.error("Order submit warning:", err);
+            } finally {
+                displaySuccessUI(payload, generatedId);
+            }
         }
 
         function displaySuccessUI(data, id) {
@@ -926,12 +932,14 @@
                     <button class="cancel-order-btn" id="cancelBtnEl" onclick="cancelPlacedOrder()">❌ Cancel Order & Return Stock</button>
                     <a href="javascript:void(0)" onclick="window.location.reload()" style="display:inline-block; margin-top:20px; color:var(--primary); font-weight:bold; text-decoration:none;"><i class="fas fa-arrow-left"></i> হোমপেজে ফিরে যান</a>
                 </div>`;
-            cart = []; updateCartDOM();
-            if(document.getElementById('noticeSectionBox')) document.getElementById('noticeSectionBox').style.display = 'none';
+            cart = []; 
+            updateCartDOM();
+            const noticeSection = document.getElementById('noticeSectionBox');
+            if(noticeSection) noticeSection.style.display = 'none';
         }
 
-        function cancelPlacedOrder() {
-            if(!confirm("আপনি কি নিশ্চিতভাবে এই অর্ডারটি ক্যানसेल করতে চান?")) return;
+        async function cancelPlacedOrder() {
+            if(!confirm("আপনি কি নিশ্চিতভাবে এই অর্ডারটি ক্যানসেল করতে চান?")) return;
             
             let cBtn = document.getElementById('cancelBtnEl');
             if(cBtn) { cBtn.innerText = "Cancelling Order... ⏳"; cBtn.disabled = true; }
@@ -942,26 +950,24 @@
                 cart: lastSubmittedOrderData.cart 
             };
 
-            fetch(GOOGLE_SCRIPT_WEB_APP_URL, {
-                method: "POST",
-                body: JSON.stringify(cancelPayload)
-            })
-            .then(() => {
+            try {
+                await fetch(GOOGLE_SCRIPT_WEB_APP_URL, {
+                    method: "POST",
+                    body: JSON.stringify(cancelPayload)
+                });
+            } catch (err) {
+                console.error("Cancel warning:", err);
+            } finally {
                 alert("অর্ডারটি সফলভাবে বাতিল করা হয়েছে।");
                 window.location.reload();
-            })
-            .catch(err => {
-                console.error(err);
-                alert("অর্ডার বাতিল হয়েছে!");
-                window.location.reload();
-            });
+            }
         }
 
-        window.onload = function() {
+        window.addEventListener('DOMContentLoaded', () => {
             trackReferralStaffCode(); 
             fetchLiveInventory();     
             preloadAllImages(); 
-        };
+        });
     </script>
 </body>
 </html>
